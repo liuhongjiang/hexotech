@@ -34,14 +34,14 @@ Online learning的算法结构是非常简单的，下面的描述是监督的on
 
 $$
 \begin{array}{l}
-L(w,S) = \frac{\lambda }{2}{\left\| w \right\|^2} + \frac{1}{k}\sum\limits_{(x,y) \in S} {h(w;(x,y))} \\
-h(w;(x,y)) = \max \{ 0,1 - y \langle w,x \rangle \} 
+L(w,S) = \frac{\lambda }{2}{\left\| w \right\|^2} + \frac{1}{k}\sum\limits_{(x,y) \in S} {h(w;(x,y))} \\\\
+h(w;(x,y)) = \max \\{ 0,1 - y \langle w,x \rangle \\} 
 \end{array}
 $$
 
 上面式子中，$k$是训练集$S$的大小，$h()$是the hinge loss（合页损失函数），$\langle w, x\rangle$表示$w,x$的内积，$\lambda$是正则化项。
 
-在[《统计学习方法》](http://book.douban.com/subject/10590856/)这本书的7.2.4证明了合页损失函数与引入松弛变量后的损失函数是等价的，并证明了$\lambda\$与惩罚系数$C$是成反比的。引入松弛变量后的损失函数为:
+在[《统计学习方法》](http://book.douban.com/subject/10590856/)这本书的7.2.4证明了合页损失函数与引入松弛变量后的损失函数是等价的，并证明了$\lambda$与惩罚系数$C$是成反比的。引入松弛变量后的损失函数为:
 
 $$
 \frac{1}{2}\left \| w \right \|^{2} + C\sum_{i=1}^{N}\xi _{i}
