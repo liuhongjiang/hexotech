@@ -34,18 +34,17 @@ Online learning的算法结构是非常简单的，下面的描述是监督的on
 
 $$
 \begin{array}{l}
-L(w,S) = \frac{\lambda }{2}{\left\\| w \right\\|^2} + \frac{1}{k}\sum\limits_{(x,y) \in S} {h(w;(x,y))} \\\\
-h(w;(x,y)) = \max \\{ 0,1 - y \langle w,x \rangle \\} 
+L(w,S) = \frac{\lambda }{2}{\left\| w \right\|^2} + \frac{1}{k}\sum\limits_{(x,y) \in S} {h(w;(x,y))} \\
+h(w;(x,y)) = \max \{ 0,1 - y \langle w,x \rangle \} 
 \end{array}
 $$
 
 上面式子中，$k$是训练集$S$的大小，$h()$是the hinge loss（合页损失函数），$\langle w, x\rangle$表示$w,x$的内积，$\lambda$是正则化项。
 
-在[《统计学习方法》](http://book.douban.com/subject/10590856/)这本书的7.2.4证明了合页损失函数与引入松弛变量后的损失函数是等价的，并证明了$\lambda$与惩罚系数$C$是成反比的。引入松弛变量后的损失函数为:
-
+在[《统计学习方法》](http://book.douban.com/subject/10590856/)这本书的7.2.4证明了合页损失函数与引入松弛变量后的损失函数是等价的，并证明了$\lambda\$与惩罚系数$C$是成反比的。引入松弛变量后的损失函数为:
 
 $$
-\frac{1}{2}\left \\| w \right \\|^{2} + C\sum\_{i=1}^{N}{\xi\_{i}}
+\frac{1}{2}\left \| w \right \|^{2} + C\sum_{i=1}^{N}\xi _{i}
 $$
 
 训练过程中，如果遇到了一个预测错误的样本$(x,y)$, 对模型的更新方法如下：
@@ -58,19 +57,19 @@ $$
 根据pegasos算法，新模型的$l\_2$范数如果超出了以 $\frac{1}{ {\sqrt \lambda  } }$ 为半径的超球面，那么需要将新模型投射到这个超球面上。即：
 
 $$
-{w\_{t + 1}} = \min\\{ 1,\frac{1}{ {\sqrt \lambda  \left\\| { {w\_{t + \frac{1}{2} } } } \right\\|}}\\} {w\_{t + \frac{1}{2}}}
+{w_{t + 1}} = \min \{ 1,\frac{1}{ {\sqrt \lambda  \left\| { {w_{t + \frac{1}{2} } } } \right\|}}\} {w_{t + \frac{1}{2}}}
 $$
 
 为什么需要讲新的模型投射到以$\frac{1}{ {\sqrt \lambda  } }$为半径的超球面上呢？论文证明了svm的最优解是在下面这个集合中的：
 
 $$
-B = \\{ w:\left\\| w \right\\| \le \frac{1}{ {\sqrt \lambda  } }\\} 
+B = \{ w:\left\| w \right\| \le \frac{1}{ {\sqrt \lambda  } }\} 
 $$
 
 而且在pegasos算法的推导，以及模型初始化$w$的时候，都使用了条件
 
 $$
-\left\\| w \right\\| \le \frac{1}{ {\sqrt \lambda  } }
+\left\| w \right\| \le \frac{1}{ {\sqrt \lambda  } }
 $$
 
 由上面模型的更新公式可以简单分析一下正则化参数$\lambda$的作用，它决定了训练过程中，后面出现的预测错误的样本，对应模型的修正程度。$\lambda$越大，修正程度越小，$\lambda$越小，修正程度越大。同时$\lambda$与惩罚系数$C$是成反比的，所以也可理解为，在训练过称中，出现预测错误样本时，对模型的惩罚程度。$\lambda$越大，惩罚越小，$\lambda$越小，惩罚越大。

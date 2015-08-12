@@ -16,13 +16,13 @@
 
 <%- js('js/jquery-2.1.4.min') %>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+<!--<script type="text/x-mathjax-config">-->
+<!--MathJax.Hub.Config({-->
+  <!--tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}-->
+<!--});-->
+<!--</script>-->
+<!--<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">-->
+<!--</script>-->
 
 <% if (theme.fancybox){ %>
   <%- css('fancybox/jquery.fancybox') %>
@@ -30,3 +30,7 @@ MathJax.Hub.Config({
 <% } %>
 
 <%- js('js/script') %>
+
+<% if (page.math){ %>
+<%- partial('mathjax') %>
+<% } %>
