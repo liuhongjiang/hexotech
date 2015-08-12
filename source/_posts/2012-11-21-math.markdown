@@ -10,7 +10,7 @@ categories: math
 在网页或blog中引用数学公式是一件痛苦的事情。经过几番在网上的查找，算是勉强找到了一个借鉴方法。借用强大的`MathJax + Latex`就可以解决这个问题。废话少说，先来一个例子  
 
 $$
-\begin{align*}
+\begin{aligned}
   & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
   = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
   & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
@@ -23,7 +23,7 @@ $$
       \vdots \\
       y_n
     \end{array} \right)
-\end{align*}
+\end{aligned}
 $$
 
 <!-- more -->
@@ -78,7 +78,7 @@ $$ J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha 
 
 ```
 $$
-\begin{align*}
+\begin{aligned}
   & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
   = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
   & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
@@ -91,14 +91,14 @@ $$
       \vdots \\
       y_n
     \end{array} \right)
-\end{align*}
+\end{aligned}
 $$
 ```
 
 显示如下：
 
 $$
-\begin{align*}
+\begin{aligned}
   & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
   = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
   & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
@@ -111,7 +111,7 @@ $$
       \vdots \\
       y_n
     \end{array} \right)
-\end{align*}
+\end{aligned}
 $$
 
 ## 错误的例子

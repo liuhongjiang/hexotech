@@ -24,17 +24,51 @@ math: true
 $ npm install hexo-renderer-pandoc --save
 ```
 
-3. Create a file named mathjax.ejs in the folder like theme_folder/layout/_partial/, the code in mathjax.ejs are as follows:
-{% gist 3e2804c717c91a75aa55 mathjax.ejs %}
+3. Create a file named `mathjax.ejs` in the folder like `theme_folder/layout/_partial/`, the code in mathjax.ejs are as follows:
 
-4. Add the snippits below in theme_folder/layout/_partial/after_footer.ejs
+```
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+```
+
+The gist is here: [mathjax.ejs gist](https://gist.github.com/billryan/3e2804c717c91a75aa55#file-mathjax-ejs)
+
+4. Add the snippits below in `theme_folder/layout/_partial/after_footer.ejs`
 ```
 <% if (page.mathjax){ %>
 <%- partial('mathjax') %>
 <% } %>
 ```
 
-5. Add mathjax: false for _config.yml in the root directory of your Hexo init folder. It is some thing like this:
+5. Add `mathjax: false` for `_config.yml` in the root directory of your Hexo init folder. It is some thing like this:
 ```
 mathjax: false
 ```
