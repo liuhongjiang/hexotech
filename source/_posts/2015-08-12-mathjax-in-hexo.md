@@ -15,6 +15,8 @@ math: true
 
 介绍使用[pandoc](http://pandoc.org/)和[hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)
 
+<!-- more -->
+
 ## 步骤
 
 1. Firstly, make sure you have [installed pandoc](http://pandoc.org/installing.html).
