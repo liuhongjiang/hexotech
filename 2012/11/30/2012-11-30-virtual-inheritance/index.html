@@ -55,7 +55,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -63,9 +63,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -107,7 +107,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了<a href="/blog/2012/11/29/virtual-function/">《虚函数》</a>，这篇博客就讲虚继承。</p>
+        <p>C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了<a href="/hexotech/blog/2012/11/29/virtual-function/">《虚函数》</a>，这篇博客就讲虚继承。</p>
 <p>首先来看为什么需要虚继承。C++里面继承关系中有个很有名的继承结构，菱形继承，如下图所示</p>
 <img src="/images/blogimages/2012/virtualinheritance/iostream.jpg" class="center">
 <p>普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostream类中存在两个相同的ios类,然后是构造效率低，需要构造两个ios类。更严重的是调用基类中的函数时，存在二义性，当iostream调用ios的成员函数时，编译器无法知道是调用istream还是ostream中的ios。</p>
@@ -204,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/11/30/2012-11-30-virtual-inheritance/" data-id="cicfs3xyw001lu0i4vid4031a" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/11/30/2012-11-30-virtual-inheritance/" data-id="cid74grd6001le8i41z42pxlx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -305,9 +305,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

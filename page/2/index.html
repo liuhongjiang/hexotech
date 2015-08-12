@@ -33,7 +33,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -41,9 +41,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -95,7 +95,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2014/05/16/2014-05-16-the-cathedral-and-the-bazaar/" data-id="cicfs3xxy000lu0i4e61cd30e" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2014/05/16/2014-05-16-the-cathedral-and-the-bazaar/" data-id="cid74grc2000le8i4guhqg3jy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -138,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2014/05/16/2014-05-16-rules/" data-id="cicfs3xxz000mu0i44wl3pwi8" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2014/05/16/2014-05-16-rules/" data-id="cid74grc4000me8i4cbmzzaaz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -208,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/11/25/2013-11-25-learning-go/" data-id="cicfs3xy1000nu0i4p4ieboyf" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/11/25/2013-11-25-learning-go/" data-id="cid74grc7000ne8i4mh94awns" class="article-share-link">Share</a>
       
       
     </footer>
@@ -262,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/08/18/2013-08-18-tree/" data-id="cicfs3xy4000qu0i4r87jh8f7" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/08/18/2013-08-18-tree/" data-id="cid74grca000qe8i4hhqxa10g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -311,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/02/25/2013-02-25-lisp-notes/" data-id="cicfs3xy6000tu0i4nzpz68oi" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/02/25/2013-02-25-lisp-notes/" data-id="cid74grce000te8i4ol6nn4og" class="article-share-link">Share</a>
       
       
     </footer>
@@ -365,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/31/2013-01-31-svm-pegasos/" data-id="cicfs3xy7000uu0i4wj3ipuly" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/31/2013-01-31-svm-pegasos/" data-id="cid74grcg000ue8i4cig788ls" class="article-share-link">Share</a>
       
       
     </footer>
@@ -408,11 +408,11 @@
 <p>znodes与Unix文件系统路径相似相似，但是还是不同的，znode的中间节点是可以保存数据的，对应于文件系统，就即是文件又是目录。为了达到高吞吐的能力，znode在zookeeper中是放在内存中的。</p>
 <p>ZooKeeper是以Fast Paxos算法为基础的，paxos算法存在活锁的问题，即当有多个proposer交错提交时，有可能互相排斥导致没有一个proposer能提交成功，而Fast Paxos作了一些优化，通过选举产生一个leader，只有leader才能提交propose，具体算法可见Fast Paxos。因此，要想弄懂ZooKeeper首先得对Fast Paxos有所了解。</p>
 <p>ZooKeeper的基本运转流程：</p>
-<pre><code>1、选举Leader。
-2、同步数据。
-3、选举Leader过程中算法有很多，但要达到的选举标准是一致的。
-4、Leader要具有最高的zxid。
-5、集群中大多数的机器得到响应并follow选出的Leader。
+<pre><code><span class="number">1</span>、选举Leader。
+<span class="number">2</span>、同步数据。
+<span class="number">3</span>、选举Leader过程中算法有很多，但要达到的选举标准是一致的。
+<span class="number">4</span>、Leader要具有最高的zxid。
+<span class="number">5</span>、集群中大多数的机器得到响应并follow选出的Leader。
 </code></pre>
         
           <p class="article-more-link">
@@ -422,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/23/2013-01-23-zk-overview/" data-id="cicfs3xyc000xu0i42sbc9jst" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/23/2013-01-23-zk-overview/" data-id="cid74grcl000xe8i4d1xcttji" class="article-share-link">Share</a>
       
       
     </footer>
@@ -482,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/22/2013-01-22-github-https/" data-id="cicfs3xye0010u0i4jkkwcn3t" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/22/2013-01-22-github-https/" data-id="cid74grco0010e8i4s7tad58w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -525,7 +525,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/19/2013-01-19-2012/" data-id="cicfs3xyg0013u0i4dtusniba" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/19/2013-01-19-2012/" data-id="cid74grcq0013e8i4gxciid8a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -578,7 +578,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/18/2013-01-18-simple-master-election/" data-id="cicfs3xyh0014u0i4nhwovelb" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/18/2013-01-18-simple-master-election/" data-id="cid74grcr0014e8i45wv3eh9r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -591,7 +591,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/hexotech/page/3/">3</a><a class="page-number" href="/hexotech/page/4/">4</a><a class="extend next" rel="next" href="/hexotech/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/hexotech/">&laquo; Prev</a><a class="page-number" href="/hexotech/">1</a><span class="page-number current">2</span><a class="page-number" href="/hexotech/page/3/">3</a><a class="page-number" href="/hexotech/page/4/">4</a><a class="extend next" rel="next" href="/hexotech/page/3/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -665,9 +665,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

@@ -34,7 +34,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -42,9 +42,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -122,7 +122,7 @@
 <td style="text-align:right">cell6</td>
 </tr>
 <tr>
-<td style="text-align:left">——</td>
+<td style="text-align:left">—-</td>
 </tr>
 <tr>
 <td style="text-align:left">cell1</td>
@@ -149,11 +149,11 @@
 <p>kramdown参考文档中的其它几个例子</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string">-----------------+------------+-----------------+----------------</span>|</span><br><span class="line">|<span class="string"> Default aligned </span>|<span class="string">Left aligned</span>|<span class="string"> Center aligned  </span>|<span class="string"> Right aligned  </span>|</span><br><span class="line">|<span class="string">-----------------</span>|<span class="string">:-----------</span>|<span class="string">:---------------:</span>|<span class="string">---------------:</span>|</span><br><span class="line">|<span class="string"> First body part </span>|<span class="string">Second cell </span>|<span class="string"> Third cell      </span>|<span class="string"> fourth cell    </span>|</span><br><span class="line">|<span class="string"> Second line     </span>|<span class="string">foo         </span>|<span class="string"> **strong**      </span>|<span class="string"> baz            </span>|</span><br><span class="line">|<span class="string"> Third line      </span>|<span class="string">quux        </span>|<span class="string"> baz             </span>|<span class="string"> bar            </span>|</span><br><span class="line">|<span class="string">-----------------+------------+-----------------+----------------</span>|</span><br><span class="line">|<span class="string"> Second body     </span>|<span class="string">            </span>|<span class="string">                 </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> 2 line          </span>|<span class="string">            </span>|<span class="string">                 </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string">=================+============+=================+================</span>|</span><br><span class="line">|<span class="string"> Footer row      </span>|<span class="string">            </span>|<span class="string">                 </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string">-----------------+------------+-----------------+----------------</span>|</span><br><span class="line">&#123;: .mytable&#125;</span><br></pre></td></tr></table></figure>
 <p>注意里面的对齐方式的定义（代码的第三行），还有第7,10行中关于表格分块的定义，显示</p>
-<p>|————————-+——————+————————-+————————|<br>| Default aligned |Left aligned| Center aligned  | Right aligned  |<br>|————————-|:—————-|:———————-:|———————-:|<br>| First body part |Second cell | Third cell      | fourth cell    |<br>| Second line     |foo         | <strong>strong</strong>      | baz            |<br>| Third line      |quux        | baz             | bar            |<br>|————————-+——————+————————-+————————|<br>| Second body     |            |                 |                |<br>| 2 line          |            |                 |                |<br>|=================+============+=================+================|<br>| Footer row      |            |                 |                |<br>|————————-+——————+————————-+————————|<br>{: .mytable}</p>
+<p>|—————–+————+—————–+—————-|<br>| Default aligned |Left aligned| Center aligned  | Right aligned  |<br>|—————–|:———–|:—————:|—————:|<br>| First body part |Second cell | Third cell      | fourth cell    |<br>| Second line     |foo         | <strong>strong</strong>      | baz            |<br>| Third line      |quux        | baz             | bar            |<br>|—————–+————+—————–+—————-|<br>| Second body     |            |                 |                |<br>| 2 line          |            |                 |                |<br>|=================+============+=================+================|<br>| Footer row      |            |                 |                |<br>|—————–+————+—————–+—————-|<br>{: .mytable}</p>
 <p>当然也有屌丝专用的丑陋，但简单的方式，与上面的表格一样</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string">---</span><br><span class="line"></span>|<span class="string"> Default aligned </span>|<span class="string"> Left aligned </span>|<span class="string"> Center aligned </span>|<span class="string"> Right aligned</span><br><span class="line"></span>|<span class="string">-</span>|<span class="string">:-</span>|<span class="string">:-:</span>|<span class="string">-:</span><br><span class="line"></span>|<span class="string"> First body part </span>|<span class="string"> Second cell </span>|<span class="string"> Third cell </span>|<span class="string"> fourth cell</span><br><span class="line"></span>|<span class="string"> Second line </span>|<span class="string">foo </span>|<span class="string"> **strong** </span>|<span class="string"> baz</span><br><span class="line"></span>|<span class="string"> Third line </span>|<span class="string">quux </span>|<span class="string"> baz </span>|<span class="string"> bar</span><br><span class="line"></span>|<span class="string">---</span><br><span class="line"></span>|<span class="string"> Second body</span><br><span class="line"></span>|<span class="string"> 2 line</span><br><span class="line"></span>|<span class="string">===</span><br><span class="line"></span>|<span class="string"> Footer row</span><br><span class="line">&#123;: .mytable&#125;</span></span><br></pre></td></tr></table></figure>
 <p>最后的显示的表格与上面是一样的。</p>
-<p>|—-<br>| Default aligned | Left aligned | Center aligned | Right aligned<br>|-|:-|:-:|-:<br>| First body part | Second cell | Third cell | fourth cell<br>| Second line |foo | <strong>strong</strong> | baz<br>| Third line |quux | baz | bar<br>|—-<br>| Second body<br>| 2 line<br>|===<br>| Footer row<br>{: .mytable}</p>
+<p>|—<br>| Default aligned | Left aligned | Center aligned | Right aligned<br>|-|:-|:-:|-:<br>| First body part | Second cell | Third cell | fourth cell<br>| Second line |foo | <strong>strong</strong> | baz<br>| Third line |quux | baz | bar<br>|—<br>| Second body<br>| 2 line<br>|===<br>| Footer row<br>{: .mytable}</p>
 <p>当然还可以有没有那么复杂的直接上最简单的表格的方式</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string"> First cell</span>|<span class="string">Second cell</span>|<span class="string">Third cell</span><br><span class="line"></span>|<span class="string"> First </span>|<span class="string"> Second </span>|<span class="string"> Third </span>|</span><br><span class="line">First |<span class="string"> Second </span>|<span class="string"> </span>|<span class="string"> Fourth </span>|</span><br><span class="line">&#123;: .mytable&#125;</span><br></pre></td></tr></table></figure>
 <p>显示为</p>
@@ -165,7 +165,7 @@
 <p>但后来发现一个问题，在一行里面加入的代码块也有了缩进的样式, 就像这样子<code style="text-indent:2em">这里有了缩进</code>, 我用了比较土的方法解决，还是在上面的custom/_styles.scss中加入</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#content</span> <span class="class">.entry-content</span> &gt; <span class="tag">p</span> &gt; <span class="tag">code</span> <span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">text-indent</span>:<span class="value"> <span class="number">0em</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>这种解决办法不是很好，因为总有可能导致其它标签里面意外出现缩进，但我也不熟悉css，只有先这么办了，先解决眼前的问题。</p>
-<h2 id="添加豆瓣的侧边栏">添加豆瓣的侧边栏</h2><p><a href="http://www.douban.com/service/badgemakerjs" target="_blank" rel="external">豆瓣收藏秀</a>可以为你的博客生成一个侧边栏，放入到你的博客中。访问这个网址<a href="">http://www.douban.com/service/badgemakerjs</a>，可以生成一段js代码，然后讲这段代码嵌入到侧边栏的html中即可。</p>
+<h2 id="添加豆瓣的侧边栏">添加豆瓣的侧边栏</h2><p><a href="http://www.douban.com/service/badgemakerjs" target="_blank" rel="external">豆瓣收藏秀</a>可以为你的博客生成一个侧边栏，放入到你的博客中。访问这个网址<a href="/hexotech/">http://www.douban.com/service/badgemakerjs</a>，可以生成一段js代码，然后讲这段代码嵌入到侧边栏的html中即可。</p>
 <p>具体的做法，显示在收藏秀的页面里面选择好需要显示的内容，例如：我选择了，我想看的、书、每次随机选择、共显示9个 每行3个、图片小，下面两个选择隐藏，然后生成了这样的JS代码</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://www.douban.com/service/badge/63148093/?show=wishlist&amp;amp;select=random&amp;amp;n=9&amp;amp;columns=3&amp;amp;hidelogo=yes&amp;amp;hideself=yes&amp;amp;cat=book"</span> &gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>然后创建文件<code>/source/_includes/custom/asides/douban-wishreading.html</code>, 在这个html文件中加入如下代码</p>
@@ -185,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/11/24/2012-11-24-blog-styles/" data-id="cicfs3xzj001pu0i4qhtnehes" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/11/24/2012-11-24-blog-styles/" data-id="cid74grda001pe8i4sn436v8c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,9 +286,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

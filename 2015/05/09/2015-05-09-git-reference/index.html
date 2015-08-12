@@ -40,7 +40,7 @@ HEAD vs ORIG_HEADHEAD is (direct or indirect, i.e. symbolic) reference to the cu
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -48,9 +48,9 @@ HEAD vs ORIG_HEADHEAD is (direct or indirect, i.e. symbolic) reference to the cu
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -101,7 +101,7 @@ HEAD vs ORIG_HEADHEAD is (direct or indirect, i.e. symbolic) reference to the cu
 <a id="more"></a>
 <p>So HEAD is NOT a synonym for “current branch” everywhere already.</p>
 <p>HEAD means “current” everywhere in git, but it does not necessarily mean “current branch” (i.e. detached HEAD).</p>
-<p>But it almost always means the “current commit”.<br>It is the commit “git commit” builds on top of, and “git diff —cached” and “git status” compare against.<br>It means the current branch only in very limited contexts (exactly when we want a branch name to operate on —- resetting and growing the branch tip via commit/rebase/etc.).</p>
+<p>But it almost always means the “current commit”.<br>It is the commit “git commit” builds on top of, and “git diff –cached” and “git status” compare against.<br>It means the current branch only in very limited contexts (exactly when we want a branch name to operate on — resetting and growing the branch tip via commit/rebase/etc.).</p>
 <p><a href="http://stackoverflow.com/questions/964876/head-and-orig-head-in-git" target="_blank" rel="external">http://stackoverflow.com/questions/964876/head-and-orig-head-in-git</a></p>
 <h2 id="detached_head">detached head</h2><p>Detached head means you are no longer on a branch, you have checked out a single commit in the history (in this case the commit previous to HEAD, i.e. HEAD^).</p>
 <p><a href="http://stackoverflow.com/questions/10228760/fix-a-git-detached-head" target="_blank" rel="external">fix a git detached head</a></p>
@@ -135,13 +135,13 @@ HEAD vs ORIG_HEADHEAD is (direct or indirect, i.e. symbolic) reference to the cu
 </li>
 </ul>
 <p>Here is an illustration, by Jon Loeliger. Both commit nodes B and C are parents of commit node A. Parent commits are ordered left-to-right.</p>
-<figure class="highlight parser3"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">G   H   I   J</span><br><span class="line"> \ /     \ /</span><br><span class="line">  D   E   F</span><br><span class="line">   \  |  / \</span><br><span class="line">    \ | /   |</span><br><span class="line">     \|/    |</span><br><span class="line">      B     C</span><br><span class="line">       \   /</span><br><span class="line">        \ /</span><br><span class="line">         A</span><br><span class="line"></span><br><span class="line">A =      = A</span><span class="keyword">^0</span><span class="xml"></span><br><span class="line">B = A^   = A</span><span class="keyword">^1</span><span class="xml">     = A~</span><span class="number">1</span><span class="xml"></span><br><span class="line">C = A</span><span class="keyword">^2</span><span class="xml">  = A</span><span class="keyword">^2</span><span class="xml"></span><br><span class="line">D = A^^  = A</span><span class="keyword">^1</span><span class="xml"></span><span class="keyword">^1</span><span class="xml">   = A~</span><span class="number">2</span><span class="xml"></span><br><span class="line">E = B</span><span class="keyword">^2</span><span class="xml">  = A^</span><span class="keyword">^2</span><span class="xml"></span><br><span class="line">F = B</span><span class="keyword">^3</span><span class="xml">  = A^</span><span class="keyword">^3</span><span class="xml"></span><br><span class="line">G = A^^^ = A</span><span class="keyword">^1</span><span class="xml"></span><span class="keyword">^1</span><span class="xml"></span><span class="keyword">^1</span><span class="xml"> = A~</span><span class="number">3</span><span class="xml"></span><br><span class="line">H = D</span><span class="keyword">^2</span><span class="xml">  = B^</span><span class="keyword">^2</span><span class="xml">    = A^^</span><span class="keyword">^2</span><span class="xml">  = A~</span><span class="number">2</span><span class="xml"></span><span class="keyword">^2</span><span class="xml"></span><br><span class="line">I = F^   = B</span><span class="keyword">^3</span><span class="xml">^    = A^</span><span class="keyword">^3</span><span class="xml">^</span><br><span class="line">J = F</span><span class="keyword">^2</span><span class="xml">  = B</span><span class="keyword">^3</span><span class="xml"></span><span class="keyword">^2</span><span class="xml">   = A^</span><span class="keyword">^3</span><span class="xml"></span><span class="keyword">^2</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">G   H   I   J</span><br><span class="line"> \ /     \ /</span><br><span class="line">  D   E   F</span><br><span class="line">   \  |  / \</span><br><span class="line">    \ | /   |</span><br><span class="line">     \|/    |</span><br><span class="line">      B     C</span><br><span class="line">       \   /</span><br><span class="line">        \ /</span><br><span class="line">         A</span><br><span class="line"></span><br><span class="line">A =      = A^<span class="number">0</span></span><br><span class="line">B = A^   = A^<span class="number">1</span>     = A~<span class="number">1</span></span><br><span class="line">C = A^<span class="number">2</span>  = A^<span class="number">2</span></span><br><span class="line">D = A^^  = A^<span class="number">1</span>^<span class="number">1</span>   = A~<span class="number">2</span></span><br><span class="line">E = B^<span class="number">2</span>  = A^^<span class="number">2</span></span><br><span class="line">F = B^<span class="number">3</span>  = A^^<span class="number">3</span></span><br><span class="line">G = A^^^ = A^<span class="number">1</span>^<span class="number">1</span>^<span class="number">1</span> = A~<span class="number">3</span></span><br><span class="line">H = D^<span class="number">2</span>  = B^^<span class="number">2</span>    = A^^^<span class="number">2</span>  = A~<span class="number">2</span>^<span class="number">2</span></span><br><span class="line">I = F^   = B^<span class="number">3</span>^    = A^^<span class="number">3</span>^</span><br><span class="line">J = F^<span class="number">2</span>  = B^<span class="number">3</span>^<span class="number">2</span>   = A^^<span class="number">3</span>^<span class="number">2</span></span><br></pre></td></tr></table></figure>
 <p>以下是git的man page：<br><a href="http://schacon.github.io/git/git-rev-parse#_specifying_revisions" target="_blank" rel="external">specifying revisions</a><br>or<br><a href="http://git-scm.com/docs/git-rev-parse#_specifying_revisions" target="_blank" rel="external">specifying revisions</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2015/05/09/2015-05-09-git-reference/" data-id="cicfs3xxs000gu0i41u8nxk5n" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2015/05/09/2015-05-09-git-reference/" data-id="cid74grbl000ge8i4p0htocq4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -242,9 +242,9 @@ HEAD vs ORIG_HEADHEAD is (direct or indirect, i.e. symbolic) reference to the cu
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

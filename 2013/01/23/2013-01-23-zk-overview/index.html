@@ -41,7 +41,7 @@ Zookeeper是Google的Chubby一个开源的实现，关于Chubby，可以google�
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -49,9 +49,9 @@ Zookeeper是Google的Chubby一个开源的实现，关于Chubby，可以google�
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -100,11 +100,11 @@ Zookeeper是Google的Chubby一个开源的实现，关于Chubby，可以google�
 <p>znodes与Unix文件系统路径相似相似，但是还是不同的，znode的中间节点是可以保存数据的，对应于文件系统，就即是文件又是目录。为了达到高吞吐的能力，znode在zookeeper中是放在内存中的。</p>
 <p>ZooKeeper是以Fast Paxos算法为基础的，paxos算法存在活锁的问题，即当有多个proposer交错提交时，有可能互相排斥导致没有一个proposer能提交成功，而Fast Paxos作了一些优化，通过选举产生一个leader，只有leader才能提交propose，具体算法可见Fast Paxos。因此，要想弄懂ZooKeeper首先得对Fast Paxos有所了解。</p>
 <p>ZooKeeper的基本运转流程：</p>
-<pre><code>1、选举Leader。
-2、同步数据。
-3、选举Leader过程中算法有很多，但要达到的选举标准是一致的。
-4、Leader要具有最高的zxid。
-5、集群中大多数的机器得到响应并follow选出的Leader。
+<pre><code><span class="number">1</span>、选举Leader。
+<span class="number">2</span>、同步数据。
+<span class="number">3</span>、选举Leader过程中算法有很多，但要达到的选举标准是一致的。
+<span class="number">4</span>、Leader要具有最高的zxid。
+<span class="number">5</span>、集群中大多数的机器得到响应并follow选出的Leader。
 </code></pre><a id="more"></a>
 <h2 id="ZooKeeper_Overview">ZooKeeper Overview</h2><h3 id="结构">结构</h3><p>zookeeper service本身就是一个分布式集群，这一点和chubby是一样的。一个典型的集群由5个节点组成，他们之间选举出一个leader。构成zookeeper service的server有个前提条件，就是这些server是相互能够感知的。所有的server都保存了一个zookeeper的数据和状态的一个镜像，而且为了获得高吞吐能力，这个镜像是存放在内存中的。这个镜像是通过事务日志和某一时刻全部数据的快照生成的。</p>
 <p>Zookeeper的客户端连接到zookeeper的server上，客户端保持一个与server之间的TCP连接，并通过这个TCP链接发送请求，获取响应，获取watch事件，和发送心跳。如果连接断掉了，那么客户端将会自动连接到另外一个server。</p>
@@ -147,7 +147,7 @@ Zookeeper是Google的Chubby一个开源的实现，关于Chubby，可以google�
 <h3 id="连接库">连接库</h3><p>zookeeper可以通过多种方式连接，正式发布包里面包含了java和C种方式进行连接（就是客户端），C连接方式，有个库，单线程的zookeeper_st和多线程的zookeeper_mt。<br>zookeeper_st放弃了事件循环，可在事件驱动的应用程序中使用。而zookeeper_mt更加易用，与Java API类似，创建一个网络IO线程和一个事件分发线程，用来维护连接和执行回调。<br>在具体使用上，zookeeper_st仅提供了异步API与回调，用以集成至应用程序的事件循环。它只是为了支持pthread库不可用或不稳定的平台而存在，例如FreeBSD 4.x。除此以外的其他情况，应使用提供同步与异步两种API的zookeeper_mt。<a href="http://baike.baidu.com/view/3061646.htm" target="_blank" rel="external">^1</a></p>
 <p>当然还有其它语言非正式发布的连接库：<a href="https://cwiki.apache.org/confluence/display/ZOOKEEPER/ZKClientBindings" target="_blank" rel="external">ZKClientBindings</a>。</p>
 <h3 id="zk集群">zk集群</h3><p>配置zookeeper集群其实也是比较简单地的。配置方法就是standalone mode的配置文件基础上添加几个配置项，下面是一个示例：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">tickTime</span>=2000</span><br><span class="line"><span class="constant">dataDir</span>=/var/lib/zookeeper</span><br><span class="line"><span class="constant">clientPort</span>=2181</span><br><span class="line"><span class="constant">initLimit</span>=5</span><br><span class="line"><span class="constant">syncLimit</span>=2</span><br><span class="line">server.1=zoo1:2888:3888</span><br><span class="line">server.2=zoo2:2888:3888</span><br><span class="line">server.3=zoo3:2888:3888</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tickTime=<span class="number">2000</span></span><br><span class="line">dataDir=/var/lib/zookeeper</span><br><span class="line">clientPort=<span class="number">2181</span></span><br><span class="line">initLimit=<span class="number">5</span></span><br><span class="line">syncLimit=<span class="number">2</span></span><br><span class="line">server<span class="number">.1</span>=zoo1:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.2</span>=zoo2:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.3</span>=zoo3:<span class="number">2888</span>:<span class="number">3888</span></span><br></pre></td></tr></table></figure>
 <p>单机版中包含了<code>tickTime</code>，<code>dataDir</code>，<code>clientPort</code>三个配置项。<a href="http://blog.csdn.net/poechant/article/details/6650249" target="_blank" rel="external">^2</a></p>
 <ul>
 <li>tickTime 是zk的时钟周期，单位是毫秒。Zookeeper 服务器之间或客户端与服务器之间维持心跳的时间间隔，也就是每个 tickTime时间就会发送一个心跳。tickTime以毫秒为单位。</li>
@@ -164,25 +164,25 @@ Zookeeper是Google的Chubby一个开源的实现，关于Chubby，可以google�
 <h2 id="试用">试用</h2><p>先装一个zookeeper Standalone来试试。安装和配置还是十分简单的，参考<a href="http://zookeeper.apache.org/doc/r3.4.5/zookeeperStarted.html" target="_blank" rel="external">ZooKeeper Getting Started Guide</a>上面讲到地，进行就可以了。配置完后，就可以启动zookeeper了，启动命令可以参考前面的Guide。</p>
 <p>zooker启动后可以使用客户端连接zookeeper service了，有两种客户端使用，一是java版，另外一个是c版的。可以先使用java版的练习一下。</p>
 <p>实际上启动了java的client后，看到的是一个类是shell的交互式界面了，通过这个shell可以做很多事情，通过命令<code>help</code>来查看。</p>
-<pre><code>[zkshel<span class="variable">l:</span> <span class="number">0</span>] <span class="keyword">help</span>
-    ZooKeeper hos<span class="variable">t:port</span> cmd <span class="keyword">args</span>
-    <span class="built_in">get</span> path [watch]
-    <span class="keyword">ls</span> path [watch]
-    <span class="keyword">set</span> path data [<span class="keyword">version</span>]
-    delquota [-<span class="keyword">n</span>|-<span class="keyword">b</span>] path
-    <span class="keyword">quit</span>
-    printwatches <span class="keyword">on</span>|off
-    createpath data acl
-    stat path [watch]
-    listquota path
-    <span class="keyword">history</span>
-    setAcl path acl
-    getAcl path
-    <span class="keyword">sync</span> path
+<pre><code>[zkshell: <span class="operator">0] <span class="keyword">help</span>
+    ZooKeeper host:port cmd args
+    <span class="keyword">get</span> <span class="keyword">path</span> [watch]
+    ls <span class="keyword">path</span> [watch]
+    <span class="keyword">set</span> <span class="keyword">path</span> <span class="keyword">data</span> [<span class="keyword">version</span>]
+    delquota [-<span class="keyword">n</span>|-b] <span class="keyword">path</span>
+    quit
+    printwatches <span class="keyword">on</span>|<span class="keyword">off</span>
+    createpath <span class="keyword">data</span> acl
+    stat <span class="keyword">path</span> [watch]
+    listquota <span class="keyword">path</span>
+    history
+    setAcl <span class="keyword">path</span> acl
+    getAcl <span class="keyword">path</span>
+    <span class="keyword">sync</span> <span class="keyword">path</span>
     <span class="keyword">redo</span> cmdno
     addauth scheme auth
-    <span class="built_in">delete</span> path [<span class="keyword">version</span>]
-    setquota -<span class="keyword">n</span>|-<span class="keyword">b</span> val path
+    <span class="keyword">delete</span> <span class="keyword">path</span> [<span class="keyword">version</span>]
+    setquota -<span class="keyword">n</span>|-b val <span class="keyword">path</span></span>
 </code></pre><p><a href="http://zookeeper.apache.org/doc/r3.4.5/zookeeperStarted.html" target="_blank" rel="external">ZooKeeper Getting Started Guide</a>还举一个通过zkshell进行znode的创建、查看、更新、删除等操作。</p>
 <h2 id="总结">总结</h2><p>上面简单介绍了zookeeper，包括zookeeper的一些概念和框架等，绝大部分是直接翻译了<a href="http://zookeeper.apache.org/doc/trunk/zookeeperOver.html" target="_blank" rel="external">zookeeper Overview</a>。下一篇文章就讲讲<a href="http://zookeeper.apache.org/doc/r3.4.5/zookeeperProgrammers.html" target="_blank" rel="external">ZooKeeper Programmer’s Guide</a>，当然重点是C binding。</p>
 <p>在网上查找zookeeper的资料时，找到了几篇不错的文章<a href="http://www.oschina.net/p/zookeeper" target="_blank" rel="external">^3</a><a href="http://liyanblog.cn/articles/2012/09/28/1348814456421.html" target="_blank" rel="external">^5</a>，大家可以一读。另外还找到一篇介绍google的chubby的不错的blog——<a href="http://blog.csdn.net/historyasamirror/article/details/3870168" target="_blank" rel="external">Google利器之Chubby</a>，这个blog还写了关于google的分布式重用的5篇论文的文章，第一篇是<a href="http://blog.csdn.net/historyasamirror/article/details/3861144" target="_blank" rel="external">Google利器之Google Cluster</a>，如果大家有兴趣可以顺着读下去看一看。</p>
@@ -190,7 +190,7 @@ Zookeeper是Google的Chubby一个开源的实现，关于Chubby，可以google�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/23/2013-01-23-zk-overview/" data-id="cicfs3xyc000xu0i42sbc9jst" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/23/2013-01-23-zk-overview/" data-id="cid74grcl000xe8i4d1xcttji" class="article-share-link">Share</a>
       
       
     </footer>
@@ -291,9 +291,9 @@ Zookeeper是Google的Chubby一个开源的实现，关于Chubby，可以google�
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

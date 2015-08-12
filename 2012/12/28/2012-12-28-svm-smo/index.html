@@ -42,7 +42,7 @@ $$\begin{array}{l}\mathop {\min }\">
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -50,9 +50,9 @@ $$\begin{array}{l}\mathop {\min }\">
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -94,9 +94,9 @@ $$\begin{array}{l}\mathop {\min }\">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>上一篇blog讲到了<a href="/blog/2012/12/26/svm/">svm的原理</a>，最后将需要解决问题抽象成了数学公式，但如何利用计算机，解出这些数学公式的答案。换句话说，就是怎么通过计算机算出我们的svm模型的参数呢？方法就是序列最小最优化(sequential minimal optimization, SMO)算法。</p>
+        <p>上一篇blog讲到了<a href="/hexotech/blog/2012/12/26/svm/">svm的原理</a>，最后将需要解决问题抽象成了数学公式，但如何利用计算机，解出这些数学公式的答案。换句话说，就是怎么通过计算机算出我们的svm模型的参数呢？方法就是序列最小最优化(sequential minimal optimization, SMO)算法。</p>
 <p>首先回顾一下SVM模型的数学表达，即svm的对偶问题:</p>
-<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits<em>{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x_j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
+<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x<em>j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
 <p>选择一个 $ {a^*} $ 的正分量 $ 0 \lt {a_j^*} \lt C $ , 计算（或者通过所有解求平均值）：</p>
 <p>$$<br>{b^<em>} = {y<em>j} - \sum\limits</em>{i = 1}^N {a_i^</em>{y_i}K({x_i} \cdot {x_j})}<br>$$</p>
 <p>决策函数为</p>
@@ -142,13 +142,13 @@ $$\begin{array}{l}\mathop {\min }\">
 <h3 id="计算选取变量的新值">计算选取变量的新值</h3><p>首先计算出来的新值必须满足约束条件$\sum\limits_{i = 1}^N { {a_i}{y_i} = 0}$ ，那么求出来的${a_2^{new}}$需要满足下列条件（具体推导见《统计学习方法》的7.4.1）:</p>
 <p>$$<br>\begin{array}{l}<br>L \le a_2^{new} \le H\<br>L = \max (0,a_2^{old} - a_1^{old}),H = \min (C,C + a_2^{old} - a_1^{old}), \qquad {y_1} \ne {y_2}\<br>L = \max (0,a_2^{old} + a_1^{old} - C),H = \min (C,a_2^{old} + a_1^{old}), \qquad {y_1} = {y_2}<br>\end{array}<br>$$</p>
 <p>未经过裁剪的${a_2}$的解为：</p>
-<p>$$<br>\begin{array}{l}<br>{a<em>2^{new,unc}} = {a_2^{old}} + \frac{ {y_2}({E_1}-{E_2)}}{\eta} \<br>\eta = K</em>{11} + K<em>{22} - 2{K</em>{12}}<br>\end{array}<br>$$</p>
+<p>$$<br>\begin{array}{l}<br>{a_2^{new,unc}} = {a_2^{old}} + \frac{ {y_2}({E_1}-{E<em>2)}}{\eta} \<br>\eta = K</em>{11} + K<em>{22} - 2{K</em>{12}}<br>\end{array}<br>$$</p>
 <p>裁剪后的解为</p>
 <p>$$<br>a_2^{new} = \left{ \begin{array}{l}<br>H,a_2^{new,unc} &gt; H\<br>        a_2^{new,unc},L \le a_2^{new,unc} \le H\<br>        L,a_2^{new,unc} &lt; L<br>        \end{array} \right.<br>$$</p>
 <p>第一个变量的解为</p>
 <p>$$<br>a_1^{new} = a_1^{old} + {y_1}{y_2}(a_2^{old} - a_2^{new})<br>$$</p>
 <p>还需要更新$b$:</p>
-<p>$$<br>\begin{array}{l}<br>b<em>1^{new} =  - {E_1} - {y_1}{K</em>{11}}(a<em>1^{new} - a_1^{old}) - {y_2}{K</em>{21}}(a<em>2^{new} - a_2^{old}) + {b^{old}}\<br>        b_2^{new} =  - {E_2} - {y_1}{K</em>{12}}(a<em>1^{new} - a_1^{old}) - {y_2}{K</em>{22}}(a_2^{new} - a_2^{old}) + {b^{old}}<br>        \end{array}<br>$$</p>
+<p>$$<br>\begin{array}{l}<br>b_1^{new} =  - {E_1} - {y<em>1}{K</em>{11}}(a_1^{new} - a_1^{old}) - {y<em>2}{K</em>{21}}(a_2^{new} - a_2^{old}) + {b^{old}}\<br>        b_2^{new} =  - {E_2} - {y<em>1}{K</em>{12}}(a_1^{new} - a_1^{old}) - {y<em>2}{K</em>{22}}(a_2^{new} - a_2^{old}) + {b^{old}}<br>        \end{array}<br>$$</p>
 <p>在更新$b$时，如果有$0 \lt a_1^{new} \lt C$, 则$b^{new}=b_1^{new}$，如果有$0 \lt a_2^{new} \lt C$, 则 $b^{new}=b_2^{new}$， 否则$b^{new}=\frac{b_1^{new} + b_2^{new}}{2}$。</p>
 <p>由于缓存了${E_i}$,所以需要计算新的${E_i}$:</p>
 <p>$$<br>E<em>i^{new} = \sum\limits</em>{j=1}^N { {y_j}{a_j}K({x_i},{x_j})} + b^{new} - y_i<br>$$</p>
@@ -165,7 +165,7 @@ $$\begin{array}{l}\mathop {\min }\">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/12/28/2012-12-28-svm-smo/" data-id="cicfs3xyp001eu0i431py2idh" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/12/28/2012-12-28-svm-smo/" data-id="cid74grcy001ee8i4xb9v9bo2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -266,9 +266,9 @@ $$\begin{array}{l}\mathop {\min }\">
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

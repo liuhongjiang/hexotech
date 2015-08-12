@@ -37,7 +37,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -45,9 +45,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -184,15 +184,15 @@
 <p>查找还有其它的很多选项，<a href="http://www.elasticsearch.org/guide/reference/api/search/sort.html" target="_blank" rel="external">sort</a>，<a href="http://www.elasticsearch.org/guide/reference/api/search/highlighting.html" target="_blank" rel="external">高亮</a>，选取返回记录的域<a href="http://www.elasticsearch.org/guide/reference/api/search/fields.html" target="_blank" rel="external">Fields</a>，还可以对返回的域使用一个脚本进行计算<a href="http://www.elasticsearch.org/guide/reference/api/search/script-fields.html" target="_blank" rel="external">script Fields</a>，或者对返回结果继续统计<a href="http://www.elasticsearch.org/guide/reference/api/search/facets/" target="_blank" rel="external">Facets</a>，Facets的内容比较多，它支持关键词统计，范围内统计，直方图式统计，日期的直方图式统计，过滤，查询，还有记录地理位置距离的统计<a href="http://www.elasticsearch.org/guide/reference/api/search/facets/geo-distance-facet.html" target="_blank" rel="external">geo distance</a>。<br>支持名字过滤<a href="http://www.elasticsearch.org/guide/reference/api/search/named-filters.html" target="_blank" rel="external">Named Filters</a>。<br>定义搜索类型<a href="http://www.elasticsearch.org/guide/reference/api/search/search-type.html" target="_blank" rel="external">Search Type </a>。例如什么Query And Fetch，Query Then Fetch。<br>索引加速的功能<a href="http://www.elasticsearch.org/guide/reference/api/search/index-boost.html" target="_blank" rel="external">Index Boost</a>，可以让某一个索引的权重大于另外一个。<br>保持上次检索的环境了结果<a href="http://www.elasticsearch.org/guide/reference/api/search/scroll.html" target="_blank" rel="external">Scroll</a>。保留每一个命中的score值<a href="http://www.elasticsearch.org/guide/reference/api/search/explain.html" target="_blank" rel="external">Explain</a>。<br>设置命中的<a href="http://www.elasticsearch.org/guide/reference/api/search/min-score.html" target="_blank" rel="external">min_score</a>。保留版本号<a href="http://www.elasticsearch.org/guide/reference/api/search/version.html" target="_blank" rel="external">Version</a>。</p>
 <p>Search的参数很多，我也没有一一看，不过果然是名字里面有个search，对检索的各种场景都有支持。</p>
 <p>当然还支持多个查询multi search，例如下面这个例子</p>
-<pre><code><span class="variable">$ </span>cat requests
-{<span class="string">"index"</span> <span class="symbol">:</span> <span class="string">"test"</span>}
-{<span class="string">"query"</span> <span class="symbol">:</span> {<span class="string">"match_all"</span> <span class="symbol">:</span> {}}, <span class="string">"from"</span> <span class="symbol">:</span> <span class="number">0</span>, <span class="string">"size"</span> <span class="symbol">:</span> <span class="number">10</span>}
-{<span class="string">"index"</span> <span class="symbol">:</span> <span class="string">"test"</span>, <span class="string">"search_type"</span> <span class="symbol">:</span> <span class="string">"count"</span>}
-{<span class="string">"query"</span> <span class="symbol">:</span> {<span class="string">"match_all"</span> <span class="symbol">:</span> {}}}
+<pre><code>$ cat requests
+{<span class="string">"index"</span> : <span class="string">"test"</span>}
+{<span class="string">"query"</span> : {<span class="string">"match_all"</span> : {}}, <span class="string">"from"</span> : <span class="number">0</span>, <span class="string">"size"</span> : <span class="number">10</span>}
+{<span class="string">"index"</span> : <span class="string">"test"</span>, <span class="string">"search_type"</span> : <span class="string">"count"</span>}
+{<span class="string">"query"</span> : {<span class="string">"match_all"</span> : {}}}
 {}
-{<span class="string">"query"</span> <span class="symbol">:</span> {<span class="string">"match_all"</span> <span class="symbol">:</span> {}}}
+{<span class="string">"query"</span> : {<span class="string">"match_all"</span> : {}}}
 
-<span class="variable">$ </span>curl -<span class="constant">XGET </span><span class="symbol">localhost:</span><span class="number">9200</span>/<span class="constant">_msearch </span>--data-binary <span class="variable">@requests</span>; echo
+$ curl -XGET localhost:<span class="number">9200</span>/_msearch --data-binary @requests; echo
 </code></pre><p>{: .sh-bash}</p>
 <h2 id="小结">小结</h2><p>以上就是elasticsearch的基本的几个功能了。当然它还有其它的很多功能，大家可以上<a href="http://www.elasticsearch.org" target="_blank" rel="external">http://www.elasticsearch.org</a>去查看。</p>
 <p>ES是基于Lucene的，有很多概念是直接来自于它，所有要想深入学习ES，还得有点Lucene的基础。</p>
@@ -207,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/11/2013-01-11-es/" data-id="cicfs3xyl001au0i4tdbx17nv" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/11/2013-01-11-es/" data-id="cid74grcv001ae8i4hrfkp3fv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -308,9 +308,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

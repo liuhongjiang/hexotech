@@ -13,7 +13,7 @@ online learningOnline learning的算法结构是非常简单的，下面的描�
 <meta property="og:site_name" content="Andrew's Blog">
 <meta property="og:description" content="本文参考了博文Online Learning in Clojure和论文Pegasos: Primal Estimated sub-GrAdient SOlver for SVM(PDF)
 online learningOnline learning的算法结构是非常简单的，下面的描述是监督的online learning算法框架，其中有经验损失函数$L$，样本流$S$，样本的格式为$(x,y)$:">
-<meta property="og:updated_time" content="2015-07-23T05:46:28.452Z">
+<meta property="og:updated_time" content="2015-08-10T06:38:12.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pegasos算法">
 <meta name="twitter:description" content="本文参考了博文Online Learning in Clojure和论文Pegasos: Primal Estimated sub-GrAdient SOlver for SVM(PDF)
@@ -37,7 +37,7 @@ online learningOnline learning的算法结构是非常简单的，下面的描�
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -45,9 +45,9 @@ online learningOnline learning的算法结构是非常简单的，下面的描�
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -101,18 +101,18 @@ online learningOnline learning的算法结构是非常简单的，下面的描�
 <h2 id="Pegasos">Pegasos</h2><p>论文<a href="http://www.machinelearning.org/proceedings/icml2007/abstracts/587.htm" target="_blank" rel="external">Pegasos: Primal Estimated sub-GrAdient SOlver for SVM</a>是一种svm的online learning算法。</p>
 <a id="more"></a>
 <p>首先来看svm的经验合页损失函数：</p>
-<p>$$<br>\begin{array}{l}<br>L(w,S) = \frac{\lambda }{2}{\left| w \right|^2} + \frac{1}{k}\sum\limits_{(x,y) \in S} {h(w;(x,y))} \\<br>h(w;(x,y)) = \max \{ 0,1 - y \langle w,x \rangle \}<br>\end{array}<br>$$</p>
+<p>$$<br>\begin{array}{l}<br>L(w,S) = \frac{\lambda }{2}{\left\| w \right\|^2} + \frac{1}{k}\sum\limits_{(x,y) \in S} {h(w;(x,y))} \\<br>h(w;(x,y)) = \max \{ 0,1 - y \langle w,x \rangle \}<br>\end{array}<br>$$</p>
 <p>上面式子中，$k$是训练集$S$的大小，$h()$是the hinge loss（合页损失函数），$\langle w, x\rangle$表示$w,x$的内积，$\lambda$是正则化项。</p>
 <p>在<a href="http://book.douban.com/subject/10590856/" target="_blank" rel="external">《统计学习方法》</a>这本书的7.2.4证明了合页损失函数与引入松弛变量后的损失函数是等价的，并证明了$\lambda$与惩罚系数$C$是成反比的。引入松弛变量后的损失函数为:</p>
-<p>$$<br>\frac{1}{2}\left | w \right |^{2} + C\sum<em>{i=1}^{N}\xi </em>{i}<br>$$</p>
+<p>$$<br>\frac{1}{2}\left \| w \right \|^{2} + C\sum_{i=1}^{N}{\xi_{i}}<br>$$</p>
 <p>训练过程中，如果遇到了一个预测错误的样本$(x,y)$, 对模型的更新方法如下：</p>
 <p>$$<br>{w_{t + \frac{1}{2}}} = (1 - \frac{1}{t}){w_t} + \frac{1} { {\lambda t} } yx<br>$$</p>
 <p>其中$t$表示已经训练过的样本个数，$ {w_{t + \frac{1}{2}}}$表示训练过$t$个的样本后的模型，${w_{t + \frac{1}{2} }}$ 表示新模型。<br>根据pegasos算法，新模型的$l_2$范数如果超出了以 $\frac{1}{ {\sqrt \lambda  } }$ 为半径的超球面，那么需要将新模型投射到这个超球面上。即：</p>
-<p>$$<br>{w<em>{t + 1}} = \min { 1,\frac{1}{ {\sqrt \lambda  \left| { {w</em>{t + \frac{1}{2} } } } \right|}}} {w_{t + \frac{1}{2}}}<br>$$</p>
+<p>$$<br>{w_{t + 1}} = \min\{ 1,\frac{1}{ {\sqrt \lambda  \left\| { {w_{t + \frac{1}{2} } } } \right\|}}\} {w_{t + \frac{1}{2}}}<br>$$</p>
 <p>为什么需要讲新的模型投射到以$\frac{1}{ {\sqrt \lambda  } }$为半径的超球面上呢？论文证明了svm的最优解是在下面这个集合中的：</p>
-<p>$$<br>B = { w:\left| w \right| \le \frac{1}{ {\sqrt \lambda  } }}<br>$$</p>
+<p>$$<br>B = \{ w:\left\| w \right\| \le \frac{1}{ {\sqrt \lambda  } }\}<br>$$</p>
 <p>而且在pegasos算法的推导，以及模型初始化$w$的时候，都使用了条件</p>
-<p>$$<br>\left| w \right| \le \frac{1}{ {\sqrt \lambda  } }<br>$$</p>
+<p>$$<br>\left\| w \right\| \le \frac{1}{ {\sqrt \lambda  } }<br>$$</p>
 <p>由上面模型的更新公式可以简单分析一下正则化参数$\lambda$的作用，它决定了训练过程中，后面出现的预测错误的样本，对应模型的修正程度。$\lambda$越大，修正程度越小，$\lambda$越小，修正程度越大。同时$\lambda$与惩罚系数$C$是成反比的，所以也可理解为，在训练过称中，出现预测错误样本时，对模型的惩罚程度。$\lambda$越大，惩罚越小，$\lambda$越小，惩罚越大。</p>
 <p>Pegasos的算法描述在论文”Pegasos: Primal Estimated sub-GrAdient SOlver for SVM”也是给出了的，可以参考。</p>
 <p>但实际上pegasos是一个线性的svm，而且还是一个没有bias的svm，训练出来的线性函数是$y=\langle w,x \rangle$，在上面的论文中的Extensions小节中也讲到了，目前pegasos还没有证明可应用于线性模型$y=\langle w,x \rangle + b$或者是非线性svm模型。</p>
@@ -128,7 +128,7 @@ online learningOnline learning的算法结构是非常简单的，下面的描�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/31/2013-01-31-svm-pegasos/" data-id="cicfs3xy7000uu0i4wj3ipuly" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/31/2013-01-31-svm-pegasos/" data-id="cid74grcg000ue8i4cig788ls" class="article-share-link">Share</a>
       
       
     </footer>
@@ -229,9 +229,9 @@ online learningOnline learning的算法结构是非常简单的，下面的描�
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

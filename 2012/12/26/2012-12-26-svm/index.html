@@ -45,7 +45,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -53,9 +53,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -119,11 +119,11 @@
 <p>可以令$\hat \gamma  = 1$，另最大化$\frac{1}{\left \| w \right \|}$与最小化$\frac{1}{2}\left\| w \right\|^2$是等价的，所以上面的公式可以变化为：</p>
 <p>$$<br>\begin{array}{l}<br>\mathop {\max }\limits_{w,b} \qquad \frac{1}{2}\left| w \right|^2\<br>{\rm{s.t.}} \qquad {y_i}(w\cdot{x_i} + b) - 1 \ge 0<br>\end{array}<br>$$</p>
 <p>求解上面的问题，可以通过建立拉格朗日函数，并通过对偶变化，最终将问题转换成求解下面的公式：</p>
-<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits<em>{j = 1}^N { {a_i}{a_j}{y_i}{y_j}({x_i}\cdot{x_j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad{a_i} \ge 0, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
+<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}({x_i}\cdot{x<em>j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad{a_i} \ge 0, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
 <p>上面式子中的${a_i}$为拉格朗日因子, $N$为样本的数量。svm的学习实际上就是求出分离超平面，也就是求解上面公式中的${a_i}$。假设上面问题的解为 </p>
 <p>$$<br>{a^<em>} = {\left( {a_1^</em>,a_2^<em>, \cdot  \cdot  \cdot ,a_N^</em> } \right)^T}<br>$$</p>
 <p>同时存在下标$j$使得 $ a_j^* \gt 0 $ ，那么分离超平面的解为：</p>
-<p>$$<br>\begin{array}{l}<br>{w^<em>} = \sum\limits_{i = 1}^N {a_i^</em>{y<em>i}{x_i}} \<br>{b^*} = {y_j} - \sum\limits</em>{i = 1}^N {a_i^*{y_i}({x_i} \cdot {x_j})}<br>\end{array}<br>$$</p>
+<p>$$<br>\begin{array}{l}<br>{w^<em>} = \sum\limits_{i = 1}^N {a_i^</em>{y_i}{x_i}} \<br>{b^<em>} = {y<em>j} - \sum\limits</em>{i = 1}^N {a_i^</em>{y_i}({x_i} \cdot {x_j})}<br>\end{array}<br>$$</p>
 <p>分离超平面可以表示为</p>
 <p>$$<br>\sum\limits_{i=1}^N {a_i^<em>{y_i}({x_i} \cdot {x_j})} + {b^</em>} = 0<br>$$</p>
 <p>分类的决策函数可以写成</p>
@@ -135,7 +135,7 @@
 <p>$$<br>\begin{array}{l}<br>\mathop {\max }\limits<em>{w,b,\xi } \qquad \frac{1}{2}{\left| w \right|^2} + C\sum\limits</em>{i = 1}^N { {\xi _i}} \<br>{\rm{s.t.}} \qquad {y_i}(w \cdot {x_i} + b) \ge 1 - {\xi _i}, \qquad i = 1,2, \cdot  \cdot  \cdot ,N\<br>\qquad \qquad {\xi _i} \ge 0, \qquad i = 1,2, \cdot  \cdot  \cdot ,N<br>\end{array}<br>$$</p>
 <p>上式中的$C \gt 0$称为惩罚参数，由应用问题决定，通常也是模型调优时，需要重点关注的参数。$C$值大，对误分类的惩罚增大，值小，对误分类的惩罚减小。</p>
 <p>这样原始问题的对偶问题就变成了这样(参考<a href="http://book.douban.com/subject/10590856/" target="_blank" rel="external">《统计学习方法》</a>的7.2)：</p>
-<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits<em>{j = 1}^N { {a_i}{a_j}{y_i}{y_j}({x_i}\cdot{x_j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
+<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}({x_i}\cdot{x<em>j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
 <p>引入松弛变量的对偶问题，与没有引入的对偶问题的差别很小，仅仅是拉格朗日因子${a_i}$的取值范围不同，没有引入松弛变量的为${a_i} \ge 0$, 引入的为$0 \le {a_i} \le C$, 松弛变量在数学变换中，被消除了。</p>
 <p>上面对偶问题求出的解和分离超平面、分类决策函数与之前求出的表达式是一直的。唯一不同的是下面的求 ${b^*}$ 表达式</p>
 <p>$$<br>{b^<em>} = {y<em>j} - \sum\limits</em>{i = 1}^N {a_i^</em>{y_i}({x_i} \cdot {x_j})}<br>$$</p>
@@ -154,9 +154,9 @@
 <p>其中$\phi (x) \cdot \phi (z)$为内积。</p>
 <p>有了核函数，就可以讲数据$x_i$映射到更高的维度，甚至是无穷维，但同时又满足了内积的约束，就可以使用SVM去解决这个问题。可以参考《统计学习方法》的例子7.3，这个例子就实现了将$x$映射到高纬度, 并满足核函数的定义。</p>
 <p>那么核函数是怎么用到svm中的呢？实际上就是替换对偶问题中的最小化的目标函数，将</p>
-<p>$$<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits<em>{j = 1}^N { {a_i}{a_j}{y_i}{y_j}({x_i}\cdot{x_j}) - \sum\limits</em>{i = 1}^N { {a_i}} } }<br>$$</p>
+<p>$$<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}({x_i}\cdot{x<em>j}) - \sum\limits</em>{i = 1}^N { {a_i}} } }<br>$$</p>
 <p>用核函数替换${x_i}\cdot{x_j}$，变成</p>
-<p>$$<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits<em>{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x_j}) - \sum\limits</em>{i = 1}^N { {a_i}} } }<br>$$</p>
+<p>$$<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x<em>j}) - \sum\limits</em>{i = 1}^N { {a_i}} } }<br>$$</p>
 <p>参数${b^*}$的计算公式变成了（但分量$j$的选取条件未变）：</p>
 <p>$$<br>{b^<em>} = {y<em>j} - \sum\limits</em>{i = 1}^N {a_i^</em>{y_i}K({x_i} \cdot {x_j})}<br>$$</p>
 <p>而分类决策函数也相应变了</p>
@@ -164,7 +164,7 @@
 <p>其余的公式都与上面的线性支持向量机相同。</p>
 <p>其实在实际的应用中，并不需要找映射函数，只需要使用到核函数，而且核函数也不需要我们费什么劲去找，可以直接用一些常用的核函数，例如：多项式核函数，高斯核函数，字符串核函数等。</p>
 <h2 id="小结">小结</h2><p>前面简单介绍了支持向量机，支持向量机分为线性支持向量机和非线性支持向量机。非线性支持向量机是通过核函数将一个线性不可分的问题转变成为一个线性可分的问题。其实线性支持向量机可以视为一种使用了特殊核函数$K({x_i},{x_j})=({x_i}\cdot{x_j})$的非线性支持向量机。那么SVM的对偶问题可以统一表示为下面的公式。SVM的学习，就是求出下面问题的解。</p>
-<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits<em>{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x_j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
+<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x<em>j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
 <p>选择一个 $ {a^*} $ 的正分量 $ 0 \lt {a_j^*} \lt C $ , 计算（或者通过所有解求平均值）：</p>
 <p>$$<br>{b^<em>} = {y<em>j} - \sum\limits</em>{i = 1}^N {a_i^</em>{y_i}K({x_i} \cdot {x_j})}<br>$$</p>
 <p>决策函数为</p>
@@ -194,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/12/26/2012-12-26-svm/" data-id="cicfs3xyq001gu0i48zbbqoi8" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/12/26/2012-12-26-svm/" data-id="cid74grd1001ge8i4x2tx1z49" class="article-share-link">Share</a>
       
       
     </footer>
@@ -295,9 +295,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

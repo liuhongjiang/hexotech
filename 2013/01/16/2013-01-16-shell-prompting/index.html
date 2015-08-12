@@ -58,7 +58,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -66,9 +66,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -129,9 +129,9 @@
 <p>例如一个默认的<code>$PS1</code>设置如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">andrew@ubuntu:~/lhj-github/tech$ <span class="built_in">echo</span> <span class="variable">$PS1</span></span><br><span class="line"><span class="variable">$&#123;debian_chroot:+($debian_chroot)&#125;</span>\u@\h:\w\$</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">前面这部分`<span class="variable">$&#123;debian_chroot:+($debian_chroot)&#125;</span>`是ubuntu一种特殊的运行程序的方式，可以参考[^<span class="number">3</span>][^<span class="number">4</span>]，和我们要讲的内容没有什么关系。后面这部分`\u@\h:\w\$`就是shell prompting的配置了，可以根据上面的内容翻译出来。我现在的这个配置，显示出来就像这个样子了：</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">andrew@ubuntu:~/lhj-github/tech$</span><br></pre></td></tr></table></figure>
 <p>当然还可以配置颜色，首先来看ascii字符颜色表<a href="http://www.chinaunix.net/old_jh/6/54256.html" target="_blank" rel="external">^5</a>：</p>
-<p>|—-<br>| 前景 | 背景 | 颜色 |<br>| - | - | - |<br>|30 | 40 |  黑色<br>|31 | 41 | 紅色<br>|32 | 42 | 綠色<br>|33 | 43 | 黃色<br>|34 | 44 | 藍色<br>|35 | 45 | 紫紅色<br>|36 | 46 | 青藍色<br>|37 | 47 | 白色<br>{: .mytable}</p>
+<p>|—<br>| 前景 | 背景 | 颜色 |<br>| - | - | - |<br>|30 | 40 |  黑色<br>|31 | 41 | 紅色<br>|32 | 42 | 綠色<br>|33 | 43 | 黃色<br>|34 | 44 | 藍色<br>|35 | 45 | 紫紅色<br>|36 | 46 | 青藍色<br>|37 | 47 | 白色<br>{: .mytable}</p>
 <p><br></p>
-<p>|—-<br>| 代码 |  意义<br>| - | - |<br>|0 | OFF<br>|1 | 高亮显示<br>|4 | underline<br>|5 | 闪烁<br>|7 | 反白显示<br>|8 | 不可见<br>{: .mytable}</p>
+<p>|—<br>| 代码 |  意义<br>| - | - |<br>|0 | OFF<br>|1 | 高亮显示<br>|4 | underline<br>|5 | 闪烁<br>|7 | 反白显示<br>|8 | 不可见<br>{: .mytable}</p>
 <p>然后就可以设置prompting的颜色了，最简单的方法是在HOME目录下的.bashrc文件添加以下配置（这种方法只会影响当前用户），<br>例如我现在的设置为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PS1=<span class="string">"\w\e[32m\$ \e[0m"</span></span><br></pre></td></tr></table></figure>
 <p>前面部分<code>\e[32m</code>是设置提示符的颜色，后面的<code>\e[0m</code>是恢复后面命令行输入输出的颜色，如果不用这个的话，所有的输入输出都会受到影响。</p>
@@ -146,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/16/2013-01-16-shell-prompting/" data-id="cicfs3xyj0017u0i49uhjxw9r" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/16/2013-01-16-shell-prompting/" data-id="cid74grct0017e8i4th7lk6w1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -247,9 +247,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

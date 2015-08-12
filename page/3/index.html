@@ -33,7 +33,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -41,9 +41,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -107,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/16/2013-01-16-shell-prompting/" data-id="cicfs3xyj0017u0i49uhjxw9r" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/16/2013-01-16-shell-prompting/" data-id="cid74grct0017e8i4th7lk6w1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -157,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/11/2013-01-11-es/" data-id="cicfs3xyl001au0i4tdbx17nv" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/11/2013-01-11-es/" data-id="cid74grcv001ae8i4hrfkp3fv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -193,8 +193,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前面两篇blog介绍了<a href="/blog/2012/12/26/svm/">支持向量机SVM</a>和<a href="/blog/2012/12/28/svm-smo/">SMO算法</a>，这一篇就讲讲SVM的一个简单实际应用：使用svm实现一个简单的数字手写识别软件。首先要解决如何使用svm进行多类分类。</p>
-<h2 id="svm与多类分类^1">svm与多类分类<a href="主要参考了：[SVM入门（十）将SVM用于多类分类](http://www.blogjava.net/zhenandaci/archive/2009/03/26/262113.html)。">^1</a></h2><p>svm是一个二类的分类器，即它只回答属于正类还是负类的问题。而现实中要解决的问题，往往是多类的问题，比如文本分类，比如数字识别。如何由两类分类器得到多类分类器, 一般有三种方法：</p>
+        <p>前面两篇blog介绍了<a href="/hexotech/blog/2012/12/26/svm/">支持向量机SVM</a>和<a href="/hexotech/blog/2012/12/28/svm-smo/">SMO算法</a>，这一篇就讲讲SVM的一个简单实际应用：使用svm实现一个简单的数字手写识别软件。首先要解决如何使用svm进行多类分类。</p>
+<h2 id="svm与多类分类^1">svm与多类分类<a href="/hexotech/主要参考了：[SVM入门（十）将SVM用于多类分类](http:/www.blogjava.net/zhenandaci/archive/2009/03/26/262113.html)。">^1</a></h2><p>svm是一个二类的分类器，即它只回答属于正类还是负类的问题。而现实中要解决的问题，往往是多类的问题，比如文本分类，比如数字识别。如何由两类分类器得到多类分类器, 一般有三种方法：</p>
 <h3 id="一对多（一对其余）">一对多（一对其余）</h3><p>比如我们有5个类别，第一次就把类别1的样本定为正样本，其余2，3，4，5的样本合起来定为负样本，这样得到一个两类分类器。<br>通过类似的方法构造类别2、3、4、5的分类器，对于测试数据，每一个分类器都过一次，在那个分类器中，被判定为正，那么就认识它属于那个分类。<br>但有两个问题还没有解决：一是被多个分类器判定为正，二是被所有分类器判定为负。第一种情况，可以简单地选择第一个被判定为正的分类，对二种情况，可以视为分类失败了。另外一个问题是，“其余”的那一类样本数总是要数倍于正类（因为它是除正类以外其他类别的样本之和嘛），这就人为的造成了的<a href="http://www.blogjava.net/zhenandaci/archive/2009/03/17/260315.html">“数据集偏斜”</a>问题。</p>
         
           <p class="article-more-link">
@@ -204,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/12/29/2012-12-29-svm-ocr/" data-id="cicfs3xyn001cu0i447u3ycx4" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/12/29/2012-12-29-svm-ocr/" data-id="cid74grcx001ce8i4oabmmbv4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -240,9 +240,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>上一篇blog讲到了<a href="/blog/2012/12/26/svm/">svm的原理</a>，最后将需要解决问题抽象成了数学公式，但如何利用计算机，解出这些数学公式的答案。换句话说，就是怎么通过计算机算出我们的svm模型的参数呢？方法就是序列最小最优化(sequential minimal optimization, SMO)算法。</p>
+        <p>上一篇blog讲到了<a href="/hexotech/blog/2012/12/26/svm/">svm的原理</a>，最后将需要解决问题抽象成了数学公式，但如何利用计算机，解出这些数学公式的答案。换句话说，就是怎么通过计算机算出我们的svm模型的参数呢？方法就是序列最小最优化(sequential minimal optimization, SMO)算法。</p>
 <p>首先回顾一下SVM模型的数学表达，即svm的对偶问题:</p>
-<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits<em>{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x_j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
+<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x<em>j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
 <p>选择一个 $ {a^*} $ 的正分量 $ 0 \lt {a_j^*} \lt C $ , 计算（或者通过所有解求平均值）：</p>
 <p>$$<br>{b^<em>} = {y<em>j} - \sum\limits</em>{i = 1}^N {a_i^</em>{y_i}K({x_i} \cdot {x_j})}<br>$$</p>
 <p>决策函数为</p>
@@ -258,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/12/28/2012-12-28-svm-smo/" data-id="cicfs3xyp001eu0i431py2idh" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/12/28/2012-12-28-svm-smo/" data-id="cid74grcy001ee8i4xb9v9bo2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -306,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/12/26/2012-12-26-svm/" data-id="cicfs3xyq001gu0i48zbbqoi8" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/12/26/2012-12-26-svm/" data-id="cid74grd1001ge8i4x2tx1z49" class="article-share-link">Share</a>
       
       
     </footer>
@@ -351,7 +351,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/12/07/2012-12-07-jni-call/" data-id="cicfs3xyt001iu0i41v5jvdx4" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/12/07/2012-12-07-jni-call/" data-id="cid74grd3001ie8i4s4ltacdy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -387,7 +387,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了<a href="/blog/2012/11/29/virtual-function/">《虚函数》</a>，这篇博客就讲虚继承。</p>
+        <p>C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了<a href="/hexotech/blog/2012/11/29/virtual-function/">《虚函数》</a>，这篇博客就讲虚继承。</p>
 <p>首先来看为什么需要虚继承。C++里面继承关系中有个很有名的继承结构，菱形继承，如下图所示</p>
 <img src="/images/blogimages/2012/virtualinheritance/iostream.jpg" class="center">
 <p>普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostream类中存在两个相同的ios类,然后是构造效率低，需要构造两个ios类。更严重的是调用基类中的函数时，存在二义性，当iostream调用ios的成员函数时，编译器无法知道是调用istream还是ostream中的ios。</p>
@@ -400,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/11/30/2012-11-30-virtual-inheritance/" data-id="cicfs3xyw001lu0i4vid4031a" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/11/30/2012-11-30-virtual-inheritance/" data-id="cid74grd6001le8i41z42pxlx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -447,7 +447,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/11/29/2012-11-29-virtual-function/" data-id="cicfs3xzg001nu0i45xd5e8zc" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/11/29/2012-11-29-virtual-function/" data-id="cid74grd7001ne8i4zr9izjrt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -492,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/11/24/2012-11-24-blog-styles/" data-id="cicfs3xzj001pu0i4qhtnehes" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/11/24/2012-11-24-blog-styles/" data-id="cid74grda001pe8i4sn436v8c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -547,7 +547,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2012/11/22/2012-11-22-learning-vim/" data-id="cicfs3xzl001su0i4lxryehra" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2012/11/22/2012-11-22-learning-vim/" data-id="cid74grdv001se8i4131uiwpd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -560,7 +560,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/hexotech/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/hexotech/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/hexotech/page/4/">4</a><a class="extend next" rel="next" href="/hexotech/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/hexotech/page/2/">&laquo; Prev</a><a class="page-number" href="/hexotech/">1</a><a class="page-number" href="/hexotech/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/hexotech/page/4/">4</a><a class="extend next" rel="next" href="/hexotech/page/4/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -634,9 +634,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

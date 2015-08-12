@@ -40,7 +40,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Andrew&#39;s Blog</a>
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
       </h1>
       
     </div>
@@ -48,9 +48,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/hexotech/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -95,12 +95,12 @@
         <p>跨平台的情况下，windows和unix的换行符谁不一样的。这个和git结合起来的时候有点烦哈。</p>
 <h2 id="如何将git的所有crlf文件转换成lf格式">如何将git的所有crlf文件转换成lf格式</h2><p><a href="http://stackoverflow.com/questions/1510798/trying-to-fix-line-endings-with-git-filter-branch-but-having-no-luck/1511273#1511273" target="_blank" rel="external">将git库中的crlf转换为lf</a></p>
 <p>下面这个脚本可以将库中的所有文件中的crlf去掉<br><a id="more"></a></p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># From the root of your repository remove everything from the index</span></span><br><span class="line">git rm <span class="comment">--cached -r .</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Change the autocrlf setting of the repository (you may want </span></span><br><span class="line"><span class="comment">#  to use true on windows):</span></span><br><span class="line">git config core.autocrlf input</span><br><span class="line"></span><br><span class="line"><span class="comment"># Re-add all the deleted files to the index</span></span><br><span class="line"><span class="comment"># (You should get lots of messages like:</span></span><br><span class="line"><span class="comment">#   warning: CRLF will be replaced by LF in &lt;file&gt;.)</span></span><br><span class="line">git diff <span class="comment">--cached --name-only -z | xargs -0 git add</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Commit</span></span><br><span class="line">git commit -m <span class="string">"Fixed crlf issue"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If you're doing this on a Unix/Mac OSX clone then optionally remove</span></span><br><span class="line"><span class="comment"># the working tree and re-check everything out with the correct line endings.</span></span><br><span class="line">git ls-<span class="built_in">files</span> -z | xargs -<span class="number">0</span> rm</span><br><span class="line">git checkout .</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># From the root of your repository remove everything from the index</span><br><span class="line">git rm <span class="comment">--cached -r .</span></span><br><span class="line"></span><br><span class="line"># <span class="operator"><span class="keyword">Change</span> the autocrlf setting <span class="keyword">of</span> the repository (you may want </span><br><span class="line">#  <span class="keyword">to</span> <span class="keyword">use</span> <span class="literal">true</span> <span class="keyword">on</span> windows):</span><br><span class="line">git config core.autocrlf <span class="keyword">input</span></span><br><span class="line"></span><br><span class="line"># Re-<span class="keyword">add</span> all the deleted files <span class="keyword">to</span> the <span class="keyword">index</span></span><br><span class="line"># (You should <span class="keyword">get</span> lots <span class="keyword">of</span> messages <span class="keyword">like</span>:</span><br><span class="line">#   <span class="keyword">warning</span>: CRLF will be replaced <span class="keyword">by</span> LF <span class="keyword">in</span> &lt;<span class="keyword">file</span>&gt;.)</span><br><span class="line">git diff <span class="comment">--cached --name-only -z | xargs -0 git add</span></span><br><span class="line"></span><br><span class="line"># <span class="keyword">Commit</span></span><br><span class="line">git <span class="keyword">commit</span> -<span class="keyword">m</span> <span class="string">"Fixed crlf issue"</span></span><br><span class="line"></span><br><span class="line"># <span class="keyword">If</span> you<span class="string">'re doing this on a Unix/Mac OSX clone then optionally remove</span><br><span class="line"># the working tree and re-check everything out with the correct line endings.</span><br><span class="line">git ls-files -z | xargs -0 rm</span><br><span class="line">git checkout .</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="gitattribute">gitattribute</h2><p><a href="https://help.github.com/articles/dealing-with-line-endings/" target="_blank" rel="external">github上面的关于crlf的处理</a></p>
 <p>其中一个重点，可以在<a href="https://help.github.com/articles/dealing-with-line-endings/#per-repository-settings" target="_blank" rel="external">git库里面加入.gitattributes文件处理crlf的问题</a></p>
 <p>例子:</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the default behavior, in case people don't have core.autocrlf set.</span></span><br><span class="line"><span class="keyword">*</span> text=auto</span><br><span class="line"></span><br><span class="line"><span class="comment"># Explicitly declare text files you want to always be normalized and converted</span></span><br><span class="line"><span class="comment"># to native line endings on checkout.</span></span><br><span class="line"><span class="keyword">*</span>.c text</span><br><span class="line"><span class="keyword">*</span>.h text</span><br><span class="line"></span><br><span class="line"><span class="comment"># Declare files that will always have CRLF line endings on checkout.</span></span><br><span class="line"><span class="keyword">*</span>.sln text eol=crlf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Denote all files that are truly binary and should not be modified.</span></span><br><span class="line"><span class="keyword">*</span>.png binary</span><br><span class="line"><span class="keyword">*</span>.jpg binary</span><br></pre></td></tr></table></figure>
-<p>you’ll notice that files are matched—<code>*.c</code>, <code>*.sln</code>, <code>*.png</code>—, separated by a space, then given a setting—<code>text</code>, <code>text eol=crlf</code>, <code>binary</code>. We’ll go over some possible settings below.</p>
+<p>you’ll notice that files are matched–<code>*.c</code>, <code>*.sln</code>, <code>*.png</code>–, separated by a space, then given a setting–<code>text</code>, <code>text eol=crlf</code>, <code>binary</code>. We’ll go over some possible settings below.</p>
 <p><code>text=auto</code></p>
 <p>Git will handle the files in whatever way it thinks is best. This is a good default option.</p>
 <p><code>text eol=crlf</code></p>
@@ -119,7 +119,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2015/06/05/2015-06-05-git-crlf/" data-id="cicfs3xxf0005u0i48jn6kvkt" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2015/06/05/2015-06-05-git-crlf/" data-id="cid74grba0005e8i4a9b32t3a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -220,9 +220,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     
