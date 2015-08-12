@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>apache vedio streaming | Andrew&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="apache支持mp4的流播放
+apache可以通过配置模块支持MP4和flv格式的视频流。Mod_h264 and mod_FLV Streaming for Apache 如果需要更多的视频流支持，建议使用 ffserver
+下面以在centeros的apache上配置MP4模块的支持为例，首先是在apache端的配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="apache vedio streaming">
+<meta property="og:url" content="http://liuhongjiang.github.io/2015/06/26/apache-vedio-streaming/index.html">
+<meta property="og:site_name" content="Andrew's Blog">
+<meta property="og:description" content="apache支持mp4的流播放
+apache可以通过配置模块支持MP4和flv格式的视频流。Mod_h264 and mod_FLV Streaming for Apache 如果需要更多的视频流支持，建议使用 ffserver
+下面以在centeros的apache上配置MP4模块的支持为例，首先是在apache端的配置">
+<meta property="og:updated_time" content="2015-07-23T05:46:28.457Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="apache vedio streaming">
+<meta name="twitter:description" content="apache支持mp4的流播放
+apache可以通过配置模块支持MP4和flv格式的视频流。Mod_h264 and mod_FLV Streaming for Apache 如果需要更多的视频流支持，建议使用 ffserver
+下面以在centeros的apache上配置MP4模块的支持为例，首先是在apache端的配置">
+  
+    <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/hexotech/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexotech/">Home</a>
+        
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://liuhongjiang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-apache-vedio-streaming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/06/26/apache-vedio-streaming/" class="article-date">
+  <time datetime="2015-06-26T02:04:00.000Z" itemprop="datePublished">2015-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      apache vedio streaming
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="apache支持mp4的流播放">apache支持mp4的流播放</h2>
+<p>apache可以通过配置模块支持MP4和flv格式的视频流。<a href="https://www.alduccino.com/mod-h264-and-mod-flv-streaming-for-apache-on-whm-cpanel" target="_blank" rel="external">Mod_h264 and mod_FLV Streaming for Apache</a> 如果需要更多的视频流支持，建议使用 <a href="https://www.ffmpeg.org/ffserver.html" target="_blank" rel="external">ffserver</a></p>
+<p>下面以在centeros的apache上配置MP4模块的支持为例，首先是在apache端的配置</p>
+<a id="more"></a>
+<h2 id="安装mod_h264_streaming">安装mod_h264_streaming</h2>
+<p>安装apache httpd的apxs：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install httpd-devel</span><br></pre></td></tr></table></figure>
+<p>如果apache是通过yum安装在系统中的话， 需要root权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/download</span><br><span class="line">wget http://h264.code-shop.com/download/apache_mod_h264_streaming-<span class="number">2.2</span>.<span class="number">7</span>.tar.gz</span><br><span class="line">tar -xzvf apache_mod_h264_streaming-<span class="number">2.2</span>.<span class="number">7</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> mod_h264_streaming-<span class="number">2.2</span>.<span class="number">7</span></span><br><span class="line">./configure --with-apxs=<span class="string">'which apxs'</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>配置apache， 在httpd.conf中添加配置, mod_h264_streaming.so的路径可能不一样：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AddType video/mp4 <span class="class">.mp4</span> <span class="class">.m4v</span></span><br><span class="line">AddType video/ogg <span class="class">.ogv</span></span><br><span class="line">AddType video/webm <span class="class">.webm</span></span><br><span class="line"></span><br><span class="line">LoadModule h264_streaming_module /usr/lib64/httpd/modules/mod_h264_streaming<span class="class">.so</span></span><br><span class="line">AddHandler h264-streaming<span class="class">.extensions</span> .mp4</span><br></pre></td></tr></table></figure>
+<p>重启apache. 然后可以在httpd的根目录下放入一个mp4的文件</p>
+<h2 id="编写一个html文件">编写一个html文件</h2>
+<p>例子如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">video</span> <span class="attribute">width</span>=<span class="value">"400"</span> <span class="attribute">preload</span> <span class="attribute">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">source</span> <span class="attribute">src</span>=<span class="value">"http://localhost/h264.mp4"</span> <span class="attribute">type</span>=<span class="value">"video/mp4"</span>&gt;</span></span><br><span class="line">  Your browser does not support HTML5 video.</span><br><span class="line"><span class="tag">&lt;/<span class="title">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="pitfall">pitfall</h2>
+<p>During I test using the html5 vedio tag to display the mp4 vedio, I only got the audio and no image at all when I open the html file with Chrome. And I tried with firefox, and got this error: “No video with supported format and MIME type found”.</p>
+<p>I googled this error message, and didn’t get a direct answer about how to fix it.</p>
+<p>And luckly, I found the reason. It turns out the html5 vedio tag support the vedio coded with H.264, and my mp4 file is coded with MPEG-4. So I used another mp4 file with coding format h.264, and it works well.</p>
+<p>(As I googled, but failed to find the solution, I wrote this solution in English, so everyone can get help from my contribution，if he saw this on google).</p>
+<h2 id="关于mp4的一些知识">关于MP4的一些知识</h2>
+<p>当前，html5的video 元素支持三种视频格式：</p>
+<ul>
+<li>Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件</li>
+<li>MPEG4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件</li>
+<li>WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件</li>
+</ul>
+<p>MP4只是一种封装而已, 能封装H264, XVID, VC-1等编码进去。MPEG-4是一种编码。</p>
+<p>MP4现在常用的只有 H264 和 MPEG4格式， H263 和VP6格式 已淘汰。Xvid.Divx 不是什么格式. Xvid.Divx是MPEG4的编码器 X264是H264的编码器</p>
+<h2 id="reference">reference</h2>
+<ul>
+<li><a href="http://g33kinfo.com/info/archives/4305" class="uri" target="_blank" rel="external">http://g33kinfo.com/info/archives/4305</a></li>
+<li><a href="http://universvideo.com/installing-apache-mod-h264/" class="uri" target="_blank" rel="external">http://universvideo.com/installing-apache-mod-h264/</a></li>
+<li><a href="http://voice.firefallpro.com/2012/03/html5-audio-video-mime-types.html" class="uri" target="_blank" rel="external">http://voice.firefallpro.com/2012/03/html5-audio-video-mime-types.html</a></li>
+</ul>
+<h2 id="查看模块加载状态">查看模块加载状态</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apachectl -t -D DUMP_MODULES | grep h264_streaming_module</span><br><span class="line">httpd -M</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/2015/06/26/apache-vedio-streaming/" data-id="cid8fs6f60006h4i4th1d1p5c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/hexotech/2015/08/12/mathjax-in-hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          mathjax in hexo
+        
+      </div>
+    </a>
+  
+  
+    <a href="/hexotech/2015/06/24/greasemonkey-script/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">greasemonkey script</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/06/26/apache-vedio-streaming/">apache vedio streaming</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/06/24/greasemonkey-script/">greasemonkey script</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/06/05/git-crlf/">git crlf</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/05/20/git-workflow/">git workflow</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Andrew Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="/hexotech/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+<!--<script type="text/x-mathjax-config">-->
+<!--MathJax.Hub.Config({-->
+  <!--tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}-->
+<!--});-->
+<!--</script>-->
+<!--<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">-->
+<!--</script>-->
+
+
+  <link rel="stylesheet" href="/hexotech/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/hexotech/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/hexotech/js/script.js" type="text/javascript"></script>
+
+
+
+  </div>
+</body>
+</html>
