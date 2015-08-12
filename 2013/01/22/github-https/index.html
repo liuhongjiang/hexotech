@@ -6,27 +6,27 @@
   <title>使用https连接github | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="火车票插件拖垮github的事件的结果，就是github被悲催地墙掉了。愤慨啊。Fuck GFW!
-不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上[@蒋伟](http://www.weibo.com/neilxp)找到了一个通过https连接github的办法，总结一下如下：
+不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上@蒋伟找到了一个通过https连接github的办法，总结一下如下：
 
 安装goagent
-导入ca.crt证书 导入">
+导入ca.crt证书 导入goagent目录下的local/CA.crt ubuntu导入证书">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用https连接github">
 <meta property="og:url" content="http://liuhongjiang.github.io/2013/01/22/github-https/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
 <meta property="og:description" content="火车票插件拖垮github的事件的结果，就是github被悲催地墙掉了。愤慨啊。Fuck GFW!
-不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上[@蒋伟](http://www.weibo.com/neilxp)找到了一个通过https连接github的办法，总结一下如下：
+不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上@蒋伟找到了一个通过https连接github的办法，总结一下如下：
 
 安装goagent
-导入ca.crt证书 导入">
+导入ca.crt证书 导入goagent目录下的local/CA.crt ubuntu导入证书">
 <meta property="og:updated_time" content="2015-07-23T05:46:28.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用https连接github">
 <meta name="twitter:description" content="火车票插件拖垮github的事件的结果，就是github被悲催地墙掉了。愤慨啊。Fuck GFW!
-不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上[@蒋伟](http://www.weibo.com/neilxp)找到了一个通过https连接github的办法，总结一下如下：
+不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上@蒋伟找到了一个通过https连接github的办法，总结一下如下：
 
 安装goagent
-导入ca.crt证书 导入">
+导入ca.crt证书 导入goagent目录下的local/CA.crt ubuntu导入证书">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -99,34 +99,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>火车票插件拖垮github的事件的结果，就是github被悲催地墙掉了。愤慨啊。Fuck GFW!</p>
-<p>不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上<span class="citation">[@蒋伟]</span>(http://www.weibo.com/neilxp)找到了一个通过<a href="http://www.weibo.com/1791166224/zfvJvnG39" target="_blank" rel="external">https连接github的办法</a>，总结一下如下：</p>
-<ol style="list-style-type: decimal">
+<p>不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上<a href="http://www.weibo.com/neilxp" target="_blank" rel="external">@蒋伟</a>找到了一个通过<a href="http://www.weibo.com/1791166224/zfvJvnG39" target="_blank" rel="external">https连接github的办法</a>，总结一下如下：</p>
+<ol>
 <li>安装goagent</li>
-<li><p>导入ca.crt证书 导入goagent目录下的local/CA.crt<br>
-ubuntu导入证书<br>
-http://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate</p></li>
-<li>启动代理 python proxy.py</li>
-<li>设置代理： export HTTPS_PROXY=“http://127.0.0.1:8087”</li>
-<li>github配置，关键一步是remote add的时候，方法是：<br>
-git remote add origin https://liuhongjiang@github.com/liuhongjiang/tech.git<br>
-这样就可以正常地pull和push了，麻烦的是，每次都要输入秘密。<br>
+<li><p>导入ca.crt证书<br> 导入goagent目录下的local/CA.crt<br> ubuntu导入证书<br> <a href="http://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate" target="_blank" rel="external">http://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate</a>        </p>
 </li>
-<li><p>接下来就是octopress的rake deploy了： 需要修改Rakefile：</p>
-<pre><code># user = repo_url.match(/:([^\/]+)/)[1]
-user = repo_url.match(/github\.com.([^\/]+)/)[1]
-# branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? &#39;gh-pages&#39; : &#39;master&#39;
-branch = (repo_url.match(/\/[\w-]+\.github\.com$/).nil?) ? &#39;gh-pages&#39; : &#39;master&#39;
-# project = (branch == &#39;gh-pages&#39;) ? repo_url.match(/\/([^\.]+)/)[1] : &#39;&#39;
-project = (branch == &#39;gh-pages&#39;) ? repo_url.match(/\/([^\/^\.]+)$/)[1] : &#39;&#39;</code></pre>
-<p>然后在<code>rake setup_github_pages</code>命令中填https的url地址：<br>
-https://liuhongjiang@github.com/liuhongjiang/tech<br>
-同样在部署的时候，还是要输入密码</p></li>
+<li><p>启动代理 python proxy.py</p>
+</li>
+<li>设置代理： export HTTPS_PROXY=”<a href="http://127.0.0.1:8087" target="_blank" rel="external">http://127.0.0.1:8087</a>“</li>
+<li>github配置，关键一步是remote add的时候，方法是：<br> git remote add origin <a href="https://liuhongjiang@github.com/liuhongjiang/tech.git" target="_blank" rel="external">https://liuhongjiang@github.com/liuhongjiang/tech.git</a><br> 这样就可以正常地pull和push了，麻烦的是，每次都要输入秘密。      </li>
+<li><p>接下来就是octopress的rake deploy了：<br> 需要修改Rakefile：</p>
+<pre><code># <span class="atom">user</span> = <span class="atom">repo_url</span>.<span class="atom">match</span>(/:([^\/]+)/)[<span class="number">1</span>]
+<span class="atom">user</span> = <span class="atom">repo_url</span>.<span class="atom">match</span>(/<span class="atom">github</span>\.<span class="atom">com</span>.([^\/]+)/)[<span class="number">1</span>]
+# <span class="atom">branch</span> = (<span class="atom">repo_url</span>.<span class="atom">match</span>(/\/[\<span class="atom">w</span>-]+.<span class="atom">github</span>.<span class="atom">com</span>/).<span class="atom">nil</span>?) ? <span class="string">'gh-pages'</span> : <span class="string">'master'</span>
+<span class="atom">branch</span> = (<span class="atom">repo_url</span>.<span class="atom">match</span>(/\/[\<span class="atom">w</span>-]+\.<span class="atom">github</span>\.<span class="atom">com</span>$/).<span class="atom">nil</span>?) ? <span class="string">'gh-pages'</span> : <span class="string">'master'</span>
+# <span class="atom">project</span> = (<span class="atom">branch</span> == <span class="string">'gh-pages'</span>) ? <span class="atom">repo_url</span>.<span class="atom">match</span>(/\/([^\.]+)/)[<span class="number">1</span>] : <span class="string">''</span>
+<span class="atom">project</span> = (<span class="atom">branch</span> == <span class="string">'gh-pages'</span>) ? <span class="atom">repo_url</span>.<span class="atom">match</span>(/\/([^\/^\.]+)$/)[<span class="number">1</span>] : <span class="string">''</span>
+</code></pre><p> 然后在<code>rake setup_github_pages</code>命令中填https的url地址：<br> <a href="https://liuhongjiang@github.com/liuhongjiang/tech" target="_blank" rel="external">https://liuhongjiang@github.com/liuhongjiang/tech</a><br> 同样在部署的时候，还是要输入密码</p>
+</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2013/01/22/github-https/" data-id="cid8fs6gh0015h4i4fgf35sil" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2013/01/22/github-https/" data-id="cid8hflf600137si4xen6uq9l" class="article-share-link">Share</a>
       
       
     </footer>

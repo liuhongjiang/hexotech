@@ -5,28 +5,22 @@
   
   <title>git reference | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="git ref
-可以使用下面的命令查看ref
+  <meta name="description" content="git ref可以使用下面的命令查看ref
 1git show HEAD
-HEAD vs ORIG_HEAD
-HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (">
+HEAD vs ORIG_HEADHEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git reference">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/05/09/git-reference/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description" content="git ref
-可以使用下面的命令查看ref
+<meta property="og:description" content="git ref可以使用下面的命令查看ref
 1git show HEAD
-HEAD vs ORIG_HEAD
-HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (">
+HEAD vs ORIG_HEADHEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless">
 <meta property="og:updated_time" content="2015-07-23T05:46:28.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git reference">
-<meta name="twitter:description" content="git ref
-可以使用下面的命令查看ref
+<meta name="twitter:description" content="git ref可以使用下面的命令查看ref
 1git show HEAD
-HEAD vs ORIG_HEAD
-HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (">
+HEAD vs ORIG_HEADHEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -98,54 +92,56 @@ HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="git-ref">git ref</h2>
-<p>可以使用下面的命令查看ref</p>
+        <h2 id="git_ref">git ref</h2><p>可以使用下面的命令查看ref</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show HEAD</span><br></pre></td></tr></table></figure>
-<h2 id="head-vs-orig_head">HEAD vs ORIG_HEAD</h2>
-<p>HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless you made some changes, or equivalent), and it is a commit on top of which “git commit” would make a new one. Usually HEAD is symbolic reference to some other named branch; this branch is currently checked out branch, or current branch. HEAD can also point directly to a commit; this state is called “detached HEAD”, and can be understood as being on unnamed, anonymous branch.</p>
+<h2 id="HEAD_vs_ORIG_HEAD">HEAD vs ORIG_HEAD</h2><p>HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless you made some changes, or equivalent), and it is a commit on top of which “git commit” would make a new one. Usually HEAD is symbolic reference to some other named branch; this branch is currently checked out branch, or current branch. HEAD can also point directly to a commit; this state is called “detached HEAD”, and can be understood as being on unnamed, anonymous branch.</p>
 <p><strong>ORIG_HEAD is previous state of HEAD, set by commands that have possibly dangerous behavior, to be easy to revert them.</strong> It is less useful now that Git has reflog: HEAD@{1} is roughly equivalent to ORIG_HEAD (HEAD@{1} is always last value of HEAD, ORIG_HEAD is last value of HEAD before dangerous operation).</p>
 <p>“pull” or “merge” always leaves the original tip of the current branch in ORIG_HEAD.</p>
 <p>HEAD is a moving pointer. Sometimes it means the current branch, sometimes it doesn’t.</p>
 <a id="more"></a>
 <p>So HEAD is NOT a synonym for “current branch” everywhere already.</p>
-<p>HEAD means “current” everywhere in git, but it does not necessarily mean “current branch” (i.e. detached HEAD).</p>
-<p>But it almost always means the “current commit”. It is the commit “git commit” builds on top of, and “git diff –cached” and “git status” compare against. It means the current branch only in very limited contexts (exactly when we want a branch name to operate on — resetting and growing the branch tip via commit/rebase/etc.).</p>
-<p>http://stackoverflow.com/questions/964876/head-and-orig-head-in-git</p>
-<h2 id="detached-head">detached head</h2>
-<p>Detached head means you are no longer on a branch, you have checked out a single commit in the history (in this case the commit previous to HEAD, i.e. HEAD^).</p>
+<p>HEAD means “current” everywhere in git, but it does not necessarily mean “current branch” (i.e. detached HEAD).</p>
+<p>But it almost always means the “current commit”.<br>It is the commit “git commit” builds on top of, and “git diff –cached” and “git status” compare against.<br>It means the current branch only in very limited contexts (exactly when we want a branch name to operate on — resetting and growing the branch tip via commit/rebase/etc.).</p>
+<p><a href="http://stackoverflow.com/questions/964876/head-and-orig-head-in-git" target="_blank" rel="external">http://stackoverflow.com/questions/964876/head-and-orig-head-in-git</a></p>
+<h2 id="detached_head">detached head</h2><p>Detached head means you are no longer on a branch, you have checked out a single commit in the history (in this case the commit previous to HEAD, i.e. HEAD^).</p>
 <p><a href="http://stackoverflow.com/questions/10228760/fix-a-git-detached-head" target="_blank" rel="external">fix a git detached head</a></p>
 <p>创建一个detach head，关注命令的输出</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$git</span> checkout head^</span><br><span class="line">You are <span class="keyword">in</span> <span class="string">'detached HEAD'</span> state. You can look around, make experimental</span><br><span class="line">changes and commit them, and you can discard any commits you make <span class="keyword">in</span> this</span><br><span class="line">state without impacting any branches by performing another checkout.</span><br><span class="line"></span><br><span class="line">If you want to create a new branch to retain commits you create, you may</span><br><span class="line"><span class="keyword">do</span> so (now or later) by using -b with the checkout <span class="built_in">command</span> again. Example:</span><br><span class="line"></span><br><span class="line">git checkout -b new_branch_name</span><br><span class="line"></span><br><span class="line">HEAD is now at <span class="number">635</span>b2b1... Init the test.md file</span><br></pre></td></tr></table></figure>
-<h3 id="specifying-revision">specifying revision</h3>
-<p>比较常用的</p>
+<h3 id="specifying_revision">specifying revision</h3><p>比较常用的</p>
 <ul>
-<li><p><code>&lt;sha1&gt;</code></p>
-<p>dae86e1950b1277e545cee180551750029cfe735 and dae86e both name the same commit object if there is no other object in your repository whose object name starts with dae86e.</p></li>
-<li><p><code>&lt;refname&gt;</code>, e.g. master, heads/master, refs/heads/master</p>
-<p>If $GIT_DIR/<name> exists, that is what you mean (this is usually useful only for HEAD, FETCH_HEAD, ORIG_HEAD, MERGE_HEAD and CHERRY_PICK_HEAD);</name></p></li>
-<li><p><code>&lt;refname&gt;@{&lt;n&gt;}</code>, e.g. master@{1}</p>
-<p>从refname的最新的提交倒数n个提交。 <code>@{&lt;n&gt;}, e.g. @{1}</code>， 当前的branch</p></li>
+<li><p><code>&lt;sha1&gt;</code> </p>
+<p>  dae86e1950b1277e545cee180551750029cfe735 and dae86e both name the same commit object if there is no other object in your repository whose object name starts with dae86e.</p>
+</li>
+<li><p><code>&lt;refname&gt;</code>, e.g. master, heads/master, refs/heads/master</p>
+<p>  If $GIT_DIR/<name> exists, that is what you mean (this is usually useful only for HEAD, FETCH_HEAD, ORIG_HEAD, MERGE_HEAD and CHERRY_PICK_HEAD);</name></p>
+</li>
+<li><p><code>&lt;refname&gt;@{&lt;n&gt;}</code>, e.g. master@{1}</p>
+<p>  从refname的最新的提交倒数n个提交。<br>  <code>@{&lt;n&gt;}, e.g. @{1}</code>， 当前的branch</p>
+</li>
 <li><p><code>&lt;refname&gt;@{upstream}, e.g. master@{upstream}, @{u}</code></p>
-<p>ref的远端最新提交</p></li>
+<p>  ref的远端最新提交</p>
+</li>
 <li><p><code>&lt;rev&gt;^, e.g. HEAD^, v1.5.1^0</code></p>
-<p>A suffix <code>^</code> to a revision parameter means the first parent of that commit object.</p>
-<p><code>^&lt;n&gt;</code> means the <code>&lt;n&gt;th</code> parent, <code>&lt;rev&gt;^</code> is equivalent to <code>&lt;rev&gt;^1</code>.</p>
-<p>As a special rule, <code>&lt;rev&gt;^0</code> means the commit itself.</p>
-<p>注意<code>head^2</code>的意思是head的第二个parent，不是parent的parent</p>
-<p><code>&lt;rev&gt;^^</code>的意思是第一个parent的第一个parent，等价于<code>&lt;rev&gt;^1^1</code></p></li>
+<p>  A suffix <code>^</code> to a revision parameter means the first parent of that commit object. </p>
+<p>  <code>^&lt;n&gt;</code> means the <code>&lt;n&gt;th</code> parent, <code>&lt;rev&gt;^</code> is equivalent to <code>&lt;rev&gt;^1</code>.</p>
+<p>  As a special rule, <code>&lt;rev&gt;^0</code> means the commit itself.</p>
+<p>  注意<code>head^2</code>的意思是head的第二个parent，不是parent的parent</p>
+<p>  <code>&lt;rev&gt;^^</code>的意思是第一个parent的第一个parent，等价于<code>&lt;rev&gt;^1^1</code></p>
+</li>
 <li><p><code>&lt;rev&gt;~&lt;n&gt;, e.g. master~3</code></p>
-<p>A suffix <code>~&lt;n&gt;</code> to a revision parameter means the commit object that is the <n>th generation grand-parent of the named commit object, following only the first parents.</n></p>
-<p><code>&lt;rev&gt;~3</code> is equivalent to <code>&lt;rev&gt;^^^</code> which is equivalent to <code>&lt;rev&gt;^1^1^1</code>.</p>
-<p>注意，这一句“following only the first parents.”，这种方式只会追踪第一个parent。具体可以参考下面这个例子。</p></li>
+<p>  A suffix <code>~&lt;n&gt;</code> to a revision parameter means the commit object that is the <n>th generation grand-parent of the named commit object, following only the first parents.</n></p>
+<p>  <code>&lt;rev&gt;~3</code> is equivalent to <code>&lt;rev&gt;^^^</code> which is equivalent to <code>&lt;rev&gt;^1^1^1</code>. </p>
+<p>  注意，这一句“following only the first parents.”，这种方式只会追踪第一个parent。具体可以参考下面这个例子。</p>
+</li>
 </ul>
 <p>Here is an illustration, by Jon Loeliger. Both commit nodes B and C are parents of commit node A. Parent commits are ordered left-to-right.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">G   H   I   J</span><br><span class="line"> \ /     \ /</span><br><span class="line">  D   E   F</span><br><span class="line">   \  |  / \</span><br><span class="line">    \ | /   |</span><br><span class="line">     \|/    |</span><br><span class="line">      B     C</span><br><span class="line">       \   /</span><br><span class="line">        \ /</span><br><span class="line">         A</span><br><span class="line"></span><br><span class="line">A =      = A^<span class="number">0</span></span><br><span class="line">B = A^   = A^<span class="number">1</span>     = A~<span class="number">1</span></span><br><span class="line">C = A^<span class="number">2</span>  = A^<span class="number">2</span></span><br><span class="line">D = A^^  = A^<span class="number">1</span>^<span class="number">1</span>   = A~<span class="number">2</span></span><br><span class="line">E = B^<span class="number">2</span>  = A^^<span class="number">2</span></span><br><span class="line">F = B^<span class="number">3</span>  = A^^<span class="number">3</span></span><br><span class="line">G = A^^^ = A^<span class="number">1</span>^<span class="number">1</span>^<span class="number">1</span> = A~<span class="number">3</span></span><br><span class="line">H = D^<span class="number">2</span>  = B^^<span class="number">2</span>    = A^^^<span class="number">2</span>  = A~<span class="number">2</span>^<span class="number">2</span></span><br><span class="line">I = F^   = B^<span class="number">3</span>^    = A^^<span class="number">3</span>^</span><br><span class="line">J = F^<span class="number">2</span>  = B^<span class="number">3</span>^<span class="number">2</span>   = A^^<span class="number">3</span>^<span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>以下是git的man page： <a href="http://schacon.github.io/git/git-rev-parse#_specifying_revisions" target="_blank" rel="external">specifying revisions</a> or <a href="http://git-scm.com/docs/git-rev-parse#_specifying_revisions" target="_blank" rel="external">specifying revisions</a></p>
+<p>以下是git的man page：<br><a href="http://schacon.github.io/git/git-rev-parse#_specifying_revisions" target="_blank" rel="external">specifying revisions</a><br>or<br><a href="http://git-scm.com/docs/git-rev-parse#_specifying_revisions" target="_blank" rel="external">specifying revisions</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2015/05/09/git-reference/" data-id="cid8fs6fm000lh4i4b01t50gk" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2015/05/09/git-reference/" data-id="cid8hflel000j7si41k2dok6f" class="article-share-link">Share</a>
       
       
     </footer>
