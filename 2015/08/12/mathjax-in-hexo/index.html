@@ -5,30 +5,30 @@
   
   <title>mathjax in hexo | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近将博客从octopress迁移到了hexo。如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。
-默认的markdown解析器会将latex中的下划线和’\’进行转义。公式不能正常显示，只有手动转义。
-然后在网上找到一篇文章：Play MathJax with hexo-renderer-pandoc
-介绍使用pandoc和hexo-rende">
+  <meta name="description" content="最近将博客从octopress迁移到了hexo。 如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。
+默认的markdown解析器会将latex中的下划线和’&apos;进行转义。公式不能正常显示，只有手动转义。
+然后在网上找到一篇文章： Play MathJax with hexo-renderer-pandoc
+介绍使用pandoc和hexo-r">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mathjax in hexo">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/08/12/mathjax-in-hexo/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description" content="最近将博客从octopress迁移到了hexo。如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。
-默认的markdown解析器会将latex中的下划线和’\’进行转义。公式不能正常显示，只有手动转义。
-然后在网上找到一篇文章：Play MathJax with hexo-renderer-pandoc
-介绍使用pandoc和hexo-rende">
+<meta property="og:description" content="最近将博客从octopress迁移到了hexo。 如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。
+默认的markdown解析器会将latex中的下划线和’&apos;进行转义。公式不能正常显示，只有手动转义。
+然后在网上找到一篇文章： Play MathJax with hexo-renderer-pandoc
+介绍使用pandoc和hexo-r">
 <meta property="og:updated_time" content="2015-08-12T07:53:01.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mathjax in hexo">
-<meta name="twitter:description" content="最近将博客从octopress迁移到了hexo。如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。
-默认的markdown解析器会将latex中的下划线和’\’进行转义。公式不能正常显示，只有手动转义。
-然后在网上找到一篇文章：Play MathJax with hexo-renderer-pandoc
-介绍使用pandoc和hexo-rende">
+<meta name="twitter:description" content="最近将博客从octopress迁移到了hexo。 如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。
+默认的markdown解析器会将latex中的下划线和’&apos;进行转义。公式不能正常显示，只有手动转义。
+然后在网上找到一篇文章： Play MathJax with hexo-renderer-pandoc
+介绍使用pandoc和hexo-r">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/hexotech/images/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/hexotech/css/style.css" type="text/css">
@@ -95,44 +95,51 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近将博客从octopress迁移到了hexo。<br>如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。</p>
-<p>默认的markdown解析器会将latex中的下划线和’\’进行转义。公式不能正常显示，只有手动转义。</p>
-<p>然后在网上找到一篇文章：<br><a href="http://blog.yuanbin.me/posts/2014/05/play-mathjax-with-pandoc.html" target="_blank" rel="external">Play MathJax with hexo-renderer-pandoc</a></p>
+        <p>最近将博客从octopress迁移到了hexo。 如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。</p>
+<p>默认的markdown解析器会将latex中的下划线和’'进行转义。公式不能正常显示，只有手动转义。</p>
+<p>然后在网上找到一篇文章： <a href="http://blog.yuanbin.me/posts/2014/05/play-mathjax-with-pandoc.html" target="_blank" rel="external">Play MathJax with hexo-renderer-pandoc</a></p>
 <p>介绍使用<a href="http://pandoc.org/" target="_blank" rel="external">pandoc</a>和<a href="https://github.com/wzpan/hexo-renderer-pandoc" target="_blank" rel="external">hexo-renderer-pandoc</a></p>
 <a id="more"></a>
-<h2 id="步骤">步骤</h2><ol>
+<h2 id="步骤">步骤</h2>
+<ol style="list-style-type: decimal">
 <li>Firstly, make sure you have <a href="http://pandoc.org/installing.html" target="_blank" rel="external">installed pandoc</a>.</li>
 <li>Secondly, cd into your hexo root folder and execute the following command:</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-renderer-pandoc --save</span><br></pre></td></tr></table></figure>
-<ol>
+<ol start="3" style="list-style-type: decimal">
 <li>Create a file named <code>mathjax.ejs</code> in the folder like <code>theme_folder/layout/_partial/</code>, the code in mathjax.ejs are as follows:</li>
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mathjax config similar to math.stackexchange --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-mathjax-config"</span>&gt;</span><span class="actionscript"></span><br><span class="line">  MathJax.Hub.Config(&#123;</span><br><span class="line">    tex2jax: &#123;</span><br><span class="line">      inlineMath: [ [<span class="string">'$'</span>,<span class="string">'$'</span>], [<span class="string">"\\("</span>,<span class="string">"\\)"</span>] ],</span><br><span class="line">      processEscapes: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-mathjax-config"</span>&gt;</span><span class="actionscript"></span><br><span class="line">    MathJax.Hub.Config(&#123;</span><br><span class="line">      tex2jax: &#123;</span><br><span class="line">        skipTags: [<span class="string">'script'</span>, <span class="string">'noscript'</span>, <span class="string">'style'</span>, <span class="string">'textarea'</span>, <span class="string">'pre'</span>, <span class="string">'code'</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-mathjax-config"</span>&gt;</span><span class="actionscript"></span><br><span class="line">    MathJax.Hub.Queue(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> all = MathJax.Hub.getAllJax(), i;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; all.length; i += <span class="number">1</span>) &#123;</span><br><span class="line">            all[i].SourceElement().parentNode.className += <span class="string">' has-jax'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="undefined"></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>The gist is here: <a href="https://gist.github.com/billryan/3e2804c717c91a75aa55#file-mathjax-ejs" target="_blank" rel="external">mathjax.ejs gist</a></p>
-<ol>
-<li><p>Add the snippits below in <code>theme_folder/layout/_partial/after_footer.ejs</code></p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span> <span class="keyword">if</span> <span class="comment">(page.mathjax)</span>&#123; <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span>- partial<span class="comment">('mathjax')</span> <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span> &#125; <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Add <code>mathjax: false</code> for <code>_config.yml</code> in the root directory of your Hexo init folder. It is some thing like this:</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mathjax:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>For the post you want to load MathJax, add <code>mathjax: true</code> at the front-matter (文章开始的头部). By this method you can avoid unnecessary latency for loading Mathjax scripts. Just some thing as follows:</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mathjax:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Delete the public folder and excute <code>hexo generate</code> again to make the modified Hexo theme work.</p>
-</li>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Add the snippits below in <code>theme_folder/layout/_partial/after_footer.ejs</code> <figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="preprocessor">%</span> <span class="keyword">if</span> <span class="comment">(page.mathjax)</span>&#123; <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span>- partial<span class="comment">('mathjax')</span> <span class="preprocessor">%</span>&gt;</span><br><span class="line">&lt;<span class="preprocessor">%</span> &#125; <span class="preprocessor">%</span>&gt;</span><br></pre></td></tr></table></figure></p></li>
+<li><p>Add <code>mathjax: false</code> for <code>_config.yml</code> in the root directory of your Hexo init folder. It is some thing like this: <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mathjax:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>For the post you want to load MathJax, add <code>mathjax: true</code> at the front-matter (文章开始的头部). By this method you can avoid unnecessary latency for loading Mathjax scripts. Just some thing as follows: <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mathjax:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>Delete the public folder and excute <code>hexo generate</code> again to make the modified Hexo theme work.</p></li>
 </ol>
-<h2 id="example">example</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">The **characteristic polynomial** $\chi(\lambda)$ of the $3 \times 3$ matrix</span><br><span class="line">$$</span><br><span class="line">\left( \<span class="operator"><span class="keyword">begin</span>&#123;<span class="built_in">array</span>&#125;&#123;ccc&#125;</span><br><span class="line">a &amp; b &amp; <span class="keyword">c</span> \\</span><br><span class="line"><span class="keyword">d</span> &amp; <span class="keyword">e</span> &amp; <span class="keyword">f</span> \\</span><br><span class="line"><span class="keyword">g</span> &amp; h &amp; <span class="keyword">i</span></span><br><span class="line">\<span class="keyword">end</span>&#123;<span class="built_in">array</span>&#125; \<span class="keyword">right</span>)</span><br><span class="line">$$</span><br><span class="line"><span class="keyword">is</span> given <span class="keyword">by</span> the formula</span><br><span class="line">$$</span><br><span class="line">\chi(\lambda) = \<span class="keyword">left</span>| \<span class="keyword">begin</span>&#123;<span class="built_in">array</span>&#125;&#123;ccc&#125;</span><br><span class="line">\lambda - a &amp; -b &amp; -<span class="keyword">c</span> \\</span><br><span class="line">-<span class="keyword">d</span> &amp; \lambda - <span class="keyword">e</span> &amp; -<span class="keyword">f</span> \\</span><br><span class="line">-<span class="keyword">g</span> &amp; -h &amp; \lambda - <span class="keyword">i</span></span><br><span class="line">\<span class="keyword">end</span>&#123;<span class="built_in">array</span>&#125; \<span class="keyword">right</span>|.</span><br><span class="line">$$</span></span><br></pre></td></tr></table></figure>
-<p>The <strong>characteristic polynomial</strong> $\chi(\lambda)$ of the $3 \times 3$ matrix</p>
-<p>$$<br>\left( \begin{array}{ccc}<br>a &amp; b &amp; c \<br>d &amp; e &amp; f \<br>g &amp; h &amp; i<br>\end{array} \right)<br>$$</p>
+<h2 id="example">example</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">The **characteristic polynomial** $\chi(\lambda)$ of the $3 \times 3$ matrix</span><br><span class="line">$$</span><br><span class="line">\left( \<span class="operator"><span class="keyword">begin</span>&#123;<span class="built_in">array</span>&#125;&#123;ccc&#125;</span><br><span class="line">a &amp; b &amp; <span class="keyword">c</span> \\</span><br><span class="line"><span class="keyword">d</span> &amp; <span class="keyword">e</span> &amp; <span class="keyword">f</span> \\</span><br><span class="line"><span class="keyword">g</span> &amp; h &amp; <span class="keyword">i</span></span><br><span class="line">\<span class="keyword">end</span>&#123;<span class="built_in">array</span>&#125; \<span class="keyword">right</span>)</span><br><span class="line">$$</span><br><span class="line"><span class="keyword">is</span> given <span class="keyword">by</span> the formula</span><br><span class="line">$$</span><br><span class="line">\chi(\lambda) = \<span class="keyword">left</span>| \<span class="keyword">begin</span>&#123;<span class="built_in">array</span>&#125;&#123;ccc&#125;</span><br><span class="line">\lambda - a &amp; -b &amp; -<span class="keyword">c</span> \\</span><br><span class="line">-<span class="keyword">d</span> &amp; \lambda - <span class="keyword">e</span> &amp; -<span class="keyword">f</span> \\</span><br><span class="line">-<span class="keyword">g</span> &amp; -h &amp; \lambda - <span class="keyword">i</span></span><br><span class="line">\<span class="keyword">end</span>&#123;<span class="built_in">array</span>&#125; \<span class="keyword">right</span>|.</span><br><span class="line">$$</span></span><br></pre></td></tr></table></figure>
+<p>The <strong>characteristic polynomial</strong> <span class="math inline">\(\chi(\lambda)\)</span> of the <span class="math inline">\(3 \times 3\)</span> matrix</p>
+<p><span class="math display">\[
+\left( \begin{array}{ccc}
+a &amp; b &amp; c \\
+d &amp; e &amp; f \\
+g &amp; h &amp; i
+\end{array} \right)
+\]</span></p>
 <p>is given by the formula</p>
-<p>$$<br>\chi(\lambda) = \left| \begin{array}{ccc}<br>\lambda - a &amp; -b &amp; -c \<br>-d &amp; \lambda - e &amp; -f \<br>-g &amp; -h &amp; \lambda - i<br>\end{array} \right|.<br>$$</p>
+<p><span class="math display">\[
+\chi(\lambda) = \left| \begin{array}{ccc}
+\lambda - a &amp; -b &amp; -c \\
+-d &amp; \lambda - e &amp; -f \\
+-g &amp; -h &amp; \lambda - i
+\end{array} \right|.
+\]</span></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/2015/08/12/mathjax-in-hexo/" data-id="cid8hfle200017si4kl5i0h0z" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/2015/08/12/mathjax-in-hexo/" data-id="cid8u88p90001fki4mavh6a8i" class="article-share-link">Share</a>
       
       
     </footer>
