@@ -80,3 +80,5 @@ archive_generator:
 
 mathjax: false
 
+# Disqus
+disqus_shortname: andrewliu117
