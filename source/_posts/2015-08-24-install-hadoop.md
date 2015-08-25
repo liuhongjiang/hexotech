@@ -278,7 +278,7 @@ $ hadoop fs -text /test/data/origz/access.log.gz
 15/08/14 20:45:12 DEBUG util.NativeCodeLoader: Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: /usr/hadoop-2.7.1/lib/native/libhadoop.so.1.0.0: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by /usr/hadoop-2.7.1/lib/native/libhadoop.so.1.0.0)
 ```
 
-### 问题
+### 解决问题
 
 如果无法查看到datanote，可能有很多问题引起的。
 有一个办法，就是重新format namenode，然后再排除其他问题。
@@ -286,8 +286,8 @@ $ hadoop fs -text /test/data/origz/access.log.gz
 这种方式，将会清除所有数据。
 
 
-## reference:
+## reference
 
-http://www.powerxing.com/install-hadoop-cluster/
+[http://www.powerxing.com/install-hadoop-cluster/]()
 
-http://www.centoscn.com/image-text/install/2014/1121/4158.html
+[http://www.centoscn.com/image-text/install/2014/1121/4158.html]()
