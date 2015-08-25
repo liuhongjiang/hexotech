@@ -268,6 +268,16 @@ hdfs dfsadmin -report
 
 查看hadoop的任务运行情况：http://master:8088
 
+## 增加调试信息设置
+
+通过下面的设置，可以输出hadoop命令的调试信息。
+```
+$ export HADOOP_ROOT_LOGGER=DEBUG,console
+$ hadoop fs -text /test/data/origz/access.log.gz
+
+15/08/14 20:45:12 DEBUG util.NativeCodeLoader: Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: /usr/hadoop-2.7.1/lib/native/libhadoop.so.1.0.0: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by /usr/hadoop-2.7.1/lib/native/libhadoop.so.1.0.0)
+```
+
 ### 问题
 
 如果无法查看到datanote，可能有很多问题引起的。
