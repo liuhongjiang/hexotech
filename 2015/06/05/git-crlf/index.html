@@ -6,23 +6,20 @@
   <title>git crlf | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="跨平台的情况下，windows和unix的换行符谁不一样的。这个和git结合起来的时候有点烦哈。
-如何将git的所有crlf文件转换成lf格式
-将git库中的crlf转换为lf
+如何将git的所有crlf文件转换成lf格式将git库中的crlf转换为lf
 下面这个脚本可以将库中的所有文件中的crlf去掉">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git crlf">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/06/05/git-crlf/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
 <meta property="og:description" content="跨平台的情况下，windows和unix的换行符谁不一样的。这个和git结合起来的时候有点烦哈。
-如何将git的所有crlf文件转换成lf格式
-将git库中的crlf转换为lf
+如何将git的所有crlf文件转换成lf格式将git库中的crlf转换为lf
 下面这个脚本可以将库中的所有文件中的crlf去掉">
 <meta property="og:updated_time" content="2015-07-23T05:46:28.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git crlf">
 <meta name="twitter:description" content="跨平台的情况下，windows和unix的换行符谁不一样的。这个和git结合起来的时候有点烦哈。
-如何将git的所有crlf文件转换成lf格式
-将git库中的crlf转换为lf
+如何将git的所有crlf文件转换成lf格式将git库中的crlf转换为lf
 下面这个脚本可以将库中的所有文件中的crlf去掉">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
@@ -96,12 +93,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>跨平台的情况下，windows和unix的换行符谁不一样的。这个和git结合起来的时候有点烦哈。</p>
-<h2 id="如何将git的所有crlf文件转换成lf格式">如何将git的所有crlf文件转换成lf格式</h2>
-<p><a href="http://stackoverflow.com/questions/1510798/trying-to-fix-line-endings-with-git-filter-branch-but-having-no-luck/1511273#1511273" target="_blank" rel="external">将git库中的crlf转换为lf</a></p>
-<p>下面这个脚本可以将库中的所有文件中的crlf去掉 <a id="more"></a></p>
+<h2 id="如何将git的所有crlf文件转换成lf格式">如何将git的所有crlf文件转换成lf格式</h2><p><a href="http://stackoverflow.com/questions/1510798/trying-to-fix-line-endings-with-git-filter-branch-but-having-no-luck/1511273#1511273" target="_blank" rel="external">将git库中的crlf转换为lf</a></p>
+<p>下面这个脚本可以将库中的所有文件中的crlf去掉<br><a id="more"></a></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># From the root of your repository remove everything from the index</span><br><span class="line">git rm <span class="comment">--cached -r .</span></span><br><span class="line"></span><br><span class="line"># <span class="operator"><span class="keyword">Change</span> the autocrlf setting <span class="keyword">of</span> the repository (you may want </span><br><span class="line">#  <span class="keyword">to</span> <span class="keyword">use</span> <span class="literal">true</span> <span class="keyword">on</span> windows):</span><br><span class="line">git config core.autocrlf <span class="keyword">input</span></span><br><span class="line"></span><br><span class="line"># Re-<span class="keyword">add</span> all the deleted files <span class="keyword">to</span> the <span class="keyword">index</span></span><br><span class="line"># (You should <span class="keyword">get</span> lots <span class="keyword">of</span> messages <span class="keyword">like</span>:</span><br><span class="line">#   <span class="keyword">warning</span>: CRLF will be replaced <span class="keyword">by</span> LF <span class="keyword">in</span> &lt;<span class="keyword">file</span>&gt;.)</span><br><span class="line">git diff <span class="comment">--cached --name-only -z | xargs -0 git add</span></span><br><span class="line"></span><br><span class="line"># <span class="keyword">Commit</span></span><br><span class="line">git <span class="keyword">commit</span> -<span class="keyword">m</span> <span class="string">"Fixed crlf issue"</span></span><br><span class="line"></span><br><span class="line"># <span class="keyword">If</span> you<span class="string">'re doing this on a Unix/Mac OSX clone then optionally remove</span><br><span class="line"># the working tree and re-check everything out with the correct line endings.</span><br><span class="line">git ls-files -z | xargs -0 rm</span><br><span class="line">git checkout .</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="gitattribute">gitattribute</h2>
-<p><a href="https://help.github.com/articles/dealing-with-line-endings/" target="_blank" rel="external">github上面的关于crlf的处理</a></p>
+<h2 id="gitattribute">gitattribute</h2><p><a href="https://help.github.com/articles/dealing-with-line-endings/" target="_blank" rel="external">github上面的关于crlf的处理</a></p>
 <p>其中一个重点，可以在<a href="https://help.github.com/articles/dealing-with-line-endings/#per-repository-settings" target="_blank" rel="external">git库里面加入.gitattributes文件处理crlf的问题</a></p>
 <p>例子:</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the default behavior, in case people don't have core.autocrlf set.</span></span><br><span class="line"><span class="keyword">*</span> text=auto</span><br><span class="line"></span><br><span class="line"><span class="comment"># Explicitly declare text files you want to always be normalized and converted</span></span><br><span class="line"><span class="comment"># to native line endings on checkout.</span></span><br><span class="line"><span class="keyword">*</span>.c text</span><br><span class="line"><span class="keyword">*</span>.h text</span><br><span class="line"></span><br><span class="line"><span class="comment"># Declare files that will always have CRLF line endings on checkout.</span></span><br><span class="line"><span class="keyword">*</span>.sln text eol=crlf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Denote all files that are truly binary and should not be modified.</span></span><br><span class="line"><span class="keyword">*</span>.png binary</span><br><span class="line"><span class="keyword">*</span>.jpg binary</span><br></pre></td></tr></table></figure>
@@ -114,18 +109,17 @@
 <p>Git will always convert line endings to LF on checkout. You should use this for files that must keep LF endings, even on Windows. For example, here is a project that enforces LF line endings.</p>
 <p><code>binary</code></p>
 <p>Git will understand that the files specified are not text, and it should not try to change them. The binary setting is also an alias for -text -diff.</p>
-<p>另外一个是： <a href="https://help.github.com/articles/dealing-with-line-endings/#refreshing-a-repository-after-changing-line-endings" target="_blank" rel="external">Refreshing a repository after changing line endings</a></p>
+<p>另外一个是：<br><a href="https://help.github.com/articles/dealing-with-line-endings/#refreshing-a-repository-after-changing-line-endings" target="_blank" rel="external">Refreshing a repository after changing line endings</a></p>
 <p>这部分和上面第一节是基本一样的内容，（前提是设置了core.autocrlf或.gitattributes文件)</p>
-<h2 id="配置core.autocrlf">配置core.autocrlf</h2>
-<p><a href="http://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf#20653073" target="_blank" rel="external">core.autocrlf的解释</a></p>
+<h2 id="配置core-autocrlf">配置core.autocrlf</h2><p><a href="http://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf#20653073" target="_blank" rel="external">core.autocrlf的解释</a></p>
 <p>How core.autocrlf works:</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">core.autocrlf=<span class="constant">true</span>:    core.autocrlf=input:      core.autocrlf=<span class="constant">false</span>:</span><br><span class="line"></span><br><span class="line">       repo                     repo                    repo</span><br><span class="line">    /        \               /        \              /        \</span><br><span class="line"><span class="constant">crlf</span>-&gt;lf    lf-&gt;<span class="constant">crlf</span>     <span class="constant">crlf</span>-&gt;lf       \          /            \      </span><br><span class="line"> /              \        /                \      /                \</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Reminder: <span class="constant">crlf</span> = win-style <span class="keyword">end</span>-<span class="operator">of</span>-<span class="built_in">line</span> marker, lf = unix-style.</span><br><span class="line"></span><br><span class="line">Note that <span class="constant">cr</span> (mac-style) <span class="operator">in</span> <span class="operator">not</span> affected <span class="keyword">for</span> <span class="keyword">any</span> <span class="operator">of</span> <span class="constant">three</span> options above.</span><br></pre></td></tr></table></figure>
-<p>tips: 建议搭建使用编辑器的时候，如果是windows下，特别关注一下回车的格式 提交到代码仓库的时候，按照unix的格式提交。例如上面的<code>core.autocrlf=input</code>。 如果想在checkout的文件为crlf，就设置为<code>core.autocrlf=true</code></p>
+<p>tips: 建议搭建使用编辑器的时候，如果是windows下，特别关注一下回车的格式<br>提交到代码仓库的时候，按照unix的格式提交。例如上面的<code>core.autocrlf=input</code>。<br>如果想在checkout的文件为crlf，就设置为<code>core.autocrlf=true</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/" data-id="cid9ut6k00008q0i4z7gek94d" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/" data-id="cidqri65b000czoi4h3bronq8" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -170,7 +164,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -183,7 +177,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -195,6 +189,14 @@
       <ul>
         
           <li>
+            <a href="/hexotech/2015/08/25/install-spark/">install spark</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/08/24/install-hadoop/">install hadoop</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
           </li>
         
@@ -204,14 +206,6 @@
         
           <li>
             <a href="/hexotech/2015/06/24/greasemonkey-script/">greasemonkey script</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/06/05/git-crlf/">git crlf</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/05/20/git-workflow/">git workflow</a>
           </li>
         
       </ul>

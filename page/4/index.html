@@ -61,6 +61,102 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-virtual-function" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2012/11/29/virtual-function/" class="article-date">
+  <time datetime="2012-11-29T01:30:00.000Z" itemprop="datePublished">2012-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2012/11/29/virtual-function/">虚函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>面试的时候，常常宣称自己是一个C++程序员，不免就会被问一些有关C++的问题，例如虚函数的实现原理；析构函数是否能定义为虚函数等等。很多时候都回答不上来，就总会以时间久了忘了，搪塞过去，面试完，可能回去查查答案，但也总是不求甚解。</p>
+<p>既然有了博客，我就准备看看这些方面的内容，希望能记录下来，有所积累。于是就到网上查,或在书上找找，后来发现里面的内容太多了，不是一篇两篇博客就能写完的。于是没有办法，就只有硬着头皮写一个系列了。今天是第一部分虚函数和虚继承。</p>
+<p>C++的关键字virtual只能用在两个地方，一是定义类的成员函数为虚函数，二是定义类的继承关系为虚继承。这两点的用处大相径庭，但是在设计思想上还是有一定的共同性的。这篇文章先讲虚函数，下一篇讲虚继承。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2012/11/29/virtual-function/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/" data-id="cidqri67j001uzoi4m22mxrrd" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-blog-styles" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2012/11/24/blog-styles/" class="article-date">
+  <time datetime="2012-11-24T06:23:00.000Z" itemprop="datePublished">2012-11-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/octopress/">octopress</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2012/11/24/blog-styles/">博客的样式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用的markdown解析工具为kramdown。  </p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2012/11/24/blog-styles/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/" data-id="cidqri67j001wzoi4ieux2yrm" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-learning-vim" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexotech/2012/11/22/learning-vim/" class="article-date">
@@ -87,33 +183,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="书籍">书籍</h2>
-<pre><code>《VIM用户手册》  
-作者: Bram Moolenaar  
-翻译: ZhaoRuFei&lt;slimzhao@hotmail.com&gt;  
-版本: 7.0  </code></pre>
-<p>{: .sh-bash}</p>
-<h2 id="笔记">笔记</h2>
-<ol style="list-style-type: decimal">
-<li><strong>要退出Vim, 用命令“ZZ”. 该命令保存当前文件并退出Vim.</strong></li>
-<li>如果你在放弃所有修改后还想以该文件的初始内容作为开始继续编辑, 还可以用“:e!”命令放弃所有修改并重新载入该文件的原始内容.</li>
+        <h2 id="书籍">书籍</h2><pre><code>《VIM用户手册》  
+作者: <span class="keyword">Bram </span>Moolenaar  
+翻译: ZhaoRuFei&lt;slimzhao<span class="comment">@hotmail.com&gt;  </span>
+版本: <span class="number">7</span>.<span class="number">0</span>  
+</code></pre><p>{: .sh-bash}</p>
+<h2 id="笔记">笔记</h2><ol>
+<li><strong>要退出Vim, 用命令”ZZ”. 该命令保存当前文件并退出Vim.</strong></li>
+<li>如果你在放弃所有修改后还想以该文件的初始内容作为开始继续编辑, 还可以用”:e!”命令放弃所有修改并重新载入该文件的原始内容.</li>
 </ol>
-<h2 id="奇技淫巧">奇技淫巧</h2>
-<ol style="list-style-type: decimal">
-<li>d^ 删除光标到行首第一个非空白字符之间的内容，可用于删除行首的空白</li>
-<li>gu/gU 大小写转化，gu小写，gU转为大写.<br>
-u/U： 选中区域，直接进行大小写转换 gg gu G：整篇文章大写转化为小写。<br>
-gU0 ：从光标所在位置到行首变为大写<br>
-gU$ ：从光标所在位置到行尾变为大写<br>
-</li>
+<h2 id="奇技淫巧">奇技淫巧</h2><ol>
+<li>d^ 删除光标到行首第一个非空白字符之间的内容，可用于删除行首的空白 </li>
+<li>gu/gU 大小写转化，gu小写，gU转为大写.<br> u/U： 选中区域，直接进行大小写转换<br> gg gu G：整篇文章大写转化为小写。<br> gU0 ：从光标所在位置到行首变为大写<br> gU$ ：从光标所在位置到行尾变为大写    </li>
 <li><a href="http://www.cnblogs.com/respawn/archive/2012/08/21/2649483.html" target="_blank" rel="external">vundle 管理vim插件</a></li>
-<li>vim查看编译错误 <code>:make</code> 进行编译，需要在makefile所在的目录下打开文件 <code>:cw</code> 带开quickfix窗口 cn （next）下一条 cp (previous) 上一条 cw (显示warning) cc 显示错误 col 前一个旧的错误 勘误表 col 后一个旧的勘误表 cnew 后一个较新的错误列表 ( :help :cnew )</li>
+<li>vim查看编译错误<br> <code>:make</code>     进行编译，需要在makefile所在的目录下打开文件<br> <code>:cw</code>       带开quickfix窗口<br> cn          （next）下一条<br> cp          (previous) 上一条<br> cw          (显示warning)<br> cc          显示错误<br> col         前一个旧的错误 勘误表<br> col         后一个旧的勘误表<br> cnew        后一个较新的错误列表 ( :help :cnew )</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/" data-id="cid9ut6m0001vq0i4yo6cs1bp" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/" data-id="cidqri67j001zzoi487ges6oz" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -151,23 +240,8 @@ gU$ ：从光标所在位置到行尾变为大写<br>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在网页或blog中引用数学公式是一件痛苦的事情。经过几番在网上的查找，算是勉强找到了一个借鉴方法。借用强大的<code>MathJax + Latex</code>就可以解决这个问题。废话少说，先来一个例子</p>
-<p><span class="math display">\[
-\begin{aligned}
-  &amp; \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
-  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
-  &amp; (x_1, \ldots, x_n) \left( \begin{array}{ccc}
-      \phi(e_1, e_1) &amp; \cdots &amp; \phi(e_1, e_n) \\
-      \vdots &amp; \ddots &amp; \vdots \\
-      \phi(e_n, e_1) &amp; \cdots &amp; \phi(e_n, e_n)
-    \end{array} \right)
-  \left( \begin{array}{c}
-      y_1 \\
-      \vdots \\
-      y_n
-    \end{array} \right)
-\end{aligned}
-\]</span></p>
+        <p>在网页或blog中引用数学公式是一件痛苦的事情。经过几番在网上的查找，算是勉强找到了一个借鉴方法。借用强大的<code>MathJax + Latex</code>就可以解决这个问题。废话少说，先来一个例子  </p>
+<p>$$<br>\begin{aligned}<br>  &amp; \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie<em>i, \sum</em>{j=1}^n y_je<em>j \right)<br>  = \sum</em>{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \<br>  &amp; (x_1, \ldots, x_n) \left( \begin{array}{ccc}<br>      \phi(e_1, e_1) &amp; \cdots &amp; \phi(e_1, e_n) \<br>      \vdots &amp; \ddots &amp; \vdots \<br>      \phi(e_n, e_1) &amp; \cdots &amp; \phi(e_n, e_n)<br>    \end{array} \right)<br>  \left( \begin{array}{c}<br>      y_1 \<br>      \vdots \<br>      y_n<br>    \end{array} \right)<br>\end{aligned}<br>$$</p>
         
           <p class="article-more-link">
             <a href="/hexotech/2012/11/21/math/#more">Read More</a>
@@ -176,7 +250,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/math/" data-id="cid9ut6m3001yq0i4kub22110" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/math/" data-id="cidqri67j0022zoi44ioeown0" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/21/math/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -214,8 +288,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="如何搭建blog">如何搭建blog</h2>
-<ul>
+        <h2 id="如何搭建blog">如何搭建blog</h2><ul>
 <li>这个blog是使用<a href="http://octopress.org/">Octopress</a>搭建的，它是一种基于<a href="https://github.com/mreid/jekyll/">Jekyll</a>的博客框架。</li>
 <li>存放在<a href="https://github.com/">github</a>上。</li>
 <li>markdown解析器用的<a href="http://kramdown.rubyforge.org/">kramdown</a></li>
@@ -229,7 +302,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/how-to-build-blog/" data-id="cid9ut6m50020q0i4e0uza0dz" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/how-to-build-blog/" data-id="cidqri67t0024zoi4usf47k0l" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/21/how-to-build-blog/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -264,13 +337,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<h2 id="桃花庵歌">桃花庵歌</h2>
-<h4 id="唐伯虎">——唐伯虎</h4>
-<p>桃花坞里桃花庵，桃花庵下桃花仙。桃花仙人种桃树，又摘桃花换酒钱。<br />
-酒醒只在花前坐，酒醉还来花下眠。半醉半醒日复日，花落花开年复年。<br />
-但愿老死花酒间，不愿鞠躬车马前。车尘马足显者事，酒盏花枝隐士缘。<br />
-若将显者比隐士，一在平地一在天。若将花酒比车马，彼何碌碌我何闲。<br />
-别人笑我太疯癫，我笑他人看不穿。不见五陵豪杰墓，无花无酒锄作田。</p>
+<h2 id="桃花庵歌">桃花庵歌</h2><h4 id="——唐伯虎">——唐伯虎</h4><p>桃花坞里桃花庵，桃花庵下桃花仙。桃花仙人种桃树，又摘桃花换酒钱。<br>酒醒只在花前坐，酒醉还来花下眠。半醉半醒日复日，花落花开年复年。<br>但愿老死花酒间，不愿鞠躬车马前。车尘马足显者事，酒盏花枝隐士缘。<br>若将显者比隐士，一在平地一在天。若将花酒比车马，彼何碌碌我何闲。<br>别人笑我太疯癫，我笑他人看不穿。不见五陵豪杰墓，无花无酒锄作田。</p>
 </blockquote>
         
           <p class="article-more-link">
@@ -280,7 +347,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/13/first-blog/" data-id="cid9ut6is0000q0i4ga35oaw6" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/13/first-blog/" data-id="cidqri63x0000zoi4wf9mva6t" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/13/first-blog/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -305,7 +372,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -318,7 +385,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -330,6 +397,14 @@ gU$ ：从光标所在位置到行尾变为大写<br>
       <ul>
         
           <li>
+            <a href="/hexotech/2015/08/25/install-spark/">install spark</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/08/24/install-hadoop/">install hadoop</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
           </li>
         
@@ -339,14 +414,6 @@ gU$ ：从光标所在位置到行尾变为大写<br>
         
           <li>
             <a href="/hexotech/2015/06/24/greasemonkey-script/">greasemonkey script</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/06/05/git-crlf/">git crlf</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/05/20/git-workflow/">git workflow</a>
           </li>
         
       </ul>

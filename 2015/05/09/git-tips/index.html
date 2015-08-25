@@ -5,25 +5,22 @@
   
   <title>git tips | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="how to pull after forced update
-1git reset origin/master --hard
+  <meta name="description" content="how to pull after forced update1git reset origin/master --hard
 this willResets the index and working tree. Any changes to tracked files in the working tree since are discarded.
-当前工作目录的index和本地修改，都">
+当前工作目录的index和本地修改，都会被丢弃">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git tips">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/05/09/git-tips/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description" content="how to pull after forced update
-1git reset origin/master --hard
+<meta property="og:description" content="how to pull after forced update1git reset origin/master --hard
 this willResets the index and working tree. Any changes to tracked files in the working tree since are discarded.
-当前工作目录的index和本地修改，都">
+当前工作目录的index和本地修改，都会被丢弃">
 <meta property="og:updated_time" content="2015-07-23T05:46:28.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git tips">
-<meta name="twitter:description" content="how to pull after forced update
-1git reset origin/master --hard
+<meta name="twitter:description" content="how to pull after forced update1git reset origin/master --hard
 this willResets the index and working tree. Any changes to tracked files in the working tree since are discarded.
-当前工作目录的index和本地修改，都">
+当前工作目录的index和本地修改，都会被丢弃">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -95,29 +92,25 @@ this willResets the index and working tree. Any changes to tracked files in the 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="how-to-pull-after-forced-update">how to pull after forced update</h2>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">reset</span> origin/<span class="keyword">master</span> <span class="comment">--hard</span></span></span><br></pre></td></tr></table></figure>
+        <h2 id="how_to_pull_after_forced_update">how to pull after forced update</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">reset</span> origin/<span class="keyword">master</span> <span class="comment">--hard</span></span></span><br></pre></td></tr></table></figure>
 <p>this willResets the index and working tree. Any changes to tracked files in the working tree since are discarded.</p>
 <p>当前工作目录的index和本地修改，都会被丢弃（丢弃的修改包括已经提交到本地的commit)</p>
 <a id="more"></a>
-<p>可以使用 <code>--soft</code> If you want to actually keep whatever changes you’ve got locally, do a <code>--soft</code> reset instead. which will update the commit history for the branch, 不会丢弃本地未提交的修改，但是会丢弃本地提交的修改。</p>
+<p>可以使用 <code>--soft</code><br>If you want to actually keep whatever changes you’ve got locally, do a <code>--soft</code> reset instead. which will update the commit history for the branch,<br>不会丢弃本地未提交的修改，但是会丢弃本地提交的修改。</p>
 <p>另外还有两个参数 <code>--keep --merge</code>，我在本地试了一下，都报错了，没有深入了解。</p>
-<h2 id="git-rebase">git rebase</h2>
-<p>You can replay your local commits ontop of any other commit/branch using git rebase 例如你在feature分支，你可以基于master分支对当期的分支rebase</p>
+<h2 id="git_rebase">git rebase</h2><p>You can replay your local commits ontop of any other commit/branch using git rebase<br>例如你在feature分支，你可以基于master分支对当期的分支rebase</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i origin/master</span><br></pre></td></tr></table></figure>
 <p>this will invoke rebase in interactive mode where you can choose how to apply each individual commit that isn’t in the history you are rebasing on top of.</p>
 <p>你也可以基于当期分支的之前的commit进行分子</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i HEAD~<span class="number">3</span></span><br></pre></td></tr></table></figure>
 <p>相对于从倒退3个提交，开始rebase，这样你就可以对的多次提交进行合并。</p>
-<p>如果你的分支已经push到了远端，那么在rebase之后，你要push的话，只能用 forced git push。</p>
+<p>如果你的分支已经push到了远端，那么在rebase之后，你要push的话，只能用 forced git push。 </p>
 <p><a href="http://stackoverflow.com/questions/9813816/git-pull-after-forced-update" target="_blank" rel="external">git pull after forced update</a></p>
-<h2 id="throw-away-local-commits-in-git">Throw away local commits in git</h2>
-<p>前面讲到的git reset就可以完成这个工作。例如你在master分支上</p>
+<h2 id="Throw_away_local_commits_in_git">Throw away local commits in git</h2><p>前面讲到的git reset就可以完成这个工作。例如你在master分支上</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard origin/master</span><br></pre></td></tr></table></figure>
 <p>这样就可以达到需要的效果。</p>
 <p>不要使用git revert， git revert会提交一个新的commit去revert原来的commit，这样在history中就可以看到。</p>
-<h2 id="git-clean">git clean</h2>
-<p>http://stackoverflow.com/questions/61212/how-do-i-remove-local-untracked-files-from-my-current-git-branch</p>
+<h2 id="git_clean">git clean</h2><p><a href="http://stackoverflow.com/questions/61212/how-do-i-remove-local-untracked-files-from-my-current-git-branch" target="_blank" rel="external">http://stackoverflow.com/questions/61212/how-do-i-remove-local-untracked-files-from-my-current-git-branch</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean <span class="operator">-f</span></span><br></pre></td></tr></table></figure>
 <p>But beware… there’s no going back. Use <code>-n</code> or <code>--dry-run</code> to preview the damage you’ll do.</p>
 <p>If you want to also remove directories, run <code>git clean -f -d</code> or <code>git clean -fd</code></p>
@@ -130,7 +123,7 @@ this willResets the index and working tree. Any changes to tracked files in the 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/" data-id="cid9ut6k9000hq0i4ym48jij1" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/" data-id="cidqri65l000lzoi4wjt3s2bn" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -175,7 +168,7 @@ this willResets the index and working tree. Any changes to tracked files in the 
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -188,7 +181,7 @@ this willResets the index and working tree. Any changes to tracked files in the 
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -200,6 +193,14 @@ this willResets the index and working tree. Any changes to tracked files in the 
       <ul>
         
           <li>
+            <a href="/hexotech/2015/08/25/install-spark/">install spark</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/08/24/install-hadoop/">install hadoop</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
           </li>
         
@@ -209,14 +210,6 @@ this willResets the index and working tree. Any changes to tracked files in the 
         
           <li>
             <a href="/hexotech/2015/06/24/greasemonkey-script/">greasemonkey script</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/06/05/git-crlf/">git crlf</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/05/20/git-workflow/">git workflow</a>
           </li>
         
       </ul>

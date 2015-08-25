@@ -61,6 +61,101 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-install-spark" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/08/25/install-spark/" class="article-date">
+  <time datetime="2015-08-25T02:55:55.000Z" itemprop="datePublished">2015-08-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/08/25/install-spark/">install spark</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cidqri64r0001zoi4znyf5r0u" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-install-hadoop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/08/24/install-hadoop/" class="article-date">
+  <time datetime="2015-08-24T03:16:09.000Z" itemprop="datePublished">2015-08-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/08/24/install-hadoop/">install hadoop</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="准备工作">准备工作</h2><p>centos版本是centos7。因为最新的hadoop版本（2.7.1）需要libc2.14以上，但是centos6.5只能升级到libc2.12所以需要使用centos7.<br>1个moaster节点，2个slave节点。</p>
+<ol>
+<li>修改服务器名字<br>centos7现在哟一个hostname的查看和设置命令<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hostnamectl status</span><br><span class="line">$ sudo hostnamectl set-hostname myhost<span class="class">.xmodulo</span><span class="class">.com</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>我设置之后的情况如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.40</span> <span class="tag">master</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.41</span> <span class="tag">slave1</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.42</span> <span class="tag">slave2</span><span class="class">.hadoop</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>修改hosts文件<br>在所有server的<code>/etc/hosts</code>中加入这几行：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.40</span> <span class="tag">master</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.41</span> <span class="tag">slave1</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.42</span> <span class="tag">slave2</span><span class="class">.hadoop</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>设置完毕以后，在每一台server上使用以下命令确保hosts配置正确<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ping master<span class="class">.hadoop</span></span><br><span class="line">ping slave1<span class="class">.hadoop</span></span><br><span class="line">ping slave2.hadoop</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/08/24/install-hadoop/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/" data-id="cidqri64r0002zoi405loy9en" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-mathjax-in-hexo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexotech/2015/08/12/mathjax-in-hexo/" class="article-date">
@@ -87,9 +182,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近将博客从octopress迁移到了hexo。 如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。</p>
-<p>默认的markdown解析器会将latex中的下划线和’'进行转义。公式不能正常显示，只有手动转义。</p>
-<p>然后在网上找到一篇文章： <a href="http://blog.yuanbin.me/posts/2014/05/play-mathjax-with-pandoc.html">Play MathJax with hexo-renderer-pandoc</a></p>
+        <p>最近将博客从octopress迁移到了hexo。<br>如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。</p>
+<p>默认的markdown解析器会将latex中的下划线和’\’进行转义。公式不能正常显示，只有手动转义。</p>
+<p>然后在网上找到一篇文章：<br><a href="http://blog.yuanbin.me/posts/2014/05/play-mathjax-with-pandoc.html">Play MathJax with hexo-renderer-pandoc</a></p>
 <p>介绍使用<a href="http://pandoc.org/">pandoc</a>和<a href="https://github.com/wzpan/hexo-renderer-pandoc">hexo-renderer-pandoc</a></p>
         
           <p class="article-more-link">
@@ -99,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/" data-id="cid9ut6jf0001q0i4klieytqv" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/" data-id="cidqri6510005zoi4pa60yodi" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -133,8 +228,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="apache支持mp4的流播放">apache支持mp4的流播放</h2>
-<p>apache可以通过配置模块支持MP4和flv格式的视频流。<a href="https://www.alduccino.com/mod-h264-and-mod-flv-streaming-for-apache-on-whm-cpanel">Mod_h264 and mod_FLV Streaming for Apache</a> 如果需要更多的视频流支持，建议使用 <a href="https://www.ffmpeg.org/ffserver.html">ffserver</a></p>
+        <p>##apache支持mp4的流播放<br>apache可以通过配置模块支持MP4和flv格式的视频流。<a href="https://www.alduccino.com/mod-h264-and-mod-flv-streaming-for-apache-on-whm-cpanel">Mod_h264 and mod_FLV Streaming for Apache</a><br>如果需要更多的视频流支持，建议使用 <a href="https://www.ffmpeg.org/ffserver.html">ffserver</a></p>
 <p>下面以在centeros的apache上配置MP4模块的支持为例，首先是在apache端的配置</p>
         
           <p class="article-more-link">
@@ -144,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/" data-id="cid9ut6jv0004q0i4bvwhfwqf" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/" data-id="cidqri65b0008zoi4q10gc4t0" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -183,8 +277,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>没什么内容，慎看。</p>
-<h2 id="how-to-write-a-greasemonkey-script">how to write a Greasemonkey script</h2>
-<p>Greasemonkey是火狐下面的一个扩展应用，通过它安装一些用户自定义的脚本，这脚本可以在浏览器运行的时候，对网页进行实时的改变。在chrome上也有一个对应的插件Tampermonkey。 这个工具很强大，我们可以添加自己脚本，来年完成一些我们自己想要完成的功能。</p>
+<h2 id="how_to_write_a_Greasemonkey_script">how to write a Greasemonkey script</h2><p>Greasemonkey是火狐下面的一个扩展应用，通过它安装一些用户自定义的脚本，这脚本可以在浏览器运行的时候，对网页进行实时的改变。在chrome上也有一个对应的插件Tampermonkey。<br>这个工具很强大，我们可以添加自己脚本，来年完成一些我们自己想要完成的功能。</p>
 <p>下面用给一个例子来介绍写这个脚本相关的知识。</p>
         
           <p class="article-more-link">
@@ -194,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/24/greasemonkey-script/" data-id="cid9ut6jx0005q0i43y3wr1uw" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/24/greasemonkey-script/" data-id="cidqri65b0009zoi4v294qv9w" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/24/greasemonkey-script/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -233,9 +326,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>跨平台的情况下，windows和unix的换行符谁不一样的。这个和git结合起来的时候有点烦哈。</p>
-<h2 id="如何将git的所有crlf文件转换成lf格式">如何将git的所有crlf文件转换成lf格式</h2>
-<p><a href="http://stackoverflow.com/questions/1510798/trying-to-fix-line-endings-with-git-filter-branch-but-having-no-luck/1511273#1511273">将git库中的crlf转换为lf</a></p>
-<p>下面这个脚本可以将库中的所有文件中的crlf去掉
+<h2 id="如何将git的所有crlf文件转换成lf格式">如何将git的所有crlf文件转换成lf格式</h2><p><a href="http://stackoverflow.com/questions/1510798/trying-to-fix-line-endings-with-git-filter-branch-but-having-no-luck/1511273#1511273">将git库中的crlf转换为lf</a></p>
+<p>下面这个脚本可以将库中的所有文件中的crlf去掉<br>
         
           <p class="article-more-link">
             <a href="/hexotech/2015/06/05/git-crlf/#more">Read More</a>
@@ -244,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/" data-id="cid9ut6k00008q0i4z7gek94d" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/" data-id="cidqri65b000czoi4h3bronq8" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -282,17 +374,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>参考了网上的多篇文章，然后结合现在自己参与的项目，总结了一个关于项目的git workflow的流程。 基本上是参考了gitflow的这篇文章。<a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a>。</p>
+        <p>参考了网上的多篇文章，然后结合现在自己参与的项目，总结了一个关于项目的git workflow的流程。<br>基本上是参考了gitflow的这篇文章。<a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a>。</p>
 <p>重点是下面这一张图片。</p>
 <img src="http://nvie.com/img/git-model@2x.png" class="center">
-<h2 id="名词">名词</h2>
-<p>以上图片中的各个分支的解释。</p>
+<h2 id="名词">名词</h2><p>以上图片中的各个分支的解释。</p>
 <ul>
 <li><p>master分支</p>
-<p>master分支保存了最新的发布代码，是稳定分支。永久保存。</p></li>
+<p>  master分支保存了最新的发布代码，是稳定分支。永久保存。</p>
+</li>
 <li><p>develop分支</p>
-<p>保存了最新的下一个版本要发布的feature和bugfix的代码，是稳定分支，但是可以运行在一定时间内不稳定。永久保存。</p>
-<p>在没有创建release分支的时候，可以提交bugfix的代码（bug的fix version填写下一个版本的版本号）。一但创建了release分支，那么只能提交下一个版本的feature和bugfix代码。</p></li>
+<p>  保存了最新的下一个版本要发布的feature和bugfix的代码，是稳定分支，但是可以运行在一定时间内不稳定。永久保存。</p>
+<p>  在没有创建release分支的时候，可以提交bugfix的代码（bug的fix version填写下一个版本的版本号）。一但创建了release分支，那么只能提交下一个版本的feature和bugfix代码。</p>
+</li>
 </ul>
         
           <p class="article-more-link">
@@ -302,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/20/git-workflow/" data-id="cid9ut6k2000bq0i4p1qwc3xd" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/20/git-workflow/" data-id="cidqri65b000fzoi4aj1576uu" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/20/git-workflow/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -336,8 +429,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="显示cjk">显示cjk</h2>
-<p>安装了sublime以后，默认字体对cjk（中文，韩文，日文）支持不是很好，可以使用 YaHei Consolas Hybrid字体。 下载 YaHei Consolas Hybrid，可使用链接：</p>
+        <h2 id="显示cjk">显示cjk</h2><p>安装了sublime以后，默认字体对cjk（中文，韩文，日文）支持不是很好，可以使用 YaHei Consolas Hybrid字体。<br>下载 YaHei Consolas Hybrid，可使用链接：</p>
 <p><a href="https://code.google.com/p/uigroupcode/downloads/detail?name=YaHei.Consolas.1.12.zip&amp;can=2&amp;q=">从google code下载</a></p>
 <p><a href="https://github.com/liangfeng/consolas-font-for-airline/blob/master/YaHei%20Consolas%20Hybrid.ttf">从github下载</a></p>
 <p>放入windows下面的font目录。</p>
@@ -351,7 +443,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/15/sublime-tips/" data-id="cid9ut6k5000dq0i4oy3cn8pd" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/15/sublime-tips/" data-id="cidqri65l000hzoi4fmciv7qc" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/15/sublime-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -390,8 +482,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>sqlite是一个非常小的数据库,适合小的应用,或者是app之类的.</p>
-<h2 id="install">install</h2>
-<ul>
+<h2 id="install">install</h2><ul>
 <li>windows command line</li>
 </ul>
 <p><a href="https://www.sqlite.org/download.html">下载SQLite</a>, 下载的文件是sqlite-shell-win32-x86-3081001.zip</p>
@@ -408,7 +499,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/" data-id="cid9ut6k7000eq0i48am4f4kl" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/" data-id="cidqri65l000izoi409tajdrf" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -446,8 +537,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="how-to-pull-after-forced-update">how to pull after forced update</h2>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">reset</span> origin/<span class="keyword">master</span> <span class="comment">--hard</span></span></span><br></pre></td></tr></table></figure>
+        <h2 id="how_to_pull_after_forced_update">how to pull after forced update</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">reset</span> origin/<span class="keyword">master</span> <span class="comment">--hard</span></span></span><br></pre></td></tr></table></figure>
 <p>this willResets the index and working tree. Any changes to tracked files in the working tree since are discarded.</p>
 <p>当前工作目录的index和本地修改，都会被丢弃（丢弃的修改包括已经提交到本地的commit)</p>
         
@@ -458,126 +548,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/" data-id="cid9ut6k9000hq0i4ym48jij1" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/" data-id="cidqri65l000lzoi4wjt3s2bn" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-git-reference" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/05/09/git-reference/" class="article-date">
-  <time datetime="2015-05-09T06:35:00.000Z" itemprop="datePublished">2015-05-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/git/">git</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/05/09/git-reference/">git reference</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="git-ref">git ref</h2>
-<p>可以使用下面的命令查看ref</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show HEAD</span><br></pre></td></tr></table></figure>
-<h2 id="head-vs-orig_head">HEAD vs ORIG_HEAD</h2>
-<p>HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless you made some changes, or equivalent), and it is a commit on top of which “git commit” would make a new one. Usually HEAD is symbolic reference to some other named branch; this branch is currently checked out branch, or current branch. HEAD can also point directly to a commit; this state is called “detached HEAD”, and can be understood as being on unnamed, anonymous branch.</p>
-<p><strong>ORIG_HEAD is previous state of HEAD, set by commands that have possibly dangerous behavior, to be easy to revert them.</strong> It is less useful now that Git has reflog: HEAD@{1} is roughly equivalent to ORIG_HEAD (HEAD@{1} is always last value of HEAD, ORIG_HEAD is last value of HEAD before dangerous operation).</p>
-<p>“pull” or “merge” always leaves the original tip of the current branch in ORIG_HEAD.</p>
-<p>HEAD is a moving pointer. Sometimes it means the current branch, sometimes it doesn’t.</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/05/09/git-reference/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-reference/" data-id="cid9ut6kf000jq0i4qxffemfn" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/05/09/git-reference/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-git-commit-message-convention" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/04/30/git-commit-message-convention/" class="article-date">
-  <time datetime="2015-04-30T00:58:00.000Z" itemprop="datePublished">2015-04-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/git/">git</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/04/30/git-commit-message-convention/">git commit message convention</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I collect all information for internet, I did not write a single word.</p>
-<p>A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to their future selves)</p>
-<h2 id="examples">examples</h2>
-<p>example of commit messages:</p>
-<pre><code>Capitalized, short (50 chars or less) summary
-
-More detailed explanatory text, if necessary.  Wrap it to about 72
-characters or so.  In some contexts, the first line is treated as the
-subject of an email and the rest of the text as the body.  The blank
-line separating the summary from the body is critical (unless you omit
-the body entirely); tools like rebase can get confused if you run the 
-two together.
-   
-- Bullet points are okay, too
-- Typically a hyphen or asterisk is used for the bullet, followed by a
-  single space, with blank lines in between, but conventions vary here
-- Use a hanging indent</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/04/30/git-commit-message-convention/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/" data-id="cid9ut6ki000lq0i4q4h27var" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -600,7 +573,7 @@ two together.
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -613,7 +586,7 @@ two together.
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -625,6 +598,14 @@ two together.
       <ul>
         
           <li>
+            <a href="/hexotech/2015/08/25/install-spark/">install spark</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/08/24/install-hadoop/">install hadoop</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
           </li>
         
@@ -634,14 +615,6 @@ two together.
         
           <li>
             <a href="/hexotech/2015/06/24/greasemonkey-script/">greasemonkey script</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/06/05/git-crlf/">git crlf</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/05/20/git-workflow/">git workflow</a>
           </li>
         
       </ul>

@@ -86,50 +86,86 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用的markdown解析工具为kramdown。</p>
+        <p>使用的markdown解析工具为kramdown。  </p>
 <a id="more"></a>
-<h2 id="引用块">引用块</h2>
-<p>引用块的样式借用了<a href="http://kramdown.rubyforge.org/syntax.html#link-definitions" target="_blank" rel="external">kramdown语法文档</a>中的样式。</p>
+<h2 id="引用块">引用块</h2><p>引用块的样式借用了<a href="http://kramdown.rubyforge.org/syntax.html#link-definitions" target="_blank" rel="external">kramdown语法文档</a>中的样式。</p>
 <p>在<code>/sass/custom/_style.scss</code>中添加样式定义</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 引用 */</span></span><br><span class="line"><span class="id">#content</span> <span class="tag">blockquote</span><span class="class">.information</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">12px</span> solid <span class="hexcolor">#080</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#bfb</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">12px</span> <span class="number">12px</span> <span class="number">12px</span> <span class="number">0</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> -<span class="number">48px</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">48px</span></span></span>; </span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>然后在markdown文件中的写法如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; This is a blockquote. &#10;&#62; &#36825;&#26159;&#19968;&#20010;&#24341;&#29992;&#22359;&#12290;   &#10;&#123;: .information&#125;</span><br></pre></td></tr></table></figure>
 <p>就会显示成这个样子</p>
 <blockquote>
-<p>This is a blockquote.<br>
-这是一个引用块。 {: .information}</p>
+<p>This is a blockquote.<br>这是一个引用块。<br>{: .information}</p>
 </blockquote>
-<h2 id="表格">表格</h2>
-<p>参考<a href="http://kramdown.rubyforge.org/syntax.html#tables" target="_blank" rel="external">kramdown关于表格的参考手册</a>，或者是<a href="http://kramdown.rubyforge.org/quickref.html#tables" target="_blank" rel="external">kramdown关于表格的快速参考手册</a>。下面表格的样式也是在这个基础上修改的。<br>
-首先看一下表格样式的定义，在<code>/sass/custom/_styles.scss</code>中定义样式</p>
+<h2 id="表格">表格</h2><p>参考<a href="http://kramdown.rubyforge.org/syntax.html#tables" target="_blank" rel="external">kramdown关于表格的参考手册</a>，或者是<a href="http://kramdown.rubyforge.org/quickref.html#tables" target="_blank" rel="external">kramdown关于表格的快速参考手册</a>。下面表格的样式也是在这个基础上修改的。<br>首先看一下表格样式的定义，在<code>/sass/custom/_styles.scss</code>中定义样式</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 表格 */</span></span><br><span class="line"><span class="id">#content</span> <span class="tag">table</span><span class="class">.mytable</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">border-collapse</span>:<span class="value"> collapse</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> auto</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> auto</span></span>;</span><br><span class="line">  <span class="comment">/*border: solid 1px black;*/</span></span><br><span class="line"> <span class="comment">/* width: 100%; */</span></span><br><span class="line">&#125;</span></span><br><span class="line"><span class="id">#content</span> <span class="tag">table</span><span class="class">.mytable</span> <span class="tag">td</span>, <span class="id">#content</span> <span class="tag">table</span><span class="class">.mytable</span> <span class="tag">th</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">3px</span> <span class="number">5px</span></span></span>; </span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> solid <span class="number">1px</span> <span class="hexcolor">#070</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="id">#content</span> <span class="tag">table</span><span class="class">.mytable</span> <span class="tag">th</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#080</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> white</span></span>; </span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>然后可以用以下代码显示表格</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| Header1 | Header2 | Header3 |&#10;|:--------|:-------:|--------:|&#10;| cell1   | cell2   | cell3   |&#10;| cell4   | cell5   | cell6   |&#10;|----&#10;| cell1   | cell2   | cell3   |&#10;| cell4   | cell5   | cell6   |&#10;|=====&#10;| Foot1   | Foot2   | Foot3&#10;&#123;: .mytable&#125;</span><br></pre></td></tr></table></figure>
 <p>显示的表格为</p>
-<p>| Header1 | Header2 | Header3 | |:——–|:——-:|——–:| | cell1 | cell2 | cell3 | | cell4 | cell5 | cell6 | |—- | cell1 | cell2 | cell3 | | cell4 | cell5 | cell6 | |===== | Foot1 | Foot2 | Foot3 {: .mytable}</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Header1</th>
+<th style="text-align:center">Header2</th>
+<th style="text-align:right">Header3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">cell1</td>
+<td style="text-align:center">cell2</td>
+<td style="text-align:right">cell3</td>
+</tr>
+<tr>
+<td style="text-align:left">cell4</td>
+<td style="text-align:center">cell5</td>
+<td style="text-align:right">cell6</td>
+</tr>
+<tr>
+<td style="text-align:left">—-</td>
+</tr>
+<tr>
+<td style="text-align:left">cell1</td>
+<td style="text-align:center">cell2</td>
+<td style="text-align:right">cell3</td>
+</tr>
+<tr>
+<td style="text-align:left">cell4</td>
+<td style="text-align:center">cell5</td>
+<td style="text-align:right">cell6</td>
+</tr>
+<tr>
+<td style="text-align:left">=====</td>
+</tr>
+<tr>
+<td style="text-align:left">Foot1</td>
+<td style="text-align:center">Foot2</td>
+<td style="text-align:right">Foot3</td>
+</tr>
+</tbody>
+</table>
+<p>{: .mytable}</p>
 <p><br></p>
 <p>kramdown参考文档中的其它几个例子</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string">-----------------+------------+-----------------+----------------</span>|</span><br><span class="line">|<span class="string"> Default aligned </span>|<span class="string">Left aligned</span>|<span class="string"> Center aligned  </span>|<span class="string"> Right aligned  </span>|</span><br><span class="line">|<span class="string">-----------------</span>|<span class="string">:-----------</span>|<span class="string">:---------------:</span>|<span class="string">---------------:</span>|</span><br><span class="line">|<span class="string"> First body part </span>|<span class="string">Second cell </span>|<span class="string"> Third cell      </span>|<span class="string"> fourth cell    </span>|</span><br><span class="line">|<span class="string"> Second line     </span>|<span class="string">foo         </span>|<span class="string"> **strong**      </span>|<span class="string"> baz            </span>|</span><br><span class="line">|<span class="string"> Third line      </span>|<span class="string">quux        </span>|<span class="string"> baz             </span>|<span class="string"> bar            </span>|</span><br><span class="line">|<span class="string">-----------------+------------+-----------------+----------------</span>|</span><br><span class="line">|<span class="string"> Second body     </span>|<span class="string">            </span>|<span class="string">                 </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> 2 line          </span>|<span class="string">            </span>|<span class="string">                 </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string">=================+============+=================+================</span>|</span><br><span class="line">|<span class="string"> Footer row      </span>|<span class="string">            </span>|<span class="string">                 </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string">-----------------+------------+-----------------+----------------</span>|</span><br><span class="line">&#123;: .mytable&#125;</span><br></pre></td></tr></table></figure>
 <p>注意里面的对齐方式的定义（代码的第三行），还有第7,10行中关于表格分块的定义，显示</p>
-<p>|—————–+————+—————–+—————-| | Default aligned |Left aligned| Center aligned | Right aligned | |—————–|:———–|:—————:|—————:| | First body part |Second cell | Third cell | fourth cell | | Second line |foo | <strong>strong</strong> | baz | | Third line |quux | baz | bar | |—————–+————+—————–+—————-| | Second body | | | | | 2 line | | | | |=================+============+=================+================| | Footer row | | | | |—————–+————+—————–+—————-| {: .mytable}</p>
+<p>|—————–+————+—————–+—————-|<br>| Default aligned |Left aligned| Center aligned  | Right aligned  |<br>|—————–|:———–|:—————:|—————:|<br>| First body part |Second cell | Third cell      | fourth cell    |<br>| Second line     |foo         | <strong>strong</strong>      | baz            |<br>| Third line      |quux        | baz             | bar            |<br>|—————–+————+—————–+—————-|<br>| Second body     |            |                 |                |<br>| 2 line          |            |                 |                |<br>|=================+============+=================+================|<br>| Footer row      |            |                 |                |<br>|—————–+————+—————–+—————-|<br>{: .mytable}</p>
 <p>当然也有屌丝专用的丑陋，但简单的方式，与上面的表格一样</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string">---</span><br><span class="line"></span>|<span class="string"> Default aligned </span>|<span class="string"> Left aligned </span>|<span class="string"> Center aligned </span>|<span class="string"> Right aligned</span><br><span class="line"></span>|<span class="string">-</span>|<span class="string">:-</span>|<span class="string">:-:</span>|<span class="string">-:</span><br><span class="line"></span>|<span class="string"> First body part </span>|<span class="string"> Second cell </span>|<span class="string"> Third cell </span>|<span class="string"> fourth cell</span><br><span class="line"></span>|<span class="string"> Second line </span>|<span class="string">foo </span>|<span class="string"> **strong** </span>|<span class="string"> baz</span><br><span class="line"></span>|<span class="string"> Third line </span>|<span class="string">quux </span>|<span class="string"> baz </span>|<span class="string"> bar</span><br><span class="line"></span>|<span class="string">---</span><br><span class="line"></span>|<span class="string"> Second body</span><br><span class="line"></span>|<span class="string"> 2 line</span><br><span class="line"></span>|<span class="string">===</span><br><span class="line"></span>|<span class="string"> Footer row</span><br><span class="line">&#123;: .mytable&#125;</span></span><br></pre></td></tr></table></figure>
 <p>最后的显示的表格与上面是一样的。</p>
-<p>|— | Default aligned | Left aligned | Center aligned | Right aligned |-|:-|:-:|-: | First body part | Second cell | Third cell | fourth cell | Second line |foo | <strong>strong</strong> | baz | Third line |quux | baz | bar |— | Second body | 2 line |=== | Footer row {: .mytable}</p>
+<p>|—<br>| Default aligned | Left aligned | Center aligned | Right aligned<br>|-|:-|:-:|-:<br>| First body part | Second cell | Third cell | fourth cell<br>| Second line |foo | <strong>strong</strong> | baz<br>| Third line |quux | baz | bar<br>|—<br>| Second body<br>| 2 line<br>|===<br>| Footer row<br>{: .mytable}</p>
 <p>当然还可以有没有那么复杂的直接上最简单的表格的方式</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string"> First cell</span>|<span class="string">Second cell</span>|<span class="string">Third cell</span><br><span class="line"></span>|<span class="string"> First </span>|<span class="string"> Second </span>|<span class="string"> Third </span>|</span><br><span class="line">First |<span class="string"> Second </span>|<span class="string"> </span>|<span class="string"> Fourth </span>|</span><br><span class="line">&#123;: .mytable&#125;</span><br></pre></td></tr></table></figure>
 <p>显示为</p>
-<p>| First cell|Second cell|Third cell | First | Second | Third | First | Second | | Fourth | {: .mytable}</p>
+<p>| First cell|Second cell|Third cell<br>| First | Second | Third |<br>First | Second | | Fourth |<br>{: .mytable}</p>
 <p><br></p>
-<h2 id="首行缩进">首行缩进</h2>
-<p>blog的样式中是没有缩进的，这样多少还是有点难看。加入的方法如下，在<code>/sass/custom/_styles.scss</code>中加入如下代码</p>
+<h2 id="首行缩进">首行缩进</h2><p>blog的样式中是没有缩进的，这样多少还是有点难看。加入的方法如下，在<code>/sass/custom/_styles.scss</code>中加入如下代码</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#content</span> <span class="class">.entry-content</span> &gt; <span class="tag">p</span> <span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">text-indent</span>:<span class="value"> <span class="number">2em</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>然后就有了现在的缩进样式。需要注意，在markdown文件中，如果在一行的后面加入空格来换行的话，生成的html文件中，是用&lt;br/&gt;来换行的，不是用&lt;p&gt;换行，就没有缩进的样式了。正确的方法是在两行文字之间插入空行。</p>
+<p>然后就有了现在的缩进样式。需要注意，在markdown文件中，如果在一行的后面加入空格来换行的话，生成的html文件中，是用\<br \="">来换行的，不是用\<p\>换行，就没有缩进的样式了。正确的方法是在两行文字之间插入空行。</p\></p>
 <p>但后来发现一个问题，在一行里面加入的代码块也有了缩进的样式, 就像这样子<code style="text-indent:2em">这里有了缩进</code>, 我用了比较土的方法解决，还是在上面的custom/_styles.scss中加入</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#content</span> <span class="class">.entry-content</span> &gt; <span class="tag">p</span> &gt; <span class="tag">code</span> <span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">text-indent</span>:<span class="value"> <span class="number">0em</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>这种解决办法不是很好，因为总有可能导致其它标签里面意外出现缩进，但我也不熟悉css，只有先这么办了，先解决眼前的问题。</p>
-<h2 id="添加豆瓣的侧边栏">添加豆瓣的侧边栏</h2>
-<p><a href="http://www.douban.com/service/badgemakerjs" target="_blank" rel="external">豆瓣收藏秀</a>可以为你的博客生成一个侧边栏，放入到你的博客中。访问这个网址<a href="">http://www.douban.com/service/badgemakerjs</a>，可以生成一段js代码，然后讲这段代码嵌入到侧边栏的html中即可。</p>
+<h2 id="添加豆瓣的侧边栏">添加豆瓣的侧边栏</h2><p><a href="http://www.douban.com/service/badgemakerjs" target="_blank" rel="external">豆瓣收藏秀</a>可以为你的博客生成一个侧边栏，放入到你的博客中。访问这个网址<a href="/hexotech/">http://www.douban.com/service/badgemakerjs</a>，可以生成一段js代码，然后讲这段代码嵌入到侧边栏的html中即可。</p>
 <p>具体的做法，显示在收藏秀的页面里面选择好需要显示的内容，例如：我选择了，我想看的、书、每次随机选择、共显示9个 每行3个、图片小，下面两个选择隐藏，然后生成了这样的JS代码</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://www.douban.com/service/badge/63148093/?show=wishlist&amp;amp;select=random&amp;amp;n=9&amp;amp;columns=3&amp;amp;hidelogo=yes&amp;amp;hideself=yes&amp;amp;cat=book"</span> &gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>然后创建文件<code>/source/_includes/custom/asides/douban-wishreading.html</code>, 在这个html文件中加入如下代码</p>
@@ -137,12 +173,11 @@
 <p>其中第5行为豆瓣收藏秀生成的JS代码，其它的样式代码为blog的样式, 用于不同的blog可能需要修改。然后需要在<code>_config.yml</code>里修改配置，在<code>default_asides</code>中加入<code>custom/asides/douban-wishreading.html</code>，就像这样</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default_asides: [asides/recent_posts.html, custom/asides/douban-reading.html, custom/asides/douban-wishreading.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]</span><br></pre></td></tr></table></figure>
 <p>最后展现的样子可以参考<a href="http://liuhongjiang.github.com/life/" target="_blank" rel="external">猪猫的生活</a>。</p>
-<h2 id="文章摘要">文章摘要</h2>
-<p>当文章比较长的时候，如果在文章的前面有一个摘要，就会方便很多。下面就就是一个添加摘要的简单方法。</p>
+<h2 id="文章摘要">文章摘要</h2><p>当文章比较长的时候，如果在文章的前面有一个摘要，就会方便很多。下面就就是一个添加摘要的简单方法。</p>
 <p>首先在文章的markdown文件中添加一个变量<code>abstract</code>如下</p>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">---</span><br><span class="line"></span>layout: post</span><br><span class="line">title: "博客的样式"</span><br><span class="line">date: 2012-11-24 14:23</span><br><span class="line">comments: true</span><br><span class="line">categories: octopress</span><br><span class="line"><span class="header">abstract: "本文就介绍了这个blog搭建过程中，一些样式如何设置的。包括：引用块的样式，表格的样式，首行缩进，添加豆瓣侧边栏, 文章摘要。"</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure>
 <p>然后修改<code>source/_include/article.html</code></p>
-
+ 
 <p>之后修改样式文件<code>sass/custom/_styles.scss</code>, 添加如下的样式</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.abstract</span>, <span class="class">.warning</span><span class="rules">&#123;</span><br><span class="line"><span class="rule"><span class="attribute">border</span>:<span class="value">none</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">0.6em</span> <span class="number">1.25em</span> <span class="number">0.6em</span> <span class="number">1.25em</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">margin-top</span>:<span class="value"><span class="number">0.25em</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">8px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"> <span class="number">8px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">8px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-box-shadow</span>:<span class="value"> <span class="number">0</span> <span class="number">4px</span> <span class="number">4px</span> <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.3</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-moz-box-shadow</span>:<span class="value"> <span class="number">0</span> <span class="number">4px</span> <span class="number">4px</span> <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.3</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-box-shadow</span>:<span class="value"> <span class="number">0</span> <span class="number">4px</span> <span class="number">4px</span> <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.3</span>)</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.abstract</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"><span class="hexcolor">#d5e9f6</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>就可以显示和本文开始一样的摘要了。</p>
@@ -150,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/" data-id="cid9ut6lx001sq0i4jind19v0" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/" data-id="cidqri67j001wzoi4ieux2yrm" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -195,7 +230,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -208,7 +243,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -220,6 +255,14 @@
       <ul>
         
           <li>
+            <a href="/hexotech/2015/08/25/install-spark/">install spark</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/08/24/install-hadoop/">install hadoop</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
           </li>
         
@@ -229,14 +272,6 @@
         
           <li>
             <a href="/hexotech/2015/06/24/greasemonkey-script/">greasemonkey script</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/06/05/git-crlf/">git crlf</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/05/20/git-workflow/">git workflow</a>
           </li>
         
       </ul>
