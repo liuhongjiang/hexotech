@@ -88,30 +88,34 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>火车票插件拖垮github的事件的结果，就是github被悲催地墙掉了。愤慨啊。Fuck GFW!</p>
-<p>不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上<a href="http://www.weibo.com/neilxp" target="_blank" rel="external">@蒋伟</a>找到了一个通过<a href="http://www.weibo.com/1791166224/zfvJvnG39" target="_blank" rel="external">https连接github的办法</a>，总结一下如下：</p>
-<ol>
+<p>不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上<span class="citation">[@蒋伟]</span>(http://www.weibo.com/neilxp)找到了一个通过<a href="http://www.weibo.com/1791166224/zfvJvnG39" target="_blank" rel="external">https连接github的办法</a>，总结一下如下：</p>
+<ol style="list-style-type: decimal">
 <li>安装goagent</li>
-<li><p>导入ca.crt证书<br> 导入goagent目录下的local/CA.crt<br> ubuntu导入证书<br> <a href="http://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate" target="_blank" rel="external">http://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate</a>        </p>
+<li><p>导入ca.crt证书 导入goagent目录下的local/CA.crt<br>
+ubuntu导入证书<br>
+http://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate</p></li>
+<li>启动代理 python proxy.py</li>
+<li>设置代理： export HTTPS_PROXY=“http://127.0.0.1:8087”</li>
+<li>github配置，关键一步是remote add的时候，方法是：<br>
+git remote add origin https://liuhongjiang@github.com/liuhongjiang/tech.git<br>
+这样就可以正常地pull和push了，麻烦的是，每次都要输入秘密。<br>
 </li>
-<li><p>启动代理 python proxy.py</p>
-</li>
-<li>设置代理： export HTTPS_PROXY=”<a href="http://127.0.0.1:8087" target="_blank" rel="external">http://127.0.0.1:8087</a>“</li>
-<li>github配置，关键一步是remote add的时候，方法是：<br> git remote add origin <a href="https://liuhongjiang@github.com/liuhongjiang/tech.git" target="_blank" rel="external">https://liuhongjiang@github.com/liuhongjiang/tech.git</a><br> 这样就可以正常地pull和push了，麻烦的是，每次都要输入秘密。      </li>
-<li><p>接下来就是octopress的rake deploy了：<br> 需要修改Rakefile：</p>
-<pre><code># <span class="atom">user</span> = <span class="atom">repo_url</span>.<span class="atom">match</span>(/:([^\/]+)/)[<span class="number">1</span>]
-<span class="atom">user</span> = <span class="atom">repo_url</span>.<span class="atom">match</span>(/<span class="atom">github</span>\.<span class="atom">com</span>.([^\/]+)/)[<span class="number">1</span>]
-# <span class="atom">branch</span> = (<span class="atom">repo_url</span>.<span class="atom">match</span>(/\/[\<span class="atom">w</span>-]+.<span class="atom">github</span>.<span class="atom">com</span>/).<span class="atom">nil</span>?) ? <span class="string">'gh-pages'</span> : <span class="string">'master'</span>
-<span class="atom">branch</span> = (<span class="atom">repo_url</span>.<span class="atom">match</span>(/\/[\<span class="atom">w</span>-]+\.<span class="atom">github</span>\.<span class="atom">com</span>$/).<span class="atom">nil</span>?) ? <span class="string">'gh-pages'</span> : <span class="string">'master'</span>
-# <span class="atom">project</span> = (<span class="atom">branch</span> == <span class="string">'gh-pages'</span>) ? <span class="atom">repo_url</span>.<span class="atom">match</span>(/\/([^\.]+)/)[<span class="number">1</span>] : <span class="string">''</span>
-<span class="atom">project</span> = (<span class="atom">branch</span> == <span class="string">'gh-pages'</span>) ? <span class="atom">repo_url</span>.<span class="atom">match</span>(/\/([^\/^\.]+)$/)[<span class="number">1</span>] : <span class="string">''</span>
-</code></pre><p> 然后在<code>rake setup_github_pages</code>命令中填https的url地址：<br> <a href="https://liuhongjiang@github.com/liuhongjiang/tech" target="_blank" rel="external">https://liuhongjiang@github.com/liuhongjiang/tech</a><br> 同样在部署的时候，还是要输入密码</p>
-</li>
+<li><p>接下来就是octopress的rake deploy了： 需要修改Rakefile：</p>
+<pre><code># user = repo_url.match(/:([^\/]+)/)[1]
+user = repo_url.match(/github\.com.([^\/]+)/)[1]
+# branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? &#39;gh-pages&#39; : &#39;master&#39;
+branch = (repo_url.match(/\/[\w-]+\.github\.com$/).nil?) ? &#39;gh-pages&#39; : &#39;master&#39;
+# project = (branch == &#39;gh-pages&#39;) ? repo_url.match(/\/([^\.]+)/)[1] : &#39;&#39;
+project = (branch == &#39;gh-pages&#39;) ? repo_url.match(/\/([^\/^\.]+)$/)[1] : &#39;&#39;</code></pre>
+<p>然后在<code>rake setup_github_pages</code>命令中填https的url地址：<br>
+https://liuhongjiang@github.com/liuhongjiang/tech<br>
+同样在部署的时候，还是要输入密码</p></li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/22/github-https/" data-id="cidqri6650017zoi45oqvu7e8" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/22/github-https/" data-id="cidqrx9ok00173gi48hag94su" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/22/github-https/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -156,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/19/2012/" data-id="cidqri66f001azoi4o2imbbyz" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/19/2012/" data-id="cidqrx9om001a3gi4h6xot6t1" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/19/2012/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -194,14 +198,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>现在主流的分布式集群一致性问题大多都吸收了PAXOS算法[^1]的思想。然而，如果完全按照Leslie Lamport的论文[^2]，实现复杂度比较高。因此，大多数实现都采用PAXOS的某种变形。Lamport的重要贡献，献是把分布式一致性的问题，形式化并给出了证明，给出了理论指导。[^3]</p>
+        <p>现在主流的分布式集群一致性问题大多都吸收了PAXOS算法<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>的思想。然而，如果完全按照Leslie Lamport的论文<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>，实现复杂度比较高。因此，大多数实现都采用PAXOS的某种变形。Lamport的重要贡献，献是把分布式一致性的问题，形式化并给出了证明，给出了理论指导。<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
 <p>关于Paxos算法，在网上看到了一个Fast Paxos算法，见淘宝核心系统团队博客, <a href="http://rdc.taobao.com/blog/cs/?p=162">paxos 实现</a></p>
 <p>Paxos算法看起来还是很复杂的，没有仔细研究，倒是在网上另外找到了两个简单的master选举算法。</p>
-<h2 id="霸道算法">霸道算法</h2><p>Garcia-Monila 在 1982 年的一篇论文中发明了所谓的霸道选举算法（Bully Algorithm）[^4]。当一个进程 P 发现协调者进程不再响应时，这个进程就召集选举。由于进程的独立性，在同一个时刻，系统中可能有多个召集选举的过程。假设 P 是召集选举的进程，每个召集选举的过程如下：</p>
-<ol>
+<h2 id="霸道算法">霸道算法</h2>
+<p>Garcia-Monila 在 1982 年的一篇论文中发明了所谓的霸道选举算法（Bully Algorithm）<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>。当一个进程 P 发现协调者进程不再响应时，这个进程就召集选举。由于进程的独立性，在同一个时刻，系统中可能有多个召集选举的过程。假设 P 是召集选举的进程，每个召集选举的过程如下：</p>
+<ol style="list-style-type: decimal">
 <li>P 向所有比自己编号大的进程发送一条 ELECTION（选举）消息。</li>
 <li>如果 P 得不到任何回复，则 P 赢得选举，P 向所有进程发送 COORDINATOR（协调者）消息，宣布自己的胜利。</li>
-<li>如果 P 得到任何一个回复，回复一定来自于比自己编号大的进程。P 的召集选举的工作结束，因为 P 此时已经不可能赢得选举。 </li>
+<li>如果 P 得到任何一个回复，回复一定来自于比自己编号大的进程。P 的召集选举的工作结束，因为 P 此时已经不可能赢得选举。</li>
 </ol>
         
           <p class="article-more-link">
@@ -211,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/18/simple-master-election/" data-id="cidqri66f001bzoi4blyi12r6" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/18/simple-master-election/" data-id="cidqrx9on001b3gi4zv34sreh" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/18/simple-master-election/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -250,17 +255,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>linux下shell提示符可以任意配置的。</p>
-<p>首先看看bash的配置文件，一般在用户的HOME目录下有这样几个文件[^1]：</p>
+<p>首先看看bash的配置文件，一般在用户的HOME目录下有这样几个文件<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>：</p>
 <ul>
 <li>.bash_history ：记录了您以前输入的命令，</li>
 <li>.bash_logout ：当您退出 shell 时，要执行的命令，</li>
 <li>.bash_profile ：当您登入 shell 时，要执行的命令，</li>
 <li>.bashrc ：每次打开新的 shell 时，要执行的命令。</li>
 </ul>
-<p>这些文件是每一位用户的设置。系统级的设置存储在’/etc/profile’、’/etc/bashrc’及目录’/etc/profile.d’下的文件中。但您得习惯用各自的配置文件：编辑不需要’root’权限，还可以使您的设置更有个性。当系统级与用户级的设置发生冲突时，将采用用户的设置。</p>
+<p>这些文件是每一位用户的设置。系统级的设置存储在’/etc/profile’、‘/etc/bashrc’及目录’/etc/profile.d’下的文件中。但您得习惯用各自的配置文件：编辑不需要’root’权限，还可以使您的设置更有个性。当系统级与用户级的设置发生冲突时，将采用用户的设置。</p>
 <p>每次当您打开一个控制台(console)或 xterm 时，最先看到的就是提示符(prompt)，类似于：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">account@hostname ~ $</span><br></pre></td></tr></table></figure>
-<p>在默认设置下，提示符将显示您的用户名、主机名（默认是’localhost’）、当前所在目录（在Unix中，’~’表示您的home目录）。<br>按照传统，最后一个字符可以标识您是普通用户（<code>$</code>），还是’root’（<code>#</code>）。<br>您可以通过 <code>$PS1</code>, <code>$PS2</code> 变量来设置提示符，<code>$PS2</code>是当在多行内输入一个命令时，换行后，出现的提示符。命令</p>
+<p>在默认设置下，提示符将显示您的用户名、主机名（默认是’localhost’）、当前所在目录（在Unix中，‘~’表示您的home目录）。 按照传统，最后一个字符可以标识您是普通用户（<code>$</code>），还是’root’（<code>#</code>）。 您可以通过 <code>$PS1</code>, <code>$PS2</code> 变量来设置提示符，<code>$PS2</code>是当在多行内输入一个命令时，换行后，出现的提示符。命令</p>
         
           <p class="article-more-link">
             <a href="/hexotech/2013/01/16/shell-prompting/#more">Read More</a>
@@ -269,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/16/shell-prompting/" data-id="cidqri66f001ezoi4bv438idb" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/16/shell-prompting/" data-id="cidqrx9op001e3gi4ufk2uddl" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/16/shell-prompting/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -307,9 +312,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://www.elasticsearch.org">elasticsearch</a>是一个是开源的（Apache2协议），分布式的，<a href="http://zh.wikipedia.org/zh-cn/REST">RESTful</a>的，构建在<a href="http://lucene.apache.org/">Apache Lucene</a>之上的的搜索引擎。 </p>
+        <p><a href="http://www.elasticsearch.org">elasticsearch</a>是一个是开源的（Apache2协议），分布式的，<a href="http://zh.wikipedia.org/zh-cn/REST">RESTful</a>的，构建在<a href="http://lucene.apache.org/">Apache Lucene</a>之上的的搜索引擎。</p>
 <p>它有很多特点例如Schema Free，Document Oriented。它是#nosql的，基于JSON，同时支持多种API，包括HTTP, thrift, memcached。支持HTTP,是比较爽的一点，因为基本上所有的应用都可以用ES了，页面上的js脚本都可以去查询。</p>
-<h2 id="安装">安装</h2><p>启动和安装特别简单，在<a href="http://www.elasticsearch.org/download/">ES下载页面</a>下载zip或者tar包后，解压，然后到elasticsearch的目录下，运行下面的命令就可以了。</p>
+<h2 id="安装">安装</h2>
+<p>启动和安装特别简单，在<a href="http://www.elasticsearch.org/download/">ES下载页面</a>下载zip或者tar包后，解压，然后到elasticsearch的目录下，运行下面的命令就可以了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/elasticsearch <span class="operator">-f</span></span><br></pre></td></tr></table></figure>
 <p>搭建集群也非常简单，在同网段的机器上，启动es后，它们会自动组建成一个集群，并完成数据的分布式存储，查询时也会按照分布式的方式去查找。</p>
 <p>好了恭喜你，现在你已经可以搭建ES单机版和ES集群了，一切都这么简单。</p>
@@ -321,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/11/es/" data-id="cidqri66f001hzoi4tyy5quf0" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/11/es/" data-id="cidqrx9or001h3gi4mfuohzrf" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/11/es/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -359,9 +365,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前面两篇blog介绍了<a href="/hexotech/2012/12/26/2012-12-26-svm/">支持向量机SVM</a>和<a href="/hexotech/2012/12/28/2012-12-28-svm-smo/">SMO算法</a>，这一篇就讲讲SVM的一个简单实际应用：使用svm实现一个简单的数字手写识别软件。首先要解决如何使用svm进行多类分类。</p>
-<h2 id="svm与多类分类^1">svm与多类分类<a href="/hexotech/主要参考了：[SVM入门（十）将SVM用于多类分类](http:/www.blogjava.net/zhenandaci/archive/2009/03/26/262113.html)。">^1</a></h2><p>svm是一个二类的分类器，即它只回答属于正类还是负类的问题。而现实中要解决的问题，往往是多类的问题，比如文本分类，比如数字识别。如何由两类分类器得到多类分类器, 一般有三种方法：</p>
-<h3 id="一对多（一对其余）">一对多（一对其余）</h3><p>比如我们有5个类别，第一次就把类别1的样本定为正样本，其余2，3，4，5的样本合起来定为负样本，这样得到一个两类分类器。<br>通过类似的方法构造类别2、3、4、5的分类器，对于测试数据，每一个分类器都过一次，在那个分类器中，被判定为正，那么就认识它属于那个分类。<br>但有两个问题还没有解决：一是被多个分类器判定为正，二是被所有分类器判定为负。第一种情况，可以简单地选择第一个被判定为正的分类，对二种情况，可以视为分类失败了。另外一个问题是，“其余”的那一类样本数总是要数倍于正类（因为它是除正类以外其他类别的样本之和嘛），这就人为的造成了的<a href="http://www.blogjava.net/zhenandaci/archive/2009/03/17/260315.html">“数据集偏斜”</a>问题。</p>
+        <p>前面两篇blog介绍了<a href="/2012/12/26/2012-12-26-svm/">支持向量机SVM</a>和<a href="/2012/12/28/2012-12-28-svm-smo/">SMO算法</a>，这一篇就讲讲SVM的一个简单实际应用：使用svm实现一个简单的数字手写识别软件。首先要解决如何使用svm进行多类分类。</p>
+<h2 id="svm与多类分类1">svm与多类分类<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h2>
+<p>svm是一个二类的分类器，即它只回答属于正类还是负类的问题。而现实中要解决的问题，往往是多类的问题，比如文本分类，比如数字识别。如何由两类分类器得到多类分类器, 一般有三种方法：</p>
+<h3 id="一对多一对其余">一对多（一对其余）</h3>
+<p>比如我们有5个类别，第一次就把类别1的样本定为正样本，其余2，3，4，5的样本合起来定为负样本，这样得到一个两类分类器。 通过类似的方法构造类别2、3、4、5的分类器，对于测试数据，每一个分类器都过一次，在那个分类器中，被判定为正，那么就认识它属于那个分类。 但有两个问题还没有解决：一是被多个分类器判定为正，二是被所有分类器判定为负。第一种情况，可以简单地选择第一个被判定为正的分类，对二种情况，可以视为分类失败了。另外一个问题是，“其余”的那一类样本数总是要数倍于正类（因为它是除正类以外其他类别的样本之和嘛），这就人为的造成了的<a href="http://www.blogjava.net/zhenandaci/archive/2009/03/17/260315.html">“数据集偏斜”</a>问题。</p>
         
           <p class="article-more-link">
             <a href="/hexotech/2012/12/29/svm-ocr/#more">Read More</a>
@@ -370,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/" data-id="cidqri66p001jzoi42adobjoe" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/" data-id="cidqrx9ot001j3gi420rltphc" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -408,16 +416,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>上一篇blog讲到了<a href="/hexotech/blog/2012/12/26/svm/">svm的原理</a>，最后将需要解决问题抽象成了数学公式，但如何利用计算机，解出这些数学公式的答案。换句话说，就是怎么通过计算机算出我们的svm模型的参数呢？方法就是序列最小最优化(sequential minimal optimization, SMO)算法。</p>
+        <p>上一篇blog讲到了<a href="/blog/2012/12/26/svm/">svm的原理</a>，最后将需要解决问题抽象成了数学公式，但如何利用计算机，解出这些数学公式的答案。换句话说，就是怎么通过计算机算出我们的svm模型的参数呢？方法就是序列最小最优化(sequential minimal optimization, SMO)算法。</p>
 <p>首先回顾一下SVM模型的数学表达，即svm的对偶问题:</p>
-<p>$$<br>\begin{array}{l}<br>\mathop {\min }\limits<em>a \qquad \frac{1}{2}\sum\limits</em>{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x<em>j}) - \sum\limits</em>{i = 1}^N { {a<em>i}} } } \<br>{\rm{s.t.}}\qquad\sum\limits</em>{i = 1}^N { {a_i}{y_i} = 0} \<br>\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N<br>\end{array}<br>$$</p>
-<p>选择一个 $ {a^*} $ 的正分量 $ 0 \lt {a_j^*} \lt C $ , 计算（或者通过所有解求平均值）：</p>
-<p>$$<br>{b^<em>} = {y<em>j} - \sum\limits</em>{i = 1}^N {a_i^</em>{y_i}K({x_i} \cdot {x_j})}<br>$$</p>
+<p><span class="math display">\[
+\begin{array}{l}
+\mathop {\min }\limits_a \qquad \frac{1}{2}\sum\limits_{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x_j}) - \sum\limits_{i = 1}^N { {a_i}} } } \\
+{\rm{s.t.}}\qquad\sum\limits_{i = 1}^N { {a_i}{y_i} = 0} \\
+\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N
+\end{array}
+\]</span></p>
+<p>选择一个 $ {a^*} $ 的正分量 $ 0  C $ , 计算（或者通过所有解求平均值）：</p>
+<p><span class="math display">\[
+{b^*} = {y_j} - \sum\limits_{i = 1}^N {a_i^*{y_i}K({x_i} \cdot {x_j})} 
+\]</span></p>
 <p>决策函数为</p>
-<p>$$<br>f(x) = sign(\sum\limits_{i=1}^N {a_i^<em>{y_i}K({x_i}, {x_j})} + {b^</em>})<br>$$</p>
-<p>svm的学习，就是通过训练数据计算出${a^*}$和${b^*}$，然后通过决策函数判定${x_j}$的分类。其中${a^*}$是一个向量，长度与训练数据的样本数相同，如果训练数据很大，那么这个向量会很长，不过绝大部分的分量值都是0，只有支持向量的对应的分量值大于0 。</p>
+<p><span class="math display">\[
+f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
+\]</span></p>
+<p>svm的学习，就是通过训练数据计算出<span class="math inline">\({a^\*}\)</span>和<span class="math inline">\({b^\*}\)</span>，然后通过决策函数判定<span class="math inline">\({x_j}\)</span>的分类。其中<span class="math inline">\({a^\*}\)</span>是一个向量，长度与训练数据的样本数相同，如果训练数据很大，那么这个向量会很长，不过绝大部分的分量值都是0，只有支持向量的对应的分量值大于0 。</p>
 <p>SMO是一种启发式算法，其基本思想是：如果所有变量的解都满足了此最优化问题的KKT条件，那么这个最优化问题的解就得到了。否则，选择两个变量，固定其它变量，针对这两个变量构建一个二次规划问题，然后关于这个二次规划的问题的解就更接近原始的二次归还问题的解，因为这个解使得需要优化的问题的函数值更小。</p>
-<p>翻译一下：对于svm我们要求解${a^*}$，如果 ${a^*}$ 的所有分量满足svm对偶问题的KKT条件，那么这个问题的解就求出来了，我们svm模型学习也就完成了。如果没有满足KKT，那么我们就在 ${a^*}$ 中找两个分量 ${a_i}$ 和 ${a_j}$，其中 ${a_i}$ 是违反KKT条件最严重的分量，通过计算，使得 ${a_i}$ 和 ${a_j}$ 满足KKT条件，直到${a^*}$ 的所有分量都满足KKT条件。而且这个计算过程是收敛的，因为每次计算出来的新的两个分量，使得对偶问题中要优化的目标函数（就是min对应的那个函数）值更小。至于为什么是收敛的，是因为，每次求解的那两个分量，是要优化问题在这两个分量上的极小值，所以每一次优化，都会使目标函数比上一次的优化结果的值变小。</p>
+<p>翻译一下：对于svm我们要求解<span class="math inline">\({a^\*}\)</span>，如果 <span class="math inline">\({a^\*}\)</span> 的所有分量满足svm对偶问题的KKT条件，那么这个问题的解就求出来了，我们svm模型学习也就完成了。如果没有满足KKT，那么我们就在 <span class="math inline">\({a^\*}\)</span> 中找两个分量 <span class="math inline">\({a_i}\)</span> 和 <span class="math inline">\({a_j}\)</span>，其中 <span class="math inline">\({a_i}\)</span> 是违反KKT条件最严重的分量，通过计算，使得 <span class="math inline">\({a_i}\)</span> 和 <span class="math inline">\({a_j}\)</span> 满足KKT条件，直到<span class="math inline">\({a^\*}\)</span> 的所有分量都满足KKT条件。而且这个计算过程是收敛的，因为每次计算出来的新的两个分量，使得对偶问题中要优化的目标函数（就是min对应的那个函数）值更小。至于为什么是收敛的，是因为，每次求解的那两个分量，是要优化问题在这两个分量上的极小值，所以每一次优化，都会使目标函数比上一次的优化结果的值变小。</p>
         
           <p class="article-more-link">
             <a href="/hexotech/2012/12/28/svm-smo/#more">Read More</a>
@@ -426,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/" data-id="cidqri66p001lzoi4aujok027" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/" data-id="cidqrx9ow001l3gi4m2nngnqq" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -476,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/" data-id="cidqri66p001nzoi4p8tkzs82" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/" data-id="cidqrx9oy001n3gi4q8fubabx" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -523,7 +541,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/" data-id="cidqri66p001pzoi449a988la" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/" data-id="cidqrx9p1001p3gi4sw53ia0j" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -561,7 +579,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了<a href="/hexotech/blog/2012/11/29/virtual-function/">《虚函数》</a>，这篇博客就讲虚继承。</p>
+        <p>C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了<a href="/blog/2012/11/29/virtual-function/">《虚函数》</a>，这篇博客就讲虚继承。</p>
 <p>首先来看为什么需要虚继承。C++里面继承关系中有个很有名的继承结构，菱形继承，如下图所示</p>
 <img src="/hexotech/images/blogimages/2012/virtualinheritance/iostream.jpg" class="center">
 <p>普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostream类中存在两个相同的ios类,然后是构造效率低，需要构造两个ios类。更严重的是调用基类中的函数时，存在二义性，当iostream调用ios的成员函数时，编译器无法知道是调用istream还是ostream中的ios。</p>
@@ -574,7 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="cidqri66p001szoi41x4oqpg0" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="cidqrx9p3001s3gi41bds4bsb" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -599,7 +617,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 

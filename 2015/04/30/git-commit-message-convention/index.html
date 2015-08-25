@@ -6,18 +6,18 @@
   <title>git commit message convention | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="I collect all information for internet, I did not write a single word.
-A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to their">
+A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to thei">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git commit message convention">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/04/30/git-commit-message-convention/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
 <meta property="og:description" content="I collect all information for internet, I did not write a single word.
-A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to their">
+A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to thei">
 <meta property="og:updated_time" content="2015-07-23T05:46:28.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git commit message convention">
 <meta name="twitter:description" content="I collect all information for internet, I did not write a single word.
-A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to their">
+A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to thei">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -91,50 +91,52 @@ A well-crafted git commit message is the best way to communicate context about a
       
         <p>I collect all information for internet, I did not write a single word.</p>
 <p>A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to their future selves)</p>
-<h2 id="examples">examples</h2><p>example of commit messages:</p>
-<pre><code>Capitalized, <span class="keyword">short</span> (<span class="number">50</span> <span class="keyword">chars</span> <span class="operator">or</span> less) summary
+<h2 id="examples">examples</h2>
+<p>example of commit messages:</p>
+<pre><code>Capitalized, short (50 chars or less) summary
 
-More <span class="keyword">detailed</span> explanatory <span class="keyword">text</span>, <span class="keyword">if</span> necessary.  Wrap <span class="keyword">it</span> <span class="built_in">to</span> about <span class="number">72</span>
-<span class="keyword">characters</span> <span class="operator">or</span> so.  In some contexts, <span class="operator">the</span> <span class="keyword">first</span> <span class="built_in">line</span> is treated <span class="keyword">as</span> <span class="operator">the</span>
-subject <span class="operator">of</span> <span class="operator">an</span> email <span class="operator">and</span> <span class="operator">the</span> rest <span class="operator">of</span> <span class="operator">the</span> <span class="keyword">text</span> <span class="keyword">as</span> <span class="operator">the</span> body.  The blank
-<span class="built_in">line</span> separating <span class="operator">the</span> summary <span class="built_in">from</span> <span class="operator">the</span> body is critical (unless you omit
-<span class="operator">the</span> body entirely); tools like rebase can <span class="built_in">get</span> confused <span class="keyword">if</span> you run <span class="operator">the</span> 
-<span class="constant">two</span> together.
-
+More detailed explanatory text, if necessary.  Wrap it to about 72
+characters or so.  In some contexts, the first line is treated as the
+subject of an email and the rest of the text as the body.  The blank
+line separating the summary from the body is critical (unless you omit
+the body entirely); tools like rebase can get confused if you run the 
+two together.
+   
 - Bullet points are okay, too
-- Typically <span class="operator">a</span> hyphen <span class="operator">or</span> asterisk is used <span class="keyword">for</span> <span class="operator">the</span> bullet, followed <span class="keyword">by</span> <span class="operator">a</span>
-  single <span class="constant">space</span>, <span class="operator">with</span> blank <span class="keyword">lines</span> <span class="operator">in</span> between, but conventions vary here
-- Use <span class="operator">a</span> hanging indent
-</code></pre><a id="more"></a>
+- Typically a hyphen or asterisk is used for the bullet, followed by a
+  single space, with blank lines in between, but conventions vary here
+- Use a hanging indent</code></pre>
+<a id="more"></a>
 <p>Another one:</p>
-<pre><code>Summarize changes <span class="keyword">in</span> <span class="keyword">around</span> <span class="number">50</span> <span class="property">characters</span> <span class="keyword">or</span> less
+<pre><code>Summarize changes in around 50 characters or less
 
-More detailed explanatory <span class="type">text</span>, <span class="keyword">if</span> necessary. Wrap <span class="keyword">it</span> <span class="keyword">to</span> <span class="keyword">about</span> <span class="number">72</span>
-<span class="property">characters</span> <span class="keyword">or</span> so. In <span class="keyword">some</span> contexts, <span class="keyword">the</span> <span class="keyword">first</span> line <span class="keyword">is</span> treated <span class="keyword">as</span> <span class="keyword">the</span>
-subject <span class="keyword">of</span> <span class="keyword">the</span> commit <span class="keyword">and</span> <span class="keyword">the</span> <span class="property">rest</span> <span class="keyword">of</span> <span class="keyword">the</span> <span class="type">text</span> <span class="keyword">as</span> <span class="keyword">the</span> body. The
-blank line separating <span class="keyword">the</span> summary <span class="keyword">from</span> <span class="keyword">the</span> body <span class="keyword">is</span> critical (unless
-you omit <span class="keyword">the</span> body entirely); various tools like `<span class="command">log</span>`, `shortlog`
-<span class="keyword">and</span> `rebase` can <span class="keyword">get</span> confused <span class="keyword">if</span> you <span class="command">run</span> <span class="keyword">the</span> two together.
+More detailed explanatory text, if necessary. Wrap it to about 72
+characters or so. In some contexts, the first line is treated as the
+subject of the commit and the rest of the text as the body. The
+blank line separating the summary from the body is critical (unless
+you omit the body entirely); various tools like `log`, `shortlog`
+and `rebase` can get confused if you run the two together.
 
-Explain <span class="keyword">the</span> problem <span class="keyword">that</span> this commit <span class="keyword">is</span> solving. Focus <span class="function_start"><span class="keyword">on</span></span> why you
-are making this change <span class="keyword">as</span> opposed <span class="keyword">to</span> how (<span class="keyword">the</span> code explains <span class="keyword">that</span>).
-Are there side effects <span class="keyword">or</span> other unintuitive consequenses <span class="keyword">of</span> this
-change? Here's <span class="keyword">the</span> place <span class="keyword">to</span> explain them.
+Explain the problem that this commit is solving. Focus on why you
+are making this change as opposed to how (the code explains that).
+Are there side effects or other unintuitive consequenses of this
+change? Here&#39;s the place to explain them.
 
-Further <span class="property">paragraphs</span> come <span class="keyword">after</span> blank lines.
+Further paragraphs come after blank lines.
 
 - Bullet points are okay, too
 
-- Typically a hyphen <span class="keyword">or</span> asterisk <span class="keyword">is</span> used <span class="keyword">for</span> <span class="keyword">the</span> bullet, preceded
-  <span class="keyword">by</span> a single <span class="constant">space</span>, <span class="keyword">with</span> blank lines <span class="keyword">in</span> <span class="keyword">between</span>, <span class="keyword">but</span> conventions
+- Typically a hyphen or asterisk is used for the bullet, preceded
+  by a single space, with blank lines in between, but conventions
   vary here
 
-If you use an issue tracker, <span class="keyword">put</span> references <span class="keyword">to</span> them <span class="keyword">at</span> <span class="keyword">the</span> bottom,
+If you use an issue tracker, put references to them at the bottom,
 like this:
 
-Resolves: <span class="comment">#123</span>
-See also: <span class="comment">#456, #789</span>
-</code></pre><h2 id="subject">subject</h2><ul>
+Resolves: #123
+See also: #456, #789</code></pre>
+<h2 id="subject">subject</h2>
+<ul>
 <li>Separate subject from body with a blank line</li>
 <li>Limit the subject line to 50 characters</li>
 <li>Capitalize the subject line</li>
@@ -142,21 +144,24 @@ See also: <span class="comment">#456, #789</span>
 <li>Use the imperative mood in the subject line: “Fix bug” and not “Fixed bug” or “Fixes bug.”</li>
 <li>The subject should be a concise summary of the changes introduced by the commit</li>
 </ul>
-<h2 id="body">body</h2><ul>
+<h2 id="body">body</h2>
+<ul>
 <li>Wrap the body at 72 characters</li>
-<li>Use the body to explain what and why vs. how</li>
-<li>Try to answer the following questions in your commit message<ul>
+<li>Use the body to explain what and why vs. how</li>
+<li>Try to answer the following questions in your commit message
+<ul>
 <li>Why is this change necessary?</li>
 <li>How does it address the issue?</li>
 <li>What side effects does this change have?</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="others">others</h2><ul>
+<h2 id="others">others</h2>
+<ul>
 <li>Never use the <code>-m &lt;msg&gt;</code> or <code>--message=&lt;msg&gt;</code> flag to git commit</li>
 <li>The Linux kernel and git itself are great examples</li>
 </ul>
-<h2 id="reference">reference</h2><p>These are the article I got above good practice of git commit messages. Read it carefully.</p>
+<h2 id="reference">reference</h2>
+<p>These are the article I got above good practice of git commit messages. Read it carefully.</p>
 <ul>
 <li><a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html" target="_blank" rel="external">A Note About Git Commit Messages</a></li>
 <li><a href="https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message" target="_blank" rel="external">5 Useful Tips For A Better Commit Message</a></li>
@@ -164,14 +169,15 @@ See also: <span class="comment">#456, #789</span>
 <li><a href="https://github.com/torvalds/linux/pull/17#issuecomment-5659933" target="_blank" rel="external">real stickler for a good commit message, Linus Torvalds</a></li>
 <li><a href="https://github.com/blog/926-shiny-new-commit-styles" target="_blank" rel="external">Shiny new commit styles</a></li>
 </ul>
-<h2 id="git_commit_message_line_wrapping_in_IDEA">git commit message line wrapping in IDEA</h2><p><a href="https://youtrack.jetbrains.com/issue/IDEA-53615#comment=27-446912" target="_blank" rel="external">git commit message line wrapping</a></p>
-<p>if you turn on the line margin in the commit dialog in the Setting | Version Control, commit dialog text area becomes monospaced.<br>Moreover, if you turn on “Wrap when typing reaches right margin” in Settings | Code style | General, it will affect the commit dialog text area as well (however, it will affect the main editor too).</p>
+<h2 id="git-commit-message-line-wrapping-in-idea">git commit message line wrapping in IDEA</h2>
+<p><a href="https://youtrack.jetbrains.com/issue/IDEA-53615#comment=27-446912" target="_blank" rel="external">git commit message line wrapping</a></p>
+<p>if you turn on the line margin in the commit dialog in the Setting | Version Control, commit dialog text area becomes monospaced. Moreover, if you turn on “Wrap when typing reaches right margin” in Settings | Code style | General, it will affect the commit dialog text area as well (however, it will affect the main editor too).</p>
 <p>A separate setting to wrap when text reaches right margin has been added to Settings | Version Control.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/" data-id="cidqri65l000pzoi44965khue" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/" data-id="cidqrx9o1000p3gi4lkx46y6l" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -216,7 +222,7 @@ See also: <span class="comment">#456, #789</span>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 

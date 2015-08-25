@@ -5,16 +5,28 @@
   
   <title>install spark | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="前面一片文章install hadoop介绍了hadoop的安装，这一片安装spark的文章，就是在hadoop已经安装好的基础上进行的。
+准备
+下载spark
+hadoop的版本为2.7.1，下载的是spark-1.4.1-bin-hadoop2.6.tgz。
+这里下载是已经编译好的，也可以下载源码，自己编译。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="install spark">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/08/25/install-spark/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description">
-<meta property="og:updated_time" content="2015-08-25T02:55:55.832Z">
+<meta property="og:description" content="前面一片文章install hadoop介绍了hadoop的安装，这一片安装spark的文章，就是在hadoop已经安装好的基础上进行的。
+准备
+下载spark
+hadoop的版本为2.7.1，下载的是spark-1.4.1-bin-hadoop2.6.tgz。
+这里下载是已经编译好的，也可以下载源码，自己编译。">
+<meta property="og:updated_time" content="2015-08-25T06:09:59.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="install spark">
-<meta name="twitter:description">
+<meta name="twitter:description" content="前面一片文章install hadoop介绍了hadoop的安装，这一片安装spark的文章，就是在hadoop已经安装好的基础上进行的。
+准备
+下载spark
+hadoop的版本为2.7.1，下载的是spark-1.4.1-bin-hadoop2.6.tgz。
+这里下载是已经编译好的，也可以下载源码，自己编译。">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -66,6 +78,10 @@
   <time datetime="2015-08-25T02:55:55.000Z" itemprop="datePublished">2015-08-25</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -82,11 +98,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>前面一片文章<a href="/2015/08/24/install-hadoop/">install hadoop</a>介绍了hadoop的安装，这一片安装spark的文章，就是在hadoop已经安装好的基础上进行的。</p>
+<h2 id="准备">准备</h2>
+<p>下载<a href="http://spark.apache.org/downloads.html" target="_blank" rel="external">spark</a></p>
+<p>hadoop的版本为2.7.1，下载的是spark-1.4.1-bin-hadoop2.6.tgz。</p>
+<p>这里下载是已经编译好的，也可以下载源码，自己编译。</p>
+<a id="more"></a>
+<h2 id="配置spark">配置spark</h2>
+<p>本章节的内容都是在master操作。</p>
+<p>解压spark-1.4.1-bin-hadoop2.6.tgz，移至<code>/usr/</code>目录下 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv spark-<span class="number">1.4</span><span class="number">.1</span>-bin-hadoop2<span class="number">.6</span> /usr/spark-<span class="number">1.4</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<ol style="list-style-type: decimal">
+<li><p>配置spark-env.sh 在目录<code>${SPARK_HOME}/conf</code>中，将<code>spark-env.sh.template</code>拷贝为<code>spark-env.sh</code>，添加以下内容： <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=<span class="regexp">/usr/</span>lib<span class="regexp">/jvm/</span>java-<span class="number">1.8</span>.<span class="number">0</span>-openjdk</span><br><span class="line">export SPARK_DIST_CLASSPATH=$(<span class="regexp">/usr/</span>hadoop<span class="regexp">/bin/</span>hadoop <span class="keyword">classpath</span>)</span><br></pre></td></tr></table></figure></p></li>
+<li><p>配置spark-defaults.conf 在目录<code>${SPARK_HOME}/conf</code>中，将<code>spark-defaults.conf.template</code>拷贝为<code>spark-defaults.conf</code>，修改以下内容： <figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># Example:</span></span><br><span class="line">spark.master                     spark:<span class="comment">//master.hadoop:7077</span></span><br><span class="line"><span class="preprocessor"># spark.eventLog.enabled           true</span></span><br><span class="line"><span class="preprocessor"># spark.eventLog.dir               hdfs://namenode:8021/directory</span></span><br><span class="line"><span class="preprocessor"># spark.serializer                 org.apache.spark.serializer.KryoSerializer</span></span><br><span class="line">spark.driver.memory              <span class="number">500</span>m</span><br><span class="line"><span class="preprocessor"># spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>配置slaves文件 在目录<code>${SPARK_HOME}/conf</code>中，将<code>slaves.template</code>拷贝为<code>slaves</code>，修改以下内容： <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">slave1</span><span class="class">.hadoop</span></span><br><span class="line"><span class="tag">slave2</span><span class="class">.hadoop</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>修改/etc/profile <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># set spark path</span></span><br><span class="line"><span class="keyword">export</span> SPARK_HOME=/usr/spark-<span class="number">1.4</span><span class="number">.1</span></span><br><span class="line"><span class="keyword">export</span> SPARK_MASTER_IP=master.hadoop</span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<h2 id="拷贝到slave节点">拷贝到slave节点</h2>
+<p>在master上操作完成后，需要将spark-1.4.1的目录拷贝到所有的slave节点上。 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">scp</span> <span class="tag">-r</span> <span class="tag">spark-1</span><span class="class">.4</span><span class="class">.1</span> <span class="tag">slave2</span><span class="rule"><span class="attribute">.hadoop</span>:<span class="value">/usr/</span></span></span><br></pre></td></tr></table></figure></p>
+<p>然后将<code>/etc/profile</code>拷贝到slave节点上。 或者在profile文件中添加配置 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># set spark path</span></span><br><span class="line"><span class="keyword">export</span> SPARK_HOME=/usr/spark-<span class="number">1.4</span><span class="number">.1</span></span><br><span class="line"><span class="keyword">export</span> SPARK_MASTER_IP=master.hadoop</span><br></pre></td></tr></table></figure></p>
+<h2 id="启动spark">启动spark</h2>
+<p>启动了hadoop以后，可以通过下面的命令启动spark <figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">$&#123;SPARK_HOME&#125;</span>/sbin/start-<span class="literal">all</span>.sh</span><br></pre></td></tr></table></figure></p>
+<h2 id="验证安装情况">验证安装情况</h2>
+<ol style="list-style-type: decimal">
+<li><p>运行自带示例 $ bin/run-example org.apache.spark.examples.SparkPi</p></li>
+<li><p>查看集群环境 http://master:8080/</p></li>
+<li><p>进入spark-shell <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">$&#123;SPARK_HOME&#125;</span>/bin/spark-<span class="keyword">shell</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>查看jobs等信息</p></li>
+</ol>
+<p>当spark运行的时候，可以通过下面的网址产看job信息</p>
+<p>http://master:4040/jobs/</p>
+<h2 id="reference">reference</h2>
+<p><a href="">http://blog.csdn.net/jediael_lu/article/details/45310321</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cidqri64r0001zoi4znyf5r0u" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cidqrx9nd00013gi4xscp0n1h" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -122,7 +169,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
