@@ -17,23 +17,23 @@ $ sudo hostnamectl set-hostname myhost.xmodulo.com
 ```
 我设置之后的情况如下：
 ```
-10.34.130.40 master.hadoop.pt2
-10.34.130.41 slave1.hadoop.pt2
-10.34.130.42 slave2.hadoop.pt2
+10.115.230.40 master.hadoop
+10.115.230.41 slave1.hadoop
+10.115.230.42 slave2.hadoop
 ````
 
 2. 修改hosts文件
 在所有server的`/etc/hosts`中加入这几行：
 ```
-10.34.130.40 master.hadoop.pt2
-10.34.130.41 slave1.hadoop.pt2
-10.34.130.42 slave2.hadoop.pt2
+10.115.230.40 master.hadoop
+10.115.230.41 slave1.hadoop
+10.115.230.42 slave2.hadoop
 ```
 设置完毕以后，在每一台server上使用以下命令确保hosts配置正确
 ```
-ping master.hadoop.pt2
-ping slave1.hadoop.pt2
-ping slave2.hadoop.pt2
+ping master.hadoop
+ping slave1.hadoop
+ping slave2.hadoop
 ```
 
 <!-- more -->
@@ -99,7 +99,7 @@ step2. 生成public key: `ssh-keygen`
 step3. 将id_rsa.pub文件中的内容添加到authorized_keys中，authorized_keys文件的全新需要是`600`.
 step4. 通过ssh命令验证信任关系，例如：
 ```
-ssh slave2.hadoop.pt2
+ssh slave2.hadoop
 ```
 
 7. 关闭防火墙，或者配置防火墙
@@ -151,7 +151,7 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
 <configuration>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://master.hadoop.pt2:9000</value>
+        <value>hdfs://master.hadoop:9000</value>
     </property>
     <property>
         <name>hadoop.tmp.dir</name>
@@ -200,7 +200,7 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
 <configuration>
 	<property>
         <name>yarn.resourcemanager.hostname</name>
-        <value>master.hadoop.pt2</value>
+        <value>master.hadoop</value>
     </property>
     <property>
         <name>yarn.nodemanager.aux-services</name>
@@ -213,8 +213,8 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
 修改`${HADOOP_HOME}/etc/hadoop/slaves`, 添加：
 
 ```
-slave1.hadoop.pt2
-slave2.hadoop.pt2
+slave1.hadoop
+slave2.hadoop
 ```
 
 ## 拷贝到slave节点
@@ -222,7 +222,7 @@ slave2.hadoop.pt2
 通过以下命令拷贝到slave上
 
 ```
-scp -r hadoop-2.7.1 root@slave2.hadoop.pt2:/usr/
+scp -r hadoop-2.7.1 root@slave2.hadoop:/usr/
 ```
 
 在各个slave节点上，进入'/usr'目录下改变目录的属性
@@ -279,4 +279,5 @@ hdfs dfsadmin -report
 ## reference:
 
 http://www.powerxing.com/install-hadoop-cluster/
+
 http://www.centoscn.com/image-text/install/2014/1121/4158.html
