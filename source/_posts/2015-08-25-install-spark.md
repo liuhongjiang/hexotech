@@ -1,4 +1,4 @@
-title: install spark
+title: Install spark
 date: 2015-08-25 10:55:55
 tags:
 categories: hadoop

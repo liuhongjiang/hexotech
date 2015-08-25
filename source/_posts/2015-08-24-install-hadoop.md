@@ -1,4 +1,4 @@
-title: install hadoop
+title: Install hadoop
 date: 2015-08-24 11:16:09
 tags:
 categories: hadoop
