@@ -6,9 +6,11 @@ tags:
 
 由于要安装kafka，需要安装zookeeper。
 
-在其中一个节点中做以下操作
+这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。
 
 ## 准备
+
+在其中一个节点中做以下操作。
 
 下载[zookeeper](http://zookeeper.apache.org/releases.html), 我们这里下载的是[3.4.6版本](http://apache.mirror.cdnetworks.com/zookeeper/zookeeper-3.4.6/)。
 
