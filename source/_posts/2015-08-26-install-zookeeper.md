@@ -31,9 +31,9 @@ syncLimit=5
 dataDir=/usr/zookeeper-3.4.6/tmp/zookeeper
 clientPort=2181
 
-server.1=master.hadoop.pt2:2888:3888
-server.2=slave1.hadoop.pt2:2888:3888
-server.3=slave2.hadoop.pt2:2888:3888
+server.1=master.hadoop:2888:3888
+server.2=slave1.hadoop:2888:3888
+server.3=slave2.hadoop:2888:3888
 ```
 
 进入data目录创建myid文件，在文件中加入以下内容
@@ -51,7 +51,7 @@ bin/zkServer.sh stop
 
 验证过程，连接zookeeper
 ```
-bin/zkCli.sh -server master.hadoop.pt2:2181
+bin/zkCli.sh -server master.hadoop:2181
 ```
 
 或者使用[文档](http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkMulitServerSetup)中的java或者c-client进行连接。
@@ -76,7 +76,7 @@ The myid file consists of a single line containing only the text of that machine
 ## 将zookeeper复制到其他节点上
 例如如下的命令：
 ```
-scp -r zookeeper-3.4.6 slave1.hadoop.pt2:/usr/
+scp -r zookeeper-3.4.6 slave1.hadoop:/usr/
 ```
 
 然后在这些节点上修改文件的权限

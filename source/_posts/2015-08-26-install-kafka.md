@@ -58,7 +58,7 @@ bin/kafka-console-consumer.sh --zookeeper master.hadoop:2181 --topic test --from
 
 在另外一台服务器上运行producer：
 ```
-bin/kafka-console-producer.sh --broker-list slave1.hadoop.pt2:9092 --topic test 
+bin/kafka-console-producer.sh --broker-list slave1.hadoop:9092 --topic test 
 ```
 
 这时在producer中，输入任何消息，在consumer端就可以看到。下面的图片：
