@@ -3,20 +3,34 @@
 <head>
   <meta charset="utf-8">
   
-  <title>jni调用C和C++ | Andrew&#39;s Blog</title>
+  <title>Install zookeeper | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="已经在工作中碰到了两个这样的例子了，项目用java，但需要调用C/C++的库。之前一个是用java写hadoop的job，但是调用的算法是用C++实现的，使用的是jni。现在好像jni在android上面也有用到，但是我不了解。我自己也不懂java，但实际工作中有的时候也要看看java代码。所以决定写一个简单的jni例子，了解一下jni怎么完成C/C++调用的。">
+  <meta name="description" content="由于要安装kafka，需要安装zookeeper。
+这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。
+准备
+在其中一个节点中做以下操作。
+下载zookeeper, 我们这里下载的是3.4.6版本。
+解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 1chown -R hadoo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jni调用C和C++">
-<meta property="og:url" content="http://liuhongjiang.github.io/2012/12/07/jni-call/index.html">
+<meta property="og:title" content="Install zookeeper">
+<meta property="og:url" content="http://liuhongjiang.github.io/2015/08/26/install-zookeeper/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description" content="已经在工作中碰到了两个这样的例子了，项目用java，但需要调用C/C++的库。之前一个是用java写hadoop的job，但是调用的算法是用C++实现的，使用的是jni。现在好像jni在android上面也有用到，但是我不了解。我自己也不懂java，但实际工作中有的时候也要看看java代码。所以决定写一个简单的jni例子，了解一下jni怎么完成C/C++调用的。">
-<meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2012/jni-call/cpp-output.jpg">
-<meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2012/jni-call/run-output.jpg">
-<meta property="og:updated_time" content="2015-07-23T05:46:28.449Z">
+<meta property="og:description" content="由于要安装kafka，需要安装zookeeper。
+这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。
+准备
+在其中一个节点中做以下操作。
+下载zookeeper, 我们这里下载的是3.4.6版本。
+解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 1chown -R hadoo">
+<meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/zk_test.png">
+<meta property="og:updated_time" content="2015-08-27T01:13:42.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jni调用C和C++">
-<meta name="twitter:description" content="已经在工作中碰到了两个这样的例子了，项目用java，但需要调用C/C++的库。之前一个是用java写hadoop的job，但是调用的算法是用C++实现的，使用的是jni。现在好像jni在android上面也有用到，但是我不了解。我自己也不懂java，但实际工作中有的时候也要看看java代码。所以决定写一个简单的jni例子，了解一下jni怎么完成C/C++调用的。">
+<meta name="twitter:title" content="Install zookeeper">
+<meta name="twitter:description" content="由于要安装kafka，需要安装zookeeper。
+这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。
+准备
+在其中一个节点中做以下操作。
+下载zookeeper, 我们这里下载的是3.4.6版本。
+解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 1chown -R hadoo">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -62,14 +76,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-jni-call" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-install-zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/hexotech/2012/12/07/jni-call/" class="article-date">
-  <time datetime="2012-12-07T05:29:00.000Z" itemprop="datePublished">2012-12-07</time>
+    <a href="/hexotech/2015/08/26/install-zookeeper/" class="article-date">
+  <time datetime="2015-08-26T03:54:16.000Z" itemprop="datePublished">2015-08-26</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/C-C/">C/C++</a>
+    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
   </div>
 
   </div>
@@ -80,7 +94,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      jni调用C和C++
+      Install zookeeper
     </h1>
   
 
@@ -88,50 +102,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>已经在工作中碰到了两个这样的例子了，项目用java，但需要调用C/C++的库。之前一个是用java写hadoop的job，但是调用的算法是用C++实现的，使用的是jni。现在好像jni在android上面也有用到，但是我不了解。我自己也不懂java，但实际工作中有的时候也要看看java代码。所以决定写一个简单的jni例子，了解一下jni怎么完成C/C++调用的。</p>
+        <p>由于要安装kafka，需要安装zookeeper。</p>
+<p>这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。</p>
+<h2 id="准备">准备</h2>
+<p>在其中一个节点中做以下操作。</p>
+<p>下载<a href="http://zookeeper.apache.org/releases.html" target="_blank" rel="external">zookeeper</a>, 我们这里下载的是<a href="http://apache.mirror.cdnetworks.com/zookeeper/zookeeper-3.4.6/" target="_blank" rel="external">3.4.6版本</a>。</p>
+<p>解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>对于jni的内部实现，我也是不求甚解。编写一个java程序</p>
-
-<p>然后编译java文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac Sample1.java</span><br></pre></td></tr></table></figure>
-<p>编译完以后, 使用下面的命令生成jni调用的头文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javah -classpath ./ -jni Sample1</span><br></pre></td></tr></table></figure>
-<p>生成的头文件为Sample1.h, 就是下面C/C++实现的函数的声明, <em> 注意：Sample1.h是自动生成的</em></p>
-
-<p>有了头文件后，就可以实现这些调用的C/C++代码</p>
-
-<p>然后调用下面的命令生成动态链接库(系统:ubuntu 12.04，gcc编译）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -I /usr/lib/jvm/java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk/include/ -I /usr/lib/jvm/java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk/include/linux/ Sample1.cpp <span class="operator">-f</span>PIC -shared -o libSample1.so</span><br></pre></td></tr></table></figure>
-<p>具体的jdk的路径应该是和本地的相适应的。</p>
-<p>然后运行java程序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java Sample1</span><br></pre></td></tr></table></figure>
-<p>运行结果如下</p>
-<img src="/hexotech/images/blogimages/2012/jni-call/cpp-output.jpg" class="center">
-<p>图中加入了一个环境变量的声明，<code>export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH</code>, 当java加载动态链接库时，会在本地路径下找libSample1.so。</p>
-<p>上面是调用C++的代码，C实现的代码如下</p>
-
-<p>C与C++的实现基本一样，唯一的差异在于用来访问 JNI 函数的方法。在 C 中，JNI 函数调用由“(*env)-&gt;”作前缀，目的是为了取出函数指针所引用的值。在 C++ 中，JNIEnv 类拥有处理函数指针查找的内联成员函数。下面将说明这个细微的差异，其中，这两行代码访问同一函数，但每种语言都有各自的语法。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C 语法：jsize len = (*env)-&gt;GetArrayLength(env,<span class="built_in">array</span>);</span><br><span class="line">C++ 语法：jsize len = env-&gt;GetArrayLength(<span class="built_in">array</span>);</span><br></pre></td></tr></table></figure>
-<p>编译命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -I /usr/lib/jvm/java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk/include/ -I /usr/lib/jvm/java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk/include/linux/ Sample1.c <span class="operator">-f</span>PIC -shared -o libSample1.so</span><br></pre></td></tr></table></figure>
-<p>运行结果与上面C++的输出是一致的。</p>
-<p>实际上我是用了一个脚本完成编译等工作的</p>
-
-<p>脚本的运行结果如下图</p>
-<img src="/hexotech/images/blogimages/2012/jni-call/run-output.jpg" class="center">
-<p>github上本文的例子代码 <a href="https://github.com/andrewliu117/test/tree/master/cpp_test/jni" target="_blank" rel="external">jni调用的例子</a></p>
-<p>本文参考了以下两个blog的内容, 代码来自第二个blog。</p>
+<h2 id="配置zookeeper">配置zookeeper</h2>
+<p>修改<code>${ZOOKEEPER_HOME}/conf/zoo.cfg</code> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tickTime=<span class="number">2000</span></span><br><span class="line">initLimit=<span class="number">10</span></span><br><span class="line">syncLimit=<span class="number">5</span></span><br><span class="line">dataDir=/usr/zookeeper-<span class="number">3.4</span><span class="number">.6</span>/tmp/zookeeper</span><br><span class="line">clientPort=<span class="number">2181</span></span><br><span class="line"></span><br><span class="line">server<span class="number">.1</span>=master.hadoop:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.2</span>=slave1.hadoop:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.3</span>=slave2.hadoop:<span class="number">2888</span>:<span class="number">3888</span></span><br></pre></td></tr></table></figure></p>
+<p>进入data目录创建myid文件，在文件中加入以下内容 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="启动和验证">启动和验证</h2>
+<p>zookeeper的启动和停止命令为： <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer<span class="class">.sh</span> start</span><br><span class="line">bin/zkServer<span class="class">.sh</span> stop</span><br></pre></td></tr></table></figure></p>
+<p>验证过程，连接zookeeper <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkCli<span class="class">.sh</span> -server master<span class="class">.hadoop</span>:<span class="number">2181</span></span><br></pre></td></tr></table></figure></p>
+<p>或者使用<a href="http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkMulitServerSetup" target="_blank" rel="external">文档</a>中的java或者c-client进行连接。</p>
+<p>下面图片就是使用zookeeper的<code>create/get/set/delete</code>命令的测试。</p>
+<img src="/hexotech/images/blogimages/2015/zk_test.png" class="center">
+<p>一点说明：</p>
 <ul>
-<li><a href="http://www.cnblogs.com/hoys/archive/2011/09/30/2196290.html" target="_blank" rel="external">Java基础知识——JNI入门介绍</a></li>
-<li><a href="http://blog.sina.com.cn/s/blog_60c8379d01015epl.html" target="_blank" rel="external">第二篇：一个jni例子</a></li>
+<li>配置文件</li>
 </ul>
+<p>Every machine that is part of the ZooKeeper ensemble should know about every other machine in the ensemble. You accomplish this with the series of lines of the form server.id=host:port:port. The parameters host and port are straightforward. You attribute the server id to each machine by creating a file named myid, one for each server, which resides in that server’s data directory, as specified by the configuration file parameter dataDir.</p>
+<p>Finally, note the two port numbers after each server name: &quot; 2888&quot; and “3888”. Peers use the former port to connect to other peers. Such a connection is necessary so that peers can communicate, for example, to agree upon the order of updates. More specifically, a ZooKeeper server uses this port to connect followers to the leader. When a new leader arises, a follower opens a TCP connection to the leader using this port. Because the default leader election also uses TCP, we currently require another port for leader election. This is the second port in the server entry.</p>
+<ul>
+<li>myid</li>
+</ul>
+<p>The myid file consists of a single line containing only the text of that machine’s id. So myid of server 1 would contain the text “1” and nothing else. The id must be unique within the ensemble and should have a value between 1 and 255.</p>
+<h2 id="将zookeeper复制到其他节点上">将zookeeper复制到其他节点上</h2>
+<p>例如如下的命令： <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">scp</span> <span class="tag">-r</span> <span class="tag">zookeeper-3</span><span class="class">.4</span><span class="class">.6</span> <span class="tag">slave1</span><span class="rule"><span class="attribute">.hadoop</span>:<span class="value">/usr/</span></span></span><br></pre></td></tr></table></figure></p>
+<p>然后在这些节点上修改文件的权限 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
+<p>然后修改对应的<code>/usr/zookeeper-3.4.6/tmp/zookeeper/myid</code>文件, 将myid文中的数字改为了与zoo.cfg中对应的id。</p>
+<h2 id="参考">参考</h2>
+<p><a href="http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html" class="uri" target="_blank" rel="external">http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html</a> <a href="http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkMulitServerSetup" class="uri" target="_blank" rel="external">http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkMulitServerSetup</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/" data-id="cidsixlly001u3ki4ofu1eyeh" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/" data-id="cidsixlje00013ki4l5k2s5h4" class="article-share-link">Share</a>
       
-        <a href="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -140,19 +149,19 @@
     
 <nav id="article-nav">
   
-    <a href="/hexotech/2012/12/26/svm/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/hexotech/2015/08/26/install-kafka/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          SVM支持向量机
+          Install kafka
         
       </div>
     </a>
   
   
-    <a href="/hexotech/2012/11/30/virtual-inheritance/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/hexotech/2015/08/25/install-spark/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">虚继承</div>
+      <div class="article-nav-title">Install spark</div>
     </a>
   
 </nav>
@@ -247,7 +256,7 @@
 <script>
   var disqus_shortname = 'andrewliu117';
   
-  var disqus_url = 'http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/';
+  var disqus_url = 'http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/';
   
   (function(){
     var dsq = document.createElement('script');

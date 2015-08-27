@@ -61,6 +61,110 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-install-kafka" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/08/26/install-kafka/" class="article-date">
+  <time datetime="2015-08-26T06:22:24.000Z" itemprop="datePublished">2015-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/08/26/install-kafka/">Install kafka</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这一片文章是关于安装kafka的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop，安装zookeeper。</p>
+<h2 id="准备">准备</h2>
+<p>kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。</p>
+<p>这里使用的是上一篇文章中安装好的zookeeper。</p>
+<p>下载<a href="http://kafka.apache.org/downloads.html">kafka</a>，这里下载的是<a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/0.8.2.1/kafka_2.11-0.8.2.1.tgz">kafka_2.11-0.8.2.1.tgz</a></p>
+<p>解压文件包，将目录拷贝到/user/目录下，并修改权限： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop kafka_2<span class="number">.11</span>-<span class="number">0.8</span><span class="number">.2</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/08/26/install-kafka/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/" data-id="cidsixlji00043ki4e4j05j9p" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-install-zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/08/26/install-zookeeper/" class="article-date">
+  <time datetime="2015-08-26T03:54:16.000Z" itemprop="datePublished">2015-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/08/26/install-zookeeper/">Install zookeeper</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于要安装kafka，需要安装zookeeper。</p>
+<p>这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。</p>
+<h2 id="准备">准备</h2>
+<p>在其中一个节点中做以下操作。</p>
+<p>下载<a href="http://zookeeper.apache.org/releases.html">zookeeper</a>, 我们这里下载的是<a href="http://apache.mirror.cdnetworks.com/zookeeper/zookeeper-3.4.6/">3.4.6版本</a>。</p>
+<p>解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/08/26/install-zookeeper/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/" data-id="cidsixlje00013ki4l5k2s5h4" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-install-spark" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexotech/2015/08/25/install-spark/" class="article-date">
@@ -100,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cidr01mo00001zsi4ahtx7mp5" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cidsixljl00063ki45xeu0xcz" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -156,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/" data-id="cidr01mog0004zsi4mdojqnow" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/" data-id="cidsixljo00083ki4ex9qan3t" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -206,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/" data-id="cidr01mog0006zsi45g01irqu" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/" data-id="cidsixljq000a3ki47o5tq26f" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -251,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/" data-id="cidr01mog0009zsi4y0joinpj" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/" data-id="cidsixljs000d3ki4phgvuc8l" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -301,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/24/greasemonkey-script/" data-id="cidr01mog000azsi4sll2jtrk" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/24/greasemonkey-script/" data-id="cidsixlju000e3ki472jmz5x7" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/24/greasemonkey-script/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -351,7 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/" data-id="cidr01mog000dzsi42s76qfqp" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/" data-id="cidsixljx000h3ki4i9ecz2am" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -409,7 +513,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/20/git-workflow/" data-id="cidr01mog000gzsi447nn19i6" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/20/git-workflow/" data-id="cidsixlk7000k3ki4xh3b2asi" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/20/git-workflow/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -458,116 +562,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/15/sublime-tips/" data-id="cidr01mow000izsi4wkl2vqaz" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/15/sublime-tips/" data-id="cidsixlk9000m3ki45myhtpyw" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/15/sublime-tips/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-sqlite" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/05/13/sqlite/" class="article-date">
-  <time datetime="2015-05-13T10:21:00.000Z" itemprop="datePublished">2015-05-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/sqlite/">sqlite</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/05/13/sqlite/">sqlite</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>sqlite是一个非常小的数据库,适合小的应用,或者是app之类的.</p>
-<h2 id="install">install</h2>
-<ul>
-<li>windows command line</li>
-</ul>
-<p><a href="https://www.sqlite.org/download.html">下载SQLite</a>, 下载的文件是sqlite-shell-win32-x86-3081001.zip</p>
-<p>下载后将sqlite3.exe放入到windows系统的path路径中，或者在pathe路径中加入sqlite3.exe所在的目录。</p>
-<ul>
-<li>windows SqliteBrowser</li>
-</ul>
-<p>可以使用<a href="http://sqlitebrowser.org/">GUI工具</a>, 这个应该更方便</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/05/13/sqlite/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/" data-id="cidr01mow000jzsi4yczcyfoo" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-git-tips" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/05/09/git-tips/" class="article-date">
-  <time datetime="2015-05-09T08:27:00.000Z" itemprop="datePublished">2015-05-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/git/">git</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/05/09/git-tips/">git tips</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="how-to-pull-after-forced-update">how to pull after forced update</h2>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">reset</span> origin/<span class="keyword">master</span> <span class="comment">--hard</span></span></span><br></pre></td></tr></table></figure>
-<p>this willResets the index and working tree. Any changes to tracked files in the working tree since are discarded.</p>
-<p>当前工作目录的index和本地修改，都会被丢弃（丢弃的修改包括已经提交到本地的commit)</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/05/09/git-tips/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/" data-id="cidr01mow000mzsi4xwdgilas" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -590,7 +587,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -603,7 +600,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -615,6 +612,14 @@
       <ul>
         
           <li>
+            <a href="/hexotech/2015/08/26/install-kafka/">Install kafka</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/08/26/install-zookeeper/">Install zookeeper</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/08/25/install-spark/">Install spark</a>
           </li>
         
@@ -624,14 +629,6 @@
         
           <li>
             <a href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/06/26/apache-vedio-streaming/">apache vedio streaming</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/06/24/greasemonkey-script/">greasemonkey script</a>
           </li>
         
       </ul>
