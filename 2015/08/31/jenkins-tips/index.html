@@ -3,39 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>读Vim手册笔记 | Andrew&#39;s Blog</title>
+  <title>Jenkins tips | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="书籍《VIM用户手册》  
-作者: Bram Moolenaar  
-翻译: ZhaoRuFei&amp;lt;slimzhao@hotmail.com&amp;gt;  
-版本: 7.0  
-{: .sh-bash}
-笔记
-要退出Vim, 用命令”ZZ”. 该命令保存当前文件并退出Vim.
-如果你在放弃所有修改后还想以该文件的初始内容作为开始继续编辑, 还可以用”:e!”命令放弃所有修改并重新载入该文件的原始内">
+  <meta name="description" content="在windows上以service的方式安装jenkins slave节点
+在命令行运行，安装slave节点
+
+1java -jar slave.jar -jnlpUrl http://jenkins-server-ip:8080/jenkins/computer/&amp;#123;&amp;#123;node name&amp;#125;&amp;#125;/slave-agent.jnlp -secret 2d00ae81">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读Vim手册笔记">
-<meta property="og:url" content="http://liuhongjiang.github.io/2012/11/22/learning-vim/index.html">
+<meta property="og:title" content="Jenkins tips">
+<meta property="og:url" content="http://liuhongjiang.github.io/2015/08/31/jenkins-tips/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description" content="书籍《VIM用户手册》  
-作者: Bram Moolenaar  
-翻译: ZhaoRuFei&amp;lt;slimzhao@hotmail.com&amp;gt;  
-版本: 7.0  
-{: .sh-bash}
-笔记
-要退出Vim, 用命令”ZZ”. 该命令保存当前文件并退出Vim.
-如果你在放弃所有修改后还想以该文件的初始内容作为开始继续编辑, 还可以用”:e!”命令放弃所有修改并重新载入该文件的原始内">
-<meta property="og:updated_time" content="2015-07-23T05:46:28.448Z">
+<meta property="og:description" content="在windows上以service的方式安装jenkins slave节点
+在命令行运行，安装slave节点
+
+1java -jar slave.jar -jnlpUrl http://jenkins-server-ip:8080/jenkins/computer/&amp;#123;&amp;#123;node name&amp;#125;&amp;#125;/slave-agent.jnlp -secret 2d00ae81">
+<meta property="og:updated_time" content="2015-08-31T09:42:20.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="读Vim手册笔记">
-<meta name="twitter:description" content="书籍《VIM用户手册》  
-作者: Bram Moolenaar  
-翻译: ZhaoRuFei&amp;lt;slimzhao@hotmail.com&amp;gt;  
-版本: 7.0  
-{: .sh-bash}
-笔记
-要退出Vim, 用命令”ZZ”. 该命令保存当前文件并退出Vim.
-如果你在放弃所有修改后还想以该文件的初始内容作为开始继续编辑, 还可以用”:e!”命令放弃所有修改并重新载入该文件的原始内">
+<meta name="twitter:title" content="Jenkins tips">
+<meta name="twitter:description" content="在windows上以service的方式安装jenkins slave节点
+在命令行运行，安装slave节点
+
+1java -jar slave.jar -jnlpUrl http://jenkins-server-ip:8080/jenkins/computer/&amp;#123;&amp;#123;node name&amp;#125;&amp;#125;/slave-agent.jnlp -secret 2d00ae81">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -81,16 +69,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-learning-vim" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-jenkins-tips" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/hexotech/2012/11/22/learning-vim/" class="article-date">
-  <time datetime="2012-11-22T02:22:00.000Z" itemprop="datePublished">2012-11-22</time>
+    <a href="/hexotech/2015/08/31/jenkins-tips/" class="article-date">
+  <time datetime="2015-08-31T09:10:30.000Z" itemprop="datePublished">2015-08-31</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/Vi/">Vi</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -99,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      读Vim手册笔记
+      Jenkins tips
     </h1>
   
 
@@ -107,28 +91,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="书籍">书籍</h2><pre><code>《VIM用户手册》  
-作者: <span class="keyword">Bram </span>Moolenaar  
-翻译: ZhaoRuFei&lt;slimzhao<span class="comment">@hotmail.com&gt;  </span>
-版本: <span class="number">7</span>.<span class="number">0</span>  
-</code></pre><p>{: .sh-bash}</p>
-<h2 id="笔记">笔记</h2><ol>
-<li><strong>要退出Vim, 用命令”ZZ”. 该命令保存当前文件并退出Vim.</strong></li>
-<li>如果你在放弃所有修改后还想以该文件的初始内容作为开始继续编辑, 还可以用”:e!”命令放弃所有修改并重新载入该文件的原始内容.</li>
+        <h2 id="在windows上以service的方式安装jenkins_slave节点">在windows上以service的方式安装jenkins slave节点</h2><ol>
+<li>在命令行运行，安装slave节点</li>
 </ol>
-<h2 id="奇技淫巧">奇技淫巧</h2><ol>
-<li>d^ 删除光标到行首第一个非空白字符之间的内容，可用于删除行首的空白 </li>
-<li>gu/gU 大小写转化，gu小写，gU转为大写.<br> u/U： 选中区域，直接进行大小写转换<br> gg gu G：整篇文章大写转化为小写。<br> gU0 ：从光标所在位置到行首变为大写<br> gU$ ：从光标所在位置到行尾变为大写    </li>
-<li><a href="http://www.cnblogs.com/respawn/archive/2012/08/21/2649483.html" target="_blank" rel="external">vundle 管理vim插件</a></li>
-<li>vim查看编译错误<br> <code>:make</code>     进行编译，需要在makefile所在的目录下打开文件<br> <code>:cw</code>       带开quickfix窗口<br> cn          （next）下一条<br> cp          (previous) 上一条<br> cw          (显示warning)<br> cc          显示错误<br> col         前一个旧的错误 勘误表<br> col         后一个旧的勘误表<br> cnew        后一个较新的错误列表 ( :help :cnew )</li>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">java -jar slave.jar -jnlpUrl http://jenkins-server-ip:8080/jenkins/computer/</span><span class="expression">&#123;&#123;<span class="variable">node</span> <span class="variable">name</span>&#125;&#125;</span><span class="xml">/slave-agent.jnlp -secret 2d00ae81d59ff37df0fe9c33a5ed671afa2bc495715c0c161091a8e429973eb1</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>解决阻止自签名的问题<br>您的安全设置已阻止自签名的应用程序使用已过期的Java版本运行问题的解决</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">步骤：选择windows的开始<span class="function">--&gt;</span>控制面板<span class="function">--&gt;</span>在搜索栏中输入 java-<span class="function">-&gt;</span>点击查询出来的Java图标<span class="function">--&gt;</span>安全<span class="function">--&gt;</span>把 高<span class="function"><span class="params">(推荐的最低设置)</span>--&gt;</span>改成 中<span class="function">--&gt;</span>确定<span class="function">--&gt;</span>即可。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以servcie的方式启动<br>在下面的页面上： <a href="http://jenkins-server-ip:8080/jenkins/computer/\{node" target="_blank" rel="external">http://jenkins-server-ip:8080/jenkins/computer/\{node</a> name}</p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">操作步骤： 点击<span class="type">Launch</span>--&gt;保留--&gt;把slave-agent.jnlp拷贝到<span class="type">C</span>:\<span class="type">CI</span>\jenkins-slave下--&gt;使用javaws.exe(java web start launcher)--&gt;继续--&gt;</span><br><span class="line">点击 我接受风险并希望运行此应用程序。--&gt;运行--&gt;<span class="type">File</span>--&gt;<span class="type">Install</span> <span class="keyword">as</span> a service--&gt;确定--&gt;是--&gt;是</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<p>这样Jenkins节点以Windows Service的方式在运行了。</p>
+<a id="more"></a>
+<ol>
+<li>程序不能在Administrator的账号下面运行：</li>
+</ol>
+<p>某些程序无法再admininstrator上运行，但是jenkins slave是以administrator启动的，只有通过修改jenkins service的登录账号解决。</p>
+<p>步骤:<br>I too had a similar issue once. Try granting the Jenkins service “Logon as This account” right under services.msc and make sure the account you type there is the same as the one you use for running cmd.exe. </p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在window运行中输入services<span class="built_in">.</span>msc-<span class="subst">-&gt;</span>选择Jenkins-<span class="subst">-&gt;</span><span class="keyword">Log</span> <span class="keyword">On</span>-<span class="subst">-&gt;</span>Logon as This account <span class="keyword">to</span> This account : andrew/andrewpassword -<span class="subst">-&gt;</span>OK</span><br></pre></td></tr></table></figure>
+<p>重启Jenkins节点的服务,重新构建项目,就转换成了andrew用户来运行了.</p>
+<p>参考： <a href="http://stackoverflow.com/questions/10952280/execute-windows-batch-command-from-jenkins-fails-but-runs-fine-in-cmd-exe" target="_blank" rel="external">Execute windows batch command from Jenkins fails but runs fine in cmd.exe</a></p>
+<h2 id="multi-branch_branch_for_git">multi-branch branch for git</h2><p><a href="http://blog.travis-ci.com/announcing-pull-request-support/" target="_blank" rel="external">travis-ci</a></p>
+<p><a href="https://github.com/mjdetullio/multi-branch-project-plugin" target="_blank" rel="external">jenkins multi-branch-build plugin</a></p>
+<h2 id="参考">参考</h2><p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Use+Jenkins" target="_blank" rel="external">jenkins main page</a></p>
+<p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu" target="_blank" rel="external">installation jenkins on ubuntu</a></p>
+<p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Standard+Security+Setup" target="_blank" rel="external">enable jenkins user</a></p>
+<p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions" target="_blank" rel="external">install jenkins on centos</a></p>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-git-on-a-centos-6-4-vps" target="_blank" rel="external">install the last git on centos</a></p>
+<h2 id="issues">issues</h2><p>issue 1:</p>
+<p><a href="http://stackoverflow.com/questions/23104110/unknown-option-git-config-local-reported-by-jenkins" target="_blank" rel="external">unknown-option-git-config-local-reported-by-jenkins</a></p>
+<p>issue 2:</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Failed <span class="built_in">to</span> connect <span class="built_in">to</span> repository : Command <span class="string">"git -c core.askpass=true ls-remote -h https://github.com/liuhongjiang/gittest.git HEAD"</span> returned status code <span class="number">128</span>:</span><br><span class="line"><span class="keyword">stdout</span>: </span><br><span class="line"><span class="keyword">stderr</span>: fatal: Unable <span class="built_in">to</span> find remote helper <span class="keyword">for</span> <span class="string">'https'</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://stackoverflow.com/questions/8329485/git-clone-fatal-unable-to-find-remote-helper-for-https" target="_blank" rel="external">solution: git-clone-fatal-unable-to-find-remote-helper-for-https</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/" data-id="cidzq7cnt00251oi492kf9k1l" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/" data-id="cidzqadtl0000yci4m9eqfovs" class="article-share-link">Share</a>
       
-        <a href="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -137,19 +140,10 @@
     
 <nav id="article-nav">
   
-    <a href="/hexotech/2012/11/24/blog-styles/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          博客的样式
-        
-      </div>
-    </a>
   
-  
-    <a href="/hexotech/2012/11/21/math/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/hexotech/2015/08/26/install-kafka/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">显示公式</div>
+      <div class="article-nav-title">Install kafka</div>
     </a>
   
 </nav>
@@ -244,7 +238,7 @@
 <script>
   var disqus_shortname = 'andrewliu117';
   
-  var disqus_url = 'http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/';
+  var disqus_url = 'http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/';
   
   (function(){
     var dsq = document.createElement('script');

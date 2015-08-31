@@ -5,19 +5,16 @@
   
   <title>apache maintenance mode | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="How to set devcenter or webconsole into maintenance mode
-I found a way to set devcenter or webconsole show maintenance page automatically without restart apache. With the following method, we just to">
+  <meta name="description" content="How to set devcenter or webconsole into maintenance modeI found a way to set devcenter or webconsole show maintenance page automatically without restart apache.With the following method, we just touch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="apache maintenance mode">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/04/17/apache-maintenance-mode/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description" content="How to set devcenter or webconsole into maintenance mode
-I found a way to set devcenter or webconsole show maintenance page automatically without restart apache. With the following method, we just to">
+<meta property="og:description" content="How to set devcenter or webconsole into maintenance modeI found a way to set devcenter or webconsole show maintenance page automatically without restart apache.With the following method, we just touch">
 <meta property="og:updated_time" content="2015-07-23T05:46:28.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="apache maintenance mode">
-<meta name="twitter:description" content="How to set devcenter or webconsole into maintenance mode
-I found a way to set devcenter or webconsole show maintenance page automatically without restart apache. With the following method, we just to">
+<meta name="twitter:description" content="How to set devcenter or webconsole into maintenance modeI found a way to set devcenter or webconsole show maintenance page automatically without restart apache.With the following method, we just touch">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -85,40 +82,36 @@ I found a way to set devcenter or webconsole show maintenance page automatically
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="how-to-set-devcenter-or-webconsole-into-maintenance-mode">How to set devcenter or webconsole into maintenance mode</h2>
-<p>I found a way to set devcenter or webconsole show maintenance page automatically without restart apache. With the following method, we just touch or remove one file, it will turn on or off the maintenance mode. Basically, I learnt from this page: <a href="http://www.shellhacks.com/en/Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess" target="_blank" rel="external">Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess</a></p>
+        <h2 id="How_to_set_devcenter_or_webconsole_into_maintenance_mode">How to set devcenter or webconsole into maintenance mode</h2><p>I found a way to set devcenter or webconsole show maintenance page automatically without restart apache.<br>With the following method, we just touch or remove one file, it will turn on or off the maintenance mode.<br>Basically, I learnt from this page:<br><a href="http://www.shellhacks.com/en/Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess" target="_blank" rel="external">Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess</a></p>
 <a id="more"></a>
-<h2 id="change-httpd.conf">Change httpd.conf</h2>
-<p>make sure the rewrite module is loaded:</p>
-<pre><code>LoadModule rewrite_module modules/mod_rewrite.so</code></pre>
-<p>Then add rewrite rule:</p>
-<pre><code>DocumentRoot &quot;/opt/root_dir/&quot;
-&lt;IfModule mod_rewrite.c&gt;
-   RewriteEngine On
-   #RewriteCond %{REMOTE_ADDR} !^123\.456\.789\.000
-   RewriteCond %{DOCUMENT_ROOT}/maintenance.html -f
-   RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
-   RewriteCond %{SCRIPT_FILENAME} !maintenance.html
-   RewriteRule ^.*$ /maintenance.html [R=503,L]
-   ErrorDocument 503 /maintenance.html
-   Header Set Cache-Control &quot;max-age=0, no-store&quot;
-&lt;/IfModule&gt;</code></pre>
-<p>Then add the <code>maintenance.html</code> page in the <code>DocumentRoot</code>. When the site is under maintenance mode, please touch <code>maintenance.enable</code> file in <code>DocumentRoot</code>. After the site becomes normally, please just remove the <code>maintenance.enable</code></p>
-<pre><code>TIPs: as we used the wsgi in apache, any changes to python file, we need to restart the apache.</code></pre>
-<h2 id="add-alias-in-wsgi-conf">Add alias in wsgi conf</h2>
-<p>add the following line in the <code>conf.d/myproject.conf</code> or <code>conf.d/otherproject.conf</code>:</p>
-<pre><code>Alias /maintenance.html /opt/root_dir/maintenance.html</code></pre>
-<h2 id="restart-apache-and-demo">Restart Apache and Demo</h2>
-<p>restart Apache, it should work. And I already make a demo, here are the config files with path:</p>
-<pre><code>httpd.conf -&gt; /opt/root_dir/httpd/conf
-devcenter.conf -&gt; /opt/root_dir/httpd/conf.d
-maintenance.html -&gt; /opt/root_dir
-maintenance.enable -&gt; /opt/root_dir</code></pre>
-
+<h2 id="Change_httpd-conf">Change httpd.conf</h2><p>make sure the rewrite module is loaded:</p>
+<pre><code><span class="keyword"><span class="common">LoadModule</span></span> rewrite_module modules/mod_rewrite.so
+</code></pre><p>Then add rewrite rule:</p>
+<pre><code><span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"/opt/root_dir/"</span>
+<span class="tag">&lt;IfModule mod_rewrite.c&gt;</span>
+   <span class="keyword"><span class="common">RewriteEngine</span></span> <span class="literal">On</span>
+   <span class="comment">#RewriteCond %{REMOTE_ADDR} !^123\.456\.789\.000</span>
+   <span class="keyword"><span class="common">RewriteCond</span></span> <span class="cbracket">%{DOCUMENT_ROOT}</span>/maintenance.html -f
+   <span class="keyword"><span class="common">RewriteCond</span></span> <span class="cbracket">%{DOCUMENT_ROOT}</span>/maintenance.enable -f
+   <span class="keyword"><span class="common">RewriteCond</span></span> <span class="cbracket">%{SCRIPT_FILENAME}</span> !maintenance.html
+   <span class="keyword"><span class="common">RewriteRule</span></span> ^.*$ /maintenance.html<span class="sqbracket"> [R=503,L]</span>
+   <span class="keyword"><span class="common">ErrorDocument</span></span> 503 /maintenance.html
+   <span class="keyword"><span class="common">Header</span></span> Set Cache-Control <span class="string">"max-age=0, no-store"</span>
+<span class="tag">&lt;/IfModule&gt;</span>
+</code></pre><p>Then add the <code>maintenance.html</code> page in the <code>DocumentRoot</code>.<br>When the site is under maintenance mode, please touch <code>maintenance.enable</code> file in <code>DocumentRoot</code>.<br>After the site becomes normally, please just remove the <code>maintenance.enable</code></p>
+<pre><code>TIPs: <span class="keyword">as</span> we used <span class="operator">the</span> wsgi <span class="operator">in</span> apache, <span class="keyword">any</span> changes <span class="built_in">to</span> python <span class="built_in">file</span>, we need <span class="built_in">to</span> restart <span class="operator">the</span> apache.
+</code></pre><h2 id="Add_alias_in_wsgi_conf">Add alias in wsgi conf</h2><p>add the following line in the <code>conf.d/myproject.conf</code> or <code>conf.d/otherproject.conf</code>:</p>
+<pre><code>Alias <span class="regexp">/maintenance.html /</span>opt<span class="regexp">/root_dir/m</span>aintenance.html
+</code></pre><h2 id="Restart_Apache_and_Demo">Restart Apache and Demo</h2><p>restart Apache, it should work.<br>And I already make a demo, here are the config files with path:</p>
+<pre><code>httpd<span class="class">.conf</span> -&gt; /opt/root_dir/httpd/conf
+devcenter<span class="class">.conf</span> -&gt; /opt/root_dir/httpd/conf<span class="class">.d</span>
+maintenance<span class="class">.html</span> -&gt; /opt/root_dir
+maintenance<span class="class">.enable</span> -&gt; /opt/root_dir
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/" data-id="cidsixlki000w3ki4a4ru0ioy" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/" data-id="cidzq7clt000x1oi4tfo1x6qm" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -176,7 +169,7 @@ maintenance.enable -&gt; /opt/root_dir</code></pre>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -186,6 +179,10 @@ maintenance.enable -&gt; /opt/root_dir</code></pre>
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/hexotech/2015/08/31/jenkins-tips/">Jenkins tips</a>
+          </li>
         
           <li>
             <a href="/hexotech/2015/08/26/install-kafka/">Install kafka</a>
@@ -201,10 +198,6 @@ maintenance.enable -&gt; /opt/root_dir</code></pre>
         
           <li>
             <a href="/hexotech/2015/08/24/install-hadoop/">Install hadoop</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
           </li>
         
       </ul>

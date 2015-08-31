@@ -7,30 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="由于要安装kafka，需要安装zookeeper。
 这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。
-准备
-在其中一个节点中做以下操作。
+准备在其中一个节点中做以下操作。
 下载zookeeper, 我们这里下载的是3.4.6版本。
-解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 1chown -R hadoo">
+解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限1chown -R hadoop:hadoo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Install zookeeper">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/08/26/install-zookeeper/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
 <meta property="og:description" content="由于要安装kafka，需要安装zookeeper。
 这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。
-准备
-在其中一个节点中做以下操作。
+准备在其中一个节点中做以下操作。
 下载zookeeper, 我们这里下载的是3.4.6版本。
-解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 1chown -R hadoo">
+解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限1chown -R hadoop:hadoo">
 <meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/zk_test.png">
 <meta property="og:updated_time" content="2015-08-27T01:13:42.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install zookeeper">
 <meta name="twitter:description" content="由于要安装kafka，需要安装zookeeper。
 这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。
-准备
-在其中一个节点中做以下操作。
+准备在其中一个节点中做以下操作。
 下载zookeeper, 我们这里下载的是3.4.6版本。
-解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 1chown -R hadoo">
+解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限1chown -R hadoop:hadoo">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -104,17 +101,14 @@
       
         <p>由于要安装kafka，需要安装zookeeper。</p>
 <p>这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。</p>
-<h2 id="准备">准备</h2>
-<p>在其中一个节点中做以下操作。</p>
+<h2 id="准备">准备</h2><p>在其中一个节点中做以下操作。</p>
 <p>下载<a href="http://zookeeper.apache.org/releases.html" target="_blank" rel="external">zookeeper</a>, 我们这里下载的是<a href="http://apache.mirror.cdnetworks.com/zookeeper/zookeeper-3.4.6/" target="_blank" rel="external">3.4.6版本</a>。</p>
-<p>解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
+<p>解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h2 id="配置zookeeper">配置zookeeper</h2>
-<p>修改<code>${ZOOKEEPER_HOME}/conf/zoo.cfg</code> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tickTime=<span class="number">2000</span></span><br><span class="line">initLimit=<span class="number">10</span></span><br><span class="line">syncLimit=<span class="number">5</span></span><br><span class="line">dataDir=/usr/zookeeper-<span class="number">3.4</span><span class="number">.6</span>/tmp/zookeeper</span><br><span class="line">clientPort=<span class="number">2181</span></span><br><span class="line"></span><br><span class="line">server<span class="number">.1</span>=master.hadoop:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.2</span>=slave1.hadoop:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.3</span>=slave2.hadoop:<span class="number">2888</span>:<span class="number">3888</span></span><br></pre></td></tr></table></figure></p>
-<p>进入data目录创建myid文件，在文件中加入以下内容 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="启动和验证">启动和验证</h2>
-<p>zookeeper的启动和停止命令为： <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer<span class="class">.sh</span> start</span><br><span class="line">bin/zkServer<span class="class">.sh</span> stop</span><br></pre></td></tr></table></figure></p>
-<p>验证过程，连接zookeeper <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkCli<span class="class">.sh</span> -server master<span class="class">.hadoop</span>:<span class="number">2181</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="配置zookeeper">配置zookeeper</h2><p>修改<code>${ZOOKEEPER_HOME}/conf/zoo.cfg</code><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tickTime=<span class="number">2000</span></span><br><span class="line">initLimit=<span class="number">10</span></span><br><span class="line">syncLimit=<span class="number">5</span></span><br><span class="line">dataDir=/usr/zookeeper-<span class="number">3.4</span><span class="number">.6</span>/tmp/zookeeper</span><br><span class="line">clientPort=<span class="number">2181</span></span><br><span class="line"></span><br><span class="line">server<span class="number">.1</span>=master.hadoop:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.2</span>=slave1.hadoop:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.3</span>=slave2.hadoop:<span class="number">2888</span>:<span class="number">3888</span></span><br></pre></td></tr></table></figure></p>
+<p>进入data目录创建myid文件，在文件中加入以下内容<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="启动和验证">启动和验证</h2><p>zookeeper的启动和停止命令为：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer<span class="class">.sh</span> start</span><br><span class="line">bin/zkServer<span class="class">.sh</span> stop</span><br></pre></td></tr></table></figure></p>
+<p>验证过程，连接zookeeper<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkCli<span class="class">.sh</span> -server master<span class="class">.hadoop</span>:<span class="number">2181</span></span><br></pre></td></tr></table></figure></p>
 <p>或者使用<a href="http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkMulitServerSetup" target="_blank" rel="external">文档</a>中的java或者c-client进行连接。</p>
 <p>下面图片就是使用zookeeper的<code>create/get/set/delete</code>命令的测试。</p>
 <img src="/hexotech/images/blogimages/2015/zk_test.png" class="center">
@@ -123,22 +117,20 @@
 <li>配置文件</li>
 </ul>
 <p>Every machine that is part of the ZooKeeper ensemble should know about every other machine in the ensemble. You accomplish this with the series of lines of the form server.id=host:port:port. The parameters host and port are straightforward. You attribute the server id to each machine by creating a file named myid, one for each server, which resides in that server’s data directory, as specified by the configuration file parameter dataDir.</p>
-<p>Finally, note the two port numbers after each server name: &quot; 2888&quot; and “3888”. Peers use the former port to connect to other peers. Such a connection is necessary so that peers can communicate, for example, to agree upon the order of updates. More specifically, a ZooKeeper server uses this port to connect followers to the leader. When a new leader arises, a follower opens a TCP connection to the leader using this port. Because the default leader election also uses TCP, we currently require another port for leader election. This is the second port in the server entry.</p>
+<p>Finally, note the two port numbers after each server name: “ 2888” and “3888”. Peers use the former port to connect to other peers. Such a connection is necessary so that peers can communicate, for example, to agree upon the order of updates. More specifically, a ZooKeeper server uses this port to connect followers to the leader. When a new leader arises, a follower opens a TCP connection to the leader using this port. Because the default leader election also uses TCP, we currently require another port for leader election. This is the second port in the server entry.</p>
 <ul>
 <li>myid</li>
 </ul>
 <p>The myid file consists of a single line containing only the text of that machine’s id. So myid of server 1 would contain the text “1” and nothing else. The id must be unique within the ensemble and should have a value between 1 and 255.</p>
-<h2 id="将zookeeper复制到其他节点上">将zookeeper复制到其他节点上</h2>
-<p>例如如下的命令： <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">scp</span> <span class="tag">-r</span> <span class="tag">zookeeper-3</span><span class="class">.4</span><span class="class">.6</span> <span class="tag">slave1</span><span class="rule"><span class="attribute">.hadoop</span>:<span class="value">/usr/</span></span></span><br></pre></td></tr></table></figure></p>
-<p>然后在这些节点上修改文件的权限 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="将zookeeper复制到其他节点上">将zookeeper复制到其他节点上</h2><p>例如如下的命令：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">scp</span> <span class="tag">-r</span> <span class="tag">zookeeper-3</span><span class="class">.4</span><span class="class">.6</span> <span class="tag">slave1</span><span class="rule"><span class="attribute">.hadoop</span>:<span class="value">/usr/</span></span></span><br></pre></td></tr></table></figure></p>
+<p>然后在这些节点上修改文件的权限<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
 <p>然后修改对应的<code>/usr/zookeeper-3.4.6/tmp/zookeeper/myid</code>文件, 将myid文中的数字改为了与zoo.cfg中对应的id。</p>
-<h2 id="参考">参考</h2>
-<p><a href="http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html" class="uri" target="_blank" rel="external">http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html</a> <a href="http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkMulitServerSetup" class="uri" target="_blank" rel="external">http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkMulitServerSetup</a></p>
+<h2 id="参考">参考</h2><p><a href="http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html" target="_blank" rel="external">http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html</a><br><a href="http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkMulitServerSetup" target="_blank" rel="external">http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_zkMulitServerSetup</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/" data-id="cidsixlje00013ki4l5k2s5h4" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/" data-id="cidzq7ckf00021oi42h4jmkiy" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -196,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -206,6 +198,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/hexotech/2015/08/31/jenkins-tips/">Jenkins tips</a>
+          </li>
         
           <li>
             <a href="/hexotech/2015/08/26/install-kafka/">Install kafka</a>
@@ -221,10 +217,6 @@
         
           <li>
             <a href="/hexotech/2015/08/24/install-hadoop/">Install hadoop</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
           </li>
         
       </ul>
