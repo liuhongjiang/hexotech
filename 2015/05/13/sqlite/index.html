@@ -7,35 +7,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="sqlite是一个非常小的数据库,适合小的应用,或者是app之类的.
 install
+
 windows command line
 
 下载SQLite, 下载的文件是sqlite-shell-win32-x86-3081001.zip
 下载后将sqlite3.exe放入到windows系统的path路径中，或者在pathe路径中加入sqlite3.exe所在的目录。
 
-windows SqliteBr">
+windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sqlite">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/05/13/sqlite/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
 <meta property="og:description" content="sqlite是一个非常小的数据库,适合小的应用,或者是app之类的.
 install
+
 windows command line
 
 下载SQLite, 下载的文件是sqlite-shell-win32-x86-3081001.zip
 下载后将sqlite3.exe放入到windows系统的path路径中，或者在pathe路径中加入sqlite3.exe所在的目录。
 
-windows SqliteBr">
+windows">
 <meta property="og:updated_time" content="2015-07-23T05:46:28.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqlite">
 <meta name="twitter:description" content="sqlite是一个非常小的数据库,适合小的应用,或者是app之类的.
 install
+
 windows command line
 
 下载SQLite, 下载的文件是sqlite-shell-win32-x86-3081001.zip
 下载后将sqlite3.exe放入到windows系统的path路径中，或者在pathe路径中加入sqlite3.exe所在的目录。
 
-windows SqliteBr">
+windows">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -108,7 +111,8 @@ windows SqliteBr">
     <div class="article-entry" itemprop="articleBody">
       
         <p>sqlite是一个非常小的数据库,适合小的应用,或者是app之类的.</p>
-<h2 id="install">install</h2><ul>
+<h2 id="install">install</h2>
+<ul>
 <li>windows command line</li>
 </ul>
 <p><a href="https://www.sqlite.org/download.html" target="_blank" rel="external">下载SQLite</a>, 下载的文件是sqlite-shell-win32-x86-3081001.zip</p>
@@ -123,16 +127,18 @@ windows SqliteBr">
 </ul>
 <p>using command, such as:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install sqlite-devel</span><br></pre></td></tr></table></figure>
-<h2 id="commands">commands</h2><p>打开或者创建一个数据库.</p>
+<h2 id="commands">commands</h2>
+<p>打开或者创建一个数据库.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sqlite3 ex1</span><br><span class="line">SQLite version <span class="number">3.8</span>.<span class="number">5</span> <span class="number">2014</span>-<span class="number">05</span>-<span class="number">29</span> <span class="number">12</span>:<span class="number">36</span>:<span class="number">14</span></span><br><span class="line">Enter <span class="string">".help"</span> <span class="keyword">for</span> usage hints.</span><br><span class="line">sqlite&gt; create table tbl1(one varchar(<span class="number">10</span>), two smallint);</span><br><span class="line">sqlite&gt; insert into tbl1 values(<span class="string">'hello!'</span>,<span class="number">10</span>);</span><br><span class="line">sqlite&gt; insert into tbl1 values(<span class="string">'goodbye'</span>, <span class="number">20</span>);</span><br><span class="line">sqlite&gt; select * from tbl1;</span><br><span class="line">hello!|<span class="number">10</span></span><br><span class="line">goodbye|<span class="number">20</span>sqlite&gt;</span><br></pre></td></tr></table></figure>
 <p>Other command:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlite&gt; .tables     <span class="comment"># 查看table list</span></span><br><span class="line">sqlite&gt; .schema ?TABLE? <span class="comment"># 查看table的create语句</span></span><br><span class="line">sqlite&gt; .help       <span class="comment"># 查看help信息</span></span><br><span class="line">sqlite&gt; .exit           <span class="comment"># 退出</span></span><br><span class="line">sqlite&gt; select * from tbl1; <span class="comment"># 执行sql语句</span></span><br><span class="line">sqlite&gt; .indexes ?TABLE?  <span class="comment"># 查看table的index</span></span><br></pre></td></tr></table></figure>
 <p>using sqlite3 in a shell script:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sqlite3 ex1 <span class="string">'select * from tbl1'</span> |</span><br><span class="line">&gt;  awk <span class="string">'&#123;printf "&lt;tr&gt;&lt;td&gt;%s&lt;td&gt;%s\n",$1,$2 &#125;'</span></span><br><span class="line">&lt;tr&gt;&lt;td&gt;hello&lt;td&gt;<span class="number">10</span></span><br><span class="line">&lt;tr&gt;&lt;td&gt;goodbye&lt;td&gt;<span class="number">20</span></span><br><span class="line">$</span><br></pre></td></tr></table></figure>
-<p>文档 <a href="https://www.sqlite.org/cli.htmlmore" target="_blank" rel="external">https://www.sqlite.org/cli.htmlmore</a> documents:</p>
+<p>文档 https://www.sqlite.org/cli.htmlmore documents:</p>
 <p><a href="https://www.sqlite.org/docs.html" target="_blank" rel="external">SQLite documents</a></p>
 <p><a href="https://www.sqlite.org/lang.html" target="_blank" rel="external">SQLite Syntax</a> or <a href="https://www.sqlite.org/syntax.html" target="_blank" rel="external">SQLite Syntax</a></p>
-<h2 id="node-js_for_SQLite">node.js for SQLite</h2><p>SQLite有不同的client，这里一个node为例: <a href="https://github.com/mapbox/node-sqlite3" target="_blank" rel="external">node-sqlite3</a></p>
+<h2 id="node.js-for-sqlite">node.js for SQLite</h2>
+<p>SQLite有不同的client，这里一个node为例: <a href="https://github.com/mapbox/node-sqlite3" target="_blank" rel="external">node-sqlite3</a></p>
 <p>这里一个代码的例子:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sqlite3 = <span class="built_in">require</span>(<span class="string">'sqlite3'</span>).verbose();</span><br><span class="line"><span class="keyword">var</span> db = <span class="keyword">new</span> sqlite3.Database(<span class="string">':memory:'</span>);</span><br><span class="line"></span><br><span class="line">db.serialize(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     db.run(<span class="string">"CREATE TABLE lorem (info TEXT)"</span>);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> stmt = db.prepare(<span class="string">"INSERT INTO lorem VALUES (?)"</span>);</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">               stmt.run(<span class="string">"Ipsum "</span> + i);</span><br><span class="line">                 &#125;</span><br><span class="line">                   stmt.finalize();</span><br><span class="line"></span><br><span class="line">                     db.each(<span class="string">"SELECT rowid AS id, info FROM lorem"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, row</span>) </span>&#123;</span><br><span class="line">                               <span class="built_in">console</span>.log(row.id + <span class="string">": "</span> + row.info);</span><br><span class="line">                                 &#125;);</span><br><span class="line">                     &#125;);</span><br><span class="line"></span><br><span class="line">db.close();</span><br></pre></td></tr></table></figure>
 <p><a href="https://github.com/mapbox/node-sqlite3/wiki" target="_blank" rel="external">API document</a></p>
@@ -142,7 +148,7 @@ windows SqliteBr">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/" data-id="cidzq7clk000o1oi4dy9pnfpg" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/" data-id="cie0one7y000orgi4atman9x3" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/#disqus_thread" class="article-comment-link">Comments</a>
       

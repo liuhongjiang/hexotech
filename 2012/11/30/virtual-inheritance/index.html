@@ -8,7 +8,7 @@
   <meta name="description" content="C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了《虚函数》，这篇博客就讲虚继承。
 首先来看为什么需要虚继承。C++里面继承关系中有个很有名的继承结构，菱形继承，如下图所示
 
-普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostream类">
+普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostre">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚继承">
 <meta property="og:url" content="http://liuhongjiang.github.io/2012/11/30/virtual-inheritance/index.html">
@@ -16,7 +16,7 @@
 <meta property="og:description" content="C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了《虚函数》，这篇博客就讲虚继承。
 首先来看为什么需要虚继承。C++里面继承关系中有个很有名的继承结构，菱形继承，如下图所示
 
-普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostream类">
+普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostre">
 <meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2012/virtualinheritance/iostream.jpg">
 <meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2012/virtualinheritance/inheritance_error.jpg">
 <meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2012/virtualinheritance/virtual_inheritance.jpg">
@@ -35,7 +35,7 @@
 <meta name="twitter:description" content="C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了《虚函数》，这篇博客就讲虚继承。
 首先来看为什么需要虚继承。C++里面继承关系中有个很有名的继承结构，菱形继承，如下图所示
 
-普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostream类">
+普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostre">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -107,7 +107,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了<a href="/hexotech/blog/2012/11/29/virtual-function/">《虚函数》</a>，这篇博客就讲虚继承。</p>
+        <p>C++里面的virtual关键字可以用虚函数声明，也可以用于虚继承。上一篇博客讲到了<a href="/blog/2012/11/29/virtual-function/">《虚函数》</a>，这篇博客就讲虚继承。</p>
 <p>首先来看为什么需要虚继承。C++里面继承关系中有个很有名的继承结构，菱形继承，如下图所示</p>
 <img src="/hexotech/images/blogimages/2012/virtualinheritance/iostream.jpg" class="center">
 <p>普通继承，派生类包含了基类所有的非static成员。如果采用普通继承，在上图的iostream类中，实际上会存在两个ios基类。这样会带来很多问题，首先最简单的是空间浪费，iostream类中存在两个相同的ios类,然后是构造效率低，需要构造两个ios类。更严重的是调用基类中的函数时，存在二义性，当iostream调用ios的成员函数时，编译器无法知道是调用istream还是ostream中的ios。</p>
@@ -123,19 +123,21 @@
 <img src="/hexotech/images/blogimages/2012/virtualinheritance/virtual_inheritance.jpg" class="center">
 <p>上面的例子中，采用了虚继承，就没有出现二义性的问题了。虚拟继承声明时，virtual关键字可以放在继承关系的前面也可以放在后面，下面两种方式是等价的。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> middle1: <span class="keyword">virtual</span> <span class="keyword">public</span> top</span><br><span class="line"><span class="keyword">class</span> middle1: <span class="keyword">public</span> <span class="keyword">virtual</span> top</span><br></pre></td></tr></table></figure>
-<h2 id="虚拟基类的构造">虚拟基类的构造</h2><p>由虚假继承引发的第一个问题是虚拟基类的构造，例如上面的例子中，构造iostream时，构造了istream和ostream两个基类，如果是虚继承关系，那么只有一个ios虚拟基类，那么谁来构造ios呢？</p>
+<h2 id="虚拟基类的构造">虚拟基类的构造</h2>
+<p>由虚假继承引发的第一个问题是虚拟基类的构造，例如上面的例子中，构造iostream时，构造了istream和ostream两个基类，如果是虚继承关系，那么只有一个ios虚拟基类，那么谁来构造ios呢？</p>
 <p>普通继承关系，基类由派生类构造。虚继承下，虚基类的构造由<em>最终派生类</em>显示调用，即iostream负责构造ios类, 中间类的构造函数将会被抑制，无法完成虚拟基类的构造。看一个虚基类的构造例子</p>
 
 <p>运行结果如下</p>
 <img src="/hexotech/images/blogimages/2012/virtualinheritance/constructor.jpg" class="center">
-<p>例子中，虽然bottom显示调用了middle1和middle2的构造函数，但是top的构造却不是有这两个中间类完成的,  因为top的成员name的值为“top”，实际上是由最终派生类bottom调用了top的默认构造函数<code>top()</code>。</p>
+<p>例子中，虽然bottom显示调用了middle1和middle2的构造函数，但是top的构造却不是有这两个中间类完成的, 因为top的成员name的值为“top”，实际上是由最终派生类bottom调用了top的默认构造函数<code>top()</code>。</p>
 <p>要想完成虚基类top的构造，必须由最终派生类调用对应的虚基类构造函数。</p>
 
 <p>运行结果如下</p>
 <img src="/hexotech/images/blogimages/2012/virtualinheritance/constructor1.jpg" class="center">
 <p>在上面的例子中，bottom和bottom1都显示调用了top的构造函数，但前者没有调用了中间类的默认构造函数，后者调用了构造虚基类的构造函数，但结果对于虚基类的构造，都是由最终派生类构造的。</p>
 <p>上面是一个中间类构造函数定义方式的好例子，当middle1和middle2做为最终派生类的时候，那么使用带参数的构造函数，做为中间类时，就声明一个为protected的默认构造函数，它仅仅完成类自身的构造和非虚拟继承的基类构造，最终派生类也不需要显示地构造中间类。</p>
-<h2 id="构造的顺序">构造的顺序</h2><p>普通继承是按照声明顺序进行构造的，虚继承由于先要进行虚基类的构造，再进行中间类的构造，所以构造顺序是：按照声明顺序构造虚基类，再按照声明顺序构造中间类和普通基类。</p>
+<h2 id="构造的顺序">构造的顺序</h2>
+<p>普通继承是按照声明顺序进行构造的，虚继承由于先要进行虚基类的构造，再进行中间类的构造，所以构造顺序是：按照声明顺序构造虚基类，再按照声明顺序构造中间类和普通基类。</p>
 <p>先看两个虚基类构造的例子，</p>
 
 <p>输出结果</p>
@@ -145,18 +147,20 @@
 <p>输出结果</p>
 <img src="/hexotech/images/blogimages/2012/virtualinheritance/constructor_seq1.jpg" class="center">
 <p>上面这个两个例子中可以看出top_b的构造顺序是不一样的。第一个例子中，做为普通基类，它放到了middle1和middle2后面构造，但在第二个例子中将它声明为了虚基类，它就放到了middle1和middle2前面构造了。</p>
-<h2 id="虚拟基类成员的可视性">虚拟基类成员的可视性</h2><p>派生类从它的基类所继承而来的成员可被分为以下三类：</p>
+<h2 id="虚拟基类成员的可视性">虚拟基类成员的可视性</h2>
+<p>派生类从它的基类所继承而来的成员可被分为以下三类：</p>
 <ul>
 <li>虚拟基类实例，它们没有被中间类改写，可以直接调用。</li>
 <li>存在一个中间类，改写了基类的成员，那么最终派生类，调用时使用的是被中间类改写了的成员。</li>
-<li>存在二个或二个以上的中间类，重载了虚基类的成员，那么最终派生类，必须重载这个成员函数。  </li>
+<li>存在二个或二个以上的中间类，重载了虚基类的成员，那么最终派生类，必须重载这个成员函数。</li>
 </ul>
 <p>下面这个例子分别都涉及到了上面三种情况</p>
 
 <p>输出结果</p>
 <img src="/hexotech/images/blogimages/2012/virtualinheritance/members.jpg" class="center">
 <p>由例子可以看出，上面三点分别对应了printA, printB, printC三个函数。如果不在bottom中重载printC，那么编译是会报错。</p>
-<h2 id="虚继承的实现原理">虚继承的实现原理</h2><p>虚继承中，是如何实现只有虚基类的，通过虚继承类的内存分布，可以一探究竟。下面所有关于虚继承内存分布的例子都是和平台相关的:</p>
+<h2 id="虚继承的实现原理">虚继承的实现原理</h2>
+<p>虚继承中，是如何实现只有虚基类的，通过虚继承类的内存分布，可以一探究竟。下面所有关于虚继承内存分布的例子都是和平台相关的:</p>
 <ul>
 <li>64位系统</li>
 <li>操作系统: ubuntu server 12.04</li>
@@ -192,10 +196,12 @@
 <li>计算到虚基类的内存偏移时，计算的是当前类和虚父类的偏移，例如图中，bottom的偏移是bottom到middle1的偏移，不是到top类的偏移。而且只记录了到middle1的偏移，没有到middle2的偏移，原因应该是在声明继承关系时，middle1在middle2之前。</li>
 <li>计算到内存开始的偏移时，所有都是按照bottom的起始地址计算。所以两个偏移量不是对应的。</li>
 </ul>
-<h2 id="什么时候使用虚继承">什么时候使用虚继承</h2><p>这是否意味着，应该尽可能地以虚拟方式派生我们的基类，以便层次结构中后续的派生类可能会需要虚拟继承，是这样吗？不！我们强烈反对，那样做对性能的影响会很严重（而且增加了后续类派生的复杂性）。</p>
+<h2 id="什么时候使用虚继承">什么时候使用虚继承</h2>
+<p>这是否意味着，应该尽可能地以虚拟方式派生我们的基类，以便层次结构中后续的派生类可能会需要虚拟继承，是这样吗？不！我们强烈反对，那样做对性能的影响会很严重（而且增加了后续类派生的复杂性）。</p>
 <p>那么，我们从不应该使用虚拟继承吗？不是，在实践中几乎所有成功使用虚拟继承的例子中，凡是需要虚拟继承的整个层次结构子树，如iostream 库或Panda 子树，都是由同一个人或项目设计组一次设计完成的。</p>
 <p>一般地，除非虚拟继承为一个眼前的设计问题提供了解决方案，否则建议不要使用它。</p>
-<h2 id="参考">参考</h2><ul>
+<h2 id="参考">参考</h2>
+<ul>
 <li>《C++ Primer》中文第三版， 第18章：多继承和虚拟继承.</li>
 <li><a href="http://blog.csdn.net/wuhui_gdnt/article/details/6141405" target="_blank" rel="external">GCC-3.4.6源代码学习笔记（142）</a></li>
 <li>白杨.<a href="http://baiy.cn/doc/cpp/inside_rtti.htm" target="_blank" rel="external">RTTI、虚函数和虚基类的实现方式、开销分析及使用指导</a></li>
@@ -204,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="cidzq7cnj001y1oi4vuhnvkd1" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="cie0one9a001yrgi48olihu5n" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/#disqus_thread" class="article-comment-link">Comments</a>
       

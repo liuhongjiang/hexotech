@@ -5,18 +5,18 @@
   
   <title>elasticsearch之基本操作 | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="elasticsearch是一个是开源的（Apache2协议），分布式的，RESTful的，构建在Apache Lucene之上的的搜索引擎。 
+  <meta name="description" content="elasticsearch是一个是开源的（Apache2协议），分布式的，RESTful的，构建在Apache Lucene之上的的搜索引擎。
 它有很多特点例如Schema Free，Document Oriented。它是#nosql的，基于JSON，同时支持多种API，包括HTTP, thrift, memcached。支持HTTP,是比较爽的一点，因为基本上所有的应用都可以用ES了，页面上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch之基本操作">
 <meta property="og:url" content="http://liuhongjiang.github.io/2013/01/11/es/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description" content="elasticsearch是一个是开源的（Apache2协议），分布式的，RESTful的，构建在Apache Lucene之上的的搜索引擎。 
+<meta property="og:description" content="elasticsearch是一个是开源的（Apache2协议），分布式的，RESTful的，构建在Apache Lucene之上的的搜索引擎。
 它有很多特点例如Schema Free，Document Oriented。它是#nosql的，基于JSON，同时支持多种API，包括HTTP, thrift, memcached。支持HTTP,是比较爽的一点，因为基本上所有的应用都可以用ES了，页面上">
 <meta property="og:updated_time" content="2015-07-23T05:46:28.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch之基本操作">
-<meta name="twitter:description" content="elasticsearch是一个是开源的（Apache2协议），分布式的，RESTful的，构建在Apache Lucene之上的的搜索引擎。 
+<meta name="twitter:description" content="elasticsearch是一个是开源的（Apache2协议），分布式的，RESTful的，构建在Apache Lucene之上的的搜索引擎。
 它有很多特点例如Schema Free，Document Oriented。它是#nosql的，基于JSON，同时支持多种API，包括HTTP, thrift, memcached。支持HTTP,是比较爽的一点，因为基本上所有的应用都可以用ES了，页面上">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
@@ -89,125 +89,132 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://www.elasticsearch.org" target="_blank" rel="external">elasticsearch</a>是一个是开源的（Apache2协议），分布式的，<a href="http://zh.wikipedia.org/zh-cn/REST" target="_blank" rel="external">RESTful</a>的，构建在<a href="http://lucene.apache.org/" target="_blank" rel="external">Apache Lucene</a>之上的的搜索引擎。 </p>
+        <p><a href="http://www.elasticsearch.org" target="_blank" rel="external">elasticsearch</a>是一个是开源的（Apache2协议），分布式的，<a href="http://zh.wikipedia.org/zh-cn/REST" target="_blank" rel="external">RESTful</a>的，构建在<a href="http://lucene.apache.org/" target="_blank" rel="external">Apache Lucene</a>之上的的搜索引擎。</p>
 <p>它有很多特点例如Schema Free，Document Oriented。它是#nosql的，基于JSON，同时支持多种API，包括HTTP, thrift, memcached。支持HTTP,是比较爽的一点，因为基本上所有的应用都可以用ES了，页面上的js脚本都可以去查询。</p>
-<h2 id="安装">安装</h2><p>启动和安装特别简单，在<a href="http://www.elasticsearch.org/download/" target="_blank" rel="external">ES下载页面</a>下载zip或者tar包后，解压，然后到elasticsearch的目录下，运行下面的命令就可以了。</p>
+<h2 id="安装">安装</h2>
+<p>启动和安装特别简单，在<a href="http://www.elasticsearch.org/download/" target="_blank" rel="external">ES下载页面</a>下载zip或者tar包后，解压，然后到elasticsearch的目录下，运行下面的命令就可以了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/elasticsearch <span class="operator">-f</span></span><br></pre></td></tr></table></figure>
 <p>搭建集群也非常简单，在同网段的机器上，启动es后，它们会自动组建成一个集群，并完成数据的分布式存储，查询时也会按照分布式的方式去查找。</p>
 <p>好了恭喜你，现在你已经可以搭建ES单机版和ES集群了，一切都这么简单。</p>
 <a id="more"></a>
 <p>下面我们就来看一下ES的HTTP的API的插入、删除、更新、查找、搜索的功能吧，（ES安装在ubuntu server 64位 12.04LTS）。</p>
-<h2 id="插入">插入</h2><p>先来一个简单的官方例子，插入的参数为<code>-XPUT</code>，插入一条记录。</p>
-<pre><code>$ curl -XPUT <span class="string">'http</span>:<span class="comment">//localhost:9200/twitter/tweet/1' -d '{</span>
-    <span class="string">"user"</span> : <span class="string">"kimchy"</span>,
-    <span class="string">"post_date"</span> : <span class="string">"2009-11-15T14:12:12"</span>,
-    <span class="string">"message"</span> : <span class="string">"trying out Elastic Search"</span>
-}'
-</code></pre><p>{: .sh-bash}</p>
+<h2 id="插入">插入</h2>
+<p>先来一个简单的官方例子，插入的参数为<code>-XPUT</code>，插入一条记录。</p>
+<pre><code>$ curl -XPUT &#39;http://localhost:9200/twitter/tweet/1&#39; -d &#39;{
+    &quot;user&quot; : &quot;kimchy&quot;,
+    &quot;post_date&quot; : &quot;2009-11-15T14:12:12&quot;,
+    &quot;message&quot; : &quot;trying out Elastic Search&quot;
+}&#39;</code></pre>
+<p>{: .sh-bash}</p>
 <p>执行结果如下图所示，绿色框内的内容是ES返回的执行结果：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">andrew@ubuntu:~$ curl -XPUT <span class="string">'http://localhost:9200/twitter/tweet/1'</span> <span class="operator">-d</span> <span class="string">'&#123;</span><br><span class="line">&gt;     "user" : "kimchy",</span><br><span class="line">&gt;     "post_date" : "2009-11-15T14:12:12",</span><br><span class="line">&gt;     "message" : "trying out Elastic Search"</span><br><span class="line">&gt; &#125;'</span></span><br><span class="line">&#123;<span class="string">"ok"</span>:<span class="literal">true</span>,<span class="string">"_index"</span>:<span class="string">"twitter"</span>,<span class="string">"_type"</span>:<span class="string">"tweet"</span>,<span class="string">"_id"</span>:<span class="string">"1"</span>,<span class="string">"_version"</span>:<span class="number">6</span>&#125;andrew@ubuntu:~$</span><br></pre></td></tr></table></figure>
 <p>从上面的这个例子中，可以看出ES的http的服务的默认端口9200，后面的<code>/twitter/tweet/1</code>是这条记录的索引部分。</p>
 <p>这也就体现了它的RESTful风格，所有的记录都是通过URI确定。这三级目录分布对应了<code>_index</code>，<code>_type</code>, <code>_id</code>（绿框内可以看出来）。实际上ES上存放的所有的记录都只能通过三级目录的方式找到，不能多也不能少。</p>
 <p><code>_id</code>字段可以是数字也可以是字符串。在执行上面的命令时ES会自动创建这些索引。<code>-d</code>后面跟上了要插入的json格式的记录。</p>
 <p><code>-XPUT</code>表明这是插入一条数据，ES中叫创建一个索引。ES返回的结果中，一个<code>_version</code>字段，表明了当前记录的版本号，当你想这个索引重新put一条记录时，版本号会自动加一。</p>
-<h2 id="删除">删除</h2><p>删除的http请求参数为<code>-XDELETE</code>，通过下面的命令可以删除这条记录：</p>
-<pre><code><span class="title">curl</span> -XDELETE <span class="string">'http://localhost:9200/twitter/tweet/1'</span>
-</code></pre><p>{: .sh-commands}</p>
+<h2 id="删除">删除</h2>
+<p>删除的http请求参数为<code>-XDELETE</code>，通过下面的命令可以删除这条记录：</p>
+<pre><code>curl -XDELETE &#39;http://localhost:9200/twitter/tweet/1&#39;</code></pre>
+<p>{: .sh-commands}</p>
 <p>删除这条记录的时候，<code>_verison</code>也会自动加一的。</p>
-<h2 id="查询">查询</h2><p>创建了一个索引后，可以通过下面的方式查询（参数<code>-XGET</code>）出来:</p>
-<pre><code><span class="title">curl</span> -XGET <span class="string">'http://localhost:9200/twitter/tweet/1'</span>
-</code></pre><p>{: .sh-commands}</p>
+<h2 id="查询">查询</h2>
+<p>创建了一个索引后，可以通过下面的方式查询（参数<code>-XGET</code>）出来:</p>
+<pre><code>curl -XGET &#39;http://localhost:9200/twitter/tweet/1&#39;</code></pre>
+<p>{: .sh-commands}</p>
 <p>执行上面的查询命令，可以等到下面的结果：</p>
-<pre><code>andrew<span class="variable">@ubuntu</span><span class="symbol">:~</span><span class="variable">$ </span>curl -<span class="constant">XGET </span><span class="string">'http://localhost:9200/twitter/tweet/1'</span>
-{<span class="string">"_index"</span><span class="symbol">:<span class="string">"twitter"</span></span>,<span class="string">"_type"</span><span class="symbol">:<span class="string">"tweet"</span></span>,<span class="string">"_id"</span><span class="symbol">:<span class="string">"1"</span></span>,<span class="string">"_version"</span><span class="symbol">:</span><span class="number">5</span>,<span class="string">"exists"</span><span class="symbol">:true</span>, <span class="string">"_source"</span> <span class="symbol">:</span> {
-    <span class="string">"user"</span> <span class="symbol">:</span> <span class="string">"kimchy"</span>,
-    <span class="string">"post_date"</span> <span class="symbol">:</span> <span class="string">"2009-11-15T14:12:12"</span>,
-    <span class="string">"message"</span> <span class="symbol">:</span> <span class="string">"trying out Elastic Search"</span>
-}}andrew<span class="variable">@ubuntu</span><span class="symbol">:~</span><span class="variable">$ </span>
-</code></pre><p>{: .sh-bash}</p>
+<pre><code>andrew@ubuntu:~$ curl -XGET &#39;http://localhost:9200/twitter/tweet/1&#39;
+{&quot;_index&quot;:&quot;twitter&quot;,&quot;_type&quot;:&quot;tweet&quot;,&quot;_id&quot;:&quot;1&quot;,&quot;_version&quot;:5,&quot;exists&quot;:true, &quot;_source&quot; : {
+    &quot;user&quot; : &quot;kimchy&quot;,
+    &quot;post_date&quot; : &quot;2009-11-15T14:12:12&quot;,
+    &quot;message&quot; : &quot;trying out Elastic Search&quot;
+}}andrew@ubuntu:~$ </code></pre>
+<p>{: .sh-bash}</p>
 <p><code>exists</code>表示是否有查询结果，<code>_source</code>字段是查询到的记录。</p>
 <p>查询的时候，可以将<code>_type</code>设置成为<code>_all</code>，ES就会返回在<code>_index</code>下所有type中，第一个匹配<code>_id</code>的记录。</p>
-<p>还可以通过参数对返回结果继续控制，例如：用fields选取返回的字段，用pretty控制返回的json格式是否更阅读友好。<code>format=yaml</code>可以设置输入格式为YAML。<br>下面是两个例子</p>
+<p>还可以通过参数对返回结果继续控制，例如：用fields选取返回的字段，用pretty控制返回的json格式是否更阅读友好。<code>format=yaml</code>可以设置输入格式为YAML。 下面是两个例子</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET <span class="string">'http://localhost:9200/twitter/tweet/1?fields=message,user&amp;pretty=true'</span></span><br><span class="line">curl -XGET <span class="string">'http://localhost:9200/twitter/tweet/1?fields=message,user&amp;format=yaml'</span></span><br></pre></td></tr></table></figure>
 <p>当然ES还支持一次查询多组记录，即multi get，在URI中是使用关键字<code>_mget</code>，具体可以参考ES的文档<a href="http://www.elasticsearch.org/guide/reference/api/multi-get.html" target="_blank" rel="external">multi get</a>。</p>
-<h2 id="更新">更新</h2><p>ES同样支持更新，但是更新的方式是通过一个提供的脚本进行的。ES的做法是，通过index找到相应的存放记录的节点，然后执行脚本，执行完之后，返回新的索引。实际上执行的是一个get和reindex的过程，在这个过程中，通过versioning来控制没有其它的更新操作（这个功能是0.19后可用的）。具体实现的原理应该和<a href="http://www.elasticsearch.org/blog/2011/02/08/versioning.html" target="_blank" rel="external">elasticsearch Versioning</a>相关。</p>
+<h2 id="更新">更新</h2>
+<p>ES同样支持更新，但是更新的方式是通过一个提供的脚本进行的。ES的做法是，通过index找到相应的存放记录的节点，然后执行脚本，执行完之后，返回新的索引。实际上执行的是一个get和reindex的过程，在这个过程中，通过versioning来控制没有其它的更新操作（这个功能是0.19后可用的）。具体实现的原理应该和<a href="http://www.elasticsearch.org/blog/2011/02/08/versioning.html" target="_blank" rel="external">elasticsearch Versioning</a>相关。</p>
 <p>get，reindex的含义是，ES先取出这条记录，然后根据新数据生成新记录，然后在把新记录放回到ES中（并不会覆盖老的记录）。</p>
 <p>首先创建一条记录</p>
-<pre><code>$ curl -XPUT localhost:9200/<span class="keyword">test</span>/type1/1 -<span class="keyword">d</span> '{
-    <span class="string">"counter"</span> : 1,
-    <span class="string">"tags"</span> : [<span class="string">"red"</span>]
-}'
-</code></pre><p>{: .sh-bash}</p>
+<pre><code>$ curl -XPUT localhost:9200/test/type1/1 -d &#39;{
+    &quot;counter&quot; : 1,
+    &quot;tags&quot; : [&quot;red&quot;]
+}&#39;</code></pre>
+<p>{: .sh-bash}</p>
 <p>将counter的值加4</p>
-<pre><code>$ curl -XPOST <span class="string">'localhost:9200/test/type1/1/_update'</span> -d <span class="string">'{
-    "</span>script<span class="string">" : "</span><span class="transposed_variable">ctx.</span><span class="transposed_variable">_source.</span>counter += count<span class="string">",
-    "</span>params<span class="string">" : {
-        "</span>count<span class="string">" : 4
+<pre><code>$ curl -XPOST &#39;localhost:9200/test/type1/1/_update&#39; -d &#39;{
+    &quot;script&quot; : &quot;ctx._source.counter += count&quot;,
+    &quot;params&quot; : {
+        &quot;count&quot; : 4
     }
-}'</span>
-</code></pre><p>{: .sh-bash}</p>
+}&#39;</code></pre>
+<p>{: .sh-bash}</p>
 <p>也可以添加一个tag的值</p>
-<pre><code>$ curl -XPOST <span class="string">'localhost:9200/test/type1/1/_update'</span> -d <span class="string">'{
-    "</span>script<span class="string">" : "</span><span class="transposed_variable">ctx.</span><span class="transposed_variable">_source.</span>tags += tag<span class="string">",
-    "</span>params<span class="string">" : {
-        "</span>tag<span class="string">" : "</span>blue<span class="string">"
+<pre><code>$ curl -XPOST &#39;localhost:9200/test/type1/1/_update&#39; -d &#39;{
+    &quot;script&quot; : &quot;ctx._source.tags += tag&quot;,
+    &quot;params&quot; : {
+        &quot;tag&quot; : &quot;blue&quot;
     }
-}'</span>
-</code></pre><p>{: .sh-bash}</p>
+}&#39;</code></pre>
+<p>{: .sh-bash}</p>
 <p>现在还支持upsert功能，即在更新的时候，如果记录没有这个key，则插入这个key，下面是一个例子，如果没有<code>counter</code>字段，则插入该字段：</p>
-<pre><code>$ curl -XPOST <span class="string">'localhost:9200/test/type1/1/_update'</span> -d <span class="string">'{
-    "</span>script<span class="string">" : "</span><span class="transposed_variable">ctx.</span><span class="transposed_variable">_source.</span>counter += count<span class="string">",
-    "</span>params<span class="string">" : {
-        "</span>count<span class="string">" : 4
+<pre><code>$ curl -XPOST &#39;localhost:9200/test/type1/1/_update&#39; -d &#39;{
+    &quot;script&quot; : &quot;ctx._source.counter += count&quot;,
+    &quot;params&quot; : {
+        &quot;count&quot; : 4
     },
-    "</span>upsert<span class="string">" : {
-        "</span>counter<span class="string">" : 1
+    &quot;upsert&quot; : {
+        &quot;counter&quot; : 1
     }
-}'</span>
-</code></pre><p>{: .sh-bash}</p>
+}&#39;</code></pre>
+<p>{: .sh-bash}</p>
 <p>关于update还有其它很多功能，可以参考<a href="http://www.elasticsearch.org/guide/reference/api/update.html" target="_blank" rel="external">ES的API update</a></p>
-<h2 id="搜索">搜索</h2><p>elasticsearch的名字里面有一个search，那么主要功能也是search了。</p>
+<h2 id="搜索">搜索</h2>
+<p>elasticsearch的名字里面有一个search，那么主要功能也是search了。</p>
 <p>es的search有两种形式，一是通过URI，二是通过Requst Body。通过URI查询，即将查询的语句放入到请求的url中，例如：</p>
-<pre><code><span class="title">curl</span> -XGET <span class="string">'http://localhost:9200/twitter/tweet/_search?q=user:kimchy'</span>
-</code></pre><p>{: .sh-commands}</p>
+<pre><code>curl -XGET &#39;http://localhost:9200/twitter/tweet/_search?q=user:kimchy&#39;</code></pre>
+<p>{: .sh-commands}</p>
 <p>第二种方式，即在查询的请求中加入一个doc</p>
-<pre><code>$ curl -XGET <span class="string">'http</span>:<span class="comment">//localhost:9200/twitter/tweet/_search' -d '{</span>
-    <span class="string">"query"</span> : {
-        <span class="string">"term"</span> : { <span class="string">"user"</span> : <span class="string">"kimchy"</span> }
+<pre><code>$ curl -XGET &#39;http://localhost:9200/twitter/tweet/_search&#39; -d &#39;{
+    &quot;query&quot; : {
+        &quot;term&quot; : { &quot;user&quot; : &quot;kimchy&quot; }
     }
-}'
-</code></pre><p>{: .sh-bash}</p>
-<p>query body的定义可以查看<a href="http://www.elasticsearch.org/guide/reference/query-dsl/" target="_blank" rel="external">query DSL</a><br>另外两种查询方式都可以带参数，参数的含义参考<a href="http://www.elasticsearch.org/guide/reference/api/search/uri-request.html" target="_blank" rel="external">URI Request</a>和<a href="http://www.elasticsearch.org/guide/reference/api/search/request-body.html" target="_blank" rel="external">Request Body</a>。</p>
+}&#39;</code></pre>
+<p>{: .sh-bash}</p>
+<p>query body的定义可以查看<a href="http://www.elasticsearch.org/guide/reference/query-dsl/" target="_blank" rel="external">query DSL</a> 另外两种查询方式都可以带参数，参数的含义参考<a href="http://www.elasticsearch.org/guide/reference/api/search/uri-request.html" target="_blank" rel="external">URI Request</a>和<a href="http://www.elasticsearch.org/guide/reference/api/search/request-body.html" target="_blank" rel="external">Request Body</a>。</p>
 <p>ES的搜索功能是可以跨index和type的，例如下面这几条命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET <span class="string">'http://localhost:9200/twitter/_search?q=user:kimchy'</span></span><br><span class="line">curl -XGET <span class="string">'http://localhost:9200/twitter/tweet,user/_search?q=user:kimchy'</span></span><br><span class="line">curl -XGET <span class="string">'http://localhost:9200/kimchy,elasticsearch/tweet/_search?q=tag:wow'</span></span><br><span class="line">curl -XGET <span class="string">'http://localhost:9200/_all/tweet/\_search?q=tag:wow'</span></span><br><span class="line">curl -XGET <span class="string">'http://localhost:9200/\_search?q=tag:wow'</span></span><br></pre></td></tr></table></figure>
 <p>第一条是在所有的<code>twitter</code>这个index下的所有type中查找，第二条是在<code>tweet,user</code>这两个type中查找，第三条是在<code>kimchy,elasticsearch</code>这两个index的<code>tweet</code>这个type中查找，第四条使用了<code>_all</code>关键字，是在所有的index的<code>tweet</code>的type中查找，第五条更暴力，在所有的index和type中查找。</p>
-<p>查找还有其它的很多选项，<a href="http://www.elasticsearch.org/guide/reference/api/search/sort.html" target="_blank" rel="external">sort</a>，<a href="http://www.elasticsearch.org/guide/reference/api/search/highlighting.html" target="_blank" rel="external">高亮</a>，选取返回记录的域<a href="http://www.elasticsearch.org/guide/reference/api/search/fields.html" target="_blank" rel="external">Fields</a>，还可以对返回的域使用一个脚本进行计算<a href="http://www.elasticsearch.org/guide/reference/api/search/script-fields.html" target="_blank" rel="external">script Fields</a>，或者对返回结果继续统计<a href="http://www.elasticsearch.org/guide/reference/api/search/facets/" target="_blank" rel="external">Facets</a>，Facets的内容比较多，它支持关键词统计，范围内统计，直方图式统计，日期的直方图式统计，过滤，查询，还有记录地理位置距离的统计<a href="http://www.elasticsearch.org/guide/reference/api/search/facets/geo-distance-facet.html" target="_blank" rel="external">geo distance</a>。<br>支持名字过滤<a href="http://www.elasticsearch.org/guide/reference/api/search/named-filters.html" target="_blank" rel="external">Named Filters</a>。<br>定义搜索类型<a href="http://www.elasticsearch.org/guide/reference/api/search/search-type.html" target="_blank" rel="external">Search Type </a>。例如什么Query And Fetch，Query Then Fetch。<br>索引加速的功能<a href="http://www.elasticsearch.org/guide/reference/api/search/index-boost.html" target="_blank" rel="external">Index Boost</a>，可以让某一个索引的权重大于另外一个。<br>保持上次检索的环境了结果<a href="http://www.elasticsearch.org/guide/reference/api/search/scroll.html" target="_blank" rel="external">Scroll</a>。保留每一个命中的score值<a href="http://www.elasticsearch.org/guide/reference/api/search/explain.html" target="_blank" rel="external">Explain</a>。<br>设置命中的<a href="http://www.elasticsearch.org/guide/reference/api/search/min-score.html" target="_blank" rel="external">min_score</a>。保留版本号<a href="http://www.elasticsearch.org/guide/reference/api/search/version.html" target="_blank" rel="external">Version</a>。</p>
+<p>查找还有其它的很多选项，<a href="http://www.elasticsearch.org/guide/reference/api/search/sort.html" target="_blank" rel="external">sort</a>，<a href="http://www.elasticsearch.org/guide/reference/api/search/highlighting.html" target="_blank" rel="external">高亮</a>，选取返回记录的域<a href="http://www.elasticsearch.org/guide/reference/api/search/fields.html" target="_blank" rel="external">Fields</a>，还可以对返回的域使用一个脚本进行计算<a href="http://www.elasticsearch.org/guide/reference/api/search/script-fields.html" target="_blank" rel="external">script Fields</a>，或者对返回结果继续统计<a href="http://www.elasticsearch.org/guide/reference/api/search/facets/" target="_blank" rel="external">Facets</a>，Facets的内容比较多，它支持关键词统计，范围内统计，直方图式统计，日期的直方图式统计，过滤，查询，还有记录地理位置距离的统计<a href="http://www.elasticsearch.org/guide/reference/api/search/facets/geo-distance-facet.html" target="_blank" rel="external">geo distance</a>。 支持名字过滤<a href="http://www.elasticsearch.org/guide/reference/api/search/named-filters.html" target="_blank" rel="external">Named Filters</a>。 定义搜索类型<a href="http://www.elasticsearch.org/guide/reference/api/search/search-type.html" target="_blank" rel="external">Search Type</a>。例如什么Query And Fetch，Query Then Fetch。 索引加速的功能<a href="http://www.elasticsearch.org/guide/reference/api/search/index-boost.html" target="_blank" rel="external">Index Boost</a>，可以让某一个索引的权重大于另外一个。 保持上次检索的环境了结果<a href="http://www.elasticsearch.org/guide/reference/api/search/scroll.html" target="_blank" rel="external">Scroll</a>。保留每一个命中的score值<a href="http://www.elasticsearch.org/guide/reference/api/search/explain.html" target="_blank" rel="external">Explain</a>。 设置命中的<a href="http://www.elasticsearch.org/guide/reference/api/search/min-score.html" target="_blank" rel="external">min_score</a>。保留版本号<a href="http://www.elasticsearch.org/guide/reference/api/search/version.html" target="_blank" rel="external">Version</a>。</p>
 <p>Search的参数很多，我也没有一一看，不过果然是名字里面有个search，对检索的各种场景都有支持。</p>
 <p>当然还支持多个查询multi search，例如下面这个例子</p>
 <pre><code>$ cat requests
-{<span class="string">"index"</span> : <span class="string">"test"</span>}
-{<span class="string">"query"</span> : {<span class="string">"match_all"</span> : {}}, <span class="string">"from"</span> : <span class="number">0</span>, <span class="string">"size"</span> : <span class="number">10</span>}
-{<span class="string">"index"</span> : <span class="string">"test"</span>, <span class="string">"search_type"</span> : <span class="string">"count"</span>}
-{<span class="string">"query"</span> : {<span class="string">"match_all"</span> : {}}}
+{&quot;index&quot; : &quot;test&quot;}
+{&quot;query&quot; : {&quot;match_all&quot; : {}}, &quot;from&quot; : 0, &quot;size&quot; : 10}
+{&quot;index&quot; : &quot;test&quot;, &quot;search_type&quot; : &quot;count&quot;}
+{&quot;query&quot; : {&quot;match_all&quot; : {}}}
 {}
-{<span class="string">"query"</span> : {<span class="string">"match_all"</span> : {}}}
+{&quot;query&quot; : {&quot;match_all&quot; : {}}}
 
-$ curl -XGET localhost:<span class="number">9200</span>/_msearch --data-binary @requests; echo
-</code></pre><p>{: .sh-bash}</p>
-<h2 id="小结">小结</h2><p>以上就是elasticsearch的基本的几个功能了。当然它还有其它的很多功能，大家可以上<a href="http://www.elasticsearch.org" target="_blank" rel="external">http://www.elasticsearch.org</a>去查看。</p>
+$ curl -XGET localhost:9200/_msearch --data-binary @requests; echo</code></pre>
+<p>{: .sh-bash}</p>
+<h2 id="小结">小结</h2>
+<p>以上就是elasticsearch的基本的几个功能了。当然它还有其它的很多功能，大家可以上<a href="http://www.elasticsearch.org" class="uri" target="_blank" rel="external">http://www.elasticsearch.org</a>去查看。</p>
 <p>ES是基于Lucene的，有很多概念是直接来自于它，所有要想深入学习ES，还得有点Lucene的基础。</p>
 <p>总的，感觉elasticsearch是一个比较强大的工具，而且对社交网络的支持比较好，而且使用方便，配置简单，就不知道稳定性如何了。</p>
 <p>下面是两篇不错的文章，大家也可以借鉴一下：</p>
 <ul>
-<li><a href="http://blog.csdn.net/laigood12345/article/details/7421173" target="_blank" rel="external">http://blog.csdn.net/laigood12345/article/details/7421173</a></li>
-<li><a href="http://www.qwolf.com/?p=1387" target="_blank" rel="external">http://www.qwolf.com/?p=1387</a></li>
+<li><a href="http://blog.csdn.net/laigood12345/article/details/7421173" class="uri" target="_blank" rel="external">http://blog.csdn.net/laigood12345/article/details/7421173</a></li>
+<li><a href="http://www.qwolf.com/?p=1387" class="uri" target="_blank" rel="external">http://www.qwolf.com/?p=1387</a></li>
 </ul>
-<p>还有elasticsearch的中文站点<a href="http://www.elasticsearch.cn/" target="_blank" rel="external">http://www.elasticsearch.cn/</a>，不过这个网站还在构建中，翻译工作也才刚刚开始，大家就期盼早点完成。</p>
+<p>还有elasticsearch的中文站点<a href="http://www.elasticsearch.cn/" class="uri" target="_blank" rel="external">http://www.elasticsearch.cn/</a>，不过这个网站还在构建中，翻译工作也才刚刚开始，大家就期盼早点完成。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/11/es/" data-id="cidzq7cmf001n1oi49yr4dtn4" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/11/es/" data-id="cie0one8w001nrgi40hmwllke" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/11/es/#disqus_thread" class="article-comment-link">Comments</a>
       

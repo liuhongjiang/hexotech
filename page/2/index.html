@@ -83,7 +83,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="显示cjk">显示cjk</h2><p>安装了sublime以后，默认字体对cjk（中文，韩文，日文）支持不是很好，可以使用 YaHei Consolas Hybrid字体。<br>下载 YaHei Consolas Hybrid，可使用链接：</p>
+        <h2 id="显示cjk">显示cjk</h2>
+<p>安装了sublime以后，默认字体对cjk（中文，韩文，日文）支持不是很好，可以使用 YaHei Consolas Hybrid字体。 下载 YaHei Consolas Hybrid，可使用链接：</p>
 <p><a href="https://code.google.com/p/uigroupcode/downloads/detail?name=YaHei.Consolas.1.12.zip&amp;can=2&amp;q=">从google code下载</a></p>
 <p><a href="https://github.com/liangfeng/consolas-font-for-airline/blob/master/YaHei%20Consolas%20Hybrid.ttf">从github下载</a></p>
 <p>放入windows下面的font目录。</p>
@@ -97,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/15/sublime-tips/" data-id="cidzq7clj000n1oi4pdl7aoup" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/15/sublime-tips/" data-id="cie0one7x000nrgi4mws3xftb" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/15/sublime-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -136,7 +137,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>sqlite是一个非常小的数据库,适合小的应用,或者是app之类的.</p>
-<h2 id="install">install</h2><ul>
+<h2 id="install">install</h2>
+<ul>
 <li>windows command line</li>
 </ul>
 <p><a href="https://www.sqlite.org/download.html">下载SQLite</a>, 下载的文件是sqlite-shell-win32-x86-3081001.zip</p>
@@ -153,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/" data-id="cidzq7clk000o1oi4dy9pnfpg" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/" data-id="cie0one7y000orgi4atman9x3" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/13/sqlite/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -191,7 +193,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="how_to_pull_after_forced_update">how to pull after forced update</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">reset</span> origin/<span class="keyword">master</span> <span class="comment">--hard</span></span></span><br></pre></td></tr></table></figure>
+        <h2 id="how-to-pull-after-forced-update">how to pull after forced update</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">reset</span> origin/<span class="keyword">master</span> <span class="comment">--hard</span></span></span><br></pre></td></tr></table></figure>
 <p>this willResets the index and working tree. Any changes to tracked files in the working tree since are discarded.</p>
 <p>当前工作目录的index和本地修改，都会被丢弃（丢弃的修改包括已经提交到本地的commit)</p>
         
@@ -202,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/" data-id="cidzq7clm000r1oi4s8zd0h4r" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/" data-id="cie0one80000rrgi43z1fyydj" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -240,9 +243,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="git_ref">git ref</h2><p>可以使用下面的命令查看ref</p>
+        <h2 id="git-ref">git ref</h2>
+<p>可以使用下面的命令查看ref</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show HEAD</span><br></pre></td></tr></table></figure>
-<h2 id="HEAD_vs_ORIG_HEAD">HEAD vs ORIG_HEAD</h2><p>HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless you made some changes, or equivalent), and it is a commit on top of which “git commit” would make a new one. Usually HEAD is symbolic reference to some other named branch; this branch is currently checked out branch, or current branch. HEAD can also point directly to a commit; this state is called “detached HEAD”, and can be understood as being on unnamed, anonymous branch.</p>
+<h2 id="head-vs-orig_head">HEAD vs ORIG_HEAD</h2>
+<p>HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless you made some changes, or equivalent), and it is a commit on top of which “git commit” would make a new one. Usually HEAD is symbolic reference to some other named branch; this branch is currently checked out branch, or current branch. HEAD can also point directly to a commit; this state is called “detached HEAD”, and can be understood as being on unnamed, anonymous branch.</p>
 <p><strong>ORIG_HEAD is previous state of HEAD, set by commands that have possibly dangerous behavior, to be easy to revert them.</strong> It is less useful now that Git has reflog: HEAD@{1} is roughly equivalent to ORIG_HEAD (HEAD@{1} is always last value of HEAD, ORIG_HEAD is last value of HEAD before dangerous operation).</p>
 <p>“pull” or “merge” always leaves the original tip of the current branch in ORIG_HEAD.</p>
 <p>HEAD is a moving pointer. Sometimes it means the current branch, sometimes it doesn’t.</p>
@@ -254,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-reference/" data-id="cidzq7clo000t1oi4ng9am8dk" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-reference/" data-id="cie0one83000trgi4dgoexgrb" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/09/git-reference/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -294,21 +299,21 @@
       
         <p>I collect all information for internet, I did not write a single word.</p>
 <p>A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to their future selves)</p>
-<h2 id="examples">examples</h2><p>example of commit messages:</p>
-<pre><code>Capitalized, <span class="keyword">short</span> (<span class="number">50</span> <span class="keyword">chars</span> <span class="operator">or</span> less) summary
+<h2 id="examples">examples</h2>
+<p>example of commit messages:</p>
+<pre><code>Capitalized, short (50 chars or less) summary
 
-More <span class="keyword">detailed</span> explanatory <span class="keyword">text</span>, <span class="keyword">if</span> necessary.  Wrap <span class="keyword">it</span> <span class="built_in">to</span> about <span class="number">72</span>
-<span class="keyword">characters</span> <span class="operator">or</span> so.  In some contexts, <span class="operator">the</span> <span class="keyword">first</span> <span class="built_in">line</span> is treated <span class="keyword">as</span> <span class="operator">the</span>
-subject <span class="operator">of</span> <span class="operator">an</span> email <span class="operator">and</span> <span class="operator">the</span> rest <span class="operator">of</span> <span class="operator">the</span> <span class="keyword">text</span> <span class="keyword">as</span> <span class="operator">the</span> body.  The blank
-<span class="built_in">line</span> separating <span class="operator">the</span> summary <span class="built_in">from</span> <span class="operator">the</span> body is critical (unless you omit
-<span class="operator">the</span> body entirely); tools like rebase can <span class="built_in">get</span> confused <span class="keyword">if</span> you run <span class="operator">the</span> 
-<span class="constant">two</span> together.
-
+More detailed explanatory text, if necessary.  Wrap it to about 72
+characters or so.  In some contexts, the first line is treated as the
+subject of an email and the rest of the text as the body.  The blank
+line separating the summary from the body is critical (unless you omit
+the body entirely); tools like rebase can get confused if you run the 
+two together.
+   
 - Bullet points are okay, too
-- Typically <span class="operator">a</span> hyphen <span class="operator">or</span> asterisk is used <span class="keyword">for</span> <span class="operator">the</span> bullet, followed <span class="keyword">by</span> <span class="operator">a</span>
-  single <span class="constant">space</span>, <span class="operator">with</span> blank <span class="keyword">lines</span> <span class="operator">in</span> between, but conventions vary here
-- Use <span class="operator">a</span> hanging indent
-</code></pre>
+- Typically a hyphen or asterisk is used for the bullet, followed by a
+  single space, with blank lines in between, but conventions vary here
+- Use a hanging indent</code></pre>
         
           <p class="article-more-link">
             <a href="/hexotech/2015/04/30/git-commit-message-convention/#more">Read More</a>
@@ -317,7 +322,7 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/" data-id="cidzq7clr000v1oi4ps07lloa" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/" data-id="cie0one84000vrgi4cfftq3ly" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -351,7 +356,8 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="How_to_set_devcenter_or_webconsole_into_maintenance_mode">How to set devcenter or webconsole into maintenance mode</h2><p>I found a way to set devcenter or webconsole show maintenance page automatically without restart apache.<br>With the following method, we just touch or remove one file, it will turn on or off the maintenance mode.<br>Basically, I learnt from this page:<br><a href="http://www.shellhacks.com/en/Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess">Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess</a></p>
+        <h2 id="how-to-set-apache-into-maintenance-mode">How to set apache into maintenance mode</h2>
+<p>I found a way to set apache show maintenance page automatically without restart apache. With the following method, we just touch or remove one file, it will turn on or off the maintenance mode. Basically, I learnt from this page: <a href="http://www.shellhacks.com/en/Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess">Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess</a></p>
         
           <p class="article-more-link">
             <a href="/hexotech/2015/04/17/apache-maintenance-mode/#more">Read More</a>
@@ -360,7 +366,7 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/" data-id="cidzq7clt000x1oi4tfo1x6qm" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/" data-id="cie0one87000xrgi4mqpcgd1x" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -394,7 +400,7 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记得还是在读大学的时候读到的这篇文章，那个时候对文章的理解不是很深刻，工作多年以后再读这篇文章，对里面的很多思想有可比较深刻的认识，特别是关于软件管理方面的。<br>也许没有实践经验，有的东西就很难理解吧。</p>
+        <p>记得还是在读大学的时候读到的这篇文章，那个时候对文章的理解不是很深刻，工作多年以后再读这篇文章，对里面的很多思想有可比较深刻的认识，特别是关于软件管理方面的。 也许没有实践经验，有的东西就很难理解吧。</p>
 <p>大师的思想不会随着时间的变化而失去光辉的，快20年过去了，依然闪烁着智慧。而且随着开源社区的壮大，git这样的工具出现，我们不的不佩服大师看待未来的眼光，对前沿的敏锐观察力。</p>
 <p>英文版：<a href="http://www.catb.org/esr/writings/cathedral-bazaar/cathedral-bazaar/index.html">The Cathedral and the Bazaar</a></p>
 <p>中文版：<a href="http://www.yeeyan.org/articles/view/Angelo/2005">大教堂和集市</a></p>
@@ -406,7 +412,7 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2014/05/16/the-cathedral-and-the-bazaar/" data-id="cidzq7clv000y1oi4dcueux9z" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2014/05/16/the-cathedral-and-the-bazaar/" data-id="cie0one89000yrgi4i2wmc26a" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2014/05/16/the-cathedral-and-the-bazaar/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -441,8 +447,8 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
     <div class="article-entry" itemprop="articleBody">
       
         <p>这篇博文是由两个问题想到的。</p>
-<p>一是火车票实名制后，但是仍然还是有黄牛党倒票。倒票的手法是，先用几百张身份证抢下火车票，然后联系买主，联系到买主后，在乘车时间的前一两天，在一个窗口退票，另外一个窗口买票，一退票后系统上显示有一张鱼票后，马上买入。虽然理论上还是有被其它人抢走，失手的可能，但由于该车次的票早早就买光了，临开车的前1、2天，很少会有人去查询，所以还是比较安全的。<br>针对这种倒票方式，设置怎样的规则杜绝呢？首先一个方法就是，退掉的票，半个小时后才能买入。这样就可以增加退掉的票被被人抢走的可能性。开车前半个小时，退掉的票可以立马买进。这样就讲黄牛党的倒票时间窗口缩短到了开车前半个小时。<br>复杂的规则，就还有调查哪些身份证存在大量这种买了票后，又退票的行为，并加以惩罚。例如半年内不能买车票，或在春运期间不能买火车票。但这里有个风险，就是如果黄牛党用假身份证买票，那么这条规则就会伤及到真身份证的那个无辜的人。</p>
-<p>第二个问题是成都的公交车票，有两种，一种是电子钱包，就是充一定数量的钱，这个钱永远在卡里，一直可以用，主要目的是方便，不用每次乘公交都要准备零钱，而且还打9折。<br>还有一种是次卡，就是用前买一定数量的乘车次数，相当于打5折，而且用次卡乘车，2个小时内免费换乘公交车3次。而电子钱包换乘的时候，是要再次给钱的。对于我们这些上班族，每天上班要换乘几次的，非常划算。<br>但次卡有个规定，买的次数是当月有效的，一到下个月，无论你买了多少次，就作废了。我想公交公司是想用这种方式，吃点别人多充次数的油头。最开始的时候，次卡只能10块钱的倍数买，后来大家反对，于是可以1块钱的倍数买。乘公交用次卡的最低单位也是1块钱，所以基本上，公交公司就没有什么油头了。</p>
+<p>一是火车票实名制后，但是仍然还是有黄牛党倒票。倒票的手法是，先用几百张身份证抢下火车票，然后联系买主，联系到买主后，在乘车时间的前一两天，在一个窗口退票，另外一个窗口买票，一退票后系统上显示有一张鱼票后，马上买入。虽然理论上还是有被其它人抢走，失手的可能，但由于该车次的票早早就买光了，临开车的前1、2天，很少会有人去查询，所以还是比较安全的。 针对这种倒票方式，设置怎样的规则杜绝呢？首先一个方法就是，退掉的票，半个小时后才能买入。这样就可以增加退掉的票被被人抢走的可能性。开车前半个小时，退掉的票可以立马买进。这样就讲黄牛党的倒票时间窗口缩短到了开车前半个小时。 复杂的规则，就还有调查哪些身份证存在大量这种买了票后，又退票的行为，并加以惩罚。例如半年内不能买车票，或在春运期间不能买火车票。但这里有个风险，就是如果黄牛党用假身份证买票，那么这条规则就会伤及到真身份证的那个无辜的人。</p>
+<p>第二个问题是成都的公交车票，有两种，一种是电子钱包，就是充一定数量的钱，这个钱永远在卡里，一直可以用，主要目的是方便，不用每次乘公交都要准备零钱，而且还打9折。 还有一种是次卡，就是用前买一定数量的乘车次数，相当于打5折，而且用次卡乘车，2个小时内免费换乘公交车3次。而电子钱包换乘的时候，是要再次给钱的。对于我们这些上班族，每天上班要换乘几次的，非常划算。 但次卡有个规定，买的次数是当月有效的，一到下个月，无论你买了多少次，就作废了。我想公交公司是想用这种方式，吃点别人多充次数的油头。最开始的时候，次卡只能10块钱的倍数买，后来大家反对，于是可以1块钱的倍数买。乘公交用次卡的最低单位也是1块钱，所以基本上，公交公司就没有什么油头了。</p>
         
           <p class="article-more-link">
             <a href="/hexotech/2014/05/16/rules/#more">Read More</a>
@@ -451,7 +457,7 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2014/05/16/rules/" data-id="cidzq7clv000z1oi4rra9hjxh" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2014/05/16/rules/" data-id="cie0one8b000zrgi4pu62uod7" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2014/05/16/rules/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -489,10 +495,12 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一点体会">一点体会</h2><p>下面这篇博文是在看<a href="http://book.douban.com/subject/11577300/">《go语言编程》</a>书的笔记。<br>在看书的过程中，其实也没有对go语言进行深入的学习。仅仅是停留在对语法的简单了解。</p>
+        <h2 id="一点体会">一点体会</h2>
+<p>下面这篇博文是在看<a href="http://book.douban.com/subject/11577300/">《go语言编程》</a>书的笔记。 在看书的过程中，其实也没有对go语言进行深入的学习。仅仅是停留在对语法的简单了解。</p>
 <p>总的来说，go语言没有它多的新东西，仅仅是将各个语言比较有特色的内容，集中到以一个语言中，而且还是基于C语言的，因为go语言的作者就是C语言的作者。哪些比较有特色的呢，例如闭包，接口，垃圾回收，还有必然语言级别支持协程。这种炒大杂烩的方式，个人感觉不可能会成功。只不过go语言已一个比较强大的干爹google，所有才多多少少掀起了几个波浪。</p>
 <p>很有意思的一件事情是，虽然这个语言生在美国，生在google，但是目前go语言的社区最活跃的，还是我们中国的屌丝程序员。我认为这是一件极好的事情，说明了我们中国在IT方面对新事物的开明态度和勇于追逐，虽然成功可能不在go语言，但是有这种态度，终会有所作为。</p>
-<h2 id="go语言简介">go语言简介</h2><p>go语言是google推出的一个可以提高并发编程的语言，它着不同一般的背景。</p>
+<h2 id="go语言简介">go语言简介</h2>
+<p>go语言是google推出的一个可以提高并发编程的语言，它着不同一般的背景。</p>
 <ul>
 <li>回溯至1969 年, 肯·汤普逊（Ken Thompson）和丹尼斯·里奇（Dennis Ritchie ）在贝尔实验室的计算科学研究中心里开发出了Unix ，还因为开发Unix而衍生——C语言。</li>
 <li>80年代，开始Plan 9 的操作系统研究项目，解决Unix 中的一些问题, 又演变出了Inferno 的项目分支，以及一个名为Limbo 的编程语言</li>
@@ -504,15 +512,16 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
 <li>2009年11 月，发布第一个版本在</li>
 <li>2012年3月28 日，发布第一个正式版本</li>
 </ul>
-<h2 id="go语言特性">go语言特性</h2><ul>
-<li>自动垃圾回收 </li>
-<li>更丰富的内置类型 </li>
-<li>函数多返回值 </li>
-<li>错误处理 </li>
-<li>匿名函数和闭包 </li>
-<li>类型和接口 </li>
-<li>并发编程 </li>
-<li>反射 </li>
+<h2 id="go语言特性">go语言特性</h2>
+<ul>
+<li>自动垃圾回收</li>
+<li>更丰富的内置类型</li>
+<li>函数多返回值</li>
+<li>错误处理</li>
+<li>匿名函数和闭包</li>
+<li>类型和接口</li>
+<li>并发编程</li>
+<li>反射</li>
 <li>语言交互性 (Cgo, C语言库)</li>
 </ul>
         
@@ -523,7 +532,7 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/11/25/learning-go/" data-id="cidzq7clv00101oi414fr1vae" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/11/25/learning-go/" data-id="cie0one8e0010rgi4494u657v" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/11/25/learning-go/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -561,15 +570,16 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>树，计算机中比较纠结的一种数据结构。种类太多了，涉及到的算法也太多了。主要目的是汇总一下。参考了网上的几篇博客。<a href="http://blog.csdn.net/v\_july\_v/article/details/6530142">^1</a></p>
-<h2 id="二叉树">二叉树</h2><p>就是binary tree，搜索二叉数特点：</p>
-<ol>
+        <p>树，计算机中比较纠结的一种数据结构。种类太多了，涉及到的算法也太多了。主要目的是汇总一下。参考了网上的几篇博客。<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<h2 id="二叉树">二叉树</h2>
+<p>就是binary tree，搜索二叉数特点：</p>
+<ol style="list-style-type: decimal">
 <li>所有非叶子结点至多拥有两个儿子（Left和Right）；</li>
 <li>所有结点存储一个关键字；</li>
 <li>非叶子结点的左指针指向小于其关键字的子树，右指针指向大于其关键字的子树；</li>
 </ol>
 <p>但二叉树在经过多次插入与删除后，有可能导致不同的结构, 例如下图也是一个二叉数，但是其查找效率已经是线性的了：</p>
-<img src="/hexotech/images/blogimages/2013/tree/unbalanced-b-tree.jpg" class="center"> 
+<img src="/hexotech/images/blogimages/2013/tree/unbalanced-b-tree.jpg" class="center">
 <p>所以，使用二叉树还要考虑尽可能让二叉树保持左图的结构，和避免右图的结构，也就是所谓的“平衡”问题； 实际使用的二叉数都是在原二叉树的基础上加上平衡算法, 即“平衡二叉树”;如何保持二叉树结点分布均匀的平衡算法是平衡二叉树的关键; 平衡算法是一种在二叉数中插入和删除结点的策略。</p>
         
           <p class="article-more-link">
@@ -579,7 +589,7 @@ subject <span class="operator">of</span> <span class="operator">an</span> email 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/08/18/tree/" data-id="cidzq7clv00131oi463runkmj" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/08/18/tree/" data-id="cie0one8g0013rgi4kxudsqqb" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/08/18/tree/#disqus_thread" class="article-comment-link">Comments</a>
       
