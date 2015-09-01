@@ -9,8 +9,8 @@ abstract:
 ---
 
 
-## How to set devcenter or webconsole into maintenance mode
-I found a way to set devcenter or webconsole show maintenance page automatically without restart apache.
+## How to set apache into maintenance mode
+I found a way to set apache show maintenance page automatically without restart apache.
 With the following method, we just touch or remove one file, it will turn on or off the maintenance mode.
 Basically, I learnt from this page:
 [Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess](http://www.shellhacks.com/en/Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess)
@@ -51,7 +51,7 @@ restart Apache, it should work.
 And I already make a demo, here are the config files with path:
 
     httpd.conf -> /opt/root_dir/httpd/conf
-    devcenter.conf -> /opt/root_dir/httpd/conf.d
+    application.conf -> /opt/root_dir/httpd/conf.d
     maintenance.html -> /opt/root_dir
     maintenance.enable -> /opt/root_dir
 
