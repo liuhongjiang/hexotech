@@ -83,17 +83,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="在windows上以service的方式安装jenkins_slave节点">在windows上以service的方式安装jenkins slave节点</h2><ol>
+        <h2 id="在windows上以service的方式安装jenkins-slave节点">在windows上以service的方式安装jenkins slave节点</h2>
+<ol style="list-style-type: decimal">
 <li>在命令行运行，安装slave节点</li>
 </ol>
 <figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">java -jar slave.jar -jnlpUrl http://jenkins-server-ip:8080/jenkins/computer/</span><span class="expression">&#123;&#123;<span class="variable">node</span> <span class="variable">name</span>&#125;&#125;</span><span class="xml">/slave-agent.jnlp -secret 2d00ae81d59ff37df0fe9c33a5ed671afa2bc495715c0c161091a8e429973eb1</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>解决阻止自签名的问题<br>您的安全设置已阻止自签名的应用程序使用已过期的Java版本运行问题的解决</p>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">步骤：选择windows的开始<span class="function">--&gt;</span>控制面板<span class="function">--&gt;</span>在搜索栏中输入 java-<span class="function">-&gt;</span>点击查询出来的Java图标<span class="function">--&gt;</span>安全<span class="function">--&gt;</span>把 高<span class="function"><span class="params">(推荐的最低设置)</span>--&gt;</span>改成 中<span class="function">--&gt;</span>确定<span class="function">--&gt;</span>即可。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>以servcie的方式启动<br>在下面的页面上： <a href="http://jenkins-server-ip:8080/jenkins/computer/\{node">http://jenkins-server-ip:8080/jenkins/computer/\{node</a> name}</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">操作步骤： 点击<span class="type">Launch</span>--&gt;保留--&gt;把slave-agent.jnlp拷贝到<span class="type">C</span>:\<span class="type">CI</span>\jenkins-slave下--&gt;使用javaws.exe(java web start launcher)--&gt;继续--&gt;</span><br><span class="line">点击 我接受风险并希望运行此应用程序。--&gt;运行--&gt;<span class="type">File</span>--&gt;<span class="type">Install</span> <span class="keyword">as</span> a service--&gt;确定--&gt;是--&gt;是</span><br></pre></td></tr></table></figure>
-</li>
+<ol start="2" style="list-style-type: decimal">
+<li><p>解决阻止自签名的问题 您的安全设置已阻止自签名的应用程序使用已过期的Java版本运行问题的解决 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">步骤：选择windows的开始<span class="function">--&gt;</span>控制面板<span class="function">--&gt;</span>在搜索栏中输入 java-<span class="function">-&gt;</span>点击查询出来的Java图标<span class="function">--&gt;</span>安全<span class="function">--&gt;</span>把 高<span class="function"><span class="params">(推荐的最低设置)</span>--&gt;</span>改成 中<span class="function">--&gt;</span>确定<span class="function">--&gt;</span>即可。</span><br></pre></td></tr></table></figure></p></li>
+<li><p>以servcie的方式启动 在下面的页面上： http://jenkins-server-ip:8080/jenkins/computer/{node name} <figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">操作步骤： 点击<span class="type">Launch</span>--&gt;保留--&gt;把slave-agent.jnlp拷贝到<span class="type">C</span>:\<span class="type">CI</span>\jenkins-slave下--&gt;使用javaws.exe(java web start launcher)--&gt;继续--&gt;</span><br><span class="line">点击 我接受风险并希望运行此应用程序。--&gt;运行--&gt;<span class="type">File</span>--&gt;<span class="type">Install</span> <span class="keyword">as</span> a service--&gt;确定--&gt;是--&gt;是</span><br></pre></td></tr></table></figure></p></li>
 </ol>
 <p>这样Jenkins节点以Windows Service的方式在运行了。</p>
         
@@ -104,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/" data-id="cie0w50z40001f4i4si4cnu1t" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/" data-id="cie2ew5b200028oi4u86el745" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -143,10 +140,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这一片文章是关于安装kafka的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop，安装zookeeper。</p>
-<h2 id="准备">准备</h2><p>kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。</p>
+<h2 id="准备">准备</h2>
+<p>kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。</p>
 <p>这里使用的是上一篇文章中安装好的zookeeper。</p>
 <p>下载<a href="http://kafka.apache.org/downloads.html">kafka</a>，这里下载的是<a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/0.8.2.1/kafka_2.11-0.8.2.1.tgz">kafka_2.11-0.8.2.1.tgz</a></p>
-<p>解压文件包，将目录拷贝到/user/目录下，并修改权限：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop kafka_2<span class="number">.11</span>-<span class="number">0.8</span><span class="number">.2</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<p>解压文件包，将目录拷贝到/user/目录下，并修改权限： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop kafka_2<span class="number">.11</span>-<span class="number">0.8</span><span class="number">.2</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
         
           <p class="article-more-link">
             <a href="/hexotech/2015/08/26/install-kafka/#more">Read More</a>
@@ -155,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/" data-id="cie0w50zj0005f4i473zzm705" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/" data-id="cie2ew5b800068oi4pkp4h7hh" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -195,9 +193,10 @@
       
         <p>由于要安装kafka，需要安装zookeeper。</p>
 <p>这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。</p>
-<h2 id="准备">准备</h2><p>在其中一个节点中做以下操作。</p>
+<h2 id="准备">准备</h2>
+<p>在其中一个节点中做以下操作。</p>
 <p>下载<a href="http://zookeeper.apache.org/releases.html">zookeeper</a>, 我们这里下载的是<a href="http://apache.mirror.cdnetworks.com/zookeeper/zookeeper-3.4.6/">3.4.6版本</a>。</p>
-<p>解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
+<p>解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
         
           <p class="article-more-link">
             <a href="/hexotech/2015/08/26/install-zookeeper/#more">Read More</a>
@@ -206,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/" data-id="cie0w50z70002f4i43x4lvdm1" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/" data-id="cie2ew5b400038oi4rn0b6pgo" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -244,8 +243,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前面一片文章<a href="/hexotech/2015/08/24/install-hadoop/">install hadoop</a>介绍了hadoop的安装，这一片安装spark的文章，就是在hadoop已经安装好的基础上进行的。</p>
-<h2 id="准备">准备</h2><p>下载<a href="http://spark.apache.org/downloads.html">spark</a></p>
+        <p>前面一片文章<a href="/2015/08/24/install-hadoop/">install hadoop</a>介绍了hadoop的安装，这一片安装spark的文章，就是在hadoop已经安装好的基础上进行的。</p>
+<h2 id="准备">准备</h2>
+<p>下载<a href="http://spark.apache.org/downloads.html">spark</a></p>
 <p>hadoop的版本为2.7.1，下载的是spark-1.4.1-bin-hadoop2.6.tgz。</p>
 <p>这里下载是已经编译好的，也可以下载源码，自己编译。</p>
         
@@ -256,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cie0w50zl0007f4i4t4yz6j1i" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cie2ew5ba00088oi49g7fsg9y" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -294,17 +294,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="准备工作">准备工作</h2><p>centos版本是centos7。因为最新的hadoop版本（2.7.1）需要libc2.14以上，但是centos6.5只能升级到libc2.12所以需要使用centos7.<br>1个moaster节点，2个slave节点。</p>
-<ol>
-<li>修改服务器名字<br>centos7现在哟一个hostname的查看和设置命令<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hostnamectl status</span><br><span class="line">$ sudo hostnamectl set-hostname myhost<span class="class">.xmodulo</span><span class="class">.com</span></span><br></pre></td></tr></table></figure>
-</li>
+        <h2 id="准备工作">准备工作</h2>
+<p>centos版本是centos7。因为最新的hadoop版本（2.7.1）需要libc2.14以上，但是centos6.5只能升级到libc2.12所以需要使用centos7. 1个moaster节点，2个slave节点。</p>
+<ol style="list-style-type: decimal">
+<li>修改服务器名字 centos7现在哟一个hostname的查看和设置命令 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hostnamectl status</span><br><span class="line">$ sudo hostnamectl set-hostname myhost<span class="class">.xmodulo</span><span class="class">.com</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>我设置之后的情况如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.40</span> <span class="tag">master</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.41</span> <span class="tag">slave1</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.42</span> <span class="tag">slave2</span><span class="class">.hadoop</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>修改hosts文件<br>在所有server的<code>/etc/hosts</code>中加入这几行：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.40</span> <span class="tag">master</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.41</span> <span class="tag">slave1</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.42</span> <span class="tag">slave2</span><span class="class">.hadoop</span></span><br></pre></td></tr></table></figure>
-</li>
+<p>我设置之后的情况如下： <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.40</span> <span class="tag">master</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.41</span> <span class="tag">slave1</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.42</span> <span class="tag">slave2</span><span class="class">.hadoop</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<ol start="2" style="list-style-type: decimal">
+<li>修改hosts文件 在所有server的<code>/etc/hosts</code>中加入这几行： <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.40</span> <span class="tag">master</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.41</span> <span class="tag">slave1</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.42</span> <span class="tag">slave2</span><span class="class">.hadoop</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>设置完毕以后，在每一台server上使用以下命令确保hosts配置正确<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ping master<span class="class">.hadoop</span></span><br><span class="line">ping slave1<span class="class">.hadoop</span></span><br><span class="line">ping slave2.hadoop</span><br></pre></td></tr></table></figure></p>
+<p>设置完毕以后，在每一台server上使用以下命令确保hosts配置正确 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ping master<span class="class">.hadoop</span></span><br><span class="line">ping slave1<span class="class">.hadoop</span></span><br><span class="line">ping slave2.hadoop</span><br></pre></td></tr></table></figure></p>
         
           <p class="article-more-link">
             <a href="/hexotech/2015/08/24/install-hadoop/#more">Read More</a>
@@ -313,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/" data-id="cie0w50zn0009f4i43ki91ovz" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/" data-id="cie2ew5bc000a8oi4rzv0dtyg" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -351,9 +350,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近将博客从octopress迁移到了hexo。<br>如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。</p>
-<p>默认的markdown解析器会将latex中的下划线和’\’进行转义。公式不能正常显示，只有手动转义。</p>
-<p>然后在网上找到一篇文章：<br><a href="http://blog.yuanbin.me/posts/2014/05/play-mathjax-with-pandoc.html">Play MathJax with hexo-renderer-pandoc</a></p>
+        <p>最近将博客从octopress迁移到了hexo。 如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。</p>
+<p>默认的markdown解析器会将latex中的下划线和’'进行转义。公式不能正常显示，只有手动转义。</p>
+<p>然后在网上找到一篇文章： <a href="http://blog.yuanbin.me/posts/2014/05/play-mathjax-with-pandoc.html">Play MathJax with hexo-renderer-pandoc</a></p>
 <p>介绍使用<a href="http://pandoc.org/">pandoc</a>和<a href="https://github.com/wzpan/hexo-renderer-pandoc">hexo-renderer-pandoc</a></p>
         
           <p class="article-more-link">
@@ -363,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/" data-id="cie0w50zq000bf4i450b1b5kl" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/" data-id="cie2ew5bf000c8oi4rbi7u22e" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -397,7 +396,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##apache支持mp4的流播放<br>apache可以通过配置模块支持MP4和flv格式的视频流。<a href="https://www.alduccino.com/mod-h264-and-mod-flv-streaming-for-apache-on-whm-cpanel">Mod_h264 and mod_FLV Streaming for Apache</a><br>如果需要更多的视频流支持，建议使用 <a href="https://www.ffmpeg.org/ffserver.html">ffserver</a></p>
+        <h2 id="apache支持mp4的流播放">apache支持mp4的流播放</h2>
+<p>apache可以通过配置模块支持MP4和flv格式的视频流。<a href="https://www.alduccino.com/mod-h264-and-mod-flv-streaming-for-apache-on-whm-cpanel">Mod_h264 and mod_FLV Streaming for Apache</a> 如果需要更多的视频流支持，建议使用 <a href="https://www.ffmpeg.org/ffserver.html">ffserver</a></p>
 <p>下面以在centeros的apache上配置MP4模块的支持为例，首先是在apache端的配置</p>
         
           <p class="article-more-link">
@@ -407,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/" data-id="cie0w50zs000ef4i424txfvbg" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/" data-id="cie2ew5bi000f8oi4ds202g05" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -446,7 +446,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>没什么内容，慎看。</p>
-<h2 id="how_to_write_a_Greasemonkey_script">how to write a Greasemonkey script</h2><p>Greasemonkey是火狐下面的一个扩展应用，通过它安装一些用户自定义的脚本，这脚本可以在浏览器运行的时候，对网页进行实时的改变。在chrome上也有一个对应的插件Tampermonkey。<br>这个工具很强大，我们可以添加自己脚本，来年完成一些我们自己想要完成的功能。</p>
+<h2 id="how-to-write-a-greasemonkey-script">how to write a Greasemonkey script</h2>
+<p>Greasemonkey是火狐下面的一个扩展应用，通过它安装一些用户自定义的脚本，这脚本可以在浏览器运行的时候，对网页进行实时的改变。在chrome上也有一个对应的插件Tampermonkey。 这个工具很强大，我们可以添加自己脚本，来年完成一些我们自己想要完成的功能。</p>
 <p>下面用给一个例子来介绍写这个脚本相关的知识。</p>
         
           <p class="article-more-link">
@@ -456,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/24/greasemonkey-script/" data-id="cie0w50zu000ff4i48jyz8vtd" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/24/greasemonkey-script/" data-id="cie2ew5bk000g8oi4vf8guwqm" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/24/greasemonkey-script/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -495,8 +496,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>跨平台的情况下，windows和unix的换行符谁不一样的。这个和git结合起来的时候有点烦哈。</p>
-<h2 id="如何将git的所有crlf文件转换成lf格式">如何将git的所有crlf文件转换成lf格式</h2><p><a href="http://stackoverflow.com/questions/1510798/trying-to-fix-line-endings-with-git-filter-branch-but-having-no-luck/1511273#1511273">将git库中的crlf转换为lf</a></p>
-<p>下面这个脚本可以将库中的所有文件中的crlf去掉<br>
+<h2 id="如何将git的所有crlf文件转换成lf格式">如何将git的所有crlf文件转换成lf格式</h2>
+<p><a href="http://stackoverflow.com/questions/1510798/trying-to-fix-line-endings-with-git-filter-branch-but-having-no-luck/1511273#1511273">将git库中的crlf转换为lf</a></p>
+<p>下面这个脚本可以将库中的所有文件中的crlf去掉
         
           <p class="article-more-link">
             <a href="/hexotech/2015/06/05/git-crlf/#more">Read More</a>
@@ -505,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/" data-id="cie0w50zx000if4i4kfe3p3qm" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/" data-id="cie2ew5bo000j8oi4fwjjpud5" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/06/05/git-crlf/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -543,18 +545,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>参考了网上的多篇文章，然后结合现在自己参与的项目，总结了一个关于项目的git workflow的流程。<br>基本上是参考了gitflow的这篇文章。<a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a>。</p>
+        <p>参考了网上的多篇文章，然后结合现在自己参与的项目，总结了一个关于项目的git workflow的流程。 基本上是参考了gitflow的这篇文章。<a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a>。</p>
 <p>重点是下面这一张图片。</p>
 <img src="http://nvie.com/img/git-model@2x.png" class="center">
-<h2 id="名词">名词</h2><p>以上图片中的各个分支的解释。</p>
+<h2 id="名词">名词</h2>
+<p>以上图片中的各个分支的解释。</p>
 <ul>
 <li><p>master分支</p>
-<p>  master分支保存了最新的发布代码，是稳定分支。永久保存。</p>
-</li>
+<p>master分支保存了最新的发布代码，是稳定分支。永久保存。</p></li>
 <li><p>develop分支</p>
-<p>  保存了最新的下一个版本要发布的feature和bugfix的代码，是稳定分支，但是可以运行在一定时间内不稳定。永久保存。</p>
-<p>  在没有创建release分支的时候，可以提交bugfix的代码（bug的fix version填写下一个版本的版本号）。一但创建了release分支，那么只能提交下一个版本的feature和bugfix代码。</p>
-</li>
+<p>保存了最新的下一个版本要发布的feature和bugfix的代码，是稳定分支，但是可以运行在一定时间内不稳定。永久保存。</p>
+<p>在没有创建release分支的时候，可以提交bugfix的代码（bug的fix version填写下一个版本的版本号）。一但创建了release分支，那么只能提交下一个版本的feature和bugfix代码。</p></li>
 </ul>
         
           <p class="article-more-link">
@@ -564,7 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/20/git-workflow/" data-id="cie0w5100000lf4i4m3v5czad" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/20/git-workflow/" data-id="cie2ew5bq000m8oi4kgkolhlj" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/20/git-workflow/#disqus_thread" class="article-comment-link">Comments</a>
       

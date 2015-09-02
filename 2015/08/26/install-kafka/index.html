@@ -6,26 +6,29 @@
   <title>Install kafka | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这一片文章是关于安装kafka的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop，安装zookeeper。
-准备kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。
+准备
+kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。
 这里使用的是上一篇文章中安装好的zookeeper。
-下载kafka，这里下载的是kafka_2.11-0.8.2.1.tgz">
+下载kafka，这里下载的是kafka_2.11-0.8.2.1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Install kafka">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/08/26/install-kafka/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
 <meta property="og:description" content="这一片文章是关于安装kafka的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop，安装zookeeper。
-准备kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。
+准备
+kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。
 这里使用的是上一篇文章中安装好的zookeeper。
-下载kafka，这里下载的是kafka_2.11-0.8.2.1.tgz">
+下载kafka，这里下载的是kafka_2.11-0.8.2.1">
 <meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/kafka_producer.png">
 <meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/kafka_consumer.png">
-<meta property="og:updated_time" content="2015-08-27T01:13:58.295Z">
+<meta property="og:updated_time" content="2015-09-02T06:10:17.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install kafka">
 <meta name="twitter:description" content="这一片文章是关于安装kafka的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop，安装zookeeper。
-准备kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。
+准备
+kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。
 这里使用的是上一篇文章中安装好的zookeeper。
-下载kafka，这里下载的是kafka_2.11-0.8.2.1.tgz">
+下载kafka，这里下载的是kafka_2.11-0.8.2.1">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -98,68 +101,76 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这一片文章是关于安装kafka的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop，安装zookeeper。</p>
-<h2 id="准备">准备</h2><p>kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。</p>
+<h2 id="准备">准备</h2>
+<p>kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。</p>
 <p>这里使用的是上一篇文章中安装好的zookeeper。</p>
 <p>下载<a href="http://kafka.apache.org/downloads.html" target="_blank" rel="external">kafka</a>，这里下载的是<a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/0.8.2.1/kafka_2.11-0.8.2.1.tgz" target="_blank" rel="external">kafka_2.11-0.8.2.1.tgz</a></p>
-<p>解压文件包，将目录拷贝到/user/目录下，并修改权限：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop kafka_2<span class="number">.11</span>-<span class="number">0.8</span><span class="number">.2</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<p>解压文件包，将目录拷贝到/user/目录下，并修改权限： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop kafka_2<span class="number">.11</span>-<span class="number">0.8</span><span class="number">.2</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h2 id="配置kafka">配置kafka</h2><p>修改<code>${KAFKA_HOME}/config/server.properties</code>:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">broker.id=<span class="number">1</span></span><br><span class="line"><span class="built_in">log</span>.dirs=/usr/kafka_2<span class="number">.11</span>-<span class="number">0.8</span><span class="number">.2</span><span class="number">.1</span>/logs</span><br><span class="line">zookeeper.connect=master.hadoop:<span class="number">2181</span>,slave1.hadoop:<span class="number">2181</span>,slave2.hadoop:<span class="number">2181</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="配置kafka">配置kafka</h2>
+<p>修改<code>${KAFKA_HOME}/config/server.properties</code>: <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">broker.id=<span class="number">1</span></span><br><span class="line"><span class="built_in">log</span>.dirs=/usr/kafka_2<span class="number">.11</span>-<span class="number">0.8</span><span class="number">.2</span><span class="number">.1</span>/logs</span><br><span class="line">zookeeper.connect=master.hadoop:<span class="number">2181</span>,slave1.hadoop:<span class="number">2181</span>,slave2.hadoop:<span class="number">2181</span></span><br></pre></td></tr></table></figure></p>
 <p>对于具体的配置内容，请参考<a href="http://kafka.apache.org/documentation.html#brokerconfigs" target="_blank" rel="external">kafka broker configs</a>。</p>
 <p>针对上面的配置，需要创建日志目录：<code>/usr/kafka_2.11-0.8.2.1/logs</code></p>
-<h2 id="拷贝到其他节点">拷贝到其他节点</h2><p>将配置好的kafka拷贝到其他节点的相应的目录下。</p>
+<h2 id="拷贝到其他节点">拷贝到其他节点</h2>
+<p>将配置好的kafka拷贝到其他节点的相应的目录下。</p>
 <p>需要注意的是拷贝到其他节点以后，需要修改<code>${KAFKA_HOME}/config/server.properties</code>中的<code>broker.id</code>, 需要保证<code>broker.id</code>是一个唯一的整数。</p>
-<h2 id="启动和验证">启动和验证</h2><p>启动和停止kafka：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-server-<span class="operator"><span class="keyword">start</span>.sh config/<span class="keyword">server</span>.properties &amp;</span><br><span class="line"><span class="keyword">bin</span>/kafka-<span class="keyword">server</span>-<span class="keyword">stop</span>.sh</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="启动和验证">启动和验证</h2>
+<p>启动和停止kafka： <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-server-<span class="operator"><span class="keyword">start</span>.sh config/<span class="keyword">server</span>.properties &amp;</span><br><span class="line"><span class="keyword">bin</span>/kafka-<span class="keyword">server</span>-<span class="keyword">stop</span>.sh</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>连通性测试</li>
 </ul>
-<p>在一台服务器上运行consumer：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer<span class="class">.sh</span> --zookeeper master<span class="class">.hadoop</span>:<span class="number">2181</span> --topic test --from-beginning</span><br></pre></td></tr></table></figure></p>
-<p>在另外一台服务器上运行producer：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer<span class="class">.sh</span> --broker-list slave1<span class="class">.hadoop</span>:<span class="number">9092</span> --topic test</span><br></pre></td></tr></table></figure></p>
+<p>在一台服务器上运行consumer： <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer<span class="class">.sh</span> --zookeeper master<span class="class">.hadoop</span>:<span class="number">2181</span> --topic test --from-beginning</span><br></pre></td></tr></table></figure></p>
+<p>在另外一台服务器上运行producer： <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer<span class="class">.sh</span> --broker-list slave1<span class="class">.hadoop</span>:<span class="number">9092</span> --topic test</span><br></pre></td></tr></table></figure></p>
 <p>这时在producer中，输入任何消息，在consumer端就可以看到。下面的图片：</p>
 <p>producer的情况：</p>
 <img src="/hexotech/images/blogimages/2015/kafka_producer.png" class="center">
 <p>consumer的情况：</p>
 <img src="/hexotech/images/blogimages/2015/kafka_consumer.png" class="center">
-<h2 id="kafka_Utility">kafka Utility</h2><ol>
-<li>Create topic<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.<span class="keyword">sh</span> --create --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>] --replication-<span class="keyword">factor</span> <span class="label">$&#123;replication_factor&#125;</span> --partitions <span class="label">$&#123;partition_count&#125;</span> --topic <span class="label">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="kafka-utility">kafka Utility</h2>
+<ol style="list-style-type: decimal">
+<li>Create topic <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.<span class="keyword">sh</span> --create --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>] --replication-<span class="keyword">factor</span> <span class="label">$&#123;replication_factor&#125;</span> --partitions <span class="label">$&#123;partition_count&#125;</span> --topic <span class="label">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>Note: for zookeeper connect string ${zk_host}:${zk_port}[${zk_chroot}], ${zk_chroot} is optional</p>
-<ol>
+<p>Note: for zookeeper connect string <span class="math inline">\({zk_host}:\)</span>{zk_port}[${zk_chroot}], ${zk_chroot} is optional</p>
+<ol start="2" style="list-style-type: decimal">
 <li>Describe topic</li>
 </ol>
 <ul>
-<li><p>Describe topic all topics</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.<span class="keyword">sh</span> --<span class="keyword">describe</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Describe specified topic</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.<span class="keyword">sh</span> --<span class="keyword">describe</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>] --topic <span class="label">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
+<li><p>Describe topic all topics <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.<span class="keyword">sh</span> --<span class="keyword">describe</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>]</span><br></pre></td></tr></table></figure></p></li>
+<li><p>Describe specified topic <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.<span class="keyword">sh</span> --<span class="keyword">describe</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>] --topic <span class="label">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<ol>
-<li>Publish messages. You can use this utility to test you topic.<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.<span class="keyword">sh</span> --broker-<span class="keyword">list</span> <span class="label">$&#123;kafka_server&#125;</span>:&#123;kafka_port&#125; --topic <span class="label">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
+<ol start="3" style="list-style-type: decimal">
+<li>Publish messages. You can use this utility to test you topic. <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.<span class="keyword">sh</span> --broker-<span class="keyword">list</span> <span class="label">$&#123;kafka_server&#125;</span>:&#123;kafka_port&#125; --topic <span class="label">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>Note: if you local kafka server is started, you can use localhost:9092 as broker-list.</p>
-<ol>
-<li><p>Consume messages</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer.<span class="keyword">sh</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>] [--from-beginning] --topic <span class="label">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Modifying topics<br>Currently, support increase partitions well:</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.<span class="keyword">sh</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>] --alter --topic <span class="label">$&#123;topic_name&#125;</span> --partitions <span class="label">$&#123;partition_count&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Consume messages <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer.<span class="keyword">sh</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>] [--from-beginning] --topic <span class="label">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>Modifying topics Currently, support increase partitions well: <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.<span class="keyword">sh</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:<span class="label">$&#123;zk_port&#125;</span>[<span class="label">$&#123;zk_chroot&#125;</span>] --alter --topic <span class="label">$&#123;topic_name&#125;</span> --partitions <span class="label">$&#123;partition_count&#125;</span></span><br></pre></td></tr></table></figure></p></li>
 </ol>
 <p>Kafka does not currently support reducing the number of partitions for a topic or changing the replication factor.</p>
-<ol>
-<li>Delete topic<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --zookeeper <span class="variable">$&#123;zk_host&#125;</span>:<span class="variable">$&#123;zk_port&#125;</span>[<span class="variable">$&#123;zk_chroot&#125;</span>] --<span class="keyword">delete</span> --topic <span class="variable">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
+<ol start="6" style="list-style-type: decimal">
+<li>Delete topic <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --zookeeper <span class="variable">$&#123;zk_host&#125;</span>:<span class="variable">$&#123;zk_port&#125;</span>[<span class="variable">$&#123;zk_chroot&#125;</span>] --<span class="keyword">delete</span> --topic <span class="variable">$&#123;topic_name&#125;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>Topic deletion option is disabled by default. To enable it set the server config:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">delete</span>.topic.<span class="keyword">enable</span>=<span class="literal">true</span></span></span><br></pre></td></tr></table></figure></p>
-<h2 id="参考">参考</h2><p><a href="http://kafka.apache.org/documentation.html#quickstart" target="_blank" rel="external">http://kafka.apache.org/documentation.html#quickstart</a></p>
+<p>Topic deletion option is disabled by default. To enable it set the server config: <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">delete</span>.topic.<span class="keyword">enable</span>=<span class="literal">true</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="kafka常用命令">kafka常用命令</h2>
+<p>启动kafka <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JMX_PORT=<span class="number">9996</span> nohup bin/kafka-server-start<span class="class">.sh</span> config/server<span class="class">.properties</span> &gt;&gt; /dev/null &amp;</span><br></pre></td></tr></table></figure></p>
+<p>重新选举kafka <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-preferred-replica-election.<span class="keyword">sh</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:2181/ROOT-PATH</span><br></pre></td></tr></table></figure></p>
+<p>创建一个topic <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">.</span><span class="comment">/kafka</span><span class="literal">-</span><span class="comment">topics</span><span class="string">.</span><span class="comment">sh</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">create</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">zookeeper</span> <span class="comment">$&#123;zk_host&#125;:2181/ROOT</span><span class="literal">-</span><span class="comment">PATH</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">replication</span><span class="literal">-</span><span class="comment">factor</span> <span class="comment">3</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">partition</span> <span class="comment">3</span>  <span class="literal">-</span><span class="literal">-</span><span class="comment">topic</span> <span class="comment">mytopic</span></span><br></pre></td></tr></table></figure></p>
+<p>增加partition数量 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">.</span><span class="comment">/kafka</span><span class="literal">-</span><span class="comment">topics</span><span class="string">.</span><span class="comment">sh</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">alter</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">topic</span> <span class="comment">your</span><span class="literal">-</span><span class="comment">topic</span><span class="literal">-</span><span class="comment">name</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">partitions</span> <span class="comment">new</span><span class="literal">-</span><span class="comment">values(contain</span> <span class="comment">old</span> <span class="comment">value)</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">zookeeper</span> <span class="comment">your</span> <span class="comment">zookeeper</span><span class="literal">-</span><span class="comment">address/kafka</span><span class="literal">-</span><span class="comment">path</span></span><br><span class="line"></span><br><span class="line"><span class="string">.</span><span class="comment">/kafka</span><span class="literal">-</span><span class="comment">topics</span><span class="string">.</span><span class="comment">sh</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">alter</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">topic</span> <span class="comment">nelo2</span><span class="literal">-</span><span class="comment">normal</span><span class="literal">-</span><span class="comment">logs</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">partitions</span> <span class="comment">4</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">zookeeper</span> <span class="comment">$&#123;zk_host&#125;:2181/ROOT</span><span class="literal">-</span><span class="comment">PATH</span></span><br></pre></td></tr></table></figure></p>
+<p>删除一个topic <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">.</span><span class="comment">/kafka</span><span class="literal">-</span><span class="comment">topics</span><span class="string">.</span><span class="comment">sh</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">delete</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">zookeeper</span> <span class="comment">$&#123;zk_host&#125;:2181/ROOT</span><span class="literal">-</span><span class="comment">PATH</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">topic</span> <span class="comment">test4</span></span><br></pre></td></tr></table></figure></p>
+<p>查看topic <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-topics.<span class="keyword">sh</span> --<span class="keyword">list</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:2181/ROOT-PATH</span><br></pre></td></tr></table></figure></p>
+<p>查看详细信息 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-topics.<span class="keyword">sh</span> --<span class="keyword">describe</span> --zookeeper <span class="label">$&#123;zk_host&#125;</span>:2181/ROOT-PATH</span><br></pre></td></tr></table></figure></p>
+<p>创建一个生产者 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-console-producer.<span class="keyword">sh</span> --broker-<span class="keyword">list</span> <span class="label">$&#123;zk_host&#125;</span>:2181/ROOT-PATH --topic mytopic</span><br></pre></td></tr></table></figure></p>
+<p>创建一个消费者 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">.</span><span class="comment">/kafka</span><span class="literal">-</span><span class="comment">console</span><span class="literal">-</span><span class="comment">consumer</span><span class="string">.</span><span class="comment">sh</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">zookeeper</span> <span class="comment">$&#123;zk_host&#125;:2181/ROOT</span><span class="literal">-</span><span class="comment">PATH</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">from</span><span class="literal">-</span><span class="comment">beginning</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">topic</span> <span class="comment">mytopic</span></span><br></pre></td></tr></table></figure></p>
+<p>杀掉一个broker <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkill -<span class="number">9</span> -f server-<span class="number">1.</span>properties</span><br></pre></td></tr></table></figure></p>
+<p>注：需要杀掉哪个broker就需要登录到哪台机器上执行以上命令。</p>
+<p>查看指定消费者的消费状况 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-run-<span class="keyword">class</span>.sh kafka.tools.ConsumerOffsetChecker --zkconnect <span class="number">10.98</span><span class="number">.213</span><span class="number">.108</span>:<span class="number">10013</span>/NHN/NELO2/kafka --group river</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考">参考</h2>
+<p><a href="http://kafka.apache.org/documentation.html#quickstart" class="uri" target="_blank" rel="external">http://kafka.apache.org/documentation.html#quickstart</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/" data-id="cie0w50zj0005f4i473zzm705" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/" data-id="cie2ew5b800068oi4pkp4h7hh" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/#disqus_thread" class="article-comment-link">Comments</a>
       

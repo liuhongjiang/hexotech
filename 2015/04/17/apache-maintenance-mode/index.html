@@ -5,16 +5,19 @@
   
   <title>apache maintenance mode | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="How to set apache into maintenance modeI found a way to set apache show maintenance page automatically without restart apache.With the following method, we just touch or remove one file, it will turn">
+  <meta name="description" content="How to set apache into maintenance mode
+I found a way to set apache show maintenance page automatically without restart apache. With the following method, we just touch or remove one file, it will tu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="apache maintenance mode">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/04/17/apache-maintenance-mode/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description" content="How to set apache into maintenance modeI found a way to set apache show maintenance page automatically without restart apache.With the following method, we just touch or remove one file, it will turn">
+<meta property="og:description" content="How to set apache into maintenance mode
+I found a way to set apache show maintenance page automatically without restart apache. With the following method, we just touch or remove one file, it will tu">
 <meta property="og:updated_time" content="2015-09-01T01:33:14.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="apache maintenance mode">
-<meta name="twitter:description" content="How to set apache into maintenance modeI found a way to set apache show maintenance page automatically without restart apache.With the following method, we just touch or remove one file, it will turn">
+<meta name="twitter:description" content="How to set apache into maintenance mode
+I found a way to set apache show maintenance page automatically without restart apache. With the following method, we just touch or remove one file, it will tu">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -82,36 +85,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="How_to_set_apache_into_maintenance_mode">How to set apache into maintenance mode</h2><p>I found a way to set apache show maintenance page automatically without restart apache.<br>With the following method, we just touch or remove one file, it will turn on or off the maintenance mode.<br>Basically, I learnt from this page:<br><a href="http://www.shellhacks.com/en/Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess" target="_blank" rel="external">Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess</a></p>
+        <h2 id="how-to-set-apache-into-maintenance-mode">How to set apache into maintenance mode</h2>
+<p>I found a way to set apache show maintenance page automatically without restart apache. With the following method, we just touch or remove one file, it will turn on or off the maintenance mode. Basically, I learnt from this page: <a href="http://www.shellhacks.com/en/Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess" target="_blank" rel="external">Redirect-Site-to-Maintenance-Page-using-Apache-and-HTAccess</a></p>
 <a id="more"></a>
-<h2 id="Change_httpd-conf">Change httpd.conf</h2><p>make sure the rewrite module is loaded:</p>
-<pre><code><span class="keyword"><span class="common">LoadModule</span></span> rewrite_module modules/mod_rewrite.so
-</code></pre><p>Then add rewrite rule:</p>
-<pre><code><span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"/opt/root_dir/"</span>
-<span class="tag">&lt;IfModule mod_rewrite.c&gt;</span>
-   <span class="keyword"><span class="common">RewriteEngine</span></span> <span class="literal">On</span>
-   <span class="comment">#RewriteCond %{REMOTE_ADDR} !^123\.456\.789\.000</span>
-   <span class="keyword"><span class="common">RewriteCond</span></span> <span class="cbracket">%{DOCUMENT_ROOT}</span>/maintenance.html -f
-   <span class="keyword"><span class="common">RewriteCond</span></span> <span class="cbracket">%{DOCUMENT_ROOT}</span>/maintenance.enable -f
-   <span class="keyword"><span class="common">RewriteCond</span></span> <span class="cbracket">%{SCRIPT_FILENAME}</span> !maintenance.html
-   <span class="keyword"><span class="common">RewriteRule</span></span> ^.*$ /maintenance.html<span class="sqbracket"> [R=503,L]</span>
-   <span class="keyword"><span class="common">ErrorDocument</span></span> 503 /maintenance.html
-   <span class="keyword"><span class="common">Header</span></span> Set Cache-Control <span class="string">"max-age=0, no-store"</span>
-<span class="tag">&lt;/IfModule&gt;</span>
-</code></pre><p>Then add the <code>maintenance.html</code> page in the <code>DocumentRoot</code>.<br>When the site is under maintenance mode, please touch <code>maintenance.enable</code> file in <code>DocumentRoot</code>.<br>After the site becomes normally, please just remove the <code>maintenance.enable</code></p>
-<pre><code>TIPs: <span class="keyword">as</span> we used <span class="operator">the</span> wsgi <span class="operator">in</span> apache, <span class="keyword">any</span> changes <span class="built_in">to</span> python <span class="built_in">file</span>, we need <span class="built_in">to</span> restart <span class="operator">the</span> apache.
-</code></pre><h2 id="Add_alias_in_wsgi_conf">Add alias in wsgi conf</h2><p>add the following line in the <code>conf.d/myproject.conf</code> or <code>conf.d/otherproject.conf</code>:</p>
-<pre><code>Alias <span class="regexp">/maintenance.html /</span>opt<span class="regexp">/root_dir/m</span>aintenance.html
-</code></pre><h2 id="Restart_Apache_and_Demo">Restart Apache and Demo</h2><p>restart Apache, it should work.<br>And I already make a demo, here are the config files with path:</p>
-<pre><code>httpd<span class="class">.conf</span> -&gt; /opt/root_dir/httpd/conf
-application<span class="class">.conf</span> -&gt; /opt/root_dir/httpd/conf<span class="class">.d</span>
-maintenance<span class="class">.html</span> -&gt; /opt/root_dir
-maintenance<span class="class">.enable</span> -&gt; /opt/root_dir
-</code></pre>
+<h2 id="change-httpd.conf">Change httpd.conf</h2>
+<p>make sure the rewrite module is loaded:</p>
+<pre><code>LoadModule rewrite_module modules/mod_rewrite.so</code></pre>
+<p>Then add rewrite rule:</p>
+<pre><code>DocumentRoot &quot;/opt/root_dir/&quot;
+&lt;IfModule mod_rewrite.c&gt;
+   RewriteEngine On
+   #RewriteCond %{REMOTE_ADDR} !^123\.456\.789\.000
+   RewriteCond %{DOCUMENT_ROOT}/maintenance.html -f
+   RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
+   RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+   RewriteRule ^.*$ /maintenance.html [R=503,L]
+   ErrorDocument 503 /maintenance.html
+   Header Set Cache-Control &quot;max-age=0, no-store&quot;
+&lt;/IfModule&gt;</code></pre>
+<p>Then add the <code>maintenance.html</code> page in the <code>DocumentRoot</code>. When the site is under maintenance mode, please touch <code>maintenance.enable</code> file in <code>DocumentRoot</code>. After the site becomes normally, please just remove the <code>maintenance.enable</code></p>
+<pre><code>TIPs: as we used the wsgi in apache, any changes to python file, we need to restart the apache.</code></pre>
+<h2 id="add-alias-in-wsgi-conf">Add alias in wsgi conf</h2>
+<p>add the following line in the <code>conf.d/myproject.conf</code> or <code>conf.d/otherproject.conf</code>:</p>
+<pre><code>Alias /maintenance.html /opt/root_dir/maintenance.html</code></pre>
+<h2 id="restart-apache-and-demo">Restart Apache and Demo</h2>
+<p>restart Apache, it should work. And I already make a demo, here are the config files with path:</p>
+<pre><code>httpd.conf -&gt; /opt/root_dir/httpd/conf
+application.conf -&gt; /opt/root_dir/httpd/conf.d
+maintenance.html -&gt; /opt/root_dir
+maintenance.enable -&gt; /opt/root_dir</code></pre>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/" data-id="cie0w510d000xf4i4dlhlgovc" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/" data-id="cie2ew5c0000y8oi4m3bbp6kh" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/#disqus_thread" class="article-comment-link">Comments</a>
       
