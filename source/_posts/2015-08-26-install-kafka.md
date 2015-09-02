@@ -119,6 +119,65 @@ Topic deletion option is disabled by default. To enable it set the server config
 delete.topic.enable=true
 ```
 
+## kafka常用命令
+启动kafka
+```
+JMX_PORT=9996 nohup bin/kafka-server-start.sh config/server.properties >> /dev/null &
+```
+
+重新选举kafka
+```
+bin/kafka-preferred-replica-election.sh --zookeeper ${zk_host}:2181/ROOT-PATH
+```
+
+创建一个topic
+```
+./kafka-topics.sh --create --zookeeper ${zk_host}:2181/ROOT-PATH --replication-factor 3 --partition 3  --topic mytopic
+```
+
+增加partition数量
+```
+./kafka-topics.sh --alter --topic your-topic-name --partitions new-values(contain old value) --zookeeper your zookeeper-address/kafka-path
+
+./kafka-topics.sh --alter --topic nelo2-normal-logs --partitions 4 --zookeeper ${zk_host}:2181/ROOT-PATH
+```
+
+删除一个topic
+```
+./kafka-topics.sh --delete --zookeeper ${zk_host}:2181/ROOT-PATH --topic test4
+```
+
+查看topic
+```
+./kafka-topics.sh --list --zookeeper ${zk_host}:2181/ROOT-PATH
+```
+
+查看详细信息
+```
+./kafka-topics.sh --describe --zookeeper ${zk_host}:2181/ROOT-PATH
+```
+
+创建一个生产者
+```
+./kafka-console-producer.sh --broker-list ${zk_host}:2181/ROOT-PATH --topic mytopic
+```
+
+创建一个消费者
+```
+./kafka-console-consumer.sh --zookeeper ${zk_host}:2181/ROOT-PATH --from-beginning --topic mytopic
+```
+
+杀掉一个broker
+```
+pkill -9 -f server-1.properties
+```
+注：需要杀掉哪个broker就需要登录到哪台机器上执行以上命令。
+
+查看指定消费者的消费状况
+```
+./kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zkconnect 10.98.213.108:10013/NHN/NELO2/kafka --group river
+```
+
 ## 参考
 
 <http://kafka.apache.org/documentation.html#quickstart>
