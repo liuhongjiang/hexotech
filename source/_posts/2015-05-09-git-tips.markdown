@@ -82,3 +82,27 @@ Note the case difference on the `X` for the two latter commands.
 If `clean.requireForce` is set to "true" (the default) in your configuration, then unless you specify -f nothing will actually happen.
 
 See the [git-clean](http://git-scm.com/docs/git-clean) docs for more information.
+
+## git cache
+
+for git cache on linux, the following command can be used:
+
+```
+git config credential.helper 'store [options]'
+```
+
+the details, please refer to: [git-credential-store](http://git-scm.com/docs/git-credential-store)
+
+#### git cache on windows
+
+"This [git-credential-cache] doesn’t work for Windows systems as git-credential-cache communicates through a Unix socket."
+
+* For msysgit 1.8.1 and above
+
+The wincred helper was added in msysgit 1.8.1. Use it as follows:
+
+```
+git config --global credential.helper wincred
+```
+
+For msysgit versions older than 1.8.1, please refer to: [git: 'credential-cache' is not a git command](http://stackoverflow.com/questions/11693074/git-credential-cache-is-not-a-git-command)
