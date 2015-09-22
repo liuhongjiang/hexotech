@@ -38,7 +38,7 @@ abstract:
 
 然后输入"Pretty JSON", 就可以找到，选择就会安装。
 
-安装好以后，在windows上就可以通过`ctrl+shif+j`进行format了。
+安装好以后，在windows上就可以通过`ctrl+alt+j`进行format了。
 
 其余设置参考： [SublimePrettyJson](https://github.com/dzhibas/SublimePrettyJson)
 
