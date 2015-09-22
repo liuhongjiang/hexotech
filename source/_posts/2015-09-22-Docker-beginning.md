@@ -66,7 +66,6 @@ also you can remove the image by `docker rmi`
 
 
 ## docker command
-
 ```
 docker run         # 运行image
 docker ps -a       # list container
@@ -85,6 +84,7 @@ docker commit      # 将container的修改保存为另外一个image
 docker cp          # 在container和host之间拷贝文件和目录
 ```
 
+
 例如，这是`docker ps`的例子：
 
 {% image center /images/blogimages/2015/docker-ps.png %} 
@@ -93,7 +93,31 @@ docker cp          # 在container和host之间拷贝文件和目录
 
 {% image center /images/blogimages/2015/docker-rm.png %}
 
-## docker proxy
+
+## container的端口expose或者publish
+
+docker的container中容器的端口expose或者publish到宿主机上, 有一下一些方法：
+
+通过Dockerfile
+
+```
+EXPOSE 7000-8000
+```
+
+通过docker run command
+```
+docker run --expose=7000-8000
+```
+
+或者是publish端口
+
+```
+docker run -p 7000-8000:7000-8000
+```
+
+
+
+## docker命令设置proxy
 
 
 Edit `/etc/defaults/docker` and add the following lines:
