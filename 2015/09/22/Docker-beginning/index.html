@@ -26,7 +26,7 @@ d">
 <meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/down-hello-world.png">
 <meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/docker-ps.png">
 <meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/docker-rm.png">
-<meta property="og:updated_time" content="2015-09-22T01:32:08.553Z">
+<meta property="og:updated_time" content="2015-09-22T09:59:46.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识Docker">
 <meta name="twitter:description" content="install docker on ubuntu
@@ -132,7 +132,14 @@ d">
 <img src="/hexotech/images/blogimages/2015/docker-ps.png" class="center">
 <p>这是<code>docker rm</code>命令的例子：</p>
 <img src="/hexotech/images/blogimages/2015/docker-rm.png" class="center">
-<h2 id="docker-proxy">docker proxy</h2>
+<h2 id="container的端口expose或者publish">container的端口expose或者publish</h2>
+<p>docker的container中容器的端口expose或者publish到宿主机上, 有一下一些方法：</p>
+<p>通过Dockerfile</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE <span class="number">7000</span>-<span class="number">8000</span></span><br></pre></td></tr></table></figure>
+<p>通过docker run command <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="command">run</span> <span class="comment">--expose=7000-8000</span></span><br></pre></td></tr></table></figure></p>
+<p>或者是publish端口</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p <span class="number">7000</span>-<span class="number">8000</span>:<span class="number">7000</span>-<span class="number">8000</span></span><br></pre></td></tr></table></figure>
+<h2 id="docker命令设置proxy">docker命令设置proxy</h2>
 <p>Edit <code>/etc/defaults/docker</code> and add the following lines:</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">export</span> http_proxy <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br><span class="line">export https_proxy <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br><span class="line">export HTTP_PROXY <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br><span class="line">export HTTPS_PROXY <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br></pre></td></tr></table></figure>
 <p>This should allow docker daemon to pull images from the central registry. However, if you need to configure the proxy in the Dockerfile (ie. if you’re using apt-get to install packages), you’ll need to declare it there too.</p>
@@ -143,7 +150,7 @@ d">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/" data-id="cieuoam770002t4i499vzocfm" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/" data-id="ciev6nghw0002nwi4c7k5ka9o" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/#disqus_thread" class="article-comment-link">Comments</a>
       
