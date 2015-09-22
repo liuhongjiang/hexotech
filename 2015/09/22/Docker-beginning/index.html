@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>初识Docker | Andrew&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="install docker on ubuntu
+下载安装 http://docs.docker.com/linux/step_one/
+1$ wget -qO- https://get.docker.com/ | sh
+启动docker
+sudo service docker start
+验证安装，这个命令将会下载hello-world的image，将运行一个container：
+d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识Docker">
+<meta property="og:url" content="http://liuhongjiang.github.io/2015/09/22/Docker-beginning/index.html">
+<meta property="og:site_name" content="Andrew's Blog">
+<meta property="og:description" content="install docker on ubuntu
+下载安装 http://docs.docker.com/linux/step_one/
+1$ wget -qO- https://get.docker.com/ | sh
+启动docker
+sudo service docker start
+验证安装，这个命令将会下载hello-world的image，将运行一个container：
+d">
+<meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/down-hello-world.png">
+<meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/docker-ps.png">
+<meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/docker-rm.png">
+<meta property="og:updated_time" content="2015-09-22T01:32:08.553Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识Docker">
+<meta name="twitter:description" content="install docker on ubuntu
+下载安装 http://docs.docker.com/linux/step_one/
+1$ wget -qO- https://get.docker.com/ | sh
+启动docker
+sudo service docker start
+验证安装，这个命令将会下载hello-world的image，将运行一个container：
+d">
+  
+    <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/hexotech/images/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/hexotech/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexotech/">Home</a>
+        
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://liuhongjiang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Docker-beginning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/09/22/Docker-beginning/" class="article-date">
+  <time datetime="2015-09-22T01:18:05.000Z" itemprop="datePublished">2015-09-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初识Docker
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="install-docker-on-ubuntu">install docker on ubuntu</h2>
+<p>下载安装 http://docs.docker.com/linux/step_one/</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget -qO- http<span class="variable">s:</span>//<span class="built_in">get</span>.docker.<span class="keyword">com</span>/ | <span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+<p>启动docker</p>
+<pre><code>sudo service docker start</code></pre>
+<p>验证安装，这个命令将会下载hello-world的image，将运行一个container：</p>
+<pre><code>docker run hello-world</code></pre>
+<a id="more"></a>
+<p>如下图</p>
+<img src="/hexotech/images/blogimages/2015/down-hello-world.png" class="center">
+<h2 id="build-docker">build docker</h2>
+<p>refer to: <a href="http://docs.docker.com/linux/step_four/" class="uri" target="_blank" rel="external">http://docs.docker.com/linux/step_four/</a></p>
+<p>edit Dockerfile:</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">FROM</span> docker/whalesay:latest</span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">apt-get -y update &amp;&amp; apt-get install -y fortunes</span><br><span class="line"></span><span class="built_in">CMD</span> <span class="bash">/usr/games/fortune <span class="operator">-a</span> | cowsay</span></span><br></pre></td></tr></table></figure>
+<p>then build with command:</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">docker</span> <span class="keyword">build </span>-t docker-whale .</span><br></pre></td></tr></table></figure>
+<p>tag image, for example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag <span class="number">7</span>d9495d03763 maryatdocker/docker-whale:latest</span><br></pre></td></tr></table></figure>
+<p>the use <code>docker login</code>, and the posh the image to docker hub:</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">docker</span> <span class="keyword">push </span><span class="keyword">maryatdocker/docker-whale</span></span><br></pre></td></tr></table></figure>
+<p>then you can <code>docker pull</code> your image:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">docker</span> pull yourusername/docker-whale</span><br></pre></td></tr></table></figure>
+<p>also you can remove the image by <code>docker rmi</code></p>
+<h2 id="docker-command">docker command</h2>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker run         <span class="comment"># 运行image</span></span><br><span class="line">docker ps -<span class="operator">a</span>       <span class="comment"># list container</span></span><br><span class="line">docker rm          <span class="comment"># 删除 container</span></span><br><span class="line">docker rmi         <span class="comment"># 删除 image</span></span><br><span class="line">docker images      <span class="comment"># list image</span></span><br><span class="line">docker tag         <span class="comment"># 给image打tag</span></span><br><span class="line">docker login       <span class="comment"># 登录到 docker hub</span></span><br><span class="line">docker push        <span class="comment"># 上传image到docker hub</span></span><br><span class="line">docker pull        <span class="comment"># 从docker hub上下载image</span></span><br><span class="line">docker exec -<span class="keyword">it</span> angry_poitras /bin/bash</span><br><span class="line">				   <span class="comment"># 在正在运行的container中执行命令</span></span><br><span class="line">docker save        <span class="comment"># 将image保存为一个tar包</span></span><br><span class="line">docker <span class="built_in">load</span>        <span class="comment"># 从tar包，或者stdin加载image</span></span><br><span class="line">docker commit      <span class="comment"># 将container的修改保存为另外一个image</span></span><br><span class="line">docker cp          <span class="comment"># 在container和host之间拷贝文件和目录</span></span><br></pre></td></tr></table></figure>
+<p>例如，这是<code>docker ps</code>的例子：</p>
+<img src="/hexotech/images/blogimages/2015/docker-ps.png" class="center">
+<p>这是<code>docker rm</code>命令的例子：</p>
+<img src="/hexotech/images/blogimages/2015/docker-rm.png" class="center">
+<h2 id="docker-proxy">docker proxy</h2>
+<p>Edit <code>/etc/defaults/docker</code> and add the following lines:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">export</span> http_proxy <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br><span class="line">export https_proxy <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br><span class="line">export HTTP_PROXY <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br><span class="line">export HTTPS_PROXY <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br></pre></td></tr></table></figure>
+<p>This should allow docker daemon to pull images from the central registry. However, if you need to configure the proxy in the Dockerfile (ie. if you’re using apt-get to install packages), you’ll need to declare it there too.</p>
+<p>Add the following lines at the top of your Dockerfile:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ENV</span> http_proxy <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br><span class="line">ENV https_proxy <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br><span class="line">ENV HTTP_PROXY <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br><span class="line">ENV HTTPS_PROXY <span class="string">'http://user:password<span class="variable">@proxy</span>-host:proxy-port'</span></span><br></pre></td></tr></table></figure>
+<p>With those settings, your container should now build, using the proxy to access the outside world.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/" data-id="cieuoam770002t4i499vzocfm" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Authentication Anomaly Detection: A Case Study On A Virtual Private Network</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexotech/2015/09/22/Docker-beginning/">初识Docker</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/">Authentication Anomaly Detection: A Case Study On A Virtual Private Network</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/08/31/jenkins-tips/">Jenkins tips</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/08/26/install-kafka/">Install kafka</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/08/26/install-zookeeper/">Install zookeeper</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Andrew Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'andrewliu117';
+  
+  var disqus_url = 'http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/hexotech/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+<!--<script type="text/x-mathjax-config">-->
+<!--MathJax.Hub.Config({-->
+  <!--tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}-->
+<!--});-->
+<!--</script>-->
+<!--<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">-->
+<!--</script>-->
+
+
+  <link rel="stylesheet" href="/hexotech/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/hexotech/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/hexotech/js/script.js" type="text/javascript"></script>
+
+
+
+  </div>
+</body>
+</html>

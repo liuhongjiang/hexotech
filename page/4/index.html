@@ -61,6 +61,123 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-svm-ocr" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2012/12/29/svm-ocr/" class="article-date">
+  <time datetime="2012-12-29T14:37:00.000Z" itemprop="datePublished">2012-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2012/12/29/svm-ocr/">基于SVM的手写数字识别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前面两篇blog介绍了<a href="/2012/12/26/2012-12-26-svm/">支持向量机SVM</a>和<a href="/2012/12/28/2012-12-28-svm-smo/">SMO算法</a>，这一篇就讲讲SVM的一个简单实际应用：使用svm实现一个简单的数字手写识别软件。首先要解决如何使用svm进行多类分类。</p>
+<h2 id="svm与多类分类1">svm与多类分类<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h2>
+<p>svm是一个二类的分类器，即它只回答属于正类还是负类的问题。而现实中要解决的问题，往往是多类的问题，比如文本分类，比如数字识别。如何由两类分类器得到多类分类器, 一般有三种方法：</p>
+<h3 id="一对多一对其余">一对多（一对其余）</h3>
+<p>比如我们有5个类别，第一次就把类别1的样本定为正样本，其余2，3，4，5的样本合起来定为负样本，这样得到一个两类分类器。 通过类似的方法构造类别2、3、4、5的分类器，对于测试数据，每一个分类器都过一次，在那个分类器中，被判定为正，那么就认识它属于那个分类。 但有两个问题还没有解决：一是被多个分类器判定为正，二是被所有分类器判定为负。第一种情况，可以简单地选择第一个被判定为正的分类，对二种情况，可以视为分类失败了。另外一个问题是，“其余”的那一类样本数总是要数倍于正类（因为它是除正类以外其他类别的样本之和嘛），这就人为的造成了的<a href="http://www.blogjava.net/zhenandaci/archive/2009/03/17/260315.html">“数据集偏斜”</a>问题。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2012/12/29/svm-ocr/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/" data-id="cieuoamu8001ut4i45g2ah3ko" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-svm-smo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2012/12/28/svm-smo/" class="article-date">
+  <time datetime="2012-12-28T01:01:00.000Z" itemprop="datePublished">2012-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2012/12/28/svm-smo/">SMO序列最小最优化算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上一篇blog讲到了<a href="/blog/2012/12/26/svm/">svm的原理</a>，最后将需要解决问题抽象成了数学公式，但如何利用计算机，解出这些数学公式的答案。换句话说，就是怎么通过计算机算出我们的svm模型的参数呢？方法就是序列最小最优化(sequential minimal optimization, SMO)算法。</p>
+<p>首先回顾一下SVM模型的数学表达，即svm的对偶问题:</p>
+<p><span class="math display">\[
+\begin{array}{l}
+\mathop {\min }\limits_a \qquad \frac{1}{2}\sum\limits_{i = 1}^N {\sum\limits_{j = 1}^N { {a_i}{a_j}{y_i}{y_j}K({x_i},{x_j}) - \sum\limits_{i = 1}^N { {a_i}} } } \\
+{\rm{s.t.}}\qquad\sum\limits_{i = 1}^N { {a_i}{y_i} = 0} \\
+\qquad\qquad 0 \le {a_i} \le C, \qquad i = 1,2,\cdot\cdot\cdot,N
+\end{array}
+\]</span></p>
+<p>选择一个 $ {a^*} $ 的正分量 $ 0  C $ , 计算（或者通过所有解求平均值）：</p>
+<p><span class="math display">\[
+{b^*} = {y_j} - \sum\limits_{i = 1}^N {a_i^*{y_i}K({x_i} \cdot {x_j})} 
+\]</span></p>
+<p>决策函数为</p>
+<p><span class="math display">\[
+f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
+\]</span></p>
+<p>svm的学习，就是通过训练数据计算出<span class="math inline">\({a^\*}\)</span>和<span class="math inline">\({b^\*}\)</span>，然后通过决策函数判定<span class="math inline">\({x_j}\)</span>的分类。其中<span class="math inline">\({a^\*}\)</span>是一个向量，长度与训练数据的样本数相同，如果训练数据很大，那么这个向量会很长，不过绝大部分的分量值都是0，只有支持向量的对应的分量值大于0 。</p>
+<p>SMO是一种启发式算法，其基本思想是：如果所有变量的解都满足了此最优化问题的KKT条件，那么这个最优化问题的解就得到了。否则，选择两个变量，固定其它变量，针对这两个变量构建一个二次规划问题，然后关于这个二次规划的问题的解就更接近原始的二次归还问题的解，因为这个解使得需要优化的问题的函数值更小。</p>
+<p>翻译一下：对于svm我们要求解<span class="math inline">\({a^\*}\)</span>，如果 <span class="math inline">\({a^\*}\)</span> 的所有分量满足svm对偶问题的KKT条件，那么这个问题的解就求出来了，我们svm模型学习也就完成了。如果没有满足KKT，那么我们就在 <span class="math inline">\({a^\*}\)</span> 中找两个分量 <span class="math inline">\({a_i}\)</span> 和 <span class="math inline">\({a_j}\)</span>，其中 <span class="math inline">\({a_i}\)</span> 是违反KKT条件最严重的分量，通过计算，使得 <span class="math inline">\({a_i}\)</span> 和 <span class="math inline">\({a_j}\)</span> 满足KKT条件，直到<span class="math inline">\({a^\*}\)</span> 的所有分量都满足KKT条件。而且这个计算过程是收敛的，因为每次计算出来的新的两个分量，使得对偶问题中要优化的目标函数（就是min对应的那个函数）值更小。至于为什么是收敛的，是因为，每次求解的那两个分量，是要优化问题在这两个分量上的极小值，所以每一次优化，都会使目标函数比上一次的优化结果的值变小。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2012/12/28/svm-smo/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/" data-id="cieuoamug001wt4i4tzo1pm2q" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-svm" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexotech/2012/12/26/svm/" class="article-date">
@@ -99,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/" data-id="cie2ew5ex001u8oi4fzpo6ehf" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/" data-id="cieuoamuj001yt4i4loo8d8fn" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -146,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/" data-id="cie2ew5f1001w8oi4jzp1ajxc" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/" data-id="cieuoamv90020t4i4uept01iu" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -197,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="cie2ew5fk001z8oi4v2d3j1nz" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="cieuoamvc0023t4i4fuovj2sd" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -246,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/" data-id="cie2ew5fo00218oi40qmogycu" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/" data-id="cieuoamvf0025t4i4y5yqw7qy" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -293,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/" data-id="cie2ew5g700238oi4psdkv15p" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/" data-id="cieuoamvh0027t4i4t4zpg1df" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -357,7 +474,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/" data-id="cie2ew5gc00268oi4o3x13q32" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/" data-id="cieuoamvt002at4i42zz2nku2" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -420,7 +537,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/math/" data-id="cie2ew5gn00298oi4vxmxduad" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/math/" data-id="cieuoamvw002dt4i4rp9dwupb" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/21/math/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -473,60 +590,9 @@ gU$ ：从光标所在位置到行尾变为大写<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/how-to-build-blog/" data-id="cie2ew5gq002b8oi4aoxe92ti" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/how-to-build-blog/" data-id="cieuoamvz002ft4i4e2or0x12" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/21/how-to-build-blog/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-first-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2012/11/13/first-blog/" class="article-date">
-  <time datetime="2012-11-13T02:30:00.000Z" itemprop="datePublished">2012-11-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2012/11/13/first-blog/">第一篇</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<h2 id="桃花庵歌">桃花庵歌</h2>
-<h4 id="唐伯虎">——唐伯虎</h4>
-<p>桃花坞里桃花庵，桃花庵下桃花仙。桃花仙人种桃树，又摘桃花换酒钱。<br />
-酒醒只在花前坐，酒醉还来花下眠。半醉半醒日复日，花落花开年复年。<br />
-但愿老死花酒间，不愿鞠躬车马前。车尘马足显者事，酒盏花枝隐士缘。<br />
-若将显者比隐士，一在平地一在天。若将花酒比车马，彼何碌碌我何闲。<br />
-别人笑我太疯癫，我笑他人看不穿。不见五陵豪杰墓，无花无酒锄作田。</p>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2012/11/13/first-blog/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/13/first-blog/" data-id="cie2ew5ab00008oi4fckh53xm" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2012/11/13/first-blog/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -539,7 +605,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/hexotech/page/3/">&laquo; Prev</a><a class="page-number" href="/hexotech/">1</a><a class="page-number" href="/hexotech/page/2/">2</a><a class="page-number" href="/hexotech/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/hexotech/page/3/">&laquo; Prev</a><a class="page-number" href="/hexotech/">1</a><a class="page-number" href="/hexotech/page/2/">2</a><a class="page-number" href="/hexotech/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/hexotech/page/5/">5</a><a class="extend next" rel="next" href="/hexotech/page/5/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -549,7 +615,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -562,7 +628,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -574,6 +640,14 @@ gU$ ：从光标所在位置到行尾变为大写<br>
       <ul>
         
           <li>
+            <a href="/hexotech/2015/09/22/Docker-beginning/">初识Docker</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/">Authentication Anomaly Detection: A Case Study On A Virtual Private Network</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/08/31/jenkins-tips/">Jenkins tips</a>
           </li>
         
@@ -583,14 +657,6 @@ gU$ ：从光标所在位置到行尾变为大写<br>
         
           <li>
             <a href="/hexotech/2015/08/26/install-zookeeper/">Install zookeeper</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/08/25/install-spark/">Install spark</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/08/24/install-hadoop/">Install hadoop</a>
           </li>
         
       </ul>
