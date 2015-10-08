@@ -115,10 +115,7 @@ docker run --expose=7000-8000
 docker run -p 7000-8000:7000-8000
 ```
 
-
-
 ## docker命令设置proxy
-
 
 Edit `/etc/defaults/docker` and add the following lines:
 
