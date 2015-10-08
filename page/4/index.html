@@ -61,6 +61,173 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-simple-master-election" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2013/01/18/simple-master-election/" class="article-date">
+  <time datetime="2013-01-18T09:44:00.000Z" itemprop="datePublished">2013-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2013/01/18/simple-master-election/">霸道算法和环选举算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在主流的分布式集群一致性问题大多都吸收了PAXOS算法<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>的思想。然而，如果完全按照Leslie Lamport的论文<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>，实现复杂度比较高。因此，大多数实现都采用PAXOS的某种变形。Lamport的重要贡献，献是把分布式一致性的问题，形式化并给出了证明，给出了理论指导。<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<p>关于Paxos算法，在网上看到了一个Fast Paxos算法，见淘宝核心系统团队博客, <a href="http://rdc.taobao.com/blog/cs/?p=162">paxos 实现</a></p>
+<p>Paxos算法看起来还是很复杂的，没有仔细研究，倒是在网上另外找到了两个简单的master选举算法。</p>
+<h2 id="霸道算法">霸道算法</h2>
+<p>Garcia-Monila 在 1982 年的一篇论文中发明了所谓的霸道选举算法（Bully Algorithm）<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>。当一个进程 P 发现协调者进程不再响应时，这个进程就召集选举。由于进程的独立性，在同一个时刻，系统中可能有多个召集选举的过程。假设 P 是召集选举的进程，每个召集选举的过程如下：</p>
+<ol style="list-style-type: decimal">
+<li>P 向所有比自己编号大的进程发送一条 ELECTION（选举）消息。</li>
+<li>如果 P 得不到任何回复，则 P 赢得选举，P 向所有进程发送 COORDINATOR（协调者）消息，宣布自己的胜利。</li>
+<li>如果 P 得到任何一个回复，回复一定来自于比自己编号大的进程。P 的召集选举的工作结束，因为 P 此时已经不可能赢得选举。</li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2013/01/18/simple-master-election/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/18/simple-master-election/" data-id="cifhng2bz001qcgi4vuyae0h4" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2013/01/18/simple-master-election/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-shell-prompting" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2013/01/16/shell-prompting/" class="article-date">
+  <time datetime="2013-01-16T01:29:00.000Z" itemprop="datePublished">2013-01-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2013/01/16/shell-prompting/">linux命令行提示符配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>linux下shell提示符可以任意配置的。</p>
+<p>首先看看bash的配置文件，一般在用户的HOME目录下有这样几个文件<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>：</p>
+<ul>
+<li>.bash_history ：记录了您以前输入的命令，</li>
+<li>.bash_logout ：当您退出 shell 时，要执行的命令，</li>
+<li>.bash_profile ：当您登入 shell 时，要执行的命令，</li>
+<li>.bashrc ：每次打开新的 shell 时，要执行的命令。</li>
+</ul>
+<p>这些文件是每一位用户的设置。系统级的设置存储在’/etc/profile’、‘/etc/bashrc’及目录’/etc/profile.d’下的文件中。但您得习惯用各自的配置文件：编辑不需要’root’权限，还可以使您的设置更有个性。当系统级与用户级的设置发生冲突时，将采用用户的设置。</p>
+<p>每次当您打开一个控制台(console)或 xterm 时，最先看到的就是提示符(prompt)，类似于：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">account@hostname ~ $</span><br></pre></td></tr></table></figure>
+<p>在默认设置下，提示符将显示您的用户名、主机名（默认是’localhost’）、当前所在目录（在Unix中，‘~’表示您的home目录）。 按照传统，最后一个字符可以标识您是普通用户（<code>$</code>），还是’root’（<code>#</code>）。 您可以通过 <code>$PS1</code>, <code>$PS2</code> 变量来设置提示符，<code>$PS2</code>是当在多行内输入一个命令时，换行后，出现的提示符。命令</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2013/01/16/shell-prompting/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/16/shell-prompting/" data-id="cifhng2c6001tcgi48q2rd083" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2013/01/16/shell-prompting/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-es" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2013/01/11/es/" class="article-date">
+  <time datetime="2013-01-11T09:08:00.000Z" itemprop="datePublished">2013-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2013/01/11/es/">elasticsearch之基本操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.elasticsearch.org">elasticsearch</a>是一个是开源的（Apache2协议），分布式的，<a href="http://zh.wikipedia.org/zh-cn/REST">RESTful</a>的，构建在<a href="http://lucene.apache.org/">Apache Lucene</a>之上的的搜索引擎。</p>
+<p>它有很多特点例如Schema Free，Document Oriented。它是#nosql的，基于JSON，同时支持多种API，包括HTTP, thrift, memcached。支持HTTP,是比较爽的一点，因为基本上所有的应用都可以用ES了，页面上的js脚本都可以去查询。</p>
+<h2 id="安装">安装</h2>
+<p>启动和安装特别简单，在<a href="http://www.elasticsearch.org/download/">ES下载页面</a>下载zip或者tar包后，解压，然后到elasticsearch的目录下，运行下面的命令就可以了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/elasticsearch <span class="operator">-f</span></span><br></pre></td></tr></table></figure>
+<p>搭建集群也非常简单，在同网段的机器上，启动es后，它们会自动组建成一个集群，并完成数据的分布式存储，查询时也会按照分布式的方式去查找。</p>
+<p>好了恭喜你，现在你已经可以搭建ES单机版和ES集群了，一切都这么简单。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2013/01/11/es/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/11/es/" data-id="cifhng2c9001wcgi4opn6n5nt" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2013/01/11/es/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-svm-ocr" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexotech/2012/12/29/svm-ocr/" class="article-date">
@@ -100,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/" data-id="ciev6ngna001unwi4l3qj4rcu" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/" data-id="cifhng2ca001ycgi4xuv9d6gg" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -166,7 +333,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/" data-id="ciev6ngnd001wnwi4z8d9buv5" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/" data-id="cifhng2cc0020cgi4ll2qgmv7" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -216,7 +383,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/" data-id="ciev6ngnf001ynwi4uc8h4c74" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/" data-id="cifhng2ce0022cgi4ru5eof9j" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -263,7 +430,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/" data-id="ciev6ngno0020nwi4x7hft680" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/" data-id="cifhng2cj0024cgi4c29u04mz" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -314,7 +481,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="ciev6ngnr0023nwi4kmmheexp" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="cifhng2cl0027cgi4y06yhjni" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -363,7 +530,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/" data-id="ciev6ngnu0025nwi42gqu97i1" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/" data-id="cifhng2cn0029cgi4atelku7i" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -410,189 +577,9 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/" data-id="ciev6ngnw0027nwi4dmtqjwj7" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/" data-id="cifhng2cq002bcgi4okp60rg5" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-learning-vim" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2012/11/22/learning-vim/" class="article-date">
-  <time datetime="2012-11-22T02:22:00.000Z" itemprop="datePublished">2012-11-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/Vi/">Vi</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2012/11/22/learning-vim/">读Vim手册笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="书籍">书籍</h2>
-<pre><code>《VIM用户手册》  
-作者: Bram Moolenaar  
-翻译: ZhaoRuFei&lt;slimzhao@hotmail.com&gt;  
-版本: 7.0  </code></pre>
-<p>{: .sh-bash}</p>
-<h2 id="笔记">笔记</h2>
-<ol style="list-style-type: decimal">
-<li><strong>要退出Vim, 用命令“ZZ”. 该命令保存当前文件并退出Vim.</strong></li>
-<li>如果你在放弃所有修改后还想以该文件的初始内容作为开始继续编辑, 还可以用“:e!”命令放弃所有修改并重新载入该文件的原始内容.</li>
-</ol>
-<h2 id="奇技淫巧">奇技淫巧</h2>
-<ol style="list-style-type: decimal">
-<li>d^ 删除光标到行首第一个非空白字符之间的内容，可用于删除行首的空白</li>
-<li>gu/gU 大小写转化，gu小写，gU转为大写.<br>
-u/U： 选中区域，直接进行大小写转换 gg gu G：整篇文章大写转化为小写。<br>
-gU0 ：从光标所在位置到行首变为大写<br>
-gU$ ：从光标所在位置到行尾变为大写<br>
-</li>
-<li><a href="http://www.cnblogs.com/respawn/archive/2012/08/21/2649483.html" target="_blank" rel="external">vundle 管理vim插件</a></li>
-<li>vim查看编译错误 <code>:make</code> 进行编译，需要在makefile所在的目录下打开文件 <code>:cw</code> 带开quickfix窗口 cn （next）下一条 cp (previous) 上一条 cw (显示warning) cc 显示错误 col 前一个旧的错误 勘误表 col 后一个旧的勘误表 cnew 后一个较新的错误列表 ( :help :cnew )</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/" data-id="ciev6ngoa002anwi4tz5qilfr" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2012/11/22/learning-vim/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-math" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2012/11/21/math/" class="article-date">
-  <time datetime="2012-11-21T04:49:00.000Z" itemprop="datePublished">2012-11-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/math/">math</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2012/11/21/math/">显示公式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在网页或blog中引用数学公式是一件痛苦的事情。经过几番在网上的查找，算是勉强找到了一个借鉴方法。借用强大的<code>MathJax + Latex</code>就可以解决这个问题。废话少说，先来一个例子</p>
-<p><span class="math display">\[
-\begin{aligned}
-  &amp; \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
-  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
-  &amp; (x_1, \ldots, x_n) \left( \begin{array}{ccc}
-      \phi(e_1, e_1) &amp; \cdots &amp; \phi(e_1, e_n) \\
-      \vdots &amp; \ddots &amp; \vdots \\
-      \phi(e_n, e_1) &amp; \cdots &amp; \phi(e_n, e_n)
-    \end{array} \right)
-  \left( \begin{array}{c}
-      y_1 \\
-      \vdots \\
-      y_n
-    \end{array} \right)
-\end{aligned}
-\]</span></p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2012/11/21/math/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/math/" data-id="ciev6ngod002dnwi40prd7mce" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2012/11/21/math/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-how-to-build-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2012/11/21/how-to-build-blog/" class="article-date">
-  <time datetime="2012-11-21T02:40:00.000Z" itemprop="datePublished">2012-11-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/octopress/">octopress</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2012/11/21/how-to-build-blog/">使用Octopress搭建博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="如何搭建blog">如何搭建blog</h2>
-<ul>
-<li>这个blog是使用<a href="http://octopress.org/">Octopress</a>搭建的，它是一种基于<a href="https://github.com/mreid/jekyll/">Jekyll</a>的博客框架。</li>
-<li>存放在<a href="https://github.com/">github</a>上。</li>
-<li>markdown解析器用的<a href="http://kramdown.rubyforge.org/">kramdown</a></li>
-<li>数学公式解析器用的<a href="http://www.mathjax.org/">MathJax</a></li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2012/11/21/how-to-build-blog/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/21/how-to-build-blog/" data-id="ciev6ngog002fnwi4m1r2k1cr" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2012/11/21/how-to-build-blog/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -615,7 +602,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -628,7 +615,7 @@ gU$ ：从光标所在位置到行尾变为大写<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -640,23 +627,23 @@ gU$ ：从光标所在位置到行尾变为大写<br>
       <ul>
         
           <li>
+            <a href="/hexotech/2015/09/30/vpn-server/">vpn server 搭建</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/09/30/tmux/">tmux</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/09/30/underscore-template/">underscore template</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/09/22/Docker-beginning/">初识Docker</a>
           </li>
         
           <li>
             <a href="/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/">Authentication Anomaly Detection: A Case Study On A Virtual Private Network</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/08/31/jenkins-tips/">Jenkins tips</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/08/26/install-kafka/">Install kafka</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/08/26/install-zookeeper/">Install zookeeper</a>
           </li>
         
       </ul>
