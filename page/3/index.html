@@ -61,6 +61,123 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-git-reference" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/05/09/git-reference/" class="article-date">
+  <time datetime="2015-05-09T06:35:00.000Z" itemprop="datePublished">2015-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/git/">git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/05/09/git-reference/">git reference</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="git-ref">git ref</h2>
+<p>可以使用下面的命令查看ref</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show HEAD</span><br></pre></td></tr></table></figure>
+<h2 id="head-vs-orig_head">HEAD vs ORIG_HEAD</h2>
+<p>HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless you made some changes, or equivalent), and it is a commit on top of which “git commit” would make a new one. Usually HEAD is symbolic reference to some other named branch; this branch is currently checked out branch, or current branch. HEAD can also point directly to a commit; this state is called “detached HEAD”, and can be understood as being on unnamed, anonymous branch.</p>
+<p><strong>ORIG_HEAD is previous state of HEAD, set by commands that have possibly dangerous behavior, to be easy to revert them.</strong> It is less useful now that Git has reflog: HEAD@{1} is roughly equivalent to ORIG_HEAD (HEAD@{1} is always last value of HEAD, ORIG_HEAD is last value of HEAD before dangerous operation).</p>
+<p>“pull” or “merge” always leaves the original tip of the current branch in ORIG_HEAD.</p>
+<p>HEAD is a moving pointer. Sometimes it means the current branch, sometimes it doesn’t.</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/05/09/git-reference/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-reference/" data-id="cifqlfoor0018ooi4nwl43g7q" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/05/09/git-reference/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git-commit-message-convention" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/04/30/git-commit-message-convention/" class="article-date">
+  <time datetime="2015-04-30T00:58:00.000Z" itemprop="datePublished">2015-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/git/">git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/04/30/git-commit-message-convention/">git commit message convention</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I collect all information for internet, I did not write a single word.</p>
+<p>A well-crafted git commit message is the best way to communicate context about a change to fellow developers (and indeed to their future selves)</p>
+<h2 id="examples">examples</h2>
+<p>example of commit messages:</p>
+<pre><code>Capitalized, short (50 chars or less) summary
+
+More detailed explanatory text, if necessary.  Wrap it to about 72
+characters or so.  In some contexts, the first line is treated as the
+subject of an email and the rest of the text as the body.  The blank
+line separating the summary from the body is critical (unless you omit
+the body entirely); tools like rebase can get confused if you run the 
+two together.
+   
+- Bullet points are okay, too
+- Typically a hyphen or asterisk is used for the bullet, followed by a
+  single space, with blank lines in between, but conventions vary here
+- Use a hanging indent</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/04/30/git-commit-message-convention/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/" data-id="cifqlfoot001aooi48qiehqku" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/04/30/git-commit-message-convention/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-apache-maintenance-mode" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexotech/2015/04/17/apache-maintenance-mode/" class="article-date">
@@ -93,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/" data-id="cifhng2920016cgi48utg2l6c" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/" data-id="cifqlfoou001cooi40lcl0w4y" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/04/17/apache-maintenance-mode/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -139,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2014/05/16/the-cathedral-and-the-bazaar/" data-id="cifhng2940017cgi4lvnsko0p" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2014/05/16/the-cathedral-and-the-bazaar/" data-id="cifqlfoow001dooi43d01un7o" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2014/05/16/the-cathedral-and-the-bazaar/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -184,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2014/05/16/rules/" data-id="cifhng2950018cgi4cxlsseco" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2014/05/16/rules/" data-id="cifqlfoox001eooi4rsvy2ixp" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2014/05/16/rules/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -259,7 +376,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/11/25/learning-go/" data-id="cifhng2970019cgi4qhgwfle0" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/11/25/learning-go/" data-id="cifqlfop0001fooi48wn8vawb" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/11/25/learning-go/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -316,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/08/18/tree/" data-id="cifhng299001ccgi4xb32m6dw" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/08/18/tree/" data-id="cifqlfop2001iooi4ogfesk0u" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/08/18/tree/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -369,7 +486,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/02/25/lisp-notes/" data-id="cifhng29b001fcgi4qsh6mkby" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/02/25/lisp-notes/" data-id="cifqlfopl001looi4q401egal" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/02/25/lisp-notes/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -427,7 +544,7 @@ While there are more examples in S
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/31/svm-pegasos/" data-id="cifhng29d001gcgi4gdjg6xnd" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/31/svm-pegasos/" data-id="cifqlfopn001mooi422wj0n5w" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/31/svm-pegasos/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -486,120 +603,9 @@ While there are more examples in S
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/23/zk-overview/" data-id="cifhng2bq001jcgi40bwcl95f" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/23/zk-overview/" data-id="cifqlfops001pooi4p0c6jgio" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/23/zk-overview/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-github-https" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2013/01/22/github-https/" class="article-date">
-  <time datetime="2013-01-22T05:08:00.000Z" itemprop="datePublished">2013-01-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2013/01/22/github-https/">使用https连接github</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>火车票插件拖垮github的事件的结果，就是github被悲催地墙掉了。愤慨啊。Fuck GFW!</p>
-<p>不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上<span class="citation">[@蒋伟]</span>(http://www.weibo.com/neilxp)找到了一个通过<a href="http://www.weibo.com/1791166224/zfvJvnG39" target="_blank" rel="external">https连接github的办法</a>，总结一下如下：</p>
-<ol style="list-style-type: decimal">
-<li>安装goagent</li>
-<li><p>导入ca.crt证书 导入goagent目录下的local/CA.crt<br>
-ubuntu导入证书<br>
-http://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate</p></li>
-<li>启动代理 python proxy.py</li>
-<li>设置代理： export HTTPS_PROXY=“http://127.0.0.1:8087”</li>
-<li>github配置，关键一步是remote add的时候，方法是：<br>
-git remote add origin https://liuhongjiang@github.com/liuhongjiang/tech.git<br>
-这样就可以正常地pull和push了，麻烦的是，每次都要输入秘密。<br>
-</li>
-<li><p>接下来就是octopress的rake deploy了： 需要修改Rakefile：</p>
-<pre><code># user = repo_url.match(/:([^\/]+)/)[1]
-user = repo_url.match(/github\.com.([^\/]+)/)[1]
-# branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? &#39;gh-pages&#39; : &#39;master&#39;
-branch = (repo_url.match(/\/[\w-]+\.github\.com$/).nil?) ? &#39;gh-pages&#39; : &#39;master&#39;
-# project = (branch == &#39;gh-pages&#39;) ? repo_url.match(/\/([^\.]+)/)[1] : &#39;&#39;
-project = (branch == &#39;gh-pages&#39;) ? repo_url.match(/\/([^\/^\.]+)$/)[1] : &#39;&#39;</code></pre>
-<p>然后在<code>rake setup_github_pages</code>命令中填https的url地址：<br>
-https://liuhongjiang@github.com/liuhongjiang/tech<br>
-同样在部署的时候，还是要输入密码</p></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/22/github-https/" data-id="cifhng2bs001mcgi4alq6d5js" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2013/01/22/github-https/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2012" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2013/01/19/2012/" class="article-date">
-  <time datetime="2013-01-19T08:20:00.000Z" itemprop="datePublished">2013-01-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2013/01/19/2012/">我的2012</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一直说写一篇2012年的总结，但元旦以来的这段时间忙东忙西，再加上自己的拖延症，始终没有写。今天终于鼓起勇气，下定决心，要把这篇总结写完，在旁边放了一把菜刀，写不完，不自刎谢罪，也要卸下一只胳膊。</p>
-<p>2012年多多少少也是特别的一年，最主要的是那部有名的《2012》。现在庆幸时间没有终结在2012年12月21日，劫后余生。《2012》对我的影响不是那震撼的场面，也不是世界终结的恐慌，而是对人生的认识。也许明天世界就终结了，那我们应该怎么办，今天还有什么意义？12月20日那天，网上、微博上各种调侃，各种问题，五花八门。其中有个问题是这样的：明天世界都要结束了，今天晚上怎么过？各种答案，去酒吧疯狂一晚上，或者喝个天昏地暗，处男就去花点钱。我当时想的是回家早点洗洗睡了，明天还要上班啊。</p>
-<p>把最后一天当成每一天度过，没有什么特别的，做自己该做的，完成该完成的，一步一步地往前走。这也许就是我2012年的寄语吧。</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2013/01/19/2012/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/19/2012/" data-id="cifhng2bx001pcgi4p0k2l3su" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2013/01/19/2012/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -622,7 +628,7 @@ https://liuhongjiang@github.com/liuhongjiang/tech<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -635,7 +641,7 @@ https://liuhongjiang@github.com/liuhongjiang/tech<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -647,6 +653,14 @@ https://liuhongjiang@github.com/liuhongjiang/tech<br>
       <ul>
         
           <li>
+            <a href="/hexotech/2015/10/14/alembic-support-multiple-model-files/">alembic support multiple model files</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/10/14/install-ftp/">设置ftp匿名下载的服务</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/09/30/vpn-server/">vpn server 搭建</a>
           </li>
         
@@ -656,14 +670,6 @@ https://liuhongjiang@github.com/liuhongjiang/tech<br>
         
           <li>
             <a href="/hexotech/2015/09/30/underscore-template/">underscore template</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/09/22/Docker-beginning/">初识Docker</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/">Authentication Anomaly Detection: A Case Study On A Virtual Private Network</a>
           </li>
         
       </ul>

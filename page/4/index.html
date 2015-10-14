@@ -61,6 +61,117 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-github-https" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2013/01/22/github-https/" class="article-date">
+  <time datetime="2013-01-22T05:08:00.000Z" itemprop="datePublished">2013-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2013/01/22/github-https/">使用https连接github</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>火车票插件拖垮github的事件的结果，就是github被悲催地墙掉了。愤慨啊。Fuck GFW!</p>
+<p>不过有了goagent的代理，github的网站是可以上了，但是命令行上面pull，push就不灵了。新浪微博上<span class="citation">[@蒋伟]</span>(http://www.weibo.com/neilxp)找到了一个通过<a href="http://www.weibo.com/1791166224/zfvJvnG39" target="_blank" rel="external">https连接github的办法</a>，总结一下如下：</p>
+<ol style="list-style-type: decimal">
+<li>安装goagent</li>
+<li><p>导入ca.crt证书 导入goagent目录下的local/CA.crt<br>
+ubuntu导入证书<br>
+http://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate</p></li>
+<li>启动代理 python proxy.py</li>
+<li>设置代理： export HTTPS_PROXY=“http://127.0.0.1:8087”</li>
+<li>github配置，关键一步是remote add的时候，方法是：<br>
+git remote add origin https://liuhongjiang@github.com/liuhongjiang/tech.git<br>
+这样就可以正常地pull和push了，麻烦的是，每次都要输入秘密。<br>
+</li>
+<li><p>接下来就是octopress的rake deploy了： 需要修改Rakefile：</p>
+<pre><code># user = repo_url.match(/:([^\/]+)/)[1]
+user = repo_url.match(/github\.com.([^\/]+)/)[1]
+# branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? &#39;gh-pages&#39; : &#39;master&#39;
+branch = (repo_url.match(/\/[\w-]+\.github\.com$/).nil?) ? &#39;gh-pages&#39; : &#39;master&#39;
+# project = (branch == &#39;gh-pages&#39;) ? repo_url.match(/\/([^\.]+)/)[1] : &#39;&#39;
+project = (branch == &#39;gh-pages&#39;) ? repo_url.match(/\/([^\/^\.]+)$/)[1] : &#39;&#39;</code></pre>
+<p>然后在<code>rake setup_github_pages</code>命令中填https的url地址：<br>
+https://liuhongjiang@github.com/liuhongjiang/tech<br>
+同样在部署的时候，还是要输入密码</p></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/22/github-https/" data-id="cifqlfopw001sooi4k5szepba" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2013/01/22/github-https/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2012" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2013/01/19/2012/" class="article-date">
+  <time datetime="2013-01-19T08:20:00.000Z" itemprop="datePublished">2013-01-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2013/01/19/2012/">我的2012</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一直说写一篇2012年的总结，但元旦以来的这段时间忙东忙西，再加上自己的拖延症，始终没有写。今天终于鼓起勇气，下定决心，要把这篇总结写完，在旁边放了一把菜刀，写不完，不自刎谢罪，也要卸下一只胳膊。</p>
+<p>2012年多多少少也是特别的一年，最主要的是那部有名的《2012》。现在庆幸时间没有终结在2012年12月21日，劫后余生。《2012》对我的影响不是那震撼的场面，也不是世界终结的恐慌，而是对人生的认识。也许明天世界就终结了，那我们应该怎么办，今天还有什么意义？12月20日那天，网上、微博上各种调侃，各种问题，五花八门。其中有个问题是这样的：明天世界都要结束了，今天晚上怎么过？各种答案，去酒吧疯狂一晚上，或者喝个天昏地暗，处男就去花点钱。我当时想的是回家早点洗洗睡了，明天还要上班啊。</p>
+<p>把最后一天当成每一天度过，没有什么特别的，做自己该做的，完成该完成的，一步一步地往前走。这也许就是我2012年的寄语吧。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2013/01/19/2012/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/19/2012/" data-id="cifqlfoq6001vooi4bdfdot7c" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2013/01/19/2012/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-simple-master-election" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexotech/2013/01/18/simple-master-election/" class="article-date">
@@ -105,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/18/simple-master-election/" data-id="cifhng2bz001qcgi4vuyae0h4" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/18/simple-master-election/" data-id="cifqlfoq8001wooi4q3mni9qc" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/18/simple-master-election/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -163,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/16/shell-prompting/" data-id="cifhng2c6001tcgi48q2rd083" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/16/shell-prompting/" data-id="cifqlfoqa001zooi4969una4b" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/16/shell-prompting/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -216,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/11/es/" data-id="cifhng2c9001wcgi4opn6n5nt" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2013/01/11/es/" data-id="cifqlfoqc0021ooi4v3bgud8l" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2013/01/11/es/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -267,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/" data-id="cifhng2ca001ycgi4xuv9d6gg" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/" data-id="cifqlfoqi0023ooi40p5ox5ud" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/29/svm-ocr/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -333,7 +444,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/" data-id="cifhng2cc0020cgi4ll2qgmv7" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/" data-id="cifqlfoqk0025ooi41x03w0yi" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/28/svm-smo/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -383,7 +494,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/" data-id="cifhng2ce0022cgi4ru5eof9j" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/" data-id="cifqlfoqm0027ooi43xsxbqm4" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/26/svm/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -430,7 +541,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/" data-id="cifhng2cj0024cgi4c29u04mz" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/" data-id="cifqlfoqp0029ooi4ng22yl7x" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/12/07/jni-call/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -481,105 +592,9 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="cifhng2cl0027cgi4y06yhjni" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/" data-id="cifqlfoqs002cooi4cfdcst9i" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2012/11/30/virtual-inheritance/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-virtual-function" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2012/11/29/virtual-function/" class="article-date">
-  <time datetime="2012-11-29T01:30:00.000Z" itemprop="datePublished">2012-11-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/C-C/">C/C++</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2012/11/29/virtual-function/">虚函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>面试的时候，常常宣称自己是一个C++程序员，不免就会被问一些有关C++的问题，例如虚函数的实现原理；析构函数是否能定义为虚函数等等。很多时候都回答不上来，就总会以时间久了忘了，搪塞过去，面试完，可能回去查查答案，但也总是不求甚解。</p>
-<p>既然有了博客，我就准备看看这些方面的内容，希望能记录下来，有所积累。于是就到网上查,或在书上找找，后来发现里面的内容太多了，不是一篇两篇博客就能写完的。于是没有办法，就只有硬着头皮写一个系列了。今天是第一部分虚函数和虚继承。</p>
-<p>C++的关键字virtual只能用在两个地方，一是定义类的成员函数为虚函数，二是定义类的继承关系为虚继承。这两点的用处大相径庭，但是在设计思想上还是有一定的共同性的。这篇文章先讲虚函数，下一篇讲虚继承。</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2012/11/29/virtual-function/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/" data-id="cifhng2cn0029cgi4atelku7i" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2012/11/29/virtual-function/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-blog-styles" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2012/11/24/blog-styles/" class="article-date">
-  <time datetime="2012-11-24T06:23:00.000Z" itemprop="datePublished">2012-11-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/octopress/">octopress</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2012/11/24/blog-styles/">博客的样式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用的markdown解析工具为kramdown。</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2012/11/24/blog-styles/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/" data-id="cifhng2cq002bcgi4okp60rg5" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2012/11/24/blog-styles/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -602,7 +617,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -615,7 +630,7 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -627,6 +642,14 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
       <ul>
         
           <li>
+            <a href="/hexotech/2015/10/14/alembic-support-multiple-model-files/">alembic support multiple model files</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/10/14/install-ftp/">设置ftp匿名下载的服务</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/09/30/vpn-server/">vpn server 搭建</a>
           </li>
         
@@ -636,14 +659,6 @@ f(x) = sign(\sum\limits_{i=1}^N {a_i^*{y_i}K({x_i}, {x_j})} + {b^*})
         
           <li>
             <a href="/hexotech/2015/09/30/underscore-template/">underscore template</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/09/22/Docker-beginning/">初识Docker</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/">Authentication Anomaly Detection: A Case Study On A Virtual Private Network</a>
           </li>
         
       </ul>
