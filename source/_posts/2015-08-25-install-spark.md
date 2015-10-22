@@ -89,11 +89,48 @@ http://master:8080/
 ${SPARK_HOME}/bin/spark-shell
 ```
 
-4. 查看jobs等信息
+4. 查看sparkContext等信息
 
-当spark运行的时候，可以通过下面的网址产看job信息
+当spark运行的时候，每一个SparkContext都会启动一个web UI, 默认的端口为4040，通这个端口，可以查看一些关于这个应用非常有用的信息。
+包括一下信息：
+* A list of scheduler stages and tasks
+* A summary of RDD sizes and memory usage
+* Environmental information.
+* Information about the running executors
+
+所以第一个SparkContext，可以通过下面的网址产看job信息
 
 http://master:4040/jobs/
+
+当有多个sparkcontext在同一个host上运行的时候，他们将顺序绑定4040自后的端口，例如（4041,4042等等)
+
+## 查看sparkcontext的history信息
+
+Note that this information is only available for the duration of the application by default. To view the web UI after the fact, set spark.eventLog.enabled to true before starting the application. This configures Spark to log Spark events that encode the information displayed in the UI to persisted storage.
+
+
+When using the file-system provider class (see spark.history.provider below), the base logging directory must be supplied in the spark.history.fs.logDirectory configuration option,
+
+
+in the `/spark/conf/spark-defaults.conf` add:
+
+```
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://hadoop:9000/spark/event_log
+spark.history.fs.logDirectory      hdfs://hadoop:9000/spark/log_directory
+```
+
+注意：spark.eventLog.dir要与spark.history.fs.logDirectory要是一致的。
+
+then go to the `sbin` directory:
+```
+ ./start-history-server.sh
+```
+
+then can open spark history on port 18080:
+http://spark-host:18080/
+
+更多信息可以参考：[spark Monitoring and Instrumentation](http://spark.apache.org/docs/latest/monitoring.html)
 
 ## reference
 
