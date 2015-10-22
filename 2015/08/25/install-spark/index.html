@@ -19,7 +19,7 @@ hadoop的版本为2.7.1，下载的是spark-1.4.1-bin-hadoop2.6.tgz。
 下载spark
 hadoop的版本为2.7.1，下载的是spark-1.4.1-bin-hadoop2.6.tgz。
 这里下载是已经编译好的，也可以下载源码，自己编译。">
-<meta property="og:updated_time" content="2015-08-26T08:40:28.624Z">
+<meta property="og:updated_time" content="2015-10-22T01:44:09.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install spark">
 <meta name="twitter:description" content="前面一片文章install hadoop介绍了hadoop的安装，这一片安装spark的文章，就是在hadoop已经安装好的基础上进行的。
@@ -123,17 +123,28 @@ hadoop的版本为2.7.1，下载的是spark-1.4.1-bin-hadoop2.6.tgz。
 <li><p>运行自带示例 $ bin/run-example org.apache.spark.examples.SparkPi</p></li>
 <li><p>查看集群环境 http://master:8080/</p></li>
 <li><p>进入spark-shell <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">$&#123;SPARK_HOME&#125;</span>/bin/spark-<span class="keyword">shell</span></span><br></pre></td></tr></table></figure></p></li>
-<li><p>查看jobs等信息</p></li>
+<li><p>查看sparkContext等信息</p></li>
 </ol>
-<p>当spark运行的时候，可以通过下面的网址产看job信息</p>
+<p>当spark运行的时候，每一个SparkContext都会启动一个web UI, 默认的端口为4040，通这个端口，可以查看一些关于这个应用非常有用的信息。 包括一下信息： * A list of scheduler stages and tasks * A summary of RDD sizes and memory usage * Environmental information. * Information about the running executors</p>
+<p>所以第一个SparkContext，可以通过下面的网址产看job信息</p>
 <p>http://master:4040/jobs/</p>
+<p>当有多个sparkcontext在同一个host上运行的时候，他们将顺序绑定4040自后的端口，例如（4041,4042等等)</p>
+<h2 id="查看sparkcontext的history信息">查看sparkcontext的history信息</h2>
+<p>Note that this information is only available for the duration of the application by default. To view the web UI after the fact, set spark.eventLog.enabled to true before starting the application. This configures Spark to log Spark events that encode the information displayed in the UI to persisted storage.</p>
+<p>When using the file-system provider class (see spark.history.provider below), the base logging directory must be supplied in the spark.history.fs.logDirectory configuration option,</p>
+<p>in the <code>/spark/conf/spark-defaults.conf</code> add:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spark<span class="class">.eventLog</span><span class="class">.enabled</span>           true</span><br><span class="line">spark<span class="class">.eventLog</span><span class="class">.dir</span>               hdfs:<span class="comment">//hadoop:9000/spark/event_log</span></span><br><span class="line">spark<span class="class">.history</span><span class="class">.fs</span><span class="class">.logDirectory</span>      hdfs:<span class="comment">//hadoop:9000/spark/log_directory</span></span><br></pre></td></tr></table></figure>
+<p>注意：spark.eventLog.dir要与spark.history.fs.logDirectory要是一致的。</p>
+<p>then go to the <code>sbin</code> directory: <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="operator"><span class="keyword">start</span>-history-<span class="keyword">server</span>.sh</span></span><br></pre></td></tr></table></figure></p>
+<p>then can open spark history on port 18080: http://spark-host:18080/</p>
+<p>更多信息可以参考：<a href="http://spark.apache.org/docs/latest/monitoring.html" target="_blank" rel="external">spark Monitoring and Instrumentation</a></p>
 <h2 id="reference">reference</h2>
 <p><a href="">http://blog.csdn.net/jediael_lu/article/details/45310321</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cifqlfoo6000nooi405jm6tmm" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cifqlm8f7000nuki4j881825p" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/#disqus_thread" class="article-comment-link">Comments</a>
       
