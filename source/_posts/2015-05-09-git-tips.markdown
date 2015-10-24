@@ -106,3 +106,22 @@ git config --global credential.helper wincred
 ```
 
 For msysgit versions older than 1.8.1, please refer to: [git: 'credential-cache' is not a git command](http://stackoverflow.com/questions/11693074/git-credential-cache-is-not-a-git-command)
+
+
+## git ignore已经在代码库中的文件
+
+如果已经在代码库中提交了文件，但是本地有修改，又不希望提交到代码库中，例如maven中的local配置，每个人都不一样，都要修改，但是修改以后又不希望提交到代码库中。
+
+忽略本地修改(config.php为例子文件)：
+
+```
+git update-index --assume-unchanged config.php
+```
+
+在ignore中添加后，git status还是会出现，还可以通过在代码库中，删除这个文件的缓存，可以用这个命令：
+
+```
+git rm --cached config.php
+```
+
+注意这个命令，如果push以后会在远程代码库中删除文件的。
