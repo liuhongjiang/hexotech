@@ -125,3 +125,32 @@ git rm --cached config.php
 ```
 
 注意这个命令，如果push以后会在远程代码库中删除文件的。
+
+## git在linux的终端中的自动补全
+如果你在命令行中使用Git命令，每次手动输入命令是一件非常烦人的。为了解决这个问题，你可以很方便的开启自动补全功能。
+在Unix系统下，运行以下指令来获取脚本：
+
+```
+cd ~
+wget https://raw.github.com/git/git/master/contrib/completion/git-completion.bash --no-check-certificate -O ~/.git-completion.bash
+```
+
+然后，在您的~/.bash_profile文件中添加以下代码：
+
+```
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
+fi
+```
+
+上面这种方法只是在当前用户中添加了git的自动补全。
+
+如果需要为所有的用户添加自动补全的功能，将`git-completion.bash`拷贝到mac的`/opt/local/etc/bash_completion.d`目录下，或者linux的`/etc/bash_completion.d/`的目录下，bash将自动加载这些目录下的脚本。
+
+在windows系统中，已经添加了自动补全，所以不需要了。
+
+
+## reference
+
+[让你的Git水平更上一层楼的10个小贴士](http://blog.jobbole.com/75348/)
+[Git Basics - Tips and Tricks](https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks)
