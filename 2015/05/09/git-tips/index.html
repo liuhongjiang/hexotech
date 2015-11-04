@@ -17,7 +17,7 @@ this willResets the index and working tree. Any changes to tracked files in the 
 1git reset origin/master --hard
 this willResets the index and working tree. Any changes to tracked files in the working tree since are discarded.
 当前工作目录的index和本地修改，都">
-<meta property="og:updated_time" content="2015-09-08T01:21:32.149Z">
+<meta property="og:updated_time" content="2015-11-02T01:15:39.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git tips">
 <meta name="twitter:description" content="how to pull after forced update
@@ -138,11 +138,28 @@ this willResets the index and working tree. Any changes to tracked files in the 
 <p>The wincred helper was added in msysgit 1.8.1. Use it as follows:</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential<span class="class">.helper</span> wincred</span><br></pre></td></tr></table></figure>
 <p>For msysgit versions older than 1.8.1, please refer to: <a href="http://stackoverflow.com/questions/11693074/git-credential-cache-is-not-a-git-command" target="_blank" rel="external">git: ‘credential-cache’ is not a git command</a></p>
+<h2 id="git-ignore已经在代码库中的文件">git ignore已经在代码库中的文件</h2>
+<p>如果已经在代码库中提交了文件，但是本地有修改，又不希望提交到代码库中，例如maven中的local配置，每个人都不一样，都要修改，但是修改以后又不希望提交到代码库中。</p>
+<p>忽略本地修改(config.php为例子文件)：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">update</span>-<span class="keyword">index</span> <span class="comment">--assume-unchanged config.php</span></span></span><br></pre></td></tr></table></figure>
+<p>在ignore中添加后，git status还是会出现，还可以通过在代码库中，删除这个文件的缓存，可以用这个命令：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm <span class="comment">--cached config.php</span></span><br></pre></td></tr></table></figure>
+<p>注意这个命令，如果push以后会在远程代码库中删除文件的。</p>
+<h2 id="git在linux的终端中的自动补全">git在linux的终端中的自动补全</h2>
+<p>如果你在命令行中使用Git命令，每次手动输入命令是一件非常烦人的。为了解决这个问题，你可以很方便的开启自动补全功能。 在Unix系统下，运行以下指令来获取脚本：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">wget <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/git</span><span class="regexp">/git/master</span><span class="regexp">/contrib/completion</span><span class="regexp">/git-completion.bash --no-check-certificate -O ~/</span>.git-completion.bash</span><br></pre></td></tr></table></figure>
+<p>然后，在您的~/.bash_profile文件中添加以下代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="operator">-f</span> ~/.git-completion.bash ]; <span class="keyword">then</span></span><br><span class="line">    . ~/.git-completion.bash</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>上面这种方法只是在当前用户中添加了git的自动补全。</p>
+<p>如果需要为所有的用户添加自动补全的功能，将<code>git-completion.bash</code>拷贝到mac的<code>/opt/local/etc/bash_completion.d</code>目录下，或者linux的<code>/etc/bash_completion.d/</code>的目录下，bash将自动加载这些目录下的脚本。</p>
+<p>在windows系统中，已经添加了自动补全，所以不需要了。</p>
+<h2 id="reference">reference</h2>
+<p><a href="http://blog.jobbole.com/75348/" target="_blank" rel="external">让你的Git水平更上一层楼的10个小贴士</a> <a href="https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks" target="_blank" rel="external">Git Basics - Tips and Tricks</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/" data-id="cifqlm8fr0016uki49y0qv7sv" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/" data-id="cigh9br4m00162wi4be9ri0cx" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/05/09/git-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
