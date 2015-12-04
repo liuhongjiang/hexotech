@@ -61,6 +61,156 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jenkins-send-email-after-build" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/12/04/jenkins-send-email-after-build/" class="article-date">
+  <time datetime="2015-12-04T03:06:24.000Z" itemprop="datePublished">2015-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/jenkins/">jenkins</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/12/04/jenkins-send-email-after-build/">配置jenkins发送邮件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在部署项目的jenkins环境的时候，希望实现一个功能， 就是每次build完以后，对比一下build的分支是否是github上面的最新代码。</p>
+<p>然后再以邮件把检查的内容发出来。</p>
+<h2 id="访问github获取最新commit信息">访问github获取最新commit信息</h2>
+<p>关于如何实现访问github api，请参考上一篇文章<a href="/2015/12/04/calling-github-api/">脚本调用github API</a>。访问的api是： <a href="https://developer.github.com/v3/repos/commits/#list-commits-on-a-repository">List commits on a repository</a></p>
+<p>这个api可以通过路径访问具体的分支。返回信息如下， 其中的sha就是我们需要的commit信息：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># curl -H <span class="string">"Authorization:token 5c67b248e17ba2f225fd4fa52ca7xxxxxxxxxxxxx"</span> https:<span class="comment">//api.github.com/repos/liuhongjiang/gittest/commits/release/v3</span></span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"sha"</span>: <span class="string">"a20fbae206c9b31187ed70f0901ef08cf2eeb26a"</span>,</span><br><span class="line">  <span class="string">"commit"</span>: &#123;</span><br><span class="line">    <span class="string">"author"</span>: &#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"liuhongjiang"</span>,</span><br><span class="line">      <span class="string">"email"</span>: <span class="string">"andrew.lhj@gmail.com"</span>,</span><br><span class="line">      <span class="string">"date"</span>: <span class="string">"2015-07-28T00:56:55Z"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"committer"</span>: &#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"liuhongjiang"</span>,</span><br><span class="line">      <span class="string">"email"</span>: <span class="string">"andrew.lhj@gmail.com"</span>,</span><br><span class="line">      <span class="string">"date"</span>: <span class="string">"2015-07-28T00:56:55Z"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"message"</span>: <span class="string">"v3"</span>,</span><br><span class="line">    <span class="string">"tree"</span>: &#123;</span><br><span class="line">      <span class="string">"sha"</span>: <span class="string">"b847aed05d03a78d0ab53189a371ba40dea50a62"</span>,</span><br><span class="line">      <span class="string">"url"</span>: <span class="string">"https://api.github.com/repos/liuhongjiang/gittest/git/trees/b847aed05d03a78d0ab53189a371ba40dea50a62"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"url"</span>: <span class="string">"https://api.github.com/repos/liuhongjiang/gittest/git/commits/a20fbae206c9b31187ed70f0901ef08cf2eeb26a"</span>,</span><br><span class="line">    <span class="string">"comment_count"</span>: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  .......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/12/04/jenkins-send-email-after-build/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/12/04/jenkins-send-email-after-build/" data-id="cihr7w03l0002l8i42xfjluxq" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/12/04/jenkins-send-email-after-build/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-calling-github-api" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/12/04/calling-github-api/" class="article-date">
+  <time datetime="2015-12-04T02:39:42.000Z" itemprop="datePublished">2015-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/12/04/calling-github-api/">脚本调用github API</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在部署项目的jenkins环境的时候，希望实现一个功能， 就是每次build完以后，对比一下build的分支是否是github上面的最新代码。</p>
+<p>所以就想在jenkins中使用脚本去github获取最新的commit信息。这个可以通过github的api实现。</p>
+<h2 id="直接访问api-directly">直接访问api directly</h2>
+<p>最简单的方式是通过用户名和密码直接访问github的api：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -u <span class="string">"liuhongjiang:&#123;password&#125;"</span> <span class="string">https:</span><span class="comment">//api.github.com</span></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/12/04/calling-github-api/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/12/04/calling-github-api/" data-id="cihr7w03q0005l8i4xgjqhso3" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/12/04/calling-github-api/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hadoop-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/11/25/hadoop-tips/" class="article-date">
+  <time datetime="2015-11-25T07:41:31.000Z" itemprop="datePublished">2015-11-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/11/25/hadoop-tips/">hadoop常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="两个集群直接拷贝数据distcp">两个集群直接拷贝数据distcp</h2>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop distcp <span class="symbol">hdfs:</span>/<span class="regexp">/namenode:port/source</span> <span class="symbol">hdfs:</span>/<span class="regexp">/namenode:port/destination</span></span><br><span class="line">例子：</span><br><span class="line">hadoop distcp <span class="symbol">hdfs:</span>/<span class="regexp">/dev-hdfs-001.ncl:8020/data</span><span class="regexp">/device_log hdfs:/</span><span class="regexp">/mylocalhdfs:8020/data</span><span class="regexp">/logs/</span></span><br></pre></td></tr></table></figure>
+<p>拷贝的时候可能有权限问题，在目标目录所在的服务骑上，修改目标目录的权限为777</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -chmod <span class="number">777</span> /path/<span class="built_in">to</span>/<span class="built_in">directory</span></span><br></pre></td></tr></table></figure>
+<p>或者使用一个与目标集群里面的管理员相同的名字的账号，来运行这个命令。或者将运行命令的这个账号，在目前集群上，加入到集群的用户组中。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/11/25/hadoop-tips/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/11/25/hadoop-tips/" data-id="cihr7w03r0006l8i4bcvv3lcy" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/11/25/hadoop-tips/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-editor-config" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexotech/2015/11/04/editor-config/" class="article-date">
@@ -93,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/11/04/editor-config/" data-id="cigkf98w6000200i4ixsr767w" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/11/04/editor-config/" data-id="cihr7w03t0009l8i4f2ewp888" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/11/04/editor-config/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -141,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/10/14/alembic-support-multiple-model-files/" data-id="cigkf98wc000600i4qsdobnvn" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/10/14/alembic-support-multiple-model-files/" data-id="cihr7w03y000dl8i4zcmog892" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/10/14/alembic-support-multiple-model-files/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -188,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/10/14/install-ftp/" data-id="cigkf98w8000300i4qznmsbl6" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/10/14/install-ftp/" data-id="cihr7w03v000al8i4nr26zbjp" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/10/14/install-ftp/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -234,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/vpn-server/" data-id="cigkf98we000900i421eu8mjz" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/vpn-server/" data-id="cihr7w040000gl8i41g2f4ttx" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/09/30/vpn-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -280,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/tmux/" data-id="cigkf98wi000d00i44tfujlkj" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/tmux/" data-id="cihr7w044000kl8i4rpqnpzf5" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/09/30/tmux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -327,7 +477,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/underscore-template/" data-id="cigkf98wg000a00i4nyl231fa" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/underscore-template/" data-id="cihr7w041000hl8i4vf8cvko1" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/09/30/underscore-template/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -376,166 +526,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/" data-id="cigkf98wj000e00i46yuir4lb" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/" data-id="cihr7w045000ll8i45245w1l3" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/" class="article-date">
-  <time datetime="2015-09-07T02:57:34.000Z" itemprop="datePublished">2015-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/paper/">paper</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/">Authentication Anomaly Detection: A Case Study On A Virtual Private Network</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>论文下载地址: <a href="https://www3.nd.edu/~dial/papers/MINENET07.pdf">Authentication Anomaly Detection: A Case Study On A Virtual Private Network</a></p>
-<p>这篇论文介绍了一种基于EM分类算法，然后通过zscore进行异常检测的思路。分析的对象是vpn的登录日志。</p>
-<h2 id="聚类与异常检查">聚类与异常检查</h2>
-<p>基于EM算法对vpn的登录成功的异常进行判定</p>
-<p>验证方式：ten-fold cross-validation with 100 iterations</p>
-<p>outlier detection: 通过计算z-score来检查clutser-specific的异常。（即分组后利用告诉分布来检测异常）</p>
-<p>人工选择z-score的异常的阈值。</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/" data-id="cigkf98wm000f00i4hogqvkkf" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jenkins-tips" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/08/31/jenkins-tips/" class="article-date">
-  <time datetime="2015-08-31T09:10:30.000Z" itemprop="datePublished">2015-08-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/08/31/jenkins-tips/">Jenkins tips</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="在windows上以service的方式安装jenkins-slave节点">在windows上以service的方式安装jenkins slave节点</h2>
-<ol style="list-style-type: decimal">
-<li>在命令行运行，安装slave节点</li>
-</ol>
-<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">java -jar slave.jar -jnlpUrl http://jenkins-server-ip:8080/jenkins/computer/</span><span class="expression">&#123;&#123;<span class="variable">node</span> <span class="variable">name</span>&#125;&#125;</span><span class="xml">/slave-agent.jnlp -secret 2d00ae81d59ff37df0fe9c33a5ed671afa2bc495715c0c161091a8e429973eb1</span></span><br></pre></td></tr></table></figure>
-<ol start="2" style="list-style-type: decimal">
-<li><p>解决阻止自签名的问题 您的安全设置已阻止自签名的应用程序使用已过期的Java版本运行问题的解决 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">步骤：选择windows的开始<span class="function">--&gt;</span>控制面板<span class="function">--&gt;</span>在搜索栏中输入 java-<span class="function">-&gt;</span>点击查询出来的Java图标<span class="function">--&gt;</span>安全<span class="function">--&gt;</span>把 高<span class="function"><span class="params">(推荐的最低设置)</span>--&gt;</span>改成 中<span class="function">--&gt;</span>确定<span class="function">--&gt;</span>即可。</span><br></pre></td></tr></table></figure></p></li>
-<li><p>以servcie的方式启动 在下面的页面上： http://jenkins-server-ip:8080/jenkins/computer/{node name} <figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">操作步骤： 点击<span class="type">Launch</span>--&gt;保留--&gt;把slave-agent.jnlp拷贝到<span class="type">C</span>:\<span class="type">CI</span>\jenkins-slave下--&gt;使用javaws.exe(java web start launcher)--&gt;继续--&gt;</span><br><span class="line">点击 我接受风险并希望运行此应用程序。--&gt;运行--&gt;<span class="type">File</span>--&gt;<span class="type">Install</span> <span class="keyword">as</span> a service--&gt;确定--&gt;是--&gt;是</span><br></pre></td></tr></table></figure></p></li>
-</ol>
-<p>这样Jenkins节点以Windows Service的方式在运行了。</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/08/31/jenkins-tips/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/" data-id="cigkf98wq000i00i4yo0xmjho" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install-kafka" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/08/26/install-kafka/" class="article-date">
-  <time datetime="2015-08-26T06:22:24.000Z" itemprop="datePublished">2015-08-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/08/26/install-kafka/">Install kafka</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这一片文章是关于安装kafka的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop，安装zookeeper。</p>
-<h2 id="准备">准备</h2>
-<p>kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。</p>
-<p>这里使用的是上一篇文章中安装好的zookeeper。</p>
-<p>下载<a href="http://kafka.apache.org/downloads.html">kafka</a>，这里下载的是<a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/0.8.2.1/kafka_2.11-0.8.2.1.tgz">kafka_2.11-0.8.2.1.tgz</a></p>
-<p>解压文件包，将目录拷贝到/user/目录下，并修改权限： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop kafka_2<span class="number">.11</span>-<span class="number">0.8</span><span class="number">.2</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/08/26/install-kafka/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/" data-id="cigkf98wu000m00i4q3b6tra3" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -558,7 +551,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/jenkins/">jenkins</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -571,7 +564,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -583,23 +576,23 @@
       <ul>
         
           <li>
+            <a href="/hexotech/2015/12/04/jenkins-send-email-after-build/">配置jenkins发送邮件</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/12/04/calling-github-api/">脚本调用github API</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/11/25/hadoop-tips/">hadoop常用命令</a>
+          </li>
+        
+          <li>
             <a href="/hexotech/2015/11/04/editor-config/">EditorConfig</a>
           </li>
         
           <li>
             <a href="/hexotech/2015/10/14/alembic-support-multiple-model-files/">alembic support multiple model files</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/10/14/install-ftp/">设置ftp匿名下载的服务</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/09/30/vpn-server/">vpn server 搭建</a>
-          </li>
-        
-          <li>
-            <a href="/hexotech/2015/09/30/tmux/">tmux</a>
           </li>
         
       </ul>

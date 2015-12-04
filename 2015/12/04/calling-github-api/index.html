@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>脚本调用github API | Andrew&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近在部署项目的jenkins环境的时候，希望实现一个功能， 就是每次build完以后，对比一下build的分支是否是github上面的最新代码。
+所以就想在jenkins中使用脚本去github获取最新的commit信息。这个可以通过github的api实现。
+直接访问api directly
+最简单的方式是通过用户名和密码直接访问github的api：
+1curl -u &quot;liuhon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="脚本调用github API">
+<meta property="og:url" content="http://liuhongjiang.github.io/2015/12/04/calling-github-api/index.html">
+<meta property="og:site_name" content="Andrew's Blog">
+<meta property="og:description" content="最近在部署项目的jenkins环境的时候，希望实现一个功能， 就是每次build完以后，对比一下build的分支是否是github上面的最新代码。
+所以就想在jenkins中使用脚本去github获取最新的commit信息。这个可以通过github的api实现。
+直接访问api directly
+最简单的方式是通过用户名和密码直接访问github的api：
+1curl -u &quot;liuhon">
+<meta property="og:updated_time" content="2015-12-04T03:04:22.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="脚本调用github API">
+<meta name="twitter:description" content="最近在部署项目的jenkins环境的时候，希望实现一个功能， 就是每次build完以后，对比一下build的分支是否是github上面的最新代码。
+所以就想在jenkins中使用脚本去github获取最新的commit信息。这个可以通过github的api实现。
+直接访问api directly
+最简单的方式是通过用户名和密码直接访问github的api：
+1curl -u &quot;liuhon">
+  
+    <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/hexotech/images/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/hexotech/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexotech/">Home</a>
+        
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://liuhongjiang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-calling-github-api" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/12/04/calling-github-api/" class="article-date">
+  <time datetime="2015-12-04T02:39:42.000Z" itemprop="datePublished">2015-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      脚本调用github API
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在部署项目的jenkins环境的时候，希望实现一个功能， 就是每次build完以后，对比一下build的分支是否是github上面的最新代码。</p>
+<p>所以就想在jenkins中使用脚本去github获取最新的commit信息。这个可以通过github的api实现。</p>
+<h2 id="直接访问api-directly">直接访问api directly</h2>
+<p>最简单的方式是通过用户名和密码直接访问github的api：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -u <span class="string">"liuhongjiang:&#123;password&#125;"</span> <span class="string">https:</span><span class="comment">//api.github.com</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="使用personal-token">使用personal token</h2>
+<p>github的修改个人设置中的<code>Personal access tokens</code>中生成一个token, 生成是可以选择权限，然后可以将这个token作为oAuth的token使用。</p>
+<p>注意，这个toke只会在生成的时候看见一次，以后就看不见了，所以需要保持好。</p>
+<p>下面是访问方式， token是<code>5c67b248e17baxxxxxxxxxxxxxxxxxxxxxxx</code>:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl  <span class="string">https:</span><span class="comment">//api.github.com/?access_token=5c67b248e17ba<span class="label">xxxxxxxxxxxxxxxxxxxxxxx  </span></span></span><br><span class="line">curl -H <span class="string">"Authorization:token 5c67b248e17baxxxxxxxxxxxxxxxxxxxxxxx"</span> <span class="string">https:</span><span class="comment">//api.github.com</span></span><br></pre></td></tr></table></figure>
+<h2 id="application-oauth">application oauth</h2>
+<p>同样在github的修改个人设置中的<code>application</code>中的<code>developer application</code>的tab中，申请一个应用，这样就可以用这个应用来生成client id和client securet，然后就可以使用它们来生成token：</p>
+<p>使用程序生成，参考文档：<a href="https://developer.github.com/v3/oauth_authorizations/#oauth-authorizations-api" class="uri" target="_blank" rel="external">https://developer.github.com/v3/oauth_authorizations/#oauth-authorizations-api</a></p>
+<p>下面是一个生成token的示例： <figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># curl -u<span class="string">"liuhongjiang:&#123;password&#125;"</span> -X POST --data '&#123;<span class="string">"scopes"</span>:[<span class="string">"public_repo"</span>], <span class="string">"note"</span>:<span class="string">"admin script"</span>, <span class="string">"client_id"</span>: <span class="string">"6f82bb4dxxxxxxxxxx"</span>, <span class="string">"client_secret"</span>: <span class="string">"4f5be7f1750785eac2exxxxxxxxxxxxxxxxxxxxxxxx"</span>&#125;' https:<span class="comment">//api.github.com/authorizations     </span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"id"</span>: <span class="number">25261111</span>,</span><br><span class="line">  <span class="string">"url"</span>: <span class="string">"https://api.github.com/authorizations/25261111"</span>,</span><br><span class="line">  <span class="string">"app"</span>: &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"mybuildapp"</span>,</span><br><span class="line">    <span class="string">"url"</span>: <span class="string">"http://localhost:8888/"</span>,</span><br><span class="line">    <span class="string">"client_id"</span>: <span class="string">"6f82bb4dxxxxxxxxxx"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"token"</span>: <span class="string">"0ce8d9d6e5cff9c6096b610a2xxxxxxxxx"</span>,</span><br><span class="line">  <span class="string">"hashed_token"</span>: <span class="string">"daf93cdfc81f432b8d18790dfc56d73ea401ae499xxxxxxxxxxxxxxxxxxxxx"</span>,</span><br><span class="line">  <span class="string">"token_last_eight"</span>: <span class="string">"ac18xxxxx"</span>,</span><br><span class="line">  <span class="string">"note"</span>: <span class="string">"admin script"</span>,</span><br><span class="line">  <span class="string">"note_url"</span>: <span class="keyword">null</span>,</span><br><span class="line">  <span class="string">"created_at"</span>: <span class="string">"2015-12-03T06:56:28Z"</span>,</span><br><span class="line">  <span class="string">"updated_at"</span>: <span class="string">"2015-12-03T06:56:28Z"</span>,</span><br><span class="line">  <span class="string">"scopes"</span>: [</span><br><span class="line">    <span class="string">"public_repo"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"fingerprint"</span>: <span class="keyword">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接下来就可以使用上面的<code>&quot;token&quot;: &quot;0ce8d9d6e5cff9c6096b610a2xxxxxxxxx&quot;</code>访问github api了：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl  <span class="string">https:</span><span class="comment">//api.github.com/?access_token=0ce8d9d6e5cff9c6096b610a2<span class="label">xxxxxxxxx  </span></span></span><br><span class="line">curl -H <span class="string">"Authorization:token 0ce8d9d6e5cff9c6096b610a2xxxxxxxxx"</span> <span class="string">https:</span><span class="comment">//api.github.com</span></span><br></pre></td></tr></table></figure>
+<p>但发现一个问题，如果我的账号加入了一个私有项目，好像无法通过这个oauth token访问那个私有项目。上面的personal token是可以访问的。</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://developer.github.com/v3/#authentication" target="_blank" rel="external">github Authentication</a> <a href="https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization" target="_blank" rel="external">Create a new authorization</a> <a href="https://developer.github.com/v3/oauth/#web-application-flow" target="_blank" rel="external">Web Application Flow</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/12/04/calling-github-api/" data-id="cihr7w03q0005l8i4xgjqhso3" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/12/04/calling-github-api/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/hexotech/2015/12/04/jenkins-send-email-after-build/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          配置jenkins发送邮件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/hexotech/2015/11/25/hadoop-tips/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hadoop常用命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/jenkins/">jenkins</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexotech/2015/12/04/jenkins-send-email-after-build/">配置jenkins发送邮件</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/12/04/calling-github-api/">脚本调用github API</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/11/25/hadoop-tips/">hadoop常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/11/04/editor-config/">EditorConfig</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2015/10/14/alembic-support-multiple-model-files/">alembic support multiple model files</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Andrew Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'andrewliu117';
+  
+  var disqus_url = 'http://liuhongjiang.github.io/hexotech/2015/12/04/calling-github-api/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/hexotech/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+<!--<script type="text/x-mathjax-config">-->
+<!--MathJax.Hub.Config({-->
+  <!--tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}-->
+<!--});-->
+<!--</script>-->
+<!--<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">-->
+<!--</script>-->
+
+
+  <link rel="stylesheet" href="/hexotech/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/hexotech/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/hexotech/js/script.js" type="text/javascript"></script>
+
+
+
+  </div>
+</body>
+</html>
