@@ -1,6 +1,7 @@
 title: Jenkins tips
 date: 2015-08-31 17:10:30
 tags:
+categories: jenkins
 ---
 
 ## 在windows上以service的方式安装jenkins slave节点
@@ -51,10 +52,21 @@ I too had a similar issue once. Try granting the Jenkins service "Logon as This 
 [jenkins multi-branch-build plugin](https://github.com/mjdetullio/multi-branch-project-plugin)
 
 ## jenkins检查github的pull request
+
 下面插件可以实现当在github上提交了一个pull request，他可以自动完成一些工作，例如对pull request加评论，验证pull request，对pull reques跑test等等。
-米有具体试验过，以后有机会，试用一下，然后加评论。
+没有具体试验过，以后有机会，试用一下，然后加评论。
 
 [GitHub pull request builder plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+pull+request+builder+plugin)
+
+## jenkins分支同步
+
+我们的项目是在github上，一个比较大的问题就是同步经常出问题，一个同事使用了这两个插件解决了这个问题。
+
+[CloudBees Folders Plugin](https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Folders+Plugin)
+
+[CloudBees GitHub Branch Source Plugin](https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+GitHub+Branch+Source+Plugin)
+
+
 
 ## 参考
 [jenkins main page](https://wiki.jenkins-ci.org/display/JENKINS/Use+Jenkins)
