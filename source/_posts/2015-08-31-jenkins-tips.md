@@ -67,6 +67,44 @@ I too had a similar issue once. Try granting the Jenkins service "Logon as This 
 [CloudBees GitHub Branch Source Plugin](https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+GitHub+Branch+Source+Plugin)
 
 
+## jenkins配置使用github登录
+
+安装[Github OAuth Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Github+OAuth+Plugin)， 然后在manage jenkins的Configure Global Security中，可以将Access Control配置使用Github Authentication Plugin。
+
+配置图如下：
+
+{% image center /images/blogimages/2015/jenkins-github-oauth.png %}
+
+
+上图中的api配置路径，如果使用的是GitHub Enterprise，那么url的路径就要配置为`/api/v3`.
+
+client id和client seceret是在github中生成的。
+
+打开github，在edit profile的地方，选择applications -> developer applications, 生成一个新的application。
+很多都是自动生成的，比较重要的一个是authorization callback url，这个也需要天固定的格式：
+
+例如`http://myserver.com:8080/securityRealm/finishLogin`，其中myserver.com和端口8080对应你的jenkins的域名和端口。
+
+下图是一个例子
+
+{% image center /images/blogimages/2015/github-applications.png %}
+
+在上图中，还可以给你的application加一个图标，如5所示。
+
+## jenkins tool配置
+
+在jenkins中，使用到很多工具，例如git，maven，jdk，node。可以在manage jenkins -> configure system中配置。
+
+在配置中，如果选择了install automatically，那么jenkins就会在salve node上自动安装这个工具。这样如果在jenkins中使用docker node等这种方式的话，有可能每次都会去安装。
+
+或者如果你的node已经安装了，jenkins也会去安装一次。
+
+所以可以不选择install automatically， 然后配置一个XXX_HOME或者工具的path，那么jenkins就会自动去找个工具，而不是去安装。但是如果配置了工具的路径，这个配置是对所有node有效的。
+
+如果对没有node需要单独配置的话，可以去manage node页面，在node的configure页面中配置tool location，这样这个配置项就就只对这个node生效。
+
+当然还有一个jenkins plugin可以使用: [Custom Tools Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Custom+Tools+Plugin)，它甚至可以对单独的一个job配置工具路径。
+
 
 ## 参考
 [jenkins main page](https://wiki.jenkins-ci.org/display/JENKINS/Use+Jenkins)
