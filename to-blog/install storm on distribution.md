@@ -33,8 +33,8 @@ wget http://mirror.apache-kr.org/storm/apache-storm-0.9.4/apache-storm-0.9.4.tar
 >3. go to ${storm_install_dir}/conf, edit following properties in storm.yaml
 storm.zookeeper.servers: This is a list of the hosts in the Zookeeper cluster for your Storm cluster.
 storm.zookeeper.servers:
-  - "dev-cubridmon-001.ncl"
-  - "dev-cubridmon-002.ncl"
+  - "dev-abd-001.ncl"
+  - "dev-abd-002.ncl"
 storm.local.dir: The Nimbus and Supervisor daemons require a directory on the local disk to store small amounts of state.
 nimbus.host: The worker nodes need to know which machine is the master in order to download topology jars and confs.
 supervisor.slots.ports: For each worker machine, you configure how many workers run on that machine with this config. Each worker uses a single port for receiving messages, and this setting defines which ports are open for use.
