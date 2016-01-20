@@ -19,7 +19,9 @@
 在命令行运行，安装slave节点
 
 1java -jar slave.jar -jnlpUrl http://jenkins-server-ip:8080/jenkins/computer/&amp;#123;&amp;#123;node name&amp;#125;&amp;#125;/slave-agent.jnlp -secret 2d0">
-<meta property="og:updated_time" content="2015-12-04T05:22:56.203Z">
+<meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/jenkins-github-oauth.png">
+<meta property="og:image" content="http://liuhongjiang.github.io/hexotech/images/blogimages/2015/github-applications.png">
+<meta property="og:updated_time" content="2015-12-23T07:30:42.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jenkins tips">
 <meta name="twitter:description" content="在windows上以service的方式安装jenkins slave节点
@@ -127,6 +129,24 @@
 <p>我们的项目是在github上，一个比较大的问题就是同步经常出问题，一个同事使用了这两个插件解决了这个问题。</p>
 <p><a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Folders+Plugin" target="_blank" rel="external">CloudBees Folders Plugin</a></p>
 <p><a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+GitHub+Branch+Source+Plugin" target="_blank" rel="external">CloudBees GitHub Branch Source Plugin</a></p>
+<h2 id="jenkins配置使用github登录">jenkins配置使用github登录</h2>
+<p>安装<a href="https://wiki.jenkins-ci.org/display/JENKINS/Github+OAuth+Plugin" target="_blank" rel="external">Github OAuth Plugin</a>， 然后在manage jenkins的Configure Global Security中，可以将Access Control配置使用Github Authentication Plugin。</p>
+<p>配置图如下：</p>
+<img src="/hexotech/images/blogimages/2015/jenkins-github-oauth.png" class="center">
+<p>上图中的api配置路径，如果使用的是GitHub Enterprise，那么url的路径就要配置为<code>/api/v3</code>.</p>
+<p>client id和client seceret是在github中生成的。</p>
+<p>打开github，在edit profile的地方，选择applications -&gt; developer applications, 生成一个新的application。 很多都是自动生成的，比较重要的一个是authorization callback url，这个也需要天固定的格式：</p>
+<p>例如<code>http://myserver.com:8080/securityRealm/finishLogin</code>，其中myserver.com和端口8080对应你的jenkins的域名和端口。</p>
+<p>下图是一个例子</p>
+<img src="/hexotech/images/blogimages/2015/github-applications.png" class="center">
+<p>在上图中，还可以给你的application加一个图标，如5所示。</p>
+<h2 id="jenkins-tool配置">jenkins tool配置</h2>
+<p>在jenkins中，使用到很多工具，例如git，maven，jdk，node。可以在manage jenkins -&gt; configure system中配置。</p>
+<p>在配置中，如果选择了install automatically，那么jenkins就会在salve node上自动安装这个工具。这样如果在jenkins中使用docker node等这种方式的话，有可能每次都会去安装。</p>
+<p>或者如果你的node已经安装了，jenkins也会去安装一次。</p>
+<p>所以可以不选择install automatically， 然后配置一个XXX_HOME或者工具的path，那么jenkins就会自动去找个工具，而不是去安装。但是如果配置了工具的路径，这个配置是对所有node有效的。</p>
+<p>如果对没有node需要单独配置的话，可以去manage node页面，在node的configure页面中配置tool location，这样这个配置项就就只对这个node生效。</p>
+<p>当然还有一个jenkins plugin可以使用: <a href="https://wiki.jenkins-ci.org/display/JENKINS/Custom+Tools+Plugin" target="_blank" rel="external">Custom Tools Plugin</a>，它甚至可以对单独的一个job配置工具路径。</p>
 <h2 id="参考">参考</h2>
 <p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Use+Jenkins" target="_blank" rel="external">jenkins main page</a></p>
 <p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu" target="_blank" rel="external">installation jenkins on ubuntu</a></p>
@@ -143,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/" data-id="cihr7w049000pl8i4zrt6fo06" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/" data-id="cijmfew1j000rr4i4f1n6x7ah" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -188,7 +208,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/jenkins/">jenkins</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/jenkins/">jenkins</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -201,7 +221,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -211,6 +231,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/hexotech/2016/01/20/hadoop-port/">hadoop port</a>
+          </li>
         
           <li>
             <a href="/hexotech/2015/12/04/jenkins-send-email-after-build/">配置jenkins发送邮件</a>
@@ -228,10 +252,6 @@
             <a href="/hexotech/2015/11/04/editor-config/">EditorConfig</a>
           </li>
         
-          <li>
-            <a href="/hexotech/2015/10/14/alembic-support-multiple-model-files/">alembic support multiple model files</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -244,7 +264,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Andrew Liu<br>
+      &copy; 2016 Andrew Liu<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
