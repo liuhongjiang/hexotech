@@ -9,10 +9,16 @@ categories: hadoop
 ```
 hadoop distcp hdfs://namenode:port/source hdfs://namenode:port/destination
 例子：
-hadoop distcp hdfs://dev-hdfs-001.ncl:8020/data/device_log hdfs://mylocalhdfs:8020/data/logs/
+hadoop distcp hdfs://dev-hdfs-001.server:8020/data/logs/ hdfs://mylocalhdfs:8020/data/logs/
 ```
 
 拷贝的时候可能有权限问题，在目标目录所在的服务骑上，修改目标目录的权限为777
+
+另外一个命令是：
+
+```
+hdfs dfs -cp hdfs://dev-hdfs-001.server:8020/data/logs/ /data/logs/
+```
 
 ```
 hdfs dfs -chmod 777 /path/to/directory
