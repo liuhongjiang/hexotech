@@ -33,3 +33,28 @@ hdfs dfs -chmod 777 /path/to/directory
 ```
 hdfs dfs -du -s -h /path/to/directory
 ```
+
+## 配置spark history server
+
+* step1
+
+add following configrations in the `spark-default.conf` of spark conf directory, and copy to all spark node:
+
+```
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://10.114.207.140:8020/logs/spark-event-log/
+
+spark.history.fs.logDirectory	hdfs://10.114.207.140:8020/logs/spark-event-log/
+```
+
+* step2
+
+on one node which chose to be the history sever, run this command in the `sbin` directory of spark:
+
+```
+./sbin/start-history-server.sh
+```
+
+then you can visit the app history by: `http://<server-url>:18080`
+
+reference: http://spark.apache.org/docs/latest/monitoring.html
