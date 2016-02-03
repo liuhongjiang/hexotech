@@ -6,21 +6,21 @@
   <title>hadoop常用命令 | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="两个集群直接拷贝数据distcp
-123hadoop distcp hdfs://namenode:port/source hdfs://namenode:port/destination例子：hadoop distcp hdfs://dev-hdfs-001.ncl:8020/data/device_log hdfs://mylocalhdfs:8020/data/logs/
-拷贝的时候可能">
+123hadoop distcp hdfs://namenode:port/source hdfs://namenode:port/destination例子：hadoop distcp hdfs://dev-hdfs-001.server:8020/data/logs/ hdfs://mylocalhdfs:8020/data/logs/
+拷贝的时候可能有权">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop常用命令">
 <meta property="og:url" content="http://liuhongjiang.github.io/2015/11/25/hadoop-tips/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
 <meta property="og:description" content="两个集群直接拷贝数据distcp
-123hadoop distcp hdfs://namenode:port/source hdfs://namenode:port/destination例子：hadoop distcp hdfs://dev-hdfs-001.ncl:8020/data/device_log hdfs://mylocalhdfs:8020/data/logs/
-拷贝的时候可能">
-<meta property="og:updated_time" content="2015-11-25T08:06:16.563Z">
+123hadoop distcp hdfs://namenode:port/source hdfs://namenode:port/destination例子：hadoop distcp hdfs://dev-hdfs-001.server:8020/data/logs/ hdfs://mylocalhdfs:8020/data/logs/
+拷贝的时候可能有权">
+<meta property="og:updated_time" content="2016-02-03T09:39:59.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop常用命令">
 <meta name="twitter:description" content="两个集群直接拷贝数据distcp
-123hadoop distcp hdfs://namenode:port/source hdfs://namenode:port/destination例子：hadoop distcp hdfs://dev-hdfs-001.ncl:8020/data/device_log hdfs://mylocalhdfs:8020/data/logs/
-拷贝的时候可能">
+123hadoop distcp hdfs://namenode:port/source hdfs://namenode:port/destination例子：hadoop distcp hdfs://dev-hdfs-001.server:8020/data/logs/ hdfs://mylocalhdfs:8020/data/logs/
+拷贝的时候可能有权">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -93,13 +93,28 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="两个集群直接拷贝数据distcp">两个集群直接拷贝数据distcp</h2>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop distcp <span class="symbol">hdfs:</span>/<span class="regexp">/namenode:port/source</span> <span class="symbol">hdfs:</span>/<span class="regexp">/namenode:port/destination</span></span><br><span class="line">例子：</span><br><span class="line">hadoop distcp <span class="symbol">hdfs:</span>/<span class="regexp">/dev-hdfs-001.ncl:8020/data</span><span class="regexp">/device_log hdfs:/</span><span class="regexp">/mylocalhdfs:8020/data</span><span class="regexp">/logs/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop distcp <span class="symbol">hdfs:</span>/<span class="regexp">/namenode:port/source</span> <span class="symbol">hdfs:</span>/<span class="regexp">/namenode:port/destination</span></span><br><span class="line">例子：</span><br><span class="line">hadoop distcp <span class="symbol">hdfs:</span>/<span class="regexp">/dev-hdfs-001.server:8020/data</span><span class="regexp">/logs/</span> <span class="symbol">hdfs:</span>/<span class="regexp">/mylocalhdfs:8020/data</span><span class="regexp">/logs/</span></span><br></pre></td></tr></table></figure>
 <p>拷贝的时候可能有权限问题，在目标目录所在的服务骑上，修改目标目录的权限为777</p>
+<p>另外一个命令是：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">hdfs</span> dfs -<span class="preprocessor">cp</span> hdfs://dev-hdfs-<span class="number">001</span>.server:<span class="number">8020</span>/<span class="preprocessor">data</span>/logs/ /<span class="preprocessor">data</span>/logs/</span><br></pre></td></tr></table></figure>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -chmod <span class="number">777</span> /path/<span class="built_in">to</span>/<span class="built_in">directory</span></span><br></pre></td></tr></table></figure>
 <p>或者使用一个与目标集群里面的管理员相同的名字的账号，来运行这个命令。或者将运行命令的这个账号，在目前集群上，加入到集群的用户组中。</p>
 <a id="more"></a>
 <h2 id="查看目录大小">查看目录大小</h2>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -du -s -h /path/<span class="built_in">to</span>/<span class="built_in">directory</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置spark-history-server">配置spark history server</h2>
+<ul>
+<li>step1</li>
+</ul>
+<p>add following configrations in the <code>spark-default.conf</code> of spark conf directory, and copy to all spark node:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spark<span class="class">.eventLog</span><span class="class">.enabled</span>           true</span><br><span class="line">spark<span class="class">.eventLog</span><span class="class">.dir</span>               hdfs:<span class="comment">//10.114.207.140:8020/logs/spark-event-log/</span></span><br><span class="line"></span><br><span class="line">spark<span class="class">.history</span><span class="class">.fs</span><span class="class">.logDirectory</span>	hdfs:<span class="comment">//10.114.207.140:8020/logs/spark-event-log/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>step2</li>
+</ul>
+<p>on one node which chose to be the history sever, run this command in the <code>sbin</code> directory of spark:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sbin/<span class="operator"><span class="keyword">start</span>-history-<span class="keyword">server</span>.sh</span></span><br></pre></td></tr></table></figure>
+<p>then you can visit the app history by: <code>http://&lt;server-url&gt;:18080</code></p>
+<p>reference: http://spark.apache.org/docs/latest/monitoring.html</p>
 
       
     </div>
