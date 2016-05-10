@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>设置ftp匿名下载的服务 | Andrew&#39;s Blog</title>
+  <title>Category: openstack | Andrew&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="经常要在服务器上设置一些匿名账号，方便CI build处理啊的包，其他人可以下载，所以简单写了一个如果设置匿名ftp的文章，免得每次都要去网上找。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="设置ftp匿名下载的服务">
-<meta property="og:url" content="http://liuhongjiang.github.io/2015/10/14/install-ftp/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Andrew's Blog">
+<meta property="og:url" content="http://liuhongjiang.github.io/categories/openstack/index.html">
 <meta property="og:site_name" content="Andrew's Blog">
-<meta property="og:description" content="经常要在服务器上设置一些匿名账号，方便CI build处理啊的包，其他人可以下载，所以简单写了一个如果设置匿名ftp的文章，免得每次都要去网上找。">
-<meta property="og:updated_time" content="2015-10-14T09:21:23.447Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设置ftp匿名下载的服务">
-<meta name="twitter:description" content="经常要在服务器上设置一些匿名账号，方便CI build处理啊的包，其他人可以下载，所以简单写了一个如果设置匿名ftp的文章，免得每次都要去网上找。">
+<meta name="twitter:title" content="Andrew's Blog">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
   
@@ -60,96 +59,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-install-ftp" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/10/14/install-ftp/" class="article-date">
-  <time datetime="2015-10-14T09:12:25.000Z" itemprop="datePublished">2015-10-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/linux/">linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      设置ftp匿名下载的服务
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/hexotech/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/hexotech/2016/05/10/keystone-multi-domain-and-ldap/" class="archive-article-date">
+  <time datetime="2016-05-10T09:38:00.000Z" itemprop="datePublished">May 10</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/hexotech/2016/05/10/keystone-multi-domain-and-ldap/">keystone设置多个domain和使用ldap作为identity</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>经常要在服务器上设置一些匿名账号，方便CI build处理啊的包，其他人可以下载，所以简单写了一个如果设置匿名ftp的文章，免得每次都要去网上找。</p>
-<a id="more"></a>
-<p>安装ftp server</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum <span class="keyword">install</span> vsftpd</span><br></pre></td></tr></table></figure>
-<p>修改配置文件<code>/etc/vsftpd/vsftpd.conf</code></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">vi</span> /etc/vsftpd/vsftpd.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
-<p>打开运行匿名用户登陆：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">anonymous_enable=<span class="value"><span class="keyword">YES</span></span></span></span><br></pre></td></tr></table></figure>
-<p>配置匿名用户的根目录</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anon_root=<span class="regexp">/home/some</span><span class="regexp">/path/</span></span><br></pre></td></tr></table></figure>
-<p>需要注意的一点，就是这个路径的所有目录的权限都是755，对于其他用户可以读和可执行的。</p>
-<p>关闭或者设置防火墙 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">service iptables <span class="built_in">stop</span><span class="comment"> // centos 6</span></span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">stop</span> firewalld  <span class="comment"> // centos 7</span></span><br><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure></p>
-<p>启动 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo service vsftpd restart     <span class="comment">// centos 6</span></span><br><span class="line"></span><br><span class="line">systemctl restart vsftpd        <span class="comment">// centos 7</span></span><br></pre></td></tr></table></figure></p>
-<p>将vsftpd设置为启动时，自动运行 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig vsftpd <span class="function_start"><span class="keyword">on</span></span></span><br></pre></td></tr></table></figure></p>
-<h2 id="问题">问题</h2>
-<p>配置完成后，启动了ftp服务，但是通过浏览器，打开ftp，显示为空，没有任务内容。</p>
-<p>使用ftp命令连接，显示下面这个错误</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VSFTPD: Transfer Done (but failed <span class="built_in">to</span> <span class="built_in">open</span> <span class="built_in">directory</span>)</span><br></pre></td></tr></table></figure>
-<p>原因是selinux将这个连接视为可疑的，解决办法就是讲selinx disable，然后重启服务器。</p>
-<h2 id="reference">reference</h2>
-<p><a href="http://linuxconfig.org/how-to-stop-start-and-disable-enable-firewall-on-redhat-7-linux-system" target="_blank" rel="external">How to stop/start and disable/enable Firewall on Redhat 7 Linux system</a></p>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-vsftpd-on-centos-6--2" target="_blank" rel="external">How To Set Up vsftpd on CentOS 6</a></p>
-<p><a href="http://blog.danielburrowes.com/2009/06/vsftpd-transfer-done-but-failed-to-open.html" target="_blank" rel="external">VSFTPD: Transfer Done (but failed to open directory)</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/10/14/install-ftp/" data-id="cio19dzty000f50i4c2wy4ibf" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/10/14/install-ftp/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/hexotech/2015/10/14/alembic-support-multiple-model-files/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          alembic support multiple model files
-        
-      </div>
-    </a>
-  
-  
-    <a href="/hexotech/2015/09/30/vpn-server/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vpn server 搭建</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
 </section>
         
           <aside id="sidebar">
@@ -231,13 +174,11 @@
 <script>
   var disqus_shortname = 'andrewliu117';
   
-  var disqus_url = 'http://liuhongjiang.github.io/hexotech/2015/10/14/install-ftp/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
