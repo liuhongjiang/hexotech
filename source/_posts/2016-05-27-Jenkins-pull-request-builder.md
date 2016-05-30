@@ -8,6 +8,9 @@ categories: jenkins
 
 学习了这一过程，记录一下blog。
 
+<!--more-->
+
+******
 ## 准备实验项目和jenkins
 
 代码使用openstack的[python-cinderclient](https://github.com/openstack/python-cinderclient)为例：
@@ -30,14 +33,14 @@ _________________ summary _________________
 在jenkins中安装以下插件：
 
 - SCM:
-  - [Git Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin)
+    - [Git Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin)
 - Wrappers:
-  - [Build Timeout Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Build-timeout+Plugin)
+    - [Build Timeout Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Build-timeout+Plugin)
 - Triggers:
-  - [GitHub Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+Plugin)
-  - [GitHub Pull Request Builder Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+pull+request+builder+plugin)
+    - [GitHub Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+Plugin)
+    - [GitHub Pull Request Builder Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+pull+request+builder+plugin)
 - Publishers:
-  - [Mattermost Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Mattermost+Plugin)
+    - [Mattermost Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Mattermost+Plugin)
 
 然后在slave节点上安装python的运行环境
 
@@ -64,9 +67,8 @@ su -s /bin/bash jenkins
 
 然后需要将github的站点添加到slave node的knowhost里面，通过运行`ssh git@github.com`可以添加。
 
-
+******
 ## 在jenkins上配置pull request builder
-
 
 在jenkins中创建一个freestyle project, 命名为python-cinderclient-pr-builder。
 
@@ -98,8 +100,8 @@ su -s /bin/bash jenkins
 
   {% img center /images/blogimages/2016/jenkins_pull_request_builder/add_credential.png %}
 
+******
 ## 添加一个jenkins job
-
 
 参考以下步骤，这个步骤来自于[ghprb插件的README](https://github.com/janinko/ghprb#creating-a-job)
 
@@ -108,17 +110,17 @@ su -s /bin/bash jenkins
 * Select Git SCM.  
 * Add your GitHub ``Repository URL``.  
 * Under Advanced, set ``Name`` to ``origin`` and:
-  * If you **just** want to build PRs, set ``refspec`` to ``+refs/pull/*:refs/remotes/origin/pr/*``
-  * If you want to build PRs **and** branches, set ``refspec`` to ``+refs/heads/*:refs/remotes/origin/* +refs/pull/*:refs/remotes/origin/pr/*`` (see note below about [parameterized builds](#parameterized-builds))
+    * If you **just** want to build PRs, set ``refspec`` to ``+refs/pull/*:refs/remotes/origin/pr/*``
+    * If you want to build PRs **and** branches, set ``refspec`` to ``+refs/heads/*:refs/remotes/origin/* +refs/pull/*:refs/remotes/origin/pr/*`` (see note below about [parameterized builds](#parameterized-builds))
 * In ``Branch Specifier``, enter ``${sha1}`` instead of the default ``*/master``.
 * If you want to use the actual commit in the pull request, use ``${ghprbActualCommit}`` instead of ``${sha1}``
 * Under ``Build Triggers``, check ``GitHub pull requests builder``.
-  * Add admins for this specific job.  
-  * If you want to use GitHub hooks for automatic testing, read the help for ``Use github hooks for build triggering`` in job configuration. Then you can check the checkbox.
-  * In Advanced, you can modify:  
-    * The crontab line for this specific job. This schedules polling to GitHub for new changes in Pull Requests.  
-    * The whitelisted users for this specific job.  
-    * The organisation names whose members are considered whitelisted for this specific job.  
+    * Add admins for this specific job.  
+    * If you want to use GitHub hooks for automatic testing, read the help for ``Use github hooks for build triggering`` in job configuration. Then you can check the checkbox.
+    * In Advanced, you can modify:  
+        * The crontab line for this specific job. This schedules polling to GitHub for new changes in Pull Requests.  
+        * The whitelisted users for this specific job.  
+        * The organisation names whose members are considered whitelisted for this specific job.  
 * Save to preserve your changes.  
 
 更具体的内容可以参考：
@@ -130,8 +132,8 @@ su -s /bin/bash jenkins
 
 {% img center /images/blogimages/2016/jenkins_pull_request_builder/webhook.png %}
 
+******
 ## 添加build status description
-------
 
 添加一个在`post build action`中选择`set build status on Github commit`
 
@@ -141,37 +143,52 @@ su -s /bin/bash jenkins
 
 {% img center /images/blogimages/2016/jenkins_pull_request_builder/build_status.png %}
 
-
-## mattermost
-
-
-ToDo
-
-## jenkins job builder
-
-
-ToDo
-
-Please visit http://docs.openstack.org/infra/jenkins-job-builder/index.html for more details about those jenkins jobs.
-
-
-## 一些有用的jenkins插件
 ******
+## Mattermost
+
+安装这个插件:[mattermost Plugin wiki](https://wiki.jenkins-ci.org/display/JENKINS/Mattermost+Plugin)
+
+然后在`matter most -> Integrations -> incoming webhooks`, 里面配置一个incoming webhooks, 如图
+
+{% img center /images/blogimages/2016/jenkins_pull_request_builder/mattermost_incoming_webhooks.png %}
+
+配置完成以后，就会生成一个webhooks如图：
+
+{% img center /images/blogimages/2016/jenkins_pull_request_builder/generated_mattermost_webhook.png %}
+
+之后在jenkins的job的post-build action里面配置mattermost插件如图：
+
+{% img center /images/blogimages/2016/jenkins_pull_request_builder/jenkins_mattermost_config.png %}
+
+之后，如果这个job又build成功的消息的话，就会在mattermost里面产生一个消息如图：
+
+{% img center /images/blogimages/2016/jenkins_pull_request_builder/mattermost_message.png %}
+
+参考：
+
+[mattermost-plogin on github](https://github.com/jenkinsci/mattermost-plugin)
+
+[webhooks-incoming](http://docs.mattermost.com/developer/webhooks-incoming.html)
+
+
+******
+## 一些有用的jenkins插件
+
 
 - SCM:
-  - [Git Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin)
+    - [Git Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin)
 - Wrappers:
-  - [Ansi Color Plugin](https://wiki.jenkins-ci.org/display/JENKINS/AnsiColor+Plugin)
-  - [Build Timeout Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Build-timeout+Plugin)
-  - [Timestamper Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Timestamper)
+    - [Ansi Color Plugin](https://wiki.jenkins-ci.org/display/JENKINS/AnsiColor+Plugin)
+    - [Build Timeout Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Build-timeout+Plugin)
+    - [Timestamper Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Timestamper)
 - Triggers:
-  - [GitHub Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+Plugin)
-  - [GitHub Pull Request Builder Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+pull+request+builder+plugin)
+    - [GitHub Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+Plugin)
+    - [GitHub Pull Request Builder Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitHub+pull+request+builder+plugin)
 - Publishers:
-  - [Cobertura Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin)
-  - [Mattermost Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Mattermost+Plugin)
+    - [Cobertura Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin)
+    - [Mattermost Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Mattermost+Plugin)
 
-reference
-======
+******
+## Reference
 
 [install jenkins on centos](https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions)
