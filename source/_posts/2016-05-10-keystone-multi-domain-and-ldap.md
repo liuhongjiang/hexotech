@@ -104,6 +104,25 @@ categories: openstack
   ```
   完成文件后，需要注意让文件的用户和组都为keystone, `chown -R keystone:keystone /etc/keystone/domains`
 
+  其中下面的几个配置项说明：
+  ```
+  ;user_enabled_attribute = userAccountControl
+  ;user_enabled_default = 512
+  ;user_enabled_mask = 2
+  ;user_enabled_emulation = False
+  ```
+
+  user_enabled_attribute配置项, 如果directory servers没有提供了boolean attribute，就要使用mask，例如AD(active Directory). 在AD中，使用第二位代表用户是否是enabled的，所以使用mask=2.
+
+  参考[Configuring for an LDAP Backend](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/3/html/Installation_and_Configuration_Guide/Configuring_for_an_LDAP_Backend.html)
+  和[How to use the UserAccountControl flags to manipulate user account properties](https://support.microsoft.com/en-us/kb/305144)
+
+  user_enabled_emulation是一个work round，当用户的LDAP system没有提供 enabled这个属性的时候，可以用这个做为work round，方法就是创建一个cn，专门用来放那些user是enabled。
+
+  参考这个blog：[KEYSTONE: USER ENABLED EMULATION (FOLLOW-UP)](http://www.mattfischer.com/blog/?p=550)
+
+
+
 ## 3. 创建domain
 
   由于是使用kolla部署的，所以在部署完成以后，会生成一个`/etc/kolla/admin-openrc.sh `文件
