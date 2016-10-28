@@ -66,6 +66,29 @@ VSFTPD: Transfer Done (but failed to open directory)
 
 原因是selinux将这个连接视为可疑的，解决办法就是讲selinx disable，然后重启服务器。
 
+## 添加用户
+
+请参考：
+
+http://serverfault.com/questions/544850/create-new-vsftpd-user-and-lock-to-specify-home-login-directory
+
+具体步骤：
+
+1. Create user with `useradd [user_name]`.
+2. Create user's password with `passwd [user_name]`. (You'll be prompted to specify the password).
+3. Create FTP directory in `/var/ftp` and then bind to the `home` directory you wish to specify for this user with `mount --bind /var/www/vhosts/domain.com/ /var/ftp/custom_name/`.
+4. Change user's home directory with `usermod -d /var/ftp/custom_name/ user_name`
+5. In /etc/vsftpd/vsftpd.conf, ensure all all of the following are set:
+```
+chroot_local_user=YES
+chroot_list_enable=YES
+chroot_list_file=/etc/vsftpd.chroot_list
+```
+
+Only list users in the vsftpd.chroot_list file if you want them to have full access to anywhere on the server. By not listing them in this file, you're saying restrict all vsftpd users to their specified home directory.
+
+需要注意的是，为user设置的home directory，需要设置full access。
+
 ## reference
 
 [How to stop/start and disable/enable Firewall on Redhat 7 Linux system](http://linuxconfig.org/how-to-stop-start-and-disable-enable-firewall-on-redhat-7-linux-system)
