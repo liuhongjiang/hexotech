@@ -53,8 +53,10 @@ sudo sed -i "s/^\tGSSAPIAuthentication yes/\tGSSAPIAuthentication yes\n\tStrictH
 
 ## virtualbox commands
 
+```
 vboxmanage list runningvms
 vboxmanage list vms
+```
 
 ## 参考
 [vagrant MULTI-MACHINE](https://www.vagrantup.com/docs/multi-machine/)

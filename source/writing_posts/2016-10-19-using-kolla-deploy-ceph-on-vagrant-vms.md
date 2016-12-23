@@ -38,3 +38,6 @@ Get https://192.168.60.31:5000/v1/_ping: http: server gave HTTP response to HTTP
 ```
 
 http://stackoverflow.com/questions/38695515/can-not-pull-push-images-after-update-docker-to-1-12
+
+
+[How to use OpenStack Cinder for Docker](http://superuser.openstack.org/articles/how-to-use-openstack-cinder-for-docker/)
