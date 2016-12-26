@@ -14,6 +14,8 @@ sudo yum install epel-release
 sudo yum groupinstall 'Development Tools'     # install development tools, not necessary
 ```
 
+<!--more-->
+
 * install virtualbox
 
 ```shell

@@ -14,6 +14,8 @@ config.vm.define "osd1" do |osd1|
 end
 ```
 
+<!--more-->
+
 ## 设置相互信任关系
 
 通过命令行，我们可以通过下面的命令设置server的信任关系
