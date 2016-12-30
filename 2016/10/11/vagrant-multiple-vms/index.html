@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vagrant multiple vms | Andrew&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近的一个工作需要在centos的terminal下面使用vagrant和virtual box，最后发现virtualbox对命令行的支持非常好，另外vagrant的Vagrantfile其实可以支持对多个vm的管理。
+vagrant的multi-machine定义，可以参见vagrant的文档： vagrant MULTI-MACHINE
+设置hostname
+123config.vm.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vagrant multiple vms">
+<meta property="og:url" content="http://liuhongjiang.github.io/2016/10/11/vagrant-multiple-vms/index.html">
+<meta property="og:site_name" content="Andrew's Blog">
+<meta property="og:description" content="最近的一个工作需要在centos的terminal下面使用vagrant和virtual box，最后发现virtualbox对命令行的支持非常好，另外vagrant的Vagrantfile其实可以支持对多个vm的管理。
+vagrant的multi-machine定义，可以参见vagrant的文档： vagrant MULTI-MACHINE
+设置hostname
+123config.vm.">
+<meta property="og:updated_time" content="2016-12-26T13:43:26.363Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vagrant multiple vms">
+<meta name="twitter:description" content="最近的一个工作需要在centos的terminal下面使用vagrant和virtual box，最后发现virtualbox对命令行的支持非常好，另外vagrant的Vagrantfile其实可以支持对多个vm的管理。
+vagrant的multi-machine定义，可以参见vagrant的文档： vagrant MULTI-MACHINE
+设置hostname
+123config.vm.">
+  
+    <link rel="alternative" href="/atom.xml" title="Andrew&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/hexotech/images/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/hexotech/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexotech/" id="logo">Andrew&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexotech/">Home</a>
+        
+          <a class="main-nav-link" href="/hexotech/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://liuhongjiang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vagrant-multiple-vms" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2016/10/11/vagrant-multiple-vms/" class="article-date">
+  <time datetime="2016-10-11T02:22:02.000Z" itemprop="datePublished">2016-10-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vagrant multiple vms
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近的一个工作需要在centos的terminal下面使用vagrant和virtual box，最后发现virtualbox对命令行的支持非常好，另外vagrant的Vagrantfile其实可以支持对多个vm的管理。</p>
+<p>vagrant的multi-machine定义，可以参见vagrant的文档： <a href="https://www.vagrantup.com/docs/multi-machine/" target="_blank" rel="external">vagrant MULTI-MACHINE</a></p>
+<h2 id="设置hostname">设置hostname</h2>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">config.<span class="keyword">vm</span>.define <span class="string">"osd1"</span> <span class="keyword">do</span> |osd1|</span><br><span class="line">  osd1.<span class="keyword">vm</span>.<span class="built_in">hostname</span> = <span class="string">"osd1"</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="设置相互信任关系">设置相互信任关系</h2>
+<p>通过命令行，我们可以通过下面的命令设置server的信任关系 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line">ssh-<span class="keyword">copy</span>-<span class="property">id</span> vagrant@osd1  <span class="comment"># vagrant 的默认密码也是vagrant</span></span><br></pre></td></tr></table></figure></p>
+<p>但在vm provision的过程中，由于<code>ssh-copy-id</code>需要输入密码，所以不能自动完成。</p>
+<p>一个可行的办法是，将private key和public key都准备好，放入到vagrantfile所在的目录下，然后在vagrantfile中加入以下provision的代码：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">config.vm.define <span class="string">"mon1"</span> do |mon1|</span><br><span class="line">    mon1.vm.provision <span class="string">"file"</span>, <span class="string">source:</span> <span class="string">"ssh-keys/id_rsa.pub"</span>, <span class="string">destination:</span> <span class="string">"/home/vagrant/.ssh/id_rsa.pub"</span></span><br><span class="line">    mon1.vm.provision <span class="string">"file"</span>, <span class="string">source:</span> <span class="string">"ssh-keys/id_rsa"</span>, <span class="string">destination:</span> <span class="string">"/home/vagrant/.ssh/id_rsa"</span></span><br><span class="line">    mon1.vm.provision <span class="string">"shell"</span>, <span class="string">inline:</span> <span class="string">"cat /home/vagrant/.ssh/id_rsa.pub &gt;&gt; /home/vagrant/.ssh/authorized_keys"</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>对于所有的vm都执行上面的代码，那么所有的vm的privatekey和public key都相同，而且都加入到了authroized_keys里面，那么vm相互之间ssh，就不需要密码了。</p>
+<h2 id="ssh-config">ssh config</h2>
+<p>在ssh的配置中，下面两个配置项比较有用： <code>PasswordAuthentication yes</code>, 允许ssh使用password登录</p>
+<p><code>StrictHostKeyChecking no</code>，自动保存known_hosts。</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># add ssh password</span></span><br><span class="line">sudo sed -i <span class="string">"s/PasswordAuthentication no/PasswordAuthentication yes/g"</span> /etc/ssh/sshd_config</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># add ssh known_hosts automatically</span></span><br><span class="line">sudo sed -i <span class="string">"s/^\tGSSAPIAuthentication yes/\tGSSAPIAuthentication yes\n\tStrictHostKeyChecking no/g"</span> /etc/ssh/ssh_config</span><br></pre></td></tr></table></figure>
+<h2 id="virtualbox-commands">virtualbox commands</h2>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vboxmanage <span class="type">list</span> runningvms</span><br><span class="line">vboxmanage <span class="type">list</span> vms</span><br></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2>
+<p><a href="https://www.vagrantup.com/docs/multi-machine/" target="_blank" rel="external">vagrant MULTI-MACHINE</a> <a href="https://www.vagrantup.com/docs/vagrantfile/tips.html" target="_blank" rel="external">vagrant tips</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2016/10/11/vagrant-multiple-vms/" data-id="cixb80cnp000cf0i46mxd0y1k" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2016/10/11/vagrant-multiple-vms/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/hexotech/2016/10/11/atom-tips/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          atom tips
+        
+      </div>
+    </a>
+  
+  
+    <a href="/hexotech/2016/09/23/install-ceph-through-vagrant-on-centos7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">install ceph through vagrant on centos7</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/jenkins/">jenkins</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/keystone-openstack/">keystone, openstack</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/openssl/">openssl</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/openstack/">openstack</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/05/">May 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexotech/2016/12/23/enable-https-and-tokenless-auth-for-keystone/">Enable https and tokenless auth for keystone</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2016/12/23/setup-your-own-ca/">Setup your own CA</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2016/10/11/atom-tips/">atom tips</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2016/10/11/vagrant-multiple-vms/">vagrant multiple vms</a>
+          </li>
+        
+          <li>
+            <a href="/hexotech/2016/09/23/install-ceph-through-vagrant-on-centos7/">install ceph through vagrant on centos7</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Andrew Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexotech/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexotech/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'andrewliu117';
+  
+  var disqus_url = 'http://liuhongjiang.github.io/hexotech/2016/10/11/vagrant-multiple-vms/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/hexotech/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+<!--<script type="text/x-mathjax-config">-->
+<!--MathJax.Hub.Config({-->
+  <!--tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}-->
+<!--});-->
+<!--</script>-->
+<!--<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">-->
+<!--</script>-->
+
+
+  <link rel="stylesheet" href="/hexotech/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/hexotech/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/hexotech/js/script.js" type="text/javascript"></script>
+
+
+
+  </div>
+</body>
+</html>

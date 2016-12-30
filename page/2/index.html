@@ -61,6 +61,290 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-hadoop-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/11/25/hadoop-tips/" class="article-date">
+  <time datetime="2015-11-25T07:41:31.000Z" itemprop="datePublished">2015-11-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/11/25/hadoop-tips/">hadoop常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="两个集群直接拷贝数据distcp">两个集群直接拷贝数据distcp</h2>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop distcp <span class="symbol">hdfs:</span>/<span class="regexp">/namenode:port/source</span> <span class="symbol">hdfs:</span>/<span class="regexp">/namenode:port/destination</span></span><br><span class="line">例子：</span><br><span class="line">hadoop distcp <span class="symbol">hdfs:</span>/<span class="regexp">/dev-hdfs-001.server:8020/data</span><span class="regexp">/logs/</span> <span class="symbol">hdfs:</span>/<span class="regexp">/mylocalhdfs:8020/data</span><span class="regexp">/logs/</span></span><br></pre></td></tr></table></figure>
+<p>拷贝的时候可能有权限问题，在目标目录所在的服务骑上，修改目标目录的权限为777</p>
+<p>另外一个命令是：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">hdfs</span> dfs -<span class="preprocessor">cp</span> hdfs://dev-hdfs-<span class="number">001</span>.server:<span class="number">8020</span>/<span class="preprocessor">data</span>/logs/ /<span class="preprocessor">data</span>/logs/</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -chmod <span class="number">777</span> /path/<span class="built_in">to</span>/<span class="built_in">directory</span></span><br></pre></td></tr></table></figure>
+<p>或者使用一个与目标集群里面的管理员相同的名字的账号，来运行这个命令。或者将运行命令的这个账号，在目前集群上，加入到集群的用户组中。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/11/25/hadoop-tips/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/11/25/hadoop-tips/" data-id="cixb80co6000rf0i4htgtbuyp" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/11/25/hadoop-tips/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-editor-config" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/11/04/editor-config/" class="article-date">
+  <time datetime="2015-11-04T06:06:07.000Z" itemprop="datePublished">2015-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/11/04/editor-config/">EditorConfig</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://editorconfig.org/">editorconfig</a>是一款帮助开发者在不同的ide和编辑器之间，定义和维护编码格式的工具。</p>
+<p>intellij是native support for editor config，但是绝大部分ide都有插件支持。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/11/04/editor-config/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/11/04/editor-config/" data-id="cixb80co7000tf0i435wq7gwe" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/11/04/editor-config/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-alembic-support-multiple-model-files" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/10/14/alembic-support-multiple-model-files/" class="article-date">
+  <time datetime="2015-10-14T09:22:30.000Z" itemprop="datePublished">2015-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/10/14/alembic-support-multiple-model-files/">alembic support multiple model files</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Recently, in one of my project, I am using <a href="http://www.sqlalchemy.org/">sqlalchemy</a> for ORM and <a href="https://alembic.readthedocs.org/en/latest/">alembic</a> for migration management.</p>
+<p>I have find one annoying problem, that the alembic auto generating only work for one module files.</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/10/14/alembic-support-multiple-model-files/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/10/14/alembic-support-multiple-model-files/" data-id="cixb80cob000xf0i47m9t6064" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/10/14/alembic-support-multiple-model-files/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-install-ftp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/10/14/install-ftp/" class="article-date">
+  <time datetime="2015-10-14T09:12:25.000Z" itemprop="datePublished">2015-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexotech/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/10/14/install-ftp/">设置ftp匿名下载的服务</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>经常要在服务器上设置一些匿名账号，方便CI build处理啊的包，其他人可以下载，所以简单写了一个如果设置匿名ftp的文章，免得每次都要去网上找。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/10/14/install-ftp/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/10/14/install-ftp/" data-id="cixb80co9000uf0i46xebazvg" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/10/14/install-ftp/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vpn-server" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/09/30/vpn-server/" class="article-date">
+  <time datetime="2015-09-30T02:57:30.000Z" itemprop="datePublished">2015-09-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/09/30/vpn-server/">vpn server 搭建</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>买了一个vps，装了一个vpn，记录一下相关的内容。</p>
+<p>vps是在这里买的，最低配，一年人民币130左右，支持支付宝。</p>
+<p>server的操作系统是ubuntu的14.04.</p>
+<p>然后follow <a href="https://help.ubuntu.com/community/PPTPServer">ubuntu的教程</a>，安装PPTPD.</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/09/30/vpn-server/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/vpn-server/" data-id="cixb80coc0010f0i480dm1dqs" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/09/30/vpn-server/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tmux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexotech/2015/09/30/tmux/" class="article-date">
+  <time datetime="2015-09-30T02:56:50.000Z" itemprop="datePublished">2015-09-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexotech/2015/09/30/tmux/">tmux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前用过一个ubuntu的awesome的轻量级的桌面系统。最爽的一点就是它可以将屏幕分为几个分屏。</p>
+<p>所以想在现在的terminal里面实现这个功能。</p>
+<p>现在用的是screen，screen有一个好处就是可以在多个screen之间切换。</p>
+<p>然后在网上发现一个新的攻击tmux，是screen的更新版。所以决定使用一下。</p>
+        
+          <p class="article-more-link">
+            <a href="/hexotech/2015/09/30/tmux/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/tmux/" data-id="cixb80coi0014f0i4nnf9jiql" class="article-share-link">Share</a>
+      
+        <a href="http://liuhongjiang.github.io/hexotech/2015/09/30/tmux/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-underscore-template" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexotech/2015/09/30/underscore-template/" class="article-date">
@@ -96,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/underscore-template/" data-id="cio19dzu3000m50i4cjnct3p5" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/30/underscore-template/" data-id="cixb80cof0011f0i4ay14kqgc" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/09/30/underscore-template/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -145,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/" data-id="cio19dzu7000q50i4qfg2yjox" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/" data-id="cixb80cok0015f0i4gu0jfgey" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/09/22/Docker-beginning/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -198,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/" data-id="cio19dzu8000r50i4fq25bkp1" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/" data-id="cixb80com0016f0i449b0k8mn" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/09/07/Authentication-Anomaly-Detection-A-Case-Study-On-A-Virtual-Private-Network/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -254,315 +538,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/" data-id="cio19dzud000u50i4hteqfac7" class="article-share-link">Share</a>
+      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/" data-id="cixb80coo0019f0i4imm58xeq" class="article-share-link">Share</a>
       
         <a href="http://liuhongjiang.github.io/hexotech/2015/08/31/jenkins-tips/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install-kafka" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/08/26/install-kafka/" class="article-date">
-  <time datetime="2015-08-26T06:22:24.000Z" itemprop="datePublished">2015-08-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/08/26/install-kafka/">Install kafka</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这一片文章是关于安装kafka的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop，安装zookeeper。</p>
-<h2 id="准备">准备</h2>
-<p>kafka的运行需要zookeeper，kafka自身是带有zookeeper的，但是是一个单节点，可以参考kafka的文档，了解如何使用。</p>
-<p>这里使用的是上一篇文章中安装好的zookeeper。</p>
-<p>下载<a href="http://kafka.apache.org/downloads.html">kafka</a>，这里下载的是<a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/0.8.2.1/kafka_2.11-0.8.2.1.tgz">kafka_2.11-0.8.2.1.tgz</a></p>
-<p>解压文件包，将目录拷贝到/user/目录下，并修改权限： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop kafka_2<span class="number">.11</span>-<span class="number">0.8</span><span class="number">.2</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/08/26/install-kafka/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/" data-id="cio19dzuj000y50i4bqphvsft" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-kafka/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install-zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/08/26/install-zookeeper/" class="article-date">
-  <time datetime="2015-08-26T03:54:16.000Z" itemprop="datePublished">2015-08-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/08/26/install-zookeeper/">Install zookeeper</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于要安装kafka，需要安装zookeeper。</p>
-<p>这一片文章是关于安装zookeeper的，但是是基于前面几篇文章的基础之上的，请参考前面的安装hadoop。</p>
-<h2 id="准备">准备</h2>
-<p>在其中一个节点中做以下操作。</p>
-<p>下载<a href="http://zookeeper.apache.org/releases.html">zookeeper</a>, 我们这里下载的是<a href="http://apache.mirror.cdnetworks.com/zookeeper/zookeeper-3.4.6/">3.4.6版本</a>。</p>
-<p>解压zookeeper-3.4.6.tar.gz文件，并将目录拷贝到/usr/目录下。并修改文件权限 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop zookeeper-<span class="number">3.4</span><span class="number">.6</span></span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/08/26/install-zookeeper/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/" data-id="cio19dzug000w50i4k68koseo" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/08/26/install-zookeeper/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install-spark" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/08/25/install-spark/" class="article-date">
-  <time datetime="2015-08-25T02:55:55.000Z" itemprop="datePublished">2015-08-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/08/25/install-spark/">Install spark</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前面一片文章<a href="/2015/08/24/install-hadoop/">install hadoop</a>介绍了hadoop的安装，这一片安装spark的文章，就是在hadoop已经安装好的基础上进行的。</p>
-<h2 id="准备">准备</h2>
-<p>下载<a href="http://spark.apache.org/downloads.html">spark</a></p>
-<p>hadoop的版本为2.7.1，下载的是spark-1.4.1-bin-hadoop2.6.tgz。</p>
-<p>这里下载是已经编译好的，也可以下载源码，自己编译。</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/08/25/install-spark/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/" data-id="cio19dzul001050i4hyy1jmee" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/08/25/install-spark/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install-hadoop" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/08/24/install-hadoop/" class="article-date">
-  <time datetime="2015-08-24T03:16:09.000Z" itemprop="datePublished">2015-08-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/08/24/install-hadoop/">Install hadoop</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="准备工作">准备工作</h2>
-<p>centos版本是centos7。因为最新的hadoop版本（2.7.1）需要libc2.14以上，但是centos6.5只能升级到libc2.12所以需要使用centos7. 1个moaster节点，2个slave节点。</p>
-<ol style="list-style-type: decimal">
-<li>修改服务器名字 centos7现在哟一个hostname的查看和设置命令 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hostnamectl status</span><br><span class="line">$ sudo hostnamectl set-hostname myhost<span class="class">.xmodulo</span><span class="class">.com</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>我设置之后的情况如下： <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.40</span> <span class="tag">master</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.41</span> <span class="tag">slave1</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.42</span> <span class="tag">slave2</span><span class="class">.hadoop</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
-<ol start="2" style="list-style-type: decimal">
-<li>修改hosts文件 在所有server的<code>/etc/hosts</code>中加入这几行： <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.40</span> <span class="tag">master</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.41</span> <span class="tag">slave1</span><span class="class">.hadoop</span></span><br><span class="line">10<span class="class">.115</span><span class="class">.230</span><span class="class">.42</span> <span class="tag">slave2</span><span class="class">.hadoop</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>设置完毕以后，在每一台server上使用以下命令确保hosts配置正确 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ping master<span class="class">.hadoop</span></span><br><span class="line">ping slave1<span class="class">.hadoop</span></span><br><span class="line">ping slave2.hadoop</span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/08/24/install-hadoop/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/" data-id="cio19dzun001250i4p83mldfk" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/08/24/install-hadoop/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-mathjax-in-hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/08/12/mathjax-in-hexo/" class="article-date">
-  <time datetime="2015-08-12T06:50:08.000Z" itemprop="datePublished">2015-08-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hexotech/categories/math/">math</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/08/12/mathjax-in-hexo/">mathjax in hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近将博客从octopress迁移到了hexo。 如果使用hexo默认的markdown解析器，然后在用mathjax进行公式显示，存在字符转义的问题。</p>
-<p>默认的markdown解析器会将latex中的下划线和’'进行转义。公式不能正常显示，只有手动转义。</p>
-<p>然后在网上找到一篇文章： <a href="http://blog.yuanbin.me/posts/2014/05/play-mathjax-with-pandoc.html">Play MathJax with hexo-renderer-pandoc</a></p>
-<p>介绍使用<a href="http://pandoc.org/">pandoc</a>和<a href="https://github.com/wzpan/hexo-renderer-pandoc">hexo-renderer-pandoc</a></p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/08/12/mathjax-in-hexo/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/" data-id="cio19dzup001450i4ywlfigct" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/08/12/mathjax-in-hexo/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-apache-vedio-streaming" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexotech/2015/06/26/apache-vedio-streaming/" class="article-date">
-  <time datetime="2015-06-26T02:04:00.000Z" itemprop="datePublished">2015-06-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexotech/2015/06/26/apache-vedio-streaming/">apache vedio streaming</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="apache支持mp4的流播放">apache支持mp4的流播放</h2>
-<p>apache可以通过配置模块支持MP4和flv格式的视频流。<a href="https://www.alduccino.com/mod-h264-and-mod-flv-streaming-for-apache-on-whm-cpanel">Mod_h264 and mod_FLV Streaming for Apache</a> 如果需要更多的视频流支持，建议使用 <a href="https://www.ffmpeg.org/ffserver.html">ffserver</a></p>
-<p>下面以在centeros的apache上配置MP4模块的支持为例，首先是在apache端的配置</p>
-        
-          <p class="article-more-link">
-            <a href="/hexotech/2015/06/26/apache-vedio-streaming/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/" data-id="cio19dzur001750i4w6lxw7ym" class="article-share-link">Share</a>
-      
-        <a href="http://liuhongjiang.github.io/hexotech/2015/06/26/apache-vedio-streaming/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -585,7 +563,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/jenkins/">jenkins</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/openstack/">openstack</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/3rd-nbsp-tools/">3rd&nbsp;tools</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/C-C/">C/C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Data-nbsp-structure/">Data&nbsp;structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Fuck-nbsp-GFW/">Fuck&nbsp;GFW</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Language/">Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Machine-nbsp-Learning/">Machine&nbsp;Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/Vi/">Vi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/hadoop/">hadoop</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/javascript/">javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/jenkins/">jenkins</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/keystone-openstack/">keystone, openstack</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/math/">math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/octopress/">octopress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/openssl/">openssl</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/openstack/">openstack</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/paper/">paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/hexotech/categories/sqlite/">sqlite</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -598,7 +576,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/05/">May 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/09/">September 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/08/">August 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/05/">May 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2013/01/">January 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/hexotech/archives/2012/11/">November 2012</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -610,23 +588,23 @@
       <ul>
         
           <li>
-            <a href="/hexotech/2016/05/10/keystone-multi-domain-and-ldap/">keystone设置多个domain和使用ldap作为identity</a>
+            <a href="/hexotech/2016/12/23/enable-https-and-tokenless-auth-for-keystone/">Enable https and tokenless auth for keystone</a>
           </li>
         
           <li>
-            <a href="/hexotech/2016/01/20/hadoop-port/">hadoop port</a>
+            <a href="/hexotech/2016/12/23/setup-your-own-ca/">Setup your own CA</a>
           </li>
         
           <li>
-            <a href="/hexotech/2015/12/04/jenkins-send-email-after-build/">配置jenkins发送邮件</a>
+            <a href="/hexotech/2016/10/11/atom-tips/">atom tips</a>
           </li>
         
           <li>
-            <a href="/hexotech/2015/12/04/calling-github-api/">脚本调用github API</a>
+            <a href="/hexotech/2016/10/11/vagrant-multiple-vms/">vagrant multiple vms</a>
           </li>
         
           <li>
-            <a href="/hexotech/2015/11/25/hadoop-tips/">hadoop常用命令</a>
+            <a href="/hexotech/2016/09/23/install-ceph-through-vagrant-on-centos7/">install ceph through vagrant on centos7</a>
           </li>
         
       </ul>
