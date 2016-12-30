@@ -51,6 +51,7 @@ then you add your own CA certificate following [this article](/hexotech/2016/12/
 for this, please following the [manual of the openstack](http://docs.openstack.org/developer/keystone/configure_tokenless_x509.html).
 
 There some point you need know, in the apache configuration:
+
 ```
 SSLCACertificatePath /etc/apache2/capath
 ```
