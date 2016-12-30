@@ -30,15 +30,15 @@ please notice `SSLCertificateChainFile` became obsolete with version 2.4.8, when
 with our own server certificate, the openstack client will report the following error
 
 ```
-[irteam@localhost certifi]$ openstack user list
+[andrew@localhost certifi]$ openstack user list
 Discovering versions from the identity service failed when creating the password plugin. Attempting to determine version from URL.
-SSL exception connecting to https://pasta-test-os.navercorp.com:5000/v3/auth/tokens: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:765)
+SSL exception connecting to https://test-os.andrew.com:5000/v3/auth/tokens: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:765)
 ```
 
 then you add your own CA certificate following [this article](/hexotech/2016/12/23/setup-your-own-ca/#for-python-requests-to-add-ca), it can be succeeded:
 
 ```
-[irteam@localhost kolla]$ openstack user list
+[andrew@localhost kolla]$ openstack user list
 +----------------------------------+-------+
 | ID                               | Name  |
 +----------------------------------+-------+
@@ -64,12 +64,12 @@ When config the trusted_issuer and generate IdP ID of the issuer_dn, you can usi
 Frist you need have one 'trusted_issuer' in your keystone.conf, if you didn't, you can configure an arbitrary string, then using the curl command like this:
 
 ```
-curl -v -k -s -X GET --cert /home/irteam/CA/certs/client.cer \
-     --key /home/irteam/CA/private/client-key-no-passwrod.pem \
+curl -v -k -s -X GET --cert /home/andrew/CA/certs/client.cer \
+     --key /home/andrew/CA/private/client-key-no-passwrod.pem \
      -H "X-Project-Name: admin"      \
      -H "X-Project-Domain-Id: default"    \      
      -H "X-Subject-Token: dfaa8c530cd548c59ae60ddce4fc594c"      \
-     https://pasta-test-os.navercorp.com:5000/v3/auth/tokens
+     https://test-os.andrew.com:5000/v3/auth/tokens
 ```
 
 then you can find the issues in the log

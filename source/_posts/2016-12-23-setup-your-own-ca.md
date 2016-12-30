@@ -37,27 +37,27 @@ default_ca      = CA_default            # The default ca section
 [ CA_default ]
 
 #dir            = /etc/pki/CA           # Where everything is kept
-dir             = /home/irteam/CA       # Where everything is kept
+dir             = /home/andrew/CA       # Where everything is kept
 ```
 
 <!--more-->
 
-Then you should create related diretorys in `/home/irteam/CA` to store related files, such as CSR(Certificate Signing Request) file, private key file, or certificates.
+Then you should create related diretorys in `/home/andrew/CA` to store related files, such as CSR(Certificate Signing Request) file, private key file, or certificates.
 
 ```
-[irteam@localhost CA]$ pwd
-/home/irteam/CA
-[irteam@localhost CA]$ mkdir certs newcerts private crl
-[irteam@localhost CA]$ touch index.txt
-[irteam@localhost CA]$ echo 01 > serial
+[andrew@localhost CA]$ pwd
+/home/andrew/CA
+[andrew@localhost CA]$ mkdir certs newcerts private crl
+[andrew@localhost CA]$ touch index.txt
+[andrew@localhost CA]$ echo 01 > serial
 ```
 
 This directory structure is very similar with the default data directory of CA:
 
 ```
-[irteam@localhost CA]$ pwd
+[andrew@localhost CA]$ pwd
 /etc/pki/CA
-[irteam@localhost CA]$ ls
+[andrew@localhost CA]$ ls
 certs  crl  newcerts  private
 ```
 
@@ -119,7 +119,7 @@ Edit an conf file, and use it for openssl to generate server csr,
 because we need to add `subjectAltName`, which defines the certificat can be used for multi domains.
 
 ```
-[irteam@localhost CA]$ cat myserver.conf
+[andrew@localhost CA]$ cat myserver.conf
 [req]
 default_bits       = 2048
 distinguished_name = req_distinguished_name
@@ -229,7 +229,7 @@ find the path of the cacert.pem file
 then add your own ca file in to that cacert.pem
 
 ```
-cat /home/irteam/CA/certs/ca.cer >> cacert.pem
+cat /home/andrew/CA/certs/ca.cer >> cacert.pem
 ```
 
 then the requests can request the website, which using the certificate signed by your ca.
