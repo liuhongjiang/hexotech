@@ -171,7 +171,7 @@ please pay attention to this two pramaters `-extfile myserver.conf -extensions v
 using the following command to check the certificate
 
 ```
-openssl req -noout -text -in server.cer
+openssl x509 -noout -text -in certs/server.cer
 ```
 
 ### generate client certificate
