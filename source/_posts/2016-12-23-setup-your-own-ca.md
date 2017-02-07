@@ -248,6 +248,9 @@ You’ll need the passphrase for the decryption process:
 
 Now copy the new.key to the www.key file and you’re done. Next time you restart the web server, it should not prompt you for the passphrase.
 
+## Acknowledge
+
+Thanks to Jack (甯尤刚) to point out serveral errors of this article.
 
 ## Reference
 
