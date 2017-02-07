@@ -611,14 +611,16 @@ a.article-title:hover {
   border: none;
 }
 .article-entry table {
-  width: 100%;
+  width: 80%;
+  margin: auto;
   border-collapse: collapse;
   border-spacing: 0;
 }
 .article-entry th {
   font-weight: bold;
+  border-top: 3px solid #ddd;
   border-bottom: 3px solid #ddd;
-  padding-bottom: 0.5em;
+  padding: 0.5em 0 0.5em 0;
 }
 .article-entry td {
   border-bottom: 1px solid #ddd;
